@@ -15,7 +15,6 @@ kernelspec:
 # Profil
 
 Halo! 👋
-test
 
 Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, Universitas Trunojoyo Madura**. Saya memiliki ketertarikan besar pada dunia teknologi, khususnya di bidang **pengembangan web** dan **analisis data** . Selain belajar di kampus, saya juga aktif mengembangkan skill melalui berbagai proyek dan komunitas.
 
@@ -34,9 +33,11 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 ::::{grid}
 :gutter: 2
 
-:::{grid-item-card} Web
-{bdg-primary}`React`
-{bdg-primary}`NodeJs`
+:::{grid-item-card} Web Dev
+{bdg-success}`Mongo`
+{bdg-warning}`Express`
+{bdg-info}`React`
+{bdg-danger}`Node Js`
 :::
 
 :::{grid-item-card} Analisis data
