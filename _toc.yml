@@ -6,4 +6,4 @@ root: intro
 parts:
   - caption: "Tugas"
     chapters:
-      - file: tugas/tugas1/tugas
+      - file: task/task1/task

@@ -15,6 +15,7 @@ kernelspec:
 # Profil
 
 Halo! 👋
+test
 
 Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, Universitas Trunojoyo Madura**. Saya memiliki ketertarikan besar pada dunia teknologi, khususnya di bidang **pengembangan web** dan **analisis data** . Selain belajar di kampus, saya juga aktif mengembangkan skill melalui berbagai proyek dan komunitas.
 
