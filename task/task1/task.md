@@ -29,7 +29,7 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 **Email** : willy.chairullah@gmail.com
 ```
 
-#### Minat & Fokus
+## Minat & Fokus
 
 ::::{grid}
 :gutter: 2
