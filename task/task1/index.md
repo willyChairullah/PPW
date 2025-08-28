@@ -20,6 +20,8 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 
 > _"Belajar bukan hanya tentang mendapatkan nilai, tapi juga tentang membangun pemahaman dan pengalaman yang bermanfaat untuk masa depan."_
 
+## Informasi & Minat
+
 ```{admonition} Informasi Pribadi
 :class: info
 
@@ -28,14 +30,12 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 **Email** : willy.chairullah@gmail.com
 ```
 
-## Minat & Fokus
-
 ::::{grid}
 :gutter: 2
+:class-container: text-center
 
-:::{grid-item-card} Web
-{bdg-primary}`React`
-{bdg-primary}`NodeJs`
+:::{grid-item-card} Web Dev
+{bdg-success}`Next Js`
 :::
 
 :::{grid-item-card} Analisis data
@@ -49,15 +49,23 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 
 ## Pengantar Web Mining
 
-Web mining adalah proses mengekstrak informasi yang menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining).
+Web mining adalah proses mengekstrak informasi menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining).
+
+```{figure} ./images/Web-mining-taxonomy.png
+---
+scale: 60%
+align: center
+---
+Web mining taxonomy
+```
 
 ### Web Crawling:
 
-Langkah awal adalah Web Crawling, yaitu proses pengambilan data dari sebuah halaman web secara otomatis. ini biasanya menggunakan alat yang dibuat dengan bahasa pemrograman seperti Python. Web crawler perlu mengikuti tautan dari satu halaman ke halaman lain supaya informasi yang diperoleh lebih banyak dan saling terhubung, membentuk data yang lebih terstruktur dan kaya.
+Langkah awal adalah Web Crawling, yaitu proses pengambilan data dari sebuah halaman web secara otomatis. ini biasanya menggunakan alat yang dibuat dengan bahasa pemrograman seperti Python. Web crawler perlu mengikuti tautan dari satu halaman ke halaman lain supaya informasi yang diperoleh lebih banyak dan saling terhubung, membentuk data yang lebih terstruktur.
 
 ### Web Data Preprocessing:
 
-Setelah data dikumpulkan, data itu masih mentah alias berantakan. Oleh karena itu, kita perlu melakukan Preprocessing. Tujuannya adalah untuk membersihkan dan merapikan data agar siap diproses oleh mesin, misalnya dengan menghapus tag HTML yang tidak relevan, menangani data yang hilang, atau menyamakan format data.
+Setelah data dikumpulkan, data itu masih mentah alias berantakan. Oleh karena itu, kita perlu melakukan preprocessing. Tujuannya adalah untuk membersihkan dan merapikan data agar siap diproses oleh mesin, misalnya dengan menghapus tag HTML yang tidak relevan, menangani data yang hilang, atau menyamakan format data.
 
 ### Web Structure Mining:
 
