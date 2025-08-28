@@ -32,6 +32,7 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 
 ::::{grid}
 :gutter: 2
+:class-container: text-center
 
 :::{grid-item-card} Web Dev
 {bdg-success}`Next Js`
@@ -49,6 +50,14 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 ## Pengantar Web Mining
 
 Web mining adalah proses mengekstrak informasi menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining).
+
+```{figure} ./images/Web-mining-taxonomy.png
+---
+scale: 60%
+align: center
+---
+Web mining taxonomy
+```
 
 ### Web Crawling:
 
