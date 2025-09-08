@@ -8,3 +8,4 @@ parts:
     chapters:
       - file: task/task1/index
       - file: task/task2/index
+      - file: task/task3/index
