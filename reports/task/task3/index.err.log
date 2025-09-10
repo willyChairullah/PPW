@@ -32,8 +32,13 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# inisialisasi variabel penampung hasil berita', 'news_data = []', '', '# inisialisasi persiapan untuk crawling berita', 'link = "https://indeks.kompas.com"']
-...
-['      news[\'Isi Berita\']       = get_content(links[elem].get("href"))', "      news['Tanggal Berita']   = dates[elem].text", "      news['Kategori Berita']  = categories[elem].text", '', '      news_data.append(news)']
+import time
+start_time = time.time()
+
+df_result = pta()
+
+end_time = time.time()
+print(f"\nWaktu total crawling: {(end_time - start_time):.2f} detik")
+print(f"Rata-rata per record: {(end_time - start_time)/len(df_result):.2f} detik")
 -------------------
 
