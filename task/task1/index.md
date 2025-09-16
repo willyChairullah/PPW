@@ -69,7 +69,7 @@ Setelah data dikumpulkan, data itu masih mentah alias berantakan. Oleh karena it
 
 ### Web Structure Mining:
 
-Fokus pada bagaimana halaman-halaman web saling terhubung melalui hyperlink. ini sangat berguna karena situs yang banyak ditautkan menjadi referensi dan memiliki urutan teratas dalam hasil SEO.
+Fokus pada bagaimana halaman-halaman web saling terhubung melalui link. ini sangat berguna karena situs yang banyak ditautkan menjadi referensi dan memiliki urutan teratas dalam hasil SEO.
 
 ### Web Content Mining:
 
