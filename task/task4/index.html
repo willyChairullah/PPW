@@ -381,11 +381,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-library">Persiapan Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#praproses-teks">Praproses Teks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi">Membuat Fungsi</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menghilangkan-symbol-atau-tanda-baca">2.Menghilangkan symbol atau tanda baca</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#praproses-teks">Praproses Teks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi">Membuat Fungsi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghilangkan-symbol-atau-tanda-baca">Menghilangkan symbol atau tanda baca</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pta-trunojoyo-abstrak-indonesia-dan-english">PTA Trunojoyo Abstrak Indonesia dan English</a><ul class="nav section-nav flex-column">
@@ -525,10 +523,11 @@ Note: you may need to restart the kernel to use updated packages.
 </section>
 <section id="praproses-teks">
 <h2>Praproses Teks<a class="headerlink" href="#praproses-teks" title="Link to this heading">#</a></h2>
+</section>
 <section id="membuat-fungsi">
-<h3>Membuat Fungsi<a class="headerlink" href="#membuat-fungsi" title="Link to this heading">#</a></h3>
+<h2>Membuat Fungsi<a class="headerlink" href="#membuat-fungsi" title="Link to this heading">#</a></h2>
 <section id="menghilangkan-symbol-atau-tanda-baca">
-<h4>2.Menghilangkan symbol atau tanda baca<a class="headerlink" href="#menghilangkan-symbol-atau-tanda-baca" title="Link to this heading">#</a></h4>
+<h3>Menghilangkan symbol atau tanda baca<a class="headerlink" href="#menghilangkan-symbol-atau-tanda-baca" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case Folding</span>
@@ -611,7 +610,6 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 <section id="pta-trunojoyo-abstrak-indonesia-dan-english">
@@ -783,7 +781,7 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;abstrak_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_lower</span><span class="p">)</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;lwr_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;abstrak_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_lower</span><span class="p">)</span>
-<span class="n">casefolding</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">,</span> <span class="s2">&quot;lwr_english&quot;</span><span class="p">]])</span>
+<span class="n">casefolding</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s2">&quot;abstrak_indo&quot;</span><span class="p">,</span><span class="s2">&quot;lwr_indo&quot;</span><span class="p">,</span><span class="s2">&quot;abstrak_english&quot;</span><span class="p">,</span> <span class="s2">&quot;lwr_english&quot;</span><span class="p">]])</span>
 <span class="n">casefolding</span>
 </pre></div>
 </div>
@@ -807,69 +805,93 @@ Note: you may need to restart the kernel to use updated packages.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>abstrak_indo</th>
       <th>lwr_indo</th>
+      <th>abstrak_english</th>
       <th>lwr_english</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>Sistem  informasi  akademik  (SIAKAD) merupaka...</td>
       <td>sistem  informasi  akademik  (siakad) merupaka...</td>
+      <td>Academic information systems (SIAKAD) is an in...</td>
       <td>academic information systems (siakad) is an in...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>Web server adalah sebuah perangkat lunak serve...</td>
       <td>web server adalah sebuah perangkat lunak serve...</td>
+      <td>Web server is a server software functioning to...</td>
       <td>web server is a server software functioning to...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>Penjadwalan  kuliah  di  Perguruan  Tinggi  me...</td>
       <td>penjadwalan  kuliah  di  perguruan  tinggi  me...</td>
+      <td>Scheduling  courses  in  universities  is  a  ...</td>
       <td>scheduling  courses  in  universities  is  a  ...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>Seiring perkembangan teknologi yang ada diduni...</td>
       <td>seiring perkembangan teknologi yang ada diduni...</td>
+      <td>As the development of technology existing in t...</td>
       <td>as the development of technology existing in t...</td>
     </tr>
     <tr>
       <th>5</th>
+      <td>Gerak pekerja ada pada game yang memiliki genr...</td>
       <td>gerak pekerja ada pada game yang memiliki genr...</td>
+      <td>Workers' movements in the game that has no gen...</td>
       <td>workers' movements in the game that has no gen...</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>853</th>
+      <td>Investasi saham selama ini memiliki resiko ker...</td>
       <td>investasi saham selama ini memiliki resiko ker...</td>
+      <td>\nInvestment in shares so far has a very large...</td>
       <td>\ninvestment in shares so far has a very large...</td>
     </tr>
     <tr>
       <th>854</th>
+      <td>Information Retrieval (IR) merupakan pengambil...</td>
       <td>information retrieval (ir) merupakan pengambil...</td>
+      <td>Information Retrieval (IR) is retrieval of inf...</td>
       <td>information retrieval (ir) is retrieval of inf...</td>
     </tr>
     <tr>
       <th>855</th>
+      <td>Klasifikasi citra merupakan proses pengelompok...</td>
       <td>klasifikasi citra merupakan proses pengelompok...</td>
+      <td>Image classification is a process of grouping ...</td>
       <td>image classification is a process of grouping ...</td>
     </tr>
     <tr>
       <th>856</th>
+      <td>Identifikasi atribut pejalan kaki merupakan sa...</td>
       <td>identifikasi atribut pejalan kaki merupakan sa...</td>
+      <td>The identification of pedestrian attributes is...</td>
       <td>the identification of pedestrian attributes is...</td>
     </tr>
     <tr>
       <th>857</th>
+      <td>Topik deteksi objek telah menarik perhatian ya...</td>
       <td>topik deteksi objek telah menarik perhatian ya...</td>
+      <td>The topic of object detection has attracted gr...</td>
       <td>the topic of object detection has attracted gr...</td>
     </tr>
   </tbody>
 </table>
-<p>821 rows × 2 columns</p>
+<p>821 rows × 4 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -880,7 +902,7 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat kolom tambahan untuk data description yang telah dilakukan proses penghapusan stopwords</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_stopwords_id</span><span class="p">)</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_sw_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;lwr_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_stopwords_en</span><span class="p">)</span>
-<span class="n">stop_words</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">,</span> <span class="s2">&quot;clean_sw_english&quot;</span><span class="p">]])</span>
+<span class="n">stop_words</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">,</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">,</span><span class="s1">&#39;lwr_english&#39;</span><span class="p">,</span><span class="s2">&quot;clean_sw_english&quot;</span><span class="p">]])</span>
 <span class="n">stop_words</span>
 </pre></div>
 </div>
@@ -904,69 +926,93 @@ Note: you may need to restart the kernel to use updated packages.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>lwr_indo</th>
       <th>clean_sw_indo</th>
+      <th>lwr_english</th>
       <th>clean_sw_english</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>sistem  informasi  akademik  (siakad) merupaka...</td>
       <td>sistem informasi akademik (siakad) sistem info...</td>
+      <td>academic information systems (siakad) is an in...</td>
       <td>academic information systems (siakad) informat...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>web server adalah sebuah perangkat lunak serve...</td>
       <td>web server perangkat lunak server berfungsi me...</td>
+      <td>web server is a server software functioning to...</td>
       <td>web server server software functioning receive...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>penjadwalan  kuliah  di  perguruan  tinggi  me...</td>
       <td>penjadwalan kuliah perguruan kompleks. permasa...</td>
+      <td>scheduling  courses  in  universities  is  a  ...</td>
       <td>scheduling courses universities complex issue....</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>seiring perkembangan teknologi yang ada diduni...</td>
       <td>seiring perkembangan teknologi didunia, muncul...</td>
+      <td>as the development of technology existing in t...</td>
       <td>development technology existing world, emergin...</td>
     </tr>
     <tr>
       <th>5</th>
+      <td>gerak pekerja ada pada game yang memiliki genr...</td>
       <td>gerak pekerja game memiliki genre rts (real-ti...</td>
+      <td>workers' movements in the game that has no gen...</td>
       <td>workers' movements game genre rts (real-time s...</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>853</th>
+      <td>investasi saham selama ini memiliki resiko ker...</td>
       <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>\ninvestment in shares so far has a very large...</td>
       <td>investment shares far large risk loss due stoc...</td>
     </tr>
     <tr>
       <th>854</th>
+      <td>information retrieval (ir) merupakan pengambil...</td>
       <td>information retrieval (ir) pengambilan informa...</td>
+      <td>information retrieval (ir) is retrieval of inf...</td>
       <td>information retrieval (ir) retrieval informati...</td>
     </tr>
     <tr>
       <th>855</th>
+      <td>klasifikasi citra merupakan proses pengelompok...</td>
       <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>image classification is a process of grouping ...</td>
       <td>image classification process grouping image pi...</td>
     </tr>
     <tr>
       <th>856</th>
+      <td>identifikasi atribut pejalan kaki merupakan sa...</td>
       <td>identifikasi atribut pejalan kaki salah peneli...</td>
+      <td>the identification of pedestrian attributes is...</td>
       <td>identification pedestrian attributes one many ...</td>
     </tr>
     <tr>
       <th>857</th>
+      <td>topik deteksi objek telah menarik perhatian ya...</td>
       <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>the topic of object detection has attracted gr...</td>
       <td>topic object detection attracted great attenti...</td>
     </tr>
   </tbody>
 </table>
-<p>821 rows × 2 columns</p>
+<p>821 rows × 4 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -978,7 +1024,7 @@ Note: you may need to restart the kernel to use updated packages.
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_sw_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_punct</span><span class="p">)</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_normalize_whitespace</span><span class="p">)</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_normalize_whitespace</span><span class="p">)</span>
-<span class="n">clean_punct_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">,</span> <span class="s2">&quot;clean_stb_english&quot;</span><span class="p">]])</span>
+<span class="n">clean_punct_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">,</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">,</span> <span class="s1">&#39;clean_sw_english&#39;</span><span class="p">,</span><span class="s2">&quot;clean_stb_english&quot;</span><span class="p">]])</span>
 <span class="n">clean_punct_df</span>
 </pre></div>
 </div>
@@ -1002,69 +1048,93 @@ Note: you may need to restart the kernel to use updated packages.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>clean_sw_indo</th>
       <th>clean_stb_indo</th>
+      <th>clean_sw_english</th>
       <th>clean_stb_english</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>sistem informasi akademik (siakad) sistem info...</td>
       <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>academic information systems (siakad) informat...</td>
       <td>academic information systems siakad informatio...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>web server perangkat lunak server berfungsi me...</td>
+      <td>web server perangkat lunak server berfungsi me...</td>
+      <td>web server server software functioning receive...</td>
       <td>web server server software functioning receive...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>penjadwalan kuliah perguruan kompleks. permasa...</td>
       <td>penjadwalan kuliah perguruan kompleks permasal...</td>
+      <td>scheduling courses universities complex issue....</td>
       <td>scheduling courses universities complex issue ...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>seiring perkembangan teknologi didunia, muncul...</td>
       <td>seiring perkembangan teknologi didunia muncul ...</td>
+      <td>development technology existing world, emergin...</td>
       <td>development technology existing world emerging...</td>
     </tr>
     <tr>
       <th>5</th>
+      <td>gerak pekerja game memiliki genre rts (real-ti...</td>
       <td>gerak pekerja game memiliki genre rts real tim...</td>
+      <td>workers' movements game genre rts (real-time s...</td>
       <td>workers movements game genre rts real time str...</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>853</th>
       <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investment shares far large risk loss due stoc...</td>
       <td>investment shares far large risk loss due stoc...</td>
     </tr>
     <tr>
       <th>854</th>
+      <td>information retrieval (ir) pengambilan informa...</td>
       <td>information retrieval ir pengambilan informasi...</td>
+      <td>information retrieval (ir) retrieval informati...</td>
       <td>information retrieval ir retrieval information...</td>
     </tr>
     <tr>
       <th>855</th>
       <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>image classification process grouping image pi...</td>
       <td>image classification process grouping image pi...</td>
     </tr>
     <tr>
       <th>856</th>
       <td>identifikasi atribut pejalan kaki salah peneli...</td>
+      <td>identifikasi atribut pejalan kaki salah peneli...</td>
+      <td>identification pedestrian attributes one many ...</td>
       <td>identification pedestrian attributes one many ...</td>
     </tr>
     <tr>
       <th>857</th>
       <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topic object detection attracted great attenti...</td>
       <td>topic object detection attracted great attenti...</td>
     </tr>
   </tbody>
 </table>
-<p>821 rows × 2 columns</p>
+<p>821 rows × 4 columns</p>
 </div></div></div>
 </div>
 <section id="cek-ejaan-peter-norvig">
@@ -1151,7 +1221,7 @@ Note: you may need to restart the kernel to use updated packages.
 <h4>Cek Ejaan Pembakuan Kata<a class="headerlink" href="#cek-ejaan-pembakuan-kata" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># main_df = main_df.head(10) </span>
 </pre></div>
 </div>
 </div>
@@ -1160,37 +1230,129 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">correct_spelling_indo</span><span class="p">)</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_typo_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_stb_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">correct_spelling_english</span><span class="p">)</span>
-<span class="n">clean_spell</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">,</span> <span class="s2">&quot;clean_typo_english&quot;</span><span class="p">]])</span>
+<span class="n">clean_spell</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">,</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">,</span> <span class="s1">&#39;clean_stb_english&#39;</span><span class="p">,</span><span class="s2">&quot;clean_typo_english&quot;</span><span class="p">]])</span>
 <span class="n">clean_spell</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memperbaiki ejaan:   0%|          | 0/84 [00:00&lt;?, ?kata/s]
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>clean_stb_indo</th>
+      <th>clean_typo_indo</th>
+      <th>clean_stb_english</th>
+      <th>clean_typo_english</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>academic information systems siakad informatio...</td>
+      <td>academic information systems salad information...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>web server perangkat lunak server berfungsi me...</td>
+      <td>web server perangkat lunak server berfungsi pe...</td>
+      <td>web server server software functioning receive...</td>
+      <td>web server server software functioning receive...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>penjadwalan kuliah perguruan kompleks permasal...</td>
+      <td>penjadwalan kuliah perguruan kompleks permasal...</td>
+      <td>scheduling courses universities complex issue ...</td>
+      <td>scheduling courses universities complex issue ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>seiring perkembangan teknologi didunia muncul ...</td>
+      <td>seiring perkembangan teknologi didunia muncul ...</td>
+      <td>development technology existing world emerging...</td>
+      <td>development technology existing world emerging...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>gerak pekerja game memiliki genre rts real tim...</td>
+      <td>gerak pekerja game memiliki genre rs real time...</td>
+      <td>workers movements game genre rts real time str...</td>
+      <td>workers movements game genre its real time str...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>853</th>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investment shares far large risk loss due stoc...</td>
+      <td>investment shares far large risk loss due stoc...</td>
+    </tr>
+    <tr>
+      <th>854</th>
+      <td>information retrieval ir pengambilan informasi...</td>
+      <td>information retrieval air pengambilan informas...</td>
+      <td>information retrieval ir retrieval information...</td>
+      <td>information retrieval ir retrieval information...</td>
+    </tr>
+    <tr>
+      <th>855</th>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>image classification process grouping image pi...</td>
+      <td>image classification process grouping image pi...</td>
+    </tr>
+    <tr>
+      <th>856</th>
+      <td>identifikasi atribut pejalan kaki salah peneli...</td>
+      <td>identifikasi atribut pejalan kali salah peneli...</td>
+      <td>identification pedestrian attributes one many ...</td>
+      <td>identification pedestrian attributes one many ...</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topic object detection attracted great attenti...</td>
+      <td>topic object detection attracted great attenti...</td>
+    </tr>
+  </tbody>
+</table>
+<p>821 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sastrawistemmer</span><span class="p">)</span>
+<span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;stemming_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_typo_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">porter_stemming</span><span class="p">)</span>
+<span class="n">stemming</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">,</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">,</span> <span class="s1">&#39;clean_typo_english&#39;</span><span class="p">,</span><span class="s2">&quot;stemming_english&quot;</span><span class="p">]])</span>
+<span class="n">stemming</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Memperbaiki ejaan: 100%|██████████| 84/84 [00:00&lt;00:00, 2269.89kata/s]
-Memperbaiki ejaan: 100%|██████████| 114/114 [00:00&lt;00:00, 2523.85kata/s]
-Memperbaiki ejaan: 100%|██████████| 68/68 [00:00&lt;00:00, 2344.79kata/s]
-Memperbaiki ejaan: 100%|██████████| 88/88 [00:00&lt;00:00, 2625.00kata/s]
-Memperbaiki ejaan: 100%|██████████| 81/81 [00:00&lt;00:00, 3682.40kata/s]
-Memperbaiki ejaan: 100%|██████████| 91/91 [00:00&lt;00:00, 2459.53kata/s]
-Memperbaiki ejaan: 100%|██████████| 117/117 [00:00&lt;00:00, 3389.30kata/s]
-Memperbaiki ejaan: 100%|██████████| 78/78 [00:00&lt;00:00, 3392.01kata/s]
-Memperbaiki ejaan: 100%|██████████| 111/111 [00:00&lt;00:00, 3171.81kata/s]
-Memperbaiki ejaan: 100%|██████████| 114/114 [00:00&lt;00:00, 2812.85kata/s]
-Fix Spell: 100%|██████████| 97/97 [00:03&lt;00:00, 24.93kata/s]
-Fix Spell: 100%|██████████| 111/111 [00:03&lt;00:00, 32.98kata/s]
-Fix Spell: 100%|██████████| 80/80 [00:00&lt;00:00, 40002.90kata/s]
-Fix Spell: 100%|██████████| 93/93 [00:04&lt;00:00, 19.03kata/s]
-Fix Spell: 100%|██████████| 88/88 [00:01&lt;00:00, 71.31kata/s]
-Fix Spell: 100%|██████████| 94/94 [00:00&lt;00:00, 31378.00kata/s]
-Fix Spell: 100%|██████████| 128/128 [00:00&lt;00:00, 42809.26kata/s]
-Fix Spell: 100%|██████████| 80/80 [00:01&lt;00:00, 40.49kata/s]
-Fix Spell: 100%|██████████| 110/110 [00:25&lt;00:00,  4.25kata/s]
-Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73kata/s]
-</pre></div>
 </div>
+<div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1210,115 +1372,8 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
     <tr style="text-align: right;">
       <th></th>
       <th>clean_typo_indo</th>
-      <th>clean_typo_english</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>sistem informasi akademik siakad sistem inform...</td>
-      <td>academic information systems salad information...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>web server perangkat lunak server berfungsi pe...</td>
-      <td>web server server software functioning receive...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>penjadwalan kuliah perguruan kompleks permasal...</td>
-      <td>scheduling courses universities complex issue ...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>seiring perkembangan teknologi didunia muncul ...</td>
-      <td>development technology existing world emerging...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>gerak pekerja game memiliki genre rs real time...</td>
-      <td>workers movements game genre its real time str...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>perkembangan game pesat alternative peminatnya...</td>
-      <td>rapid development game providing variety alter...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>sistem pengenalan wajah sistem mengenali ident...</td>
-      <td>face recognition system system recognize ident...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>teknologi mobile game beroperating sistem open...</td>
-      <td>mobile technology open source game develops ra...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>kantor bahan kepegawaian kota bangkalan instan...</td>
-      <td>office personnel agency bangkalan city governm...</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>penyusunan sistem informasi dinas perindustria...</td>
-      <td>preparation information systems dings preindus...</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sastrawistemmer</span><span class="p">)</span>
-<span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;stemming_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;clean_typo_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">porter_stemming</span><span class="p">)</span>
-<span class="n">stemming</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">,</span> <span class="s2">&quot;stemming_english&quot;</span><span class="p">]])</span>
-<span class="n">stemming</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 84/84 [00:02&lt;00:00, 31.61it/s]
-100%|██████████| 114/114 [00:03&lt;00:00, 36.71it/s]
-100%|██████████| 68/68 [00:01&lt;00:00, 52.85it/s]
-100%|██████████| 88/88 [00:01&lt;00:00, 46.45it/s]
-100%|██████████| 81/81 [00:02&lt;00:00, 40.07it/s]
-100%|██████████| 91/91 [00:01&lt;00:00, 62.60it/s] 
-100%|██████████| 117/117 [00:01&lt;00:00, 71.95it/s]
-100%|██████████| 78/78 [00:02&lt;00:00, 29.79it/s]
-100%|██████████| 111/111 [00:02&lt;00:00, 46.73it/s]
-100%|██████████| 114/114 [00:01&lt;00:00, 94.94it/s] 
-100%|██████████| 97/97 [00:00&lt;00:00, 24293.75it/s]
-100%|██████████| 112/112 [00:00&lt;00:00, 37347.91it/s]
-100%|██████████| 80/80 [00:00&lt;00:00, 40204.21it/s]
-100%|██████████| 93/93 [00:00&lt;00:00, 46531.11it/s]
-100%|██████████| 88/88 [00:00&lt;00:00, 43867.22it/s]
-100%|██████████| 94/94 [00:00&lt;00:00, 23503.10it/s]
-100%|██████████| 128/128 [00:00&lt;00:00, 31960.41it/s]
-100%|██████████| 80/80 [00:00&lt;00:00, 40127.28it/s]
-100%|██████████| 110/110 [00:00&lt;00:00, 27513.47it/s]
-100%|██████████| 122/122 [00:00&lt;00:00, 30471.33it/s]
-</pre></div>
-</div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
       <th>stemming_indo</th>
+      <th>clean_typo_english</th>
       <th>stemming_english</th>
     </tr>
   </thead>
@@ -1326,62 +1381,90 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
     <tr>
       <th>0</th>
       <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>academic information systems salad information...</td>
       <td>academ inform system salad inform system funct...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>web server perangkat lunak server berfungsi pe...</td>
       <td>web server perangkat lunak server fungsi terim...</td>
+      <td>web server server software functioning receive...</td>
       <td>web server server softwar function receiv help...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>penjadwalan kuliah perguruan kompleks permasal...</td>
       <td>jadwal kuliah guru kompleks masalah variabel t...</td>
+      <td>scheduling courses universities complex issue ...</td>
       <td>schedul cours univers complex issu problem sev...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>seiring perkembangan teknologi didunia muncul ...</td>
       <td>iring kembang teknologi dunia muncul teknologi...</td>
+      <td>development technology existing world emerging...</td>
       <td>develop technolog exist world emerg technolog ...</td>
     </tr>
     <tr>
       <th>5</th>
+      <td>gerak pekerja game memiliki genre rs real time...</td>
       <td>gerak kerja game milik genre rs real time stra...</td>
+      <td>workers movements game genre its real time str...</td>
       <td>worker movement game genr it real time strateg...</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>kembang game pesat alternative minat bentuk ga...</td>
-      <td>rapid develop game provid varieti altern devot...</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>sistem kenal wajah sistem nali identitas wajah...</td>
-      <td>face recognit system system recogn ident perso...</td>
+      <th>853</th>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investasi saham milik resiko rugi gera harga s...</td>
+      <td>investment shares far large risk loss due stoc...</td>
+      <td>invest share far larg risk loss due stock pric...</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>teknologi mobile game beroperating sistem open...</td>
-      <td>mobil technolog open sourc game develop rapidl...</td>
+      <th>854</th>
+      <td>information retrieval air pengambilan informas...</td>
+      <td>information retrieval air ambil informasi simp...</td>
+      <td>information retrieval ir retrieval information...</td>
+      <td>inform retriev ir retriev inform store documen...</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>kantor bahan pegawai kota bangkal instansi per...</td>
-      <td>offic personnel agenc bangkalan citi govern ag...</td>
+      <th>855</th>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>klasifikasi citra proses kelompok piksel citra...</td>
+      <td>image classification process grouping image pi...</td>
+      <td>imag classif process group imag pixel certain ...</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>susun sistem informasi dinas industri dagang d...</td>
-      <td>prepar inform system ding preindustri dan perd...</td>
+      <th>856</th>
+      <td>identifikasi atribut pejalan kali salah peneli...</td>
+      <td>identifikasi atribut pejal kali salah teliti k...</td>
+      <td>identification pedestrian attributes one many ...</td>
+      <td>identif pedestrian attribut one mani studi dev...</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topik deteksi objek tarik perhati kembang tekn...</td>
+      <td>topic object detection attracted great attenti...</td>
+      <td>topic object detect attract great attent techn...</td>
     </tr>
   </tbody>
 </table>
+<p>821 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tokenize_text</span><span class="p">)</span>
 <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;tokenize_english&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">&#39;stemming_english&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tokenize_text</span><span class="p">)</span>
-<span class="n">tokenize</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">,</span> <span class="s2">&quot;tokenize_english&quot;</span><span class="p">]])</span>
+<span class="n">tokenize</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df</span><span class="p">[[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">,</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">,</span><span class="s1">&#39;stemming_english&#39;</span><span class="p">,</span> <span class="s2">&quot;tokenize_english&quot;</span><span class="p">]])</span>
 <span class="n">tokenize</span>
 </pre></div>
 </div>
@@ -1405,63 +1488,93 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>stemming_indo</th>
       <th>tokenize_indo</th>
+      <th>stemming_english</th>
       <th>tokenize_english</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>sistem informasi akademik siakad sistem inform...</td>
       <td>[sistem, informasi, akademik, siakad, sistem, ...</td>
+      <td>academ inform system salad inform system funct...</td>
       <td>[academ, inform, system, salad, inform, system...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>web server perangkat lunak server fungsi terim...</td>
       <td>[web, server, perangkat, lunak, server, fungsi...</td>
+      <td>web server server softwar function receiv help...</td>
       <td>[web, server, server, softwar, function, recei...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>jadwal kuliah guru kompleks masalah variabel t...</td>
       <td>[jadwal, kuliah, guru, kompleks, masalah, vari...</td>
+      <td>schedul cours univers complex issu problem sev...</td>
       <td>[schedul, cours, univers, complex, issu, probl...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>iring kembang teknologi dunia muncul teknologi...</td>
       <td>[iring, kembang, teknologi, dunia, muncul, tek...</td>
+      <td>develop technolog exist world emerg technolog ...</td>
       <td>[develop, technolog, exist, world, emerg, tech...</td>
     </tr>
     <tr>
       <th>5</th>
+      <td>gerak kerja game milik genre rs real time stra...</td>
       <td>[gerak, kerja, game, milik, genre, rs, real, t...</td>
+      <td>worker movement game genr it real time strateg...</td>
       <td>[worker, movement, game, genr, it, real, time,...</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>[kembang, game, pesat, alternative, minat, ben...</td>
-      <td>[rapid, develop, game, provid, varieti, altern...</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>[sistem, kenal, wajah, sistem, nali, identitas...</td>
-      <td>[face, recognit, system, system, recogn, ident...</td>
+      <th>853</th>
+      <td>investasi saham milik resiko rugi gera harga s...</td>
+      <td>[investasi, saham, milik, resiko, rugi, gera, ...</td>
+      <td>invest share far larg risk loss due stock pric...</td>
+      <td>[invest, share, far, larg, risk, loss, due, st...</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>[teknologi, mobile, game, beroperating, sistem...</td>
-      <td>[mobil, technolog, open, sourc, game, develop,...</td>
+      <th>854</th>
+      <td>information retrieval air ambil informasi simp...</td>
+      <td>[information, retrieval, air, ambil, informasi...</td>
+      <td>inform retriev ir retriev inform store documen...</td>
+      <td>[inform, retriev, ir, retriev, inform, store, ...</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>[kantor, bahan, pegawai, kota, bangkal, instan...</td>
-      <td>[offic, personnel, agenc, bangkalan, citi, gov...</td>
+      <th>855</th>
+      <td>klasifikasi citra proses kelompok piksel citra...</td>
+      <td>[klasifikasi, citra, proses, kelompok, piksel,...</td>
+      <td>imag classif process group imag pixel certain ...</td>
+      <td>[imag, classif, process, group, imag, pixel, c...</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>[susun, sistem, informasi, dinas, industri, da...</td>
-      <td>[prepar, inform, system, ding, preindustri, da...</td>
+      <th>856</th>
+      <td>identifikasi atribut pejal kali salah teliti k...</td>
+      <td>[identifikasi, atribut, pejal, kali, salah, te...</td>
+      <td>identif pedestrian attribut one mani studi dev...</td>
+      <td>[identif, pedestrian, attribut, one, mani, stu...</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>topik deteksi objek tarik perhati kembang tekn...</td>
+      <td>[topik, deteksi, objek, tarik, perhati, kemban...</td>
+      <td>topic object detect attract great attent techn...</td>
+      <td>[topic, object, detect, attract, great, attent...</td>
     </tr>
   </tbody>
 </table>
+<p>821 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1471,6 +1584,240 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abstrak_indo</th>
+      <th>abstrak_english</th>
+      <th>lwr_indo</th>
+      <th>lwr_english</th>
+      <th>clean_sw_indo</th>
+      <th>clean_sw_english</th>
+      <th>clean_stb_indo</th>
+      <th>clean_stb_english</th>
+      <th>clean_typo_indo</th>
+      <th>clean_typo_english</th>
+      <th>stemming_indo</th>
+      <th>stemming_english</th>
+      <th>tokenize_indo</th>
+      <th>tokenize_english</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sistem  informasi  akademik  (SIAKAD) merupaka...</td>
+      <td>Academic information systems (SIAKAD) is an in...</td>
+      <td>sistem  informasi  akademik  (siakad) merupaka...</td>
+      <td>academic information systems (siakad) is an in...</td>
+      <td>sistem informasi akademik (siakad) sistem info...</td>
+      <td>academic information systems (siakad) informat...</td>
+      <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>academic information systems siakad informatio...</td>
+      <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>academic information systems salad information...</td>
+      <td>sistem informasi akademik siakad sistem inform...</td>
+      <td>academ inform system salad inform system funct...</td>
+      <td>[sistem, informasi, akademik, siakad, sistem, ...</td>
+      <td>[academ, inform, system, salad, inform, system...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Web server adalah sebuah perangkat lunak serve...</td>
+      <td>Web server is a server software functioning to...</td>
+      <td>web server adalah sebuah perangkat lunak serve...</td>
+      <td>web server is a server software functioning to...</td>
+      <td>web server perangkat lunak server berfungsi me...</td>
+      <td>web server server software functioning receive...</td>
+      <td>web server perangkat lunak server berfungsi me...</td>
+      <td>web server server software functioning receive...</td>
+      <td>web server perangkat lunak server berfungsi pe...</td>
+      <td>web server server software functioning receive...</td>
+      <td>web server perangkat lunak server fungsi terim...</td>
+      <td>web server server softwar function receiv help...</td>
+      <td>[web, server, perangkat, lunak, server, fungsi...</td>
+      <td>[web, server, server, softwar, function, recei...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Penjadwalan  kuliah  di  Perguruan  Tinggi  me...</td>
+      <td>Scheduling  courses  in  universities  is  a  ...</td>
+      <td>penjadwalan  kuliah  di  perguruan  tinggi  me...</td>
+      <td>scheduling  courses  in  universities  is  a  ...</td>
+      <td>penjadwalan kuliah perguruan kompleks. permasa...</td>
+      <td>scheduling courses universities complex issue....</td>
+      <td>penjadwalan kuliah perguruan kompleks permasal...</td>
+      <td>scheduling courses universities complex issue ...</td>
+      <td>penjadwalan kuliah perguruan kompleks permasal...</td>
+      <td>scheduling courses universities complex issue ...</td>
+      <td>jadwal kuliah guru kompleks masalah variabel t...</td>
+      <td>schedul cours univers complex issu problem sev...</td>
+      <td>[jadwal, kuliah, guru, kompleks, masalah, vari...</td>
+      <td>[schedul, cours, univers, complex, issu, probl...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Seiring perkembangan teknologi yang ada diduni...</td>
+      <td>As the development of technology existing in t...</td>
+      <td>seiring perkembangan teknologi yang ada diduni...</td>
+      <td>as the development of technology existing in t...</td>
+      <td>seiring perkembangan teknologi didunia, muncul...</td>
+      <td>development technology existing world, emergin...</td>
+      <td>seiring perkembangan teknologi didunia muncul ...</td>
+      <td>development technology existing world emerging...</td>
+      <td>seiring perkembangan teknologi didunia muncul ...</td>
+      <td>development technology existing world emerging...</td>
+      <td>iring kembang teknologi dunia muncul teknologi...</td>
+      <td>develop technolog exist world emerg technolog ...</td>
+      <td>[iring, kembang, teknologi, dunia, muncul, tek...</td>
+      <td>[develop, technolog, exist, world, emerg, tech...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Gerak pekerja ada pada game yang memiliki genr...</td>
+      <td>Workers' movements in the game that has no gen...</td>
+      <td>gerak pekerja ada pada game yang memiliki genr...</td>
+      <td>workers' movements in the game that has no gen...</td>
+      <td>gerak pekerja game memiliki genre rts (real-ti...</td>
+      <td>workers' movements game genre rts (real-time s...</td>
+      <td>gerak pekerja game memiliki genre rts real tim...</td>
+      <td>workers movements game genre rts real time str...</td>
+      <td>gerak pekerja game memiliki genre rs real time...</td>
+      <td>workers movements game genre its real time str...</td>
+      <td>gerak kerja game milik genre rs real time stra...</td>
+      <td>worker movement game genr it real time strateg...</td>
+      <td>[gerak, kerja, game, milik, genre, rs, real, t...</td>
+      <td>[worker, movement, game, genr, it, real, time,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>853</th>
+      <td>Investasi saham selama ini memiliki resiko ker...</td>
+      <td>\nInvestment in shares so far has a very large...</td>
+      <td>investasi saham selama ini memiliki resiko ker...</td>
+      <td>\ninvestment in shares so far has a very large...</td>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investment shares far large risk loss due stoc...</td>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investment shares far large risk loss due stoc...</td>
+      <td>investasi saham memiliki resiko kerugian perge...</td>
+      <td>investment shares far large risk loss due stoc...</td>
+      <td>investasi saham milik resiko rugi gera harga s...</td>
+      <td>invest share far larg risk loss due stock pric...</td>
+      <td>[investasi, saham, milik, resiko, rugi, gera, ...</td>
+      <td>[invest, share, far, larg, risk, loss, due, st...</td>
+    </tr>
+    <tr>
+      <th>854</th>
+      <td>Information Retrieval (IR) merupakan pengambil...</td>
+      <td>Information Retrieval (IR) is retrieval of inf...</td>
+      <td>information retrieval (ir) merupakan pengambil...</td>
+      <td>information retrieval (ir) is retrieval of inf...</td>
+      <td>information retrieval (ir) pengambilan informa...</td>
+      <td>information retrieval (ir) retrieval informati...</td>
+      <td>information retrieval ir pengambilan informasi...</td>
+      <td>information retrieval ir retrieval information...</td>
+      <td>information retrieval air pengambilan informas...</td>
+      <td>information retrieval ir retrieval information...</td>
+      <td>information retrieval air ambil informasi simp...</td>
+      <td>inform retriev ir retriev inform store documen...</td>
+      <td>[information, retrieval, air, ambil, informasi...</td>
+      <td>[inform, retriev, ir, retriev, inform, store, ...</td>
+    </tr>
+    <tr>
+      <th>855</th>
+      <td>Klasifikasi citra merupakan proses pengelompok...</td>
+      <td>Image classification is a process of grouping ...</td>
+      <td>klasifikasi citra merupakan proses pengelompok...</td>
+      <td>image classification is a process of grouping ...</td>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>image classification process grouping image pi...</td>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>image classification process grouping image pi...</td>
+      <td>klasifikasi citra proses pengelompokan piksel ...</td>
+      <td>image classification process grouping image pi...</td>
+      <td>klasifikasi citra proses kelompok piksel citra...</td>
+      <td>imag classif process group imag pixel certain ...</td>
+      <td>[klasifikasi, citra, proses, kelompok, piksel,...</td>
+      <td>[imag, classif, process, group, imag, pixel, c...</td>
+    </tr>
+    <tr>
+      <th>856</th>
+      <td>Identifikasi atribut pejalan kaki merupakan sa...</td>
+      <td>The identification of pedestrian attributes is...</td>
+      <td>identifikasi atribut pejalan kaki merupakan sa...</td>
+      <td>the identification of pedestrian attributes is...</td>
+      <td>identifikasi atribut pejalan kaki salah peneli...</td>
+      <td>identification pedestrian attributes one many ...</td>
+      <td>identifikasi atribut pejalan kaki salah peneli...</td>
+      <td>identification pedestrian attributes one many ...</td>
+      <td>identifikasi atribut pejalan kali salah peneli...</td>
+      <td>identification pedestrian attributes one many ...</td>
+      <td>identifikasi atribut pejal kali salah teliti k...</td>
+      <td>identif pedestrian attribut one mani studi dev...</td>
+      <td>[identifikasi, atribut, pejal, kali, salah, te...</td>
+      <td>[identif, pedestrian, attribut, one, mani, stu...</td>
+    </tr>
+    <tr>
+      <th>857</th>
+      <td>Topik deteksi objek telah menarik perhatian ya...</td>
+      <td>The topic of object detection has attracted gr...</td>
+      <td>topik deteksi objek telah menarik perhatian ya...</td>
+      <td>the topic of object detection has attracted gr...</td>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topic object detection attracted great attenti...</td>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topic object detection attracted great attenti...</td>
+      <td>topik deteksi objek menarik perhatian perkemba...</td>
+      <td>topic object detection attracted great attenti...</td>
+      <td>topik deteksi objek tarik perhati kembang tekn...</td>
+      <td>topic object detect attract great attent techn...</td>
+      <td>[topik, deteksi, objek, tarik, perhati, kemban...</td>
+      <td>[topic, object, detect, attract, great, attent...</td>
+    </tr>
+  </tbody>
+</table>
+<p>821 rows × 14 columns</p>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -1617,173 +1964,8 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;Isi Berita&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_lower</span><span class="p">)</span>
-<span class="n">casefolding</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[</span><span class="s2">&quot;lwr_indo&quot;</span><span class="p">])</span>
+<span class="n">casefolding</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[[</span><span class="s2">&quot;Isi Berita&quot;</span><span class="p">,</span><span class="s2">&quot;lwr_indo&quot;</span><span class="p">]])</span>
 <span class="n">casefolding</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>lwr_indo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>jakarta, kompas.com - sebanyak 16 aktivis yang...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>kompas.com - erick thohir resmi dilantik presi...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>jakarta, kompas.com – volkswagen id. buzz menj...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>100</th>
-      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
-    </tr>
-    <tr>
-      <th>101</th>
-      <td>jakarta, kompas.com – bagi sejumlah pengendara...</td>
-    </tr>
-    <tr>
-      <th>102</th>
-      <td>kompas.com - presiden prabowo subianto melanti...</td>
-    </tr>
-    <tr>
-      <th>103</th>
-      <td>jakarta, kompas.com -  presiden prabowo subian...</td>
-    </tr>
-    <tr>
-      <th>104</th>
-      <td>jakarta, kompas.com- menteri pemuda dan olahra...</td>
-    </tr>
-  </tbody>
-</table>
-<p>105 rows × 1 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="id5">
-<h4>Clean Stopwords<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat kolom tambahan untuk data description yang telah dilakukan proses penghapusan stopwords</span>
-<span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_stopwords_id</span><span class="p">)</span>
-<span class="n">stop_words</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">])</span>
-<span class="n">stop_words</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>clean_sw_indo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>jakarta, kompas.com - 16 aktivis ditahan polda...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>kompas.com - erick thohir resmi dilantik presi...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>jakarta, kompas.com – volkswagen id. buzz sala...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>100</th>
-      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
-    </tr>
-    <tr>
-      <th>101</th>
-      <td>jakarta, kompas.com – pengendara, bensin spbu ...</td>
-    </tr>
-    <tr>
-      <th>102</th>
-      <td>kompas.com - presiden prabowo subianto melanti...</td>
-    </tr>
-    <tr>
-      <th>103</th>
-      <td>jakarta, kompas.com - presiden prabowo subiant...</td>
-    </tr>
-    <tr>
-      <th>104</th>
-      <td>jakarta, kompas.com- menteri pemuda olahraga (...</td>
-    </tr>
-  </tbody>
-</table>
-<p>105 rows × 1 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="id6">
-<h4>Menghilangkan symbol atau tanda baca<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span>
 </pre></div>
 </div>
 </div>
@@ -1808,7 +1990,6 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
       <th></th>
       <th>Isi Berita</th>
       <th>lwr_indo</th>
-      <th>clean_sw_indo</th>
     </tr>
   </thead>
   <tbody>
@@ -1816,35 +1997,29 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
       <th>0</th>
       <td>JAKARTA, KOMPAS.com - Sebanyak 16 aktivis yang...</td>
       <td>jakarta, kompas.com - sebanyak 16 aktivis yang...</td>
-      <td>jakarta, kompas.com - 16 aktivis ditahan polda...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>KOMPAS.com - Erick Thohir resmi dilantik Presi...</td>
-      <td>kompas.com - erick thohir resmi dilantik presi...</td>
       <td>kompas.com - erick thohir resmi dilantik presi...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>SEMARANG, KOMPAS.com - Stasiun Meteorologi Mar...</td>
       <td>semarang, kompas.com - stasiun meteorologi mar...</td>
-      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>JAKARTA, KOMPAS.com – Volkswagen ID. Buzz menj...</td>
       <td>jakarta, kompas.com – volkswagen id. buzz menj...</td>
-      <td>jakarta, kompas.com – volkswagen id. buzz sala...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>JAKARTA, KOMPAS.com - Indeks Harga Saham Gabun...</td>
       <td>jakarta, kompas.com - indeks harga saham gabun...</td>
-      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
     </tr>
@@ -1852,41 +2027,135 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
       <th>100</th>
       <td>JAKARTA, KOMPAS.com – Gubernur DKI Jakarta Pra...</td>
       <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
-      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
     </tr>
     <tr>
       <th>101</th>
       <td>JAKARTA, KOMPAS.com – Bagi sejumlah pengendara...</td>
       <td>jakarta, kompas.com – bagi sejumlah pengendara...</td>
-      <td>jakarta, kompas.com – pengendara, bensin spbu ...</td>
     </tr>
     <tr>
       <th>102</th>
       <td>KOMPAS.com - Presiden Prabowo Subianto melanti...</td>
-      <td>kompas.com - presiden prabowo subianto melanti...</td>
       <td>kompas.com - presiden prabowo subianto melanti...</td>
     </tr>
     <tr>
       <th>103</th>
       <td>JAKARTA, KOMPAS.com -  Presiden Prabowo Subian...</td>
       <td>jakarta, kompas.com -  presiden prabowo subian...</td>
-      <td>jakarta, kompas.com - presiden prabowo subiant...</td>
     </tr>
     <tr>
       <th>104</th>
       <td>JAKARTA, KOMPAS.com- Menteri Pemuda dan Olahra...</td>
       <td>jakarta, kompas.com- menteri pemuda dan olahra...</td>
+    </tr>
+  </tbody>
+</table>
+<p>105 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id5">
+<h4>Clean Stopwords<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat kolom tambahan untuk data description yang telah dilakukan proses penghapusan stopwords</span>
+<span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_stopwords_id</span><span class="p">)</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[[</span><span class="s1">&#39;lwr_indo&#39;</span><span class="p">,</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">]])</span>
+<span class="n">stop_words</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lwr_indo</th>
+      <th>clean_sw_indo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>jakarta, kompas.com - sebanyak 16 aktivis yang...</td>
+      <td>jakarta, kompas.com - 16 aktivis ditahan polda...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kompas.com - erick thohir resmi dilantik presi...</td>
+      <td>kompas.com - erick thohir resmi dilantik presi...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
+      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>jakarta, kompas.com – volkswagen id. buzz menj...</td>
+      <td>jakarta, kompas.com – volkswagen id. buzz sala...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
+      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
+      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>jakarta, kompas.com – bagi sejumlah pengendara...</td>
+      <td>jakarta, kompas.com – pengendara, bensin spbu ...</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>kompas.com - presiden prabowo subianto melanti...</td>
+      <td>kompas.com - presiden prabowo subianto melanti...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>jakarta, kompas.com -  presiden prabowo subian...</td>
+      <td>jakarta, kompas.com - presiden prabowo subiant...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>jakarta, kompas.com- menteri pemuda dan olahra...</td>
       <td>jakarta, kompas.com- menteri pemuda olahraga (...</td>
     </tr>
   </tbody>
 </table>
-<p>105 rows × 3 columns</p>
+<p>105 rows × 2 columns</p>
 </div></div></div>
 </div>
+</section>
+<section id="id6">
+<h4>Menghilangkan symbol atau tanda baca<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_punct</span><span class="p">)</span>
-<span class="n">clean_punct_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">])</span>
+<span class="n">clean_punct_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[[</span><span class="s1">&#39;clean_sw_indo&#39;</span><span class="p">,</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">]])</span>
 <span class="n">clean_punct_df</span>
 </pre></div>
 </div>
@@ -1910,57 +2179,69 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>clean_sw_indo</th>
       <th>clean_stb_indo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>jakarta, kompas.com - 16 aktivis ditahan polda...</td>
       <td>jakarta kompas com    aktivis ditahan polda me...</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>kompas.com - erick thohir resmi dilantik presi...</td>
       <td>kompas com   erick thohir resmi dilantik presi...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
       <td>semarang kompas com   stasiun meteorologi mari...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>jakarta, kompas.com – volkswagen id. buzz sala...</td>
       <td>jakarta kompas com   volkswagen id  buzz salah...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
       <td>jakarta kompas com   indeks harga saham gabung...</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>100</th>
+      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
       <td>jakarta kompas com   gubernur dki jakarta pram...</td>
     </tr>
     <tr>
       <th>101</th>
+      <td>jakarta, kompas.com – pengendara, bensin spbu ...</td>
       <td>jakarta kompas com   pengendara bensin spbu sw...</td>
     </tr>
     <tr>
       <th>102</th>
+      <td>kompas.com - presiden prabowo subianto melanti...</td>
       <td>kompas com   presiden prabowo subianto melanti...</td>
     </tr>
     <tr>
       <th>103</th>
+      <td>jakarta, kompas.com - presiden prabowo subiant...</td>
       <td>jakarta kompas com   presiden prabowo subianto...</td>
     </tr>
     <tr>
       <th>104</th>
+      <td>jakarta, kompas.com- menteri pemuda olahraga (...</td>
       <td>jakarta kompas com  menteri pemuda olahraga me...</td>
     </tr>
   </tbody>
 </table>
-<p>105 rows × 1 columns</p>
+<p>105 rows × 2 columns</p>
 </div></div></div>
 </div>
 <section id="id7">
@@ -2003,7 +2284,7 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
 <h4>Cek Ejaan Pembakuan Kata<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># main_df_berita = main_df_berita.head(10)</span>
 </pre></div>
 </div>
 </div>
@@ -2011,20 +2292,104 @@ Fix Spell: 100%|██████████| 122/122 [00:13&lt;00:00,  8.73ka
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_stb_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">spellcheck_text</span><span class="p">)</span>
-<span class="n">clean_spell</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">])</span>
+<span class="n">clean_spell</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[[</span><span class="s2">&quot;clean_stb_indo&quot;</span><span class="p">,</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]])</span>
 <span class="n">clean_spell</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\willy\AppData\Local\Temp\ipykernel_1956\2023177078.py:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  main_df_berita[&#39;clean_typo_indo&#39;] = main_df_berita[&#39;clean_stb_indo&#39;].apply(spellcheck_text)
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>clean_stb_indo</th>
+      <th>clean_typo_indo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>jakarta kompas com    aktivis ditahan polda me...</td>
+      <td>jakarta kompas com aktivis ditahan polda metro...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kompas com   erick thohir resmi dilantik presi...</td>
+      <td>kompas com erick thohir resmi dilantik preside...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>semarang kompas com   stasiun meteorologi mari...</td>
+      <td>semarang kompas com stasiun meteorologi mariti...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>jakarta kompas com   volkswagen id  buzz salah...</td>
+      <td>jakarta kompas com volkswagen id buzz salah mo...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>jakarta kompas com   indeks harga saham gabung...</td>
+      <td>jakarta kompas com indeks harga saham gabungan...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>jakarta kompas com   gubernur dki jakarta pram...</td>
+      <td>jakarta kompas com gubernur dki jakarta pramon...</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>jakarta kompas com   pengendara bensin spbu sw...</td>
+      <td>jakarta kompas com pengendara bensin spbu swas...</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>kompas com   presiden prabowo subianto melanti...</td>
+      <td>kompas com presiden prabowo subianto melantik ...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>jakarta kompas com   presiden prabowo subianto...</td>
+      <td>jakarta kompas com presiden prabowo subianto m...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>jakarta kompas com  menteri pemuda olahraga me...</td>
+      <td>jakarta kompas com menteri pemuda olahraga men...</td>
+    </tr>
+  </tbody>
+</table>
+<p>105 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sastrawistemmer</span><span class="p">)</span>
+<span class="n">stemming</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">,</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]])</span>
+<span class="n">stemming</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2044,80 +2409,79 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     <tr style="text-align: right;">
       <th></th>
       <th>clean_typo_indo</th>
+      <th>stemming_indo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>jakarta kompas com aktivis ditahan polda metro...</td>
+      <td>jakarta kompas com aktivis tahan polda metro j...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>kompas com erick thohir resmi dilantik preside...</td>
+      <td>kompas com erick thohir resmi lantik presiden ...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>semarang kompas com stasiun meteorologi mariti...</td>
       <td>semarang kompas com stasiun meteorologi mariti...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>jakarta kompas com volkswagen id buzz salah mo...</td>
+      <td>jakarta kompas com volkswagen id buzz salah mo...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>jakarta kompas com indeks harga saham gabungan...</td>
+      <td>jakarta kompas com indeks harga saham gabung i...</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>jakarta kompas com menko bidang hukum ham imig...</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>jakarta kompas com presiden prabowo melantik r...</td>
+      <th>100</th>
+      <td>jakarta kompas com gubernur dki jakarta pramon...</td>
+      <td>jakarta kompas com gubernur dki jakarta pramon...</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>jakarta kompas com kementerian energi sumber d...</td>
+      <th>101</th>
+      <td>jakarta kompas com pengendara bensin spbu swas...</td>
+      <td>jakarta kompas com kendara bensin spbu swasta ...</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>jakarta kompas com kepala pusat data informasi...</td>
+      <th>102</th>
+      <td>kompas com presiden prabowo subianto melantik ...</td>
+      <td>kompas com presiden prabowo subianto lantik an...</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>jakarta kompas com presiden prabowo subianto k...</td>
+      <th>103</th>
+      <td>jakarta kompas com presiden prabowo subianto m...</td>
+      <td>jakarta kompas com presiden prabowo subianto l...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>jakarta kompas com menteri pemuda olahraga men...</td>
+      <td>jakarta kompas com menteri pemuda olahraga men...</td>
     </tr>
   </tbody>
 </table>
+<p>105 rows × 2 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;clean_typo_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">sastrawistemmer</span><span class="p">)</span>
-<span class="n">stemming</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">])</span>
-<span class="n">stemming</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tokenize_text</span><span class="p">)</span>
+<span class="n">tokenize</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">,</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">]])</span>
+<span class="n">tokenize</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 176/176 [00:04&lt;00:00, 39.47it/s]
-100%|██████████| 255/255 [00:04&lt;00:00, 59.40it/s] 
-100%|██████████| 190/190 [00:04&lt;00:00, 42.14it/s]
-100%|██████████| 217/217 [00:04&lt;00:00, 43.79it/s]
-100%|██████████| 298/298 [00:07&lt;00:00, 39.70it/s]
-100%|██████████| 123/123 [00:02&lt;00:00, 44.57it/s]
-100%|██████████| 175/175 [00:04&lt;00:00, 38.97it/s]
-100%|██████████| 228/228 [00:05&lt;00:00, 44.54it/s]
-100%|██████████| 168/168 [00:02&lt;00:00, 59.80it/s]
-100%|██████████| 208/208 [00:05&lt;00:00, 38.89it/s]
-C:\Users\willy\AppData\Local\Temp\ipykernel_1956\789150994.py:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  main_df_berita[&#39;stemming_indo&#39;] = main_df_berita[&#39;clean_typo_indo&#39;].apply(sastrawistemmer)
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2137,70 +2501,85 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     <tr style="text-align: right;">
       <th></th>
       <th>stemming_indo</th>
+      <th>tokenize_indo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>jakarta kompas com aktivis tahan polda metro j...</td>
+      <td>[jakarta, kompas, com, aktivis, tahan, polda, ...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>kompas com erick thohir resmi lantik presiden ...</td>
+      <td>[kompas, com, erick, thohir, resmi, lantik, pr...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>semarang kompas com stasiun meteorologi mariti...</td>
+      <td>[semarang, kompas, com, stasiun, meteorologi, ...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>jakarta kompas com volkswagen id buzz salah mo...</td>
+      <td>[jakarta, kompas, com, volkswagen, id, buzz, s...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>jakarta kompas com indeks harga saham gabung i...</td>
+      <td>[jakarta, kompas, com, indeks, harga, saham, g...</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>jakarta kompas com menko bidang hukum ham imig...</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>jakarta kompas com presiden prabowo lantik roh...</td>
+      <th>100</th>
+      <td>jakarta kompas com gubernur dki jakarta pramon...</td>
+      <td>[jakarta, kompas, com, gubernur, dki, jakarta,...</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>jakarta kompas com menteri energi sumber daya ...</td>
+      <th>101</th>
+      <td>jakarta kompas com kendara bensin spbu swasta ...</td>
+      <td>[jakarta, kompas, com, kendara, bensin, spbu, ...</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>jakarta kompas com kepala pusat data informasi...</td>
+      <th>102</th>
+      <td>kompas com presiden prabowo subianto lantik an...</td>
+      <td>[kompas, com, presiden, prabowo, subianto, lan...</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>jakarta kompas com presiden prabowo subianto n...</td>
+      <th>103</th>
+      <td>jakarta kompas com presiden prabowo subianto l...</td>
+      <td>[jakarta, kompas, com, presiden, prabowo, subi...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>jakarta kompas com menteri pemuda olahraga men...</td>
+      <td>[jakarta, kompas, com, menteri, pemuda, olahra...</td>
     </tr>
   </tbody>
 </table>
+<p>105 rows × 2 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;stemming_indo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tokenize_text</span><span class="p">)</span>
-<span class="n">tokenize</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">main_df_berita</span><span class="p">[</span><span class="s1">&#39;tokenize_indo&#39;</span><span class="p">])</span>
-<span class="n">tokenize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simpan DataFrame ke dalam file CSV</span>
+<span class="n">main_df_berita</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;datasets/df_berita_preprocessing.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_df_berita</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\willy\AppData\Local\Temp\ipykernel_1956\1315700904.py:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  main_df_berita[&#39;tokenize_indo&#39;] = main_df_berita[&#39;stemming_indo&#39;].apply(tokenize_text)
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2219,61 +2598,130 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Isi Berita</th>
+      <th>lwr_indo</th>
+      <th>clean_sw_indo</th>
+      <th>clean_stb_indo</th>
+      <th>clean_typo_indo</th>
+      <th>stemming_indo</th>
       <th>tokenize_indo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>JAKARTA, KOMPAS.com - Sebanyak 16 aktivis yang...</td>
+      <td>jakarta, kompas.com - sebanyak 16 aktivis yang...</td>
+      <td>jakarta, kompas.com - 16 aktivis ditahan polda...</td>
+      <td>jakarta kompas com    aktivis ditahan polda me...</td>
+      <td>jakarta kompas com aktivis ditahan polda metro...</td>
+      <td>jakarta kompas com aktivis tahan polda metro j...</td>
       <td>[jakarta, kompas, com, aktivis, tahan, polda, ...</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>KOMPAS.com - Erick Thohir resmi dilantik Presi...</td>
+      <td>kompas.com - erick thohir resmi dilantik presi...</td>
+      <td>kompas.com - erick thohir resmi dilantik presi...</td>
+      <td>kompas com   erick thohir resmi dilantik presi...</td>
+      <td>kompas com erick thohir resmi dilantik preside...</td>
+      <td>kompas com erick thohir resmi lantik presiden ...</td>
       <td>[kompas, com, erick, thohir, resmi, lantik, pr...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>SEMARANG, KOMPAS.com - Stasiun Meteorologi Mar...</td>
+      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
+      <td>semarang, kompas.com - stasiun meteorologi mar...</td>
+      <td>semarang kompas com   stasiun meteorologi mari...</td>
+      <td>semarang kompas com stasiun meteorologi mariti...</td>
+      <td>semarang kompas com stasiun meteorologi mariti...</td>
       <td>[semarang, kompas, com, stasiun, meteorologi, ...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>JAKARTA, KOMPAS.com – Volkswagen ID. Buzz menj...</td>
+      <td>jakarta, kompas.com – volkswagen id. buzz menj...</td>
+      <td>jakarta, kompas.com – volkswagen id. buzz sala...</td>
+      <td>jakarta kompas com   volkswagen id  buzz salah...</td>
+      <td>jakarta kompas com volkswagen id buzz salah mo...</td>
+      <td>jakarta kompas com volkswagen id buzz salah mo...</td>
       <td>[jakarta, kompas, com, volkswagen, id, buzz, s...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>JAKARTA, KOMPAS.com - Indeks Harga Saham Gabun...</td>
+      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
+      <td>jakarta, kompas.com - indeks harga saham gabun...</td>
+      <td>jakarta kompas com   indeks harga saham gabung...</td>
+      <td>jakarta kompas com indeks harga saham gabungan...</td>
+      <td>jakarta kompas com indeks harga saham gabung i...</td>
       <td>[jakarta, kompas, com, indeks, harga, saham, g...</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>[jakarta, kompas, com, menko, bidang, hukum, h...</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>[jakarta, kompas, com, presiden, prabowo, lant...</td>
+      <th>100</th>
+      <td>JAKARTA, KOMPAS.com – Gubernur DKI Jakarta Pra...</td>
+      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
+      <td>jakarta, kompas.com – gubernur dki jakarta pra...</td>
+      <td>jakarta kompas com   gubernur dki jakarta pram...</td>
+      <td>jakarta kompas com gubernur dki jakarta pramon...</td>
+      <td>jakarta kompas com gubernur dki jakarta pramon...</td>
+      <td>[jakarta, kompas, com, gubernur, dki, jakarta,...</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>[jakarta, kompas, com, menteri, energi, sumber...</td>
+      <th>101</th>
+      <td>JAKARTA, KOMPAS.com – Bagi sejumlah pengendara...</td>
+      <td>jakarta, kompas.com – bagi sejumlah pengendara...</td>
+      <td>jakarta, kompas.com – pengendara, bensin spbu ...</td>
+      <td>jakarta kompas com   pengendara bensin spbu sw...</td>
+      <td>jakarta kompas com pengendara bensin spbu swas...</td>
+      <td>jakarta kompas com kendara bensin spbu swasta ...</td>
+      <td>[jakarta, kompas, com, kendara, bensin, spbu, ...</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>[jakarta, kompas, com, kepala, pusat, data, in...</td>
+      <th>102</th>
+      <td>KOMPAS.com - Presiden Prabowo Subianto melanti...</td>
+      <td>kompas.com - presiden prabowo subianto melanti...</td>
+      <td>kompas.com - presiden prabowo subianto melanti...</td>
+      <td>kompas com   presiden prabowo subianto melanti...</td>
+      <td>kompas com presiden prabowo subianto melantik ...</td>
+      <td>kompas com presiden prabowo subianto lantik an...</td>
+      <td>[kompas, com, presiden, prabowo, subianto, lan...</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>103</th>
+      <td>JAKARTA, KOMPAS.com -  Presiden Prabowo Subian...</td>
+      <td>jakarta, kompas.com -  presiden prabowo subian...</td>
+      <td>jakarta, kompas.com - presiden prabowo subiant...</td>
+      <td>jakarta kompas com   presiden prabowo subianto...</td>
+      <td>jakarta kompas com presiden prabowo subianto m...</td>
+      <td>jakarta kompas com presiden prabowo subianto l...</td>
       <td>[jakarta, kompas, com, presiden, prabowo, subi...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>JAKARTA, KOMPAS.com- Menteri Pemuda dan Olahra...</td>
+      <td>jakarta, kompas.com- menteri pemuda dan olahra...</td>
+      <td>jakarta, kompas.com- menteri pemuda olahraga (...</td>
+      <td>jakarta kompas com  menteri pemuda olahraga me...</td>
+      <td>jakarta kompas com menteri pemuda olahraga men...</td>
+      <td>jakarta kompas com menteri pemuda olahraga men...</td>
+      <td>[jakarta, kompas, com, menteri, pemuda, olahra...</td>
     </tr>
   </tbody>
 </table>
+<p>105 rows × 7 columns</p>
 </div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simpan DataFrame ke dalam file CSV</span>
-<span class="n">main_df_berita</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;datasets/df_berita_preprocessing.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -2336,11 +2784,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-library">Persiapan Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#praproses-teks">Praproses Teks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi">Membuat Fungsi</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menghilangkan-symbol-atau-tanda-baca">2.Menghilangkan symbol atau tanda baca</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#praproses-teks">Praproses Teks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi">Membuat Fungsi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghilangkan-symbol-atau-tanda-baca">Menghilangkan symbol atau tanda baca</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pta-trunojoyo-abstrak-indonesia-dan-english">PTA Trunojoyo Abstrak Indonesia dan English</a><ul class="nav section-nav flex-column">
