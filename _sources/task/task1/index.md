@@ -61,7 +61,7 @@ Web mining taxonomy
 
 ### Web Crawling:
 
-Langkah awal adalah Web Crawling, yaitu proses pengambilan data dari sebuah halaman web secara otomatis. ini biasanya menggunakan alat yang dibuat dengan bahasa pemrograman seperti Python. Web crawler perlu mengikuti tautan dari satu halaman ke halaman lain supaya informasi yang diperoleh lebih banyak dan saling terhubung, membentuk data yang lebih terstruktur.
+Langkah awal adalah Web Crawling, yaitu proses pengambilan data dari sebuah halaman web secara otomatis. ini biasanya menggunakan alat yang dibuat dengan bahasa pemrograman seperti Python. Web crawler perlu mengikuti tautan dari satu halaman ke halaman lain supaya informasi yang diperoleh lebih banyak dan saling terhubung, membentuk data yang lebih terstruktur. 
 
 ### Web Data Preprocessing:
 
