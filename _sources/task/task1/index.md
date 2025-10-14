@@ -38,7 +38,7 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 {bdg-success}`Next Js`
 :::
 
-:::{grid-item-card} Analisis data
+:::{grid-item-card} Analisis data 
 {bdg-secondary}`NLP`
 :::
 ::::

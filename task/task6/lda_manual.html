@@ -1,0 +1,1989 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🧠 Latent Dirichlet Allocation (Manual - Gibbs Sampling) &#8212; Documentation of PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'task/task6/lda_manual';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/myPhoto.jpg" class="logo__image only-light" alt="Documentation of PPW - Home"/>
+    <script>document.write(`<img src="../../_static/myPhoto.jpg" class="logo__image only-dark" alt="Documentation of PPW - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Selamat Datang di Website Catatan & Tugas PPW
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tugas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../task1/index.html">Profil</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../task2/index.html">Tugas 1 Crawling Sprnger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task3/index.html">Tugas 2 : Crawling dan Struktur Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task4/index.html">Tugas 3 Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task5/index.html">Tugas 4 TF-IDF W2V dan Modelling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">UTS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/index.html">UTS klasifikasi pada data berita dengan ektraksi fitur menggunakan LDA</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Ftask/task6/lda_manual.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/task/task6/lda_manual.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🧠 Latent Dirichlet Allocation (Manual - Gibbs Sampling)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="latent-dirichlet-allocation-manual-gibbs-sampling">
+<h1>🧠 Latent Dirichlet Allocation (Manual - Gibbs Sampling)<a class="headerlink" href="#latent-dirichlet-allocation-manual-gibbs-sampling" title="Link to this heading">#</a></h1>
+<p>Notebook ini melakukan pemodelan topik (Topic Modeling) secara <strong>manual tanpa library sklearn/gensim</strong>, menggunakan konsep <strong>Gibbs Sampling</strong>.</p>
+<p>Dataset: <code class="docutils literal notranslate"><span class="pre">df_preprocessing.csv</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tokenize_indo</span></code> → hasil tokenisasi berita</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Kategori</span> <span class="pre">Berita</span></code> → label kategori (tidak dipakai pada LDA unsupervised)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+
+<span class="c1"># Load dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;datasets/df_preprocessing.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ambil kolom yang sudah dipreprocessing</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokenize_indo&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Kategori Berita&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah dokumen:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">documents</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah dokumen: 1200
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Isi Berita</th>
+      <th>lwr_indo</th>
+      <th>clean_sw_indo</th>
+      <th>clean_stb_indo</th>
+      <th>clean_typo_indo</th>
+      <th>stemming_indo</th>
+      <th>tokenize_indo</th>
+      <th>Kategori Berita</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KOMPAS.com - Menteri Pemuda dan Olahraga Erick...</td>
+      <td>kompas.com - menteri pemuda dan olahraga erick...</td>
+      <td>kompas.com - menteri pemuda olahraga erick tho...</td>
+      <td>kompas com   menteri pemuda olahraga erick tho...</td>
+      <td>kompas com menteri pemuda olahraga erick thohi...</td>
+      <td>kompas com menteri pemuda olahraga erick thohi...</td>
+      <td>['kompas', 'com', 'menteri', 'pemuda', 'olahra...</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>KOMPAS.com - Manajer Chelsea, Enzo Maresca men...</td>
+      <td>kompas.com - manajer chelsea, enzo maresca men...</td>
+      <td>kompas.com - manajer chelsea, enzo maresca men...</td>
+      <td>kompas com   manajer chelsea enzo maresca meng...</td>
+      <td>kompas com manajer chelsea enzo maresca mengan...</td>
+      <td>kompas com manajer chelsea enzo maresca anggap...</td>
+      <td>['kompas', 'com', 'manajer', 'chelsea', 'enzo'...</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>KOMPAS.com - Pelatih Liverpool, Arne Slot, men...</td>
+      <td>kompas.com - pelatih liverpool, arne slot, men...</td>
+      <td>kompas.com - pelatih liverpool, arne slot, men...</td>
+      <td>kompas com   pelatih liverpool arne slot menga...</td>
+      <td>kompas com pelatih liverpool arne slot mengaku...</td>
+      <td>kompas com latih liverpool arne slot aku cryst...</td>
+      <td>['kompas', 'com', 'latih', 'liverpool', 'arne'...</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KOMPAS.com - Hasil terbaru pekan kelima Liga I...</td>
+      <td>kompas.com - hasil terbaru pekan kelima liga i...</td>
+      <td>kompas.com - hasil terbaru pekan liga italia 2...</td>
+      <td>kompas com   hasil terbaru pekan liga italia  ...</td>
+      <td>kompas com hasil terbaru pekan liga italia per...</td>
+      <td>kompas com hasil baru pekan liga italia beda n...</td>
+      <td>['kompas', 'com', 'hasil', 'baru', 'pekan', 'l...</td>
+      <td>BOLA</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>KOMPAS.com - Menteri Pemuda dan Olahraga Repub...</td>
+      <td>kompas.com - menteri pemuda dan olahraga repub...</td>
+      <td>kompas.com - menteri pemuda olahraga republik ...</td>
+      <td>kompas com   menteri pemuda olahraga republik ...</td>
+      <td>kompas com menteri pemuda olahraga republik in...</td>
+      <td>kompas com menteri pemuda olahraga republik in...</td>
+      <td>['kompas', 'com', 'menteri', 'pemuda', 'olahra...</td>
+      <td>BOLA</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ubah string tokenisasi menjadi list kata dan bersihkan</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">clean_tokens</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">clean_tokens</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
+
+<span class="c1"># Tampilkan contoh</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dokumen </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span> <span class="n">docs</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="mi">15</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dokumen 1: [&#39;kompas&#39;, &#39;com&#39;, &#39;menteri&#39;, &#39;pemuda&#39;, &#39;olahraga&#39;, &#39;erick&#39;, &#39;thohir&#39;, &#39;langsung&#39;, &#39;gebrak&#39;, &#39;minggu&#39;, &#39;minggu&#39;, &#39;jabat&#39;, &#39;resmi&#39;, &#39;cabut&#39;, &#39;permenpora&#39;]
+Dokumen 2: [&#39;kompas&#39;, &#39;com&#39;, &#39;manajer&#39;, &#39;chelsea&#39;, &#39;enzo&#39;, &#39;maresca&#39;, &#39;anggap&#39;, &#39;sulit&#39;, &#39;henti&#39;, &#39;liverpool&#39;, &#39;tahan&#39;, &#39;gelar&#39;, &#39;juara&#39;, &#39;liga&#39;, &#39;inggris&#39;]
+Dokumen 3: [&#39;kompas&#39;, &#39;com&#39;, &#39;latih&#39;, &#39;liverpool&#39;, &#39;arne&#39;, &#39;slot&#39;, &#39;aku&#39;, &#39;crystal&#39;, &#39;palace&#39;, &#39;milik&#39;, &#39;kuat&#39;, &#39;patut&#39;, &#39;hitung&#39;, &#39;liverpool&#39;, &#39;racik&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tentukan parameter LDA</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">5</span>          <span class="c1"># jumlah topik</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>    <span class="c1"># hyperparameter topik per dokumen</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.01</span>    <span class="c1"># hyperparameter kata per topik</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Bangun vocabulary</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]))</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+<span class="n">word2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah kosakata (V):&quot;</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh kosakata:&quot;</span><span class="p">,</span> <span class="n">vocab</span><span class="p">[:</span><span class="mi">15</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah kosakata (V): 17566
+Contoh kosakata: [&#39;resale&#39;, &#39;asiakapolres&#39;, &#39;serie&#39;, &#39;kelembaban&#39;, &#39;istirahat&#39;, &#39;wisnu&#39;, &#39;doodle&#39;, &#39;lpsk&#39;, &#39;perkosa&#39;, &#39;rengkuh&#39;, &#39;tualang&#39;, &#39;kuas&#39;, &#39;islamic&#39;, &#39;mitsuhashiokamura&#39;, &#39;tempe&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inisialisasi penetapan topik acak</span>
+<span class="n">doc_topics</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+    <span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+    <span class="n">doc_topics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+
+<span class="n">n_dk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">),</span> <span class="n">K</span><span class="p">))</span>  <span class="c1"># jumlah kata per dokumen per topik</span>
+<span class="n">n_kv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">))</span>          <span class="c1"># jumlah kata per topik</span>
+<span class="n">n_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>                <span class="c1"># total kata per topik</span>
+
+<span class="k">for</span> <span class="n">d_idx</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">doc_topics</span><span class="p">[</span><span class="n">d_idx</span><span class="p">]):</span>
+        <span class="n">w_id</span> <span class="o">=</span> <span class="n">word2id</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">n_dk</span><span class="p">[</span><span class="n">d_idx</span><span class="p">][</span><span class="n">z</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">n_kv</span><span class="p">[</span><span class="n">z</span><span class="p">][</span><span class="n">w_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">n_k</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inisialisasi topik selesai ✅&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inisialisasi topik selesai ✅
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi untuk sampling ulang topik</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_topic</span><span class="p">(</span><span class="n">d_idx</span><span class="p">,</span> <span class="n">w_id</span><span class="p">):</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">p_w_t</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_kv</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">w_id</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_k</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">V</span> <span class="o">*</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="n">p_t_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_dk</span><span class="p">[</span><span class="n">d_idx</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">probs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_w_t</span> <span class="o">*</span> <span class="n">p_t_d</span>
+    <span class="n">probs</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="n">probs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterasi Gibbs Sampling</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">d_idx</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+            <span class="n">old_topic</span> <span class="o">=</span> <span class="n">doc_topics</span><span class="p">[</span><span class="n">d_idx</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">w_id</span> <span class="o">=</span> <span class="n">word2id</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+
+            <span class="c1"># Kurangi count lama</span>
+            <span class="n">n_dk</span><span class="p">[</span><span class="n">d_idx</span><span class="p">][</span><span class="n">old_topic</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">n_kv</span><span class="p">[</span><span class="n">old_topic</span><span class="p">][</span><span class="n">w_id</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">n_k</span><span class="p">[</span><span class="n">old_topic</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="c1"># Sampling topik baru</span>
+            <span class="n">new_topic</span> <span class="o">=</span> <span class="n">sample_topic</span><span class="p">(</span><span class="n">d_idx</span><span class="p">,</span> <span class="n">w_id</span><span class="p">)</span>
+
+            <span class="c1"># Update count baru</span>
+            <span class="n">doc_topics</span><span class="p">[</span><span class="n">d_idx</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_topic</span>
+            <span class="n">n_dk</span><span class="p">[</span><span class="n">d_idx</span><span class="p">][</span><span class="n">new_topic</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">n_kv</span><span class="p">[</span><span class="n">new_topic</span><span class="p">][</span><span class="n">w_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">n_k</span><span class="p">[</span><span class="n">new_topic</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iterasi ke-</span><span class="si">{</span><span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> selesai&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterasi ke-1 selesai
+Iterasi ke-2 selesai
+Iterasi ke-3 selesai
+Iterasi ke-4 selesai
+Iterasi ke-5 selesai
+Iterasi ke-6 selesai
+Iterasi ke-7 selesai
+Iterasi ke-8 selesai
+Iterasi ke-9 selesai
+Iterasi ke-10 selesai
+Iterasi ke-11 selesai
+Iterasi ke-12 selesai
+Iterasi ke-13 selesai
+Iterasi ke-14 selesai
+Iterasi ke-15 selesai
+Iterasi ke-16 selesai
+Iterasi ke-17 selesai
+Iterasi ke-18 selesai
+Iterasi ke-19 selesai
+Iterasi ke-20 selesai
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan kata dominan per topik</span>
+<span class="n">num_words</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">top_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">n_kv</span><span class="p">[</span><span class="n">k</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">num_words</span><span class="p">]</span>
+    <span class="n">top_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">vocab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_indices</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Topik </span><span class="si">{</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top_words</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Topik 1:
+jalan, juga, baca, jakarta, kompas, prabowo, com, indonesia, masyarakat, marquez
+
+Topik 2:
+main, hasil, tim, laga, gol, juga, baca, menang, emas, menit
+
+Topik 3:
+baca, juga, menteri, korban, perintah, laku, uang, orang, rumah, itu
+
+Topik 4:
+mbg, baca, mobil, juga, kompas, com, makan, motor, kendara, racun
+
+Topik 5:
+indonesia, juga, baca, jakarta, resmi, persen, kompas, kerja, harga, usaha
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Distribusi topik per dokumen</span>
+<span class="n">topic_dist</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_dk</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">n_dk</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dist</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">topic_dist</span><span class="p">):</span>
+    <span class="n">dominant_topic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dokumen </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Topik dominan = </span><span class="si">{</span><span class="n">dominant_topic</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> | Distribusi = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dokumen 1: Topik dominan = 1 | Distribusi = [0.446 0.108 0.359 0.    0.087]
+Dokumen 2: Topik dominan = 2 | Distribusi = [0.174 0.517 0.009 0.031 0.269]
+Dokumen 3: Topik dominan = 2 | Distribusi = [0.015 0.61  0.    0.    0.375]
+Dokumen 4: Topik dominan = 2 | Distribusi = [0.02  0.882 0.    0.    0.097]
+Dokumen 5: Topik dominan = 1 | Distribusi = [0.365 0.34  0.188 0.036 0.071]
+Dokumen 6: Topik dominan = 2 | Distribusi = [0.368 0.61  0.005 0.    0.018]
+Dokumen 7: Topik dominan = 2 | Distribusi = [0.033 0.701 0.001 0.001 0.265]
+Dokumen 8: Topik dominan = 5 | Distribusi = [0.039 0.35  0.07  0.    0.54 ]
+Dokumen 9: Topik dominan = 1 | Distribusi = [0.489 0.288 0.206 0.016 0.001]
+Dokumen 10: Topik dominan = 2 | Distribusi = [0.024 0.572 0.    0.    0.403]
+Dokumen 11: Topik dominan = 2 | Distribusi = [0.    0.463 0.07  0.146 0.32 ]
+Dokumen 12: Topik dominan = 2 | Distribusi = [0.084 0.802 0.001 0.007 0.107]
+Dokumen 13: Topik dominan = 2 | Distribusi = [0.02  0.614 0.004 0.    0.361]
+Dokumen 14: Topik dominan = 2 | Distribusi = [0.235 0.349 0.055 0.088 0.272]
+Dokumen 15: Topik dominan = 2 | Distribusi = [0.061 0.739 0.    0.    0.199]
+Dokumen 16: Topik dominan = 2 | Distribusi = [0.022 0.879 0.001 0.001 0.098]
+Dokumen 17: Topik dominan = 2 | Distribusi = [0.    0.76  0.    0.    0.239]
+Dokumen 18: Topik dominan = 5 | Distribusi = [0.026 0.452 0.001 0.016 0.504]
+Dokumen 19: Topik dominan = 2 | Distribusi = [0.    0.603 0.    0.028 0.368]
+Dokumen 20: Topik dominan = 2 | Distribusi = [0.    0.383 0.16  0.146 0.31 ]
+Dokumen 21: Topik dominan = 2 | Distribusi = [0.009 0.778 0.    0.    0.212]
+Dokumen 22: Topik dominan = 2 | Distribusi = [0.    0.588 0.    0.    0.41 ]
+Dokumen 23: Topik dominan = 2 | Distribusi = [0.    0.599 0.03  0.    0.37 ]
+Dokumen 24: Topik dominan = 2 | Distribusi = [0.041 0.576 0.005 0.205 0.173]
+Dokumen 25: Topik dominan = 2 | Distribusi = [0.151 0.641 0.151 0.031 0.026]
+Dokumen 26: Topik dominan = 2 | Distribusi = [0.004 0.758 0.    0.    0.237]
+Dokumen 27: Topik dominan = 2 | Distribusi = [0.033 0.603 0.001 0.001 0.362]
+Dokumen 28: Topik dominan = 2 | Distribusi = [0.03  0.838 0.    0.    0.132]
+Dokumen 29: Topik dominan = 2 | Distribusi = [0.043 0.822 0.01  0.01  0.114]
+Dokumen 30: Topik dominan = 5 | Distribusi = [0.066 0.386 0.071 0.085 0.391]
+Dokumen 31: Topik dominan = 2 | Distribusi = [0.112 0.385 0.122 0.    0.38 ]
+Dokumen 32: Topik dominan = 2 | Distribusi = [0.025 0.874 0.001 0.007 0.093]
+Dokumen 33: Topik dominan = 2 | Distribusi = [0.005 0.465 0.102 0.    0.427]
+Dokumen 34: Topik dominan = 2 | Distribusi = [0.113 0.527 0.031 0.006 0.323]
+Dokumen 35: Topik dominan = 2 | Distribusi = [0.061 0.813 0.    0.    0.125]
+Dokumen 36: Topik dominan = 2 | Distribusi = [0.086 0.755 0.    0.    0.159]
+Dokumen 37: Topik dominan = 2 | Distribusi = [0.064 0.544 0.    0.    0.392]
+Dokumen 38: Topik dominan = 2 | Distribusi = [0.01  0.653 0.    0.    0.336]
+Dokumen 39: Topik dominan = 2 | Distribusi = [0.047 0.508 0.    0.    0.445]
+Dokumen 40: Topik dominan = 2 | Distribusi = [0.151 0.528 0.019 0.048 0.255]
+Dokumen 41: Topik dominan = 2 | Distribusi = [0.009 0.627 0.    0.    0.362]
+Dokumen 42: Topik dominan = 2 | Distribusi = [0.133 0.59  0.231 0.045 0.   ]
+Dokumen 43: Topik dominan = 2 | Distribusi = [0.045 0.688 0.12  0.031 0.116]
+Dokumen 44: Topik dominan = 2 | Distribusi = [0.135 0.528 0.001 0.202 0.135]
+Dokumen 45: Topik dominan = 2 | Distribusi = [0.045 0.806 0.007 0.001 0.141]
+Dokumen 46: Topik dominan = 2 | Distribusi = [0.008 0.728 0.    0.026 0.238]
+Dokumen 47: Topik dominan = 2 | Distribusi = [0.034 0.694 0.    0.034 0.238]
+Dokumen 48: Topik dominan = 2 | Distribusi = [0.17  0.62  0.013 0.005 0.192]
+Dokumen 49: Topik dominan = 2 | Distribusi = [0.399 0.521 0.015 0.    0.064]
+Dokumen 50: Topik dominan = 2 | Distribusi = [0.023 0.643 0.023 0.001 0.311]
+Dokumen 51: Topik dominan = 2 | Distribusi = [0.026 0.806 0.001 0.001 0.167]
+Dokumen 52: Topik dominan = 2 | Distribusi = [0.043 0.493 0.124 0.034 0.306]
+Dokumen 53: Topik dominan = 2 | Distribusi = [0.04  0.512 0.102 0.037 0.309]
+Dokumen 54: Topik dominan = 5 | Distribusi = [0.047 0.404 0.029 0.001 0.519]
+Dokumen 55: Topik dominan = 2 | Distribusi = [0.008 0.577 0.    0.16  0.254]
+Dokumen 56: Topik dominan = 2 | Distribusi = [0.08  0.6   0.    0.011 0.309]
+Dokumen 57: Topik dominan = 2 | Distribusi = [0.    0.896 0.    0.    0.103]
+Dokumen 58: Topik dominan = 2 | Distribusi = [0.039 0.811 0.    0.    0.149]
+Dokumen 59: Topik dominan = 1 | Distribusi = [0.579 0.367 0.    0.039 0.015]
+Dokumen 60: Topik dominan = 2 | Distribusi = [0.045 0.743 0.    0.01  0.202]
+Dokumen 61: Topik dominan = 2 | Distribusi = [0.017 0.832 0.001 0.001 0.15 ]
+Dokumen 62: Topik dominan = 2 | Distribusi = [0.019 0.729 0.019 0.    0.232]
+Dokumen 63: Topik dominan = 1 | Distribusi = [0.648 0.308 0.022 0.001 0.022]
+Dokumen 64: Topik dominan = 2 | Distribusi = [0.015 0.895 0.    0.015 0.075]
+Dokumen 65: Topik dominan = 2 | Distribusi = [0.082 0.804 0.001 0.001 0.113]
+Dokumen 66: Topik dominan = 2 | Distribusi = [0.    0.392 0.159 0.127 0.321]
+Dokumen 67: Topik dominan = 2 | Distribusi = [0.02  0.659 0.    0.005 0.315]
+Dokumen 68: Topik dominan = 2 | Distribusi = [0.    0.829 0.041 0.013 0.118]
+Dokumen 69: Topik dominan = 2 | Distribusi = [0.274 0.301 0.144 0.017 0.264]
+Dokumen 70: Topik dominan = 2 | Distribusi = [0.001 0.791 0.001 0.001 0.207]
+Dokumen 71: Topik dominan = 2 | Distribusi = [0.056 0.658 0.012 0.    0.274]
+Dokumen 72: Topik dominan = 2 | Distribusi = [0.019 0.83  0.    0.019 0.133]
+Dokumen 73: Topik dominan = 2 | Distribusi = [0.196 0.62  0.007 0.001 0.177]
+Dokumen 74: Topik dominan = 2 | Distribusi = [0.057 0.7   0.001 0.001 0.241]
+Dokumen 75: Topik dominan = 5 | Distribusi = [0.016 0.31  0.    0.    0.673]
+Dokumen 76: Topik dominan = 2 | Distribusi = [0.001 0.637 0.001 0.001 0.361]
+Dokumen 77: Topik dominan = 2 | Distribusi = [0.072 0.839 0.    0.    0.088]
+Dokumen 78: Topik dominan = 2 | Distribusi = [0.135 0.582 0.129 0.105 0.05 ]
+Dokumen 79: Topik dominan = 5 | Distribusi = [0.    0.327 0.101 0.    0.571]
+Dokumen 80: Topik dominan = 2 | Distribusi = [0.373 0.612 0.014 0.    0.   ]
+Dokumen 81: Topik dominan = 2 | Distribusi = [0.078 0.683 0.    0.041 0.197]
+Dokumen 82: Topik dominan = 2 | Distribusi = [0.012 0.623 0.064 0.001 0.3  ]
+Dokumen 83: Topik dominan = 5 | Distribusi = [0.    0.335 0.13  0.005 0.531]
+Dokumen 84: Topik dominan = 2 | Distribusi = [0.012 0.843 0.001 0.006 0.138]
+Dokumen 85: Topik dominan = 2 | Distribusi = [0.069 0.745 0.    0.    0.185]
+Dokumen 86: Topik dominan = 2 | Distribusi = [0.054 0.807 0.    0.01  0.128]
+Dokumen 87: Topik dominan = 2 | Distribusi = [0.055 0.554 0.    0.066 0.323]
+Dokumen 88: Topik dominan = 2 | Distribusi = [0.267 0.607 0.    0.    0.125]
+Dokumen 89: Topik dominan = 1 | Distribusi = [0.487 0.477 0.    0.035 0.   ]
+Dokumen 90: Topik dominan = 2 | Distribusi = [0.218 0.659 0.001 0.001 0.122]
+Dokumen 91: Topik dominan = 2 | Distribusi = [0.088 0.717 0.053 0.141 0.001]
+Dokumen 92: Topik dominan = 5 | Distribusi = [0.04  0.349 0.048 0.    0.563]
+Dokumen 93: Topik dominan = 5 | Distribusi = [0.001 0.367 0.041 0.001 0.591]
+Dokumen 94: Topik dominan = 2 | Distribusi = [0.045 0.6   0.001 0.085 0.269]
+Dokumen 95: Topik dominan = 2 | Distribusi = [0.008 0.782 0.004 0.073 0.134]
+Dokumen 96: Topik dominan = 2 | Distribusi = [0.005 0.789 0.    0.    0.206]
+Dokumen 97: Topik dominan = 5 | Distribusi = [0.01  0.471 0.029 0.01  0.48 ]
+Dokumen 98: Topik dominan = 2 | Distribusi = [0.026 0.538 0.031 0.001 0.405]
+Dokumen 99: Topik dominan = 5 | Distribusi = [0.004 0.338 0.121 0.    0.536]
+Dokumen 100: Topik dominan = 1 | Distribusi = [0.686 0.252 0.005 0.    0.056]
+Dokumen 101: Topik dominan = 2 | Distribusi = [0.103 0.671 0.    0.    0.225]
+Dokumen 102: Topik dominan = 2 | Distribusi = [0.342 0.575 0.001 0.038 0.044]
+Dokumen 103: Topik dominan = 1 | Distribusi = [0.565 0.337 0.001 0.029 0.069]
+Dokumen 104: Topik dominan = 2 | Distribusi = [0.07  0.478 0.195 0.    0.256]
+Dokumen 105: Topik dominan = 2 | Distribusi = [0.057 0.79  0.001 0.017 0.135]
+Dokumen 106: Topik dominan = 2 | Distribusi = [0.068 0.478 0.105 0.    0.348]
+Dokumen 107: Topik dominan = 2 | Distribusi = [0.147 0.37  0.276 0.121 0.086]
+Dokumen 108: Topik dominan = 2 | Distribusi = [0.032 0.76  0.09  0.001 0.117]
+Dokumen 109: Topik dominan = 2 | Distribusi = [0.033 0.865 0.001 0.001 0.102]
+Dokumen 110: Topik dominan = 2 | Distribusi = [0.001 0.694 0.017 0.001 0.289]
+Dokumen 111: Topik dominan = 2 | Distribusi = [0.076 0.382 0.155 0.072 0.315]
+Dokumen 112: Topik dominan = 2 | Distribusi = [0.001 0.623 0.001 0.001 0.375]
+Dokumen 113: Topik dominan = 2 | Distribusi = [0.134 0.771 0.    0.    0.094]
+Dokumen 114: Topik dominan = 2 | Distribusi = [0.262 0.494 0.    0.139 0.105]
+Dokumen 115: Topik dominan = 2 | Distribusi = [0.015 0.788 0.015 0.    0.181]
+Dokumen 116: Topik dominan = 2 | Distribusi = [0.024 0.72  0.005 0.01  0.242]
+Dokumen 117: Topik dominan = 2 | Distribusi = [0.    0.67  0.    0.    0.329]
+Dokumen 118: Topik dominan = 2 | Distribusi = [0.177 0.564 0.058 0.01  0.191]
+Dokumen 119: Topik dominan = 2 | Distribusi = [0.    0.453 0.    0.233 0.313]
+Dokumen 120: Topik dominan = 2 | Distribusi = [0.066 0.59  0.026 0.07  0.248]
+Dokumen 121: Topik dominan = 2 | Distribusi = [0.013 0.785 0.005 0.    0.197]
+Dokumen 122: Topik dominan = 2 | Distribusi = [0.049 0.67  0.063 0.    0.217]
+Dokumen 123: Topik dominan = 2 | Distribusi = [0.017 0.881 0.001 0.033 0.07 ]
+Dokumen 124: Topik dominan = 2 | Distribusi = [0.031 0.886 0.008 0.    0.074]
+Dokumen 125: Topik dominan = 1 | Distribusi = [0.675 0.298 0.    0.    0.025]
+Dokumen 126: Topik dominan = 2 | Distribusi = [0.    0.713 0.    0.004 0.283]
+Dokumen 127: Topik dominan = 2 | Distribusi = [0.032 0.771 0.    0.004 0.192]
+Dokumen 128: Topik dominan = 3 | Distribusi = [0.271 0.138 0.347 0.029 0.214]
+Dokumen 129: Topik dominan = 5 | Distribusi = [0.034 0.359 0.169 0.001 0.438]
+Dokumen 130: Topik dominan = 2 | Distribusi = [0.064 0.727 0.    0.    0.208]
+Dokumen 131: Topik dominan = 2 | Distribusi = [0.057 0.539 0.019 0.    0.385]
+Dokumen 132: Topik dominan = 2 | Distribusi = [0.    0.908 0.005 0.013 0.074]
+Dokumen 133: Topik dominan = 2 | Distribusi = [0.163 0.549 0.218 0.03  0.04 ]
+Dokumen 134: Topik dominan = 2 | Distribusi = [0.019 0.768 0.082 0.009 0.122]
+Dokumen 135: Topik dominan = 2 | Distribusi = [0.121 0.394 0.217 0.001 0.267]
+Dokumen 136: Topik dominan = 2 | Distribusi = [0.064 0.788 0.    0.    0.148]
+Dokumen 137: Topik dominan = 5 | Distribusi = [0.055 0.348 0.084 0.03  0.483]
+Dokumen 138: Topik dominan = 2 | Distribusi = [0.    0.569 0.009 0.014 0.407]
+Dokumen 139: Topik dominan = 2 | Distribusi = [0.    0.658 0.032 0.072 0.238]
+Dokumen 140: Topik dominan = 2 | Distribusi = [0.324 0.399 0.108 0.    0.169]
+Dokumen 141: Topik dominan = 2 | Distribusi = [0.057 0.525 0.    0.    0.417]
+Dokumen 142: Topik dominan = 2 | Distribusi = [0.021 0.844 0.001 0.001 0.134]
+Dokumen 143: Topik dominan = 1 | Distribusi = [0.737 0.176 0.008 0.023 0.056]
+Dokumen 144: Topik dominan = 2 | Distribusi = [0.047 0.773 0.066 0.043 0.071]
+Dokumen 145: Topik dominan = 2 | Distribusi = [0.    0.813 0.    0.    0.185]
+Dokumen 146: Topik dominan = 2 | Distribusi = [0.    0.746 0.015 0.    0.238]
+Dokumen 147: Topik dominan = 2 | Distribusi = [0.333 0.602 0.    0.    0.065]
+Dokumen 148: Topik dominan = 2 | Distribusi = [0.061 0.749 0.027 0.014 0.149]
+Dokumen 149: Topik dominan = 2 | Distribusi = [0.071 0.738 0.001 0.001 0.19 ]
+Dokumen 150: Topik dominan = 2 | Distribusi = [0.285 0.516 0.009 0.    0.19 ]
+Dokumen 151: Topik dominan = 2 | Distribusi = [0.192 0.776 0.001 0.001 0.031]
+Dokumen 152: Topik dominan = 5 | Distribusi = [0.359 0.178 0.062 0.    0.4  ]
+Dokumen 153: Topik dominan = 2 | Distribusi = [0.188 0.742 0.    0.019 0.051]
+Dokumen 154: Topik dominan = 2 | Distribusi = [0.006 0.732 0.001 0.011 0.25 ]
+Dokumen 155: Topik dominan = 2 | Distribusi = [0.065 0.549 0.146 0.078 0.163]
+Dokumen 156: Topik dominan = 2 | Distribusi = [0.191 0.66  0.    0.    0.148]
+Dokumen 157: Topik dominan = 2 | Distribusi = [0.    0.803 0.    0.082 0.114]
+Dokumen 158: Topik dominan = 2 | Distribusi = [0.032 0.717 0.001 0.027 0.223]
+Dokumen 159: Topik dominan = 2 | Distribusi = [0.    0.743 0.    0.015 0.241]
+Dokumen 160: Topik dominan = 2 | Distribusi = [0.069 0.516 0.065 0.    0.349]
+Dokumen 161: Topik dominan = 2 | Distribusi = [0.044 0.743 0.04  0.032 0.142]
+Dokumen 162: Topik dominan = 2 | Distribusi = [0.02  0.509 0.058 0.    0.413]
+Dokumen 163: Topik dominan = 2 | Distribusi = [0.004 0.794 0.    0.    0.201]
+Dokumen 164: Topik dominan = 1 | Distribusi = [0.395 0.05  0.26  0.15  0.145]
+Dokumen 165: Topik dominan = 2 | Distribusi = [0.013 0.443 0.092 0.009 0.443]
+Dokumen 166: Topik dominan = 1 | Distribusi = [0.495 0.433 0.    0.031 0.04 ]
+Dokumen 167: Topik dominan = 2 | Distribusi = [0.064 0.739 0.    0.004 0.192]
+Dokumen 168: Topik dominan = 2 | Distribusi = [0.    0.794 0.    0.017 0.187]
+Dokumen 169: Topik dominan = 2 | Distribusi = [0.035 0.787 0.001 0.035 0.143]
+Dokumen 170: Topik dominan = 2 | Distribusi = [0.001 0.703 0.001 0.001 0.295]
+Dokumen 171: Topik dominan = 2 | Distribusi = [0.032 0.846 0.    0.012 0.11 ]
+Dokumen 172: Topik dominan = 2 | Distribusi = [0.259 0.657 0.001 0.001 0.083]
+Dokumen 173: Topik dominan = 1 | Distribusi = [0.462 0.269 0.    0.012 0.257]
+Dokumen 174: Topik dominan = 2 | Distribusi = [0.017 0.531 0.021 0.    0.43 ]
+Dokumen 175: Topik dominan = 2 | Distribusi = [0.103 0.439 0.007 0.277 0.175]
+Dokumen 176: Topik dominan = 2 | Distribusi = [0.035 0.63  0.018 0.009 0.308]
+Dokumen 177: Topik dominan = 2 | Distribusi = [0.    0.735 0.    0.    0.264]
+Dokumen 178: Topik dominan = 2 | Distribusi = [0.067 0.81  0.006 0.001 0.118]
+Dokumen 179: Topik dominan = 2 | Distribusi = [0.046 0.577 0.056 0.051 0.271]
+Dokumen 180: Topik dominan = 2 | Distribusi = [0.454 0.494 0.041 0.    0.011]
+Dokumen 181: Topik dominan = 2 | Distribusi = [0.    0.543 0.016 0.094 0.347]
+Dokumen 182: Topik dominan = 2 | Distribusi = [0.001 0.773 0.006 0.006 0.215]
+Dokumen 183: Topik dominan = 2 | Distribusi = [0.102 0.758 0.    0.048 0.092]
+Dokumen 184: Topik dominan = 2 | Distribusi = [0.186 0.717 0.007 0.001 0.09 ]
+Dokumen 185: Topik dominan = 2 | Distribusi = [0.104 0.425 0.336 0.02  0.114]
+Dokumen 186: Topik dominan = 2 | Distribusi = [0.04  0.83  0.015 0.    0.114]
+Dokumen 187: Topik dominan = 2 | Distribusi = [0.    0.912 0.    0.    0.087]
+Dokumen 188: Topik dominan = 2 | Distribusi = [0.019 0.661 0.01  0.    0.31 ]
+Dokumen 189: Topik dominan = 5 | Distribusi = [0.    0.365 0.137 0.11  0.387]
+Dokumen 190: Topik dominan = 2 | Distribusi = [0.091 0.753 0.001 0.001 0.155]
+Dokumen 191: Topik dominan = 2 | Distribusi = [0.276 0.68  0.043 0.    0.   ]
+Dokumen 192: Topik dominan = 2 | Distribusi = [0.022 0.83  0.001 0.001 0.148]
+Dokumen 193: Topik dominan = 2 | Distribusi = [0.175 0.71  0.    0.041 0.073]
+Dokumen 194: Topik dominan = 2 | Distribusi = [0.024 0.52  0.013 0.03  0.413]
+Dokumen 195: Topik dominan = 2 | Distribusi = [0.091 0.69  0.    0.069 0.149]
+Dokumen 196: Topik dominan = 2 | Distribusi = [0.359 0.606 0.001 0.001 0.034]
+Dokumen 197: Topik dominan = 2 | Distribusi = [0.028 0.838 0.006 0.001 0.127]
+Dokumen 198: Topik dominan = 2 | Distribusi = [0.142 0.686 0.    0.029 0.142]
+Dokumen 199: Topik dominan = 2 | Distribusi = [0.012 0.68  0.012 0.001 0.296]
+Dokumen 200: Topik dominan = 2 | Distribusi = [0.034 0.744 0.    0.    0.221]
+Dokumen 201: Topik dominan = 5 | Distribusi = [0.    0.    0.131 0.172 0.697]
+Dokumen 202: Topik dominan = 3 | Distribusi = [0.066 0.    0.512 0.01  0.412]
+Dokumen 203: Topik dominan = 3 | Distribusi = [0.234 0.023 0.701 0.01  0.032]
+Dokumen 204: Topik dominan = 5 | Distribusi = [0.079 0.05  0.341 0.047 0.483]
+Dokumen 205: Topik dominan = 3 | Distribusi = [0.423 0.    0.456 0.    0.12 ]
+Dokumen 206: Topik dominan = 3 | Distribusi = [0.048 0.037 0.596 0.032 0.288]
+Dokumen 207: Topik dominan = 3 | Distribusi = [0.291 0.026 0.432 0.047 0.203]
+Dokumen 208: Topik dominan = 5 | Distribusi = [0.101 0.001 0.302 0.132 0.465]
+Dokumen 209: Topik dominan = 2 | Distribusi = [0.001 0.521 0.167 0.15  0.161]
+Dokumen 210: Topik dominan = 4 | Distribusi = [0.11  0.004 0.326 0.558 0.   ]
+Dokumen 211: Topik dominan = 3 | Distribusi = [0.328 0.06  0.366 0.017 0.229]
+Dokumen 212: Topik dominan = 5 | Distribusi = [0.103 0.027 0.232 0.027 0.61 ]
+Dokumen 213: Topik dominan = 3 | Distribusi = [0.086 0.171 0.408 0.001 0.335]
+Dokumen 214: Topik dominan = 5 | Distribusi = [0.093 0.024 0.116 0.162 0.606]
+Dokumen 215: Topik dominan = 3 | Distribusi = [0.001 0.02  0.489 0.001 0.489]
+Dokumen 216: Topik dominan = 3 | Distribusi = [0.    0.016 0.416 0.23  0.338]
+Dokumen 217: Topik dominan = 5 | Distribusi = [0.001 0.111 0.409 0.036 0.444]
+Dokumen 218: Topik dominan = 5 | Distribusi = [0.291 0.001 0.32  0.018 0.371]
+Dokumen 219: Topik dominan = 4 | Distribusi = [0.169 0.006 0.266 0.326 0.234]
+Dokumen 220: Topik dominan = 1 | Distribusi = [0.412 0.001 0.18  0.151 0.256]
+Dokumen 221: Topik dominan = 5 | Distribusi = [0.001 0.007 0.242 0.1   0.651]
+Dokumen 222: Topik dominan = 3 | Distribusi = [0.106 0.02  0.463 0.067 0.344]
+Dokumen 223: Topik dominan = 3 | Distribusi = [0.076 0.001 0.575 0.001 0.348]
+Dokumen 224: Topik dominan = 3 | Distribusi = [0.041 0.075 0.529 0.142 0.213]
+Dokumen 225: Topik dominan = 2 | Distribusi = [0.001 0.446 0.181 0.128 0.245]
+Dokumen 226: Topik dominan = 3 | Distribusi = [0.059 0.001 0.539 0.075 0.326]
+Dokumen 227: Topik dominan = 3 | Distribusi = [0.001 0.025 0.468 0.044 0.462]
+Dokumen 228: Topik dominan = 5 | Distribusi = [0.171 0.056 0.273 0.051 0.448]
+Dokumen 229: Topik dominan = 3 | Distribusi = [0.09  0.001 0.711 0.15  0.048]
+Dokumen 230: Topik dominan = 3 | Distribusi = [0.074 0.098 0.402 0.025 0.402]
+Dokumen 231: Topik dominan = 3 | Distribusi = [0.085 0.103 0.612 0.    0.2  ]
+Dokumen 232: Topik dominan = 5 | Distribusi = [0.    0.045 0.403 0.    0.551]
+Dokumen 233: Topik dominan = 4 | Distribusi = [0.254 0.084 0.274 0.325 0.064]
+Dokumen 234: Topik dominan = 5 | Distribusi = [0.07  0.001 0.251 0.057 0.621]
+Dokumen 235: Topik dominan = 5 | Distribusi = [0.009 0.009 0.158 0.132 0.693]
+Dokumen 236: Topik dominan = 2 | Distribusi = [0.001 0.511 0.185 0.096 0.208]
+Dokumen 237: Topik dominan = 5 | Distribusi = [0.007 0.007 0.401 0.05  0.536]
+Dokumen 238: Topik dominan = 1 | Distribusi = [0.417 0.083 0.209 0.106 0.185]
+Dokumen 239: Topik dominan = 4 | Distribusi = [0.173 0.033 0.129 0.62  0.045]
+Dokumen 240: Topik dominan = 3 | Distribusi = [0.056 0.102 0.461 0.036 0.345]
+Dokumen 241: Topik dominan = 5 | Distribusi = [0.    0.    0.086 0.365 0.548]
+Dokumen 242: Topik dominan = 5 | Distribusi = [0.129 0.    0.324 0.119 0.428]
+Dokumen 243: Topik dominan = 1 | Distribusi = [0.331 0.029 0.12  0.202 0.317]
+Dokumen 244: Topik dominan = 5 | Distribusi = [0.147 0.    0.367 0.    0.486]
+Dokumen 245: Topik dominan = 3 | Distribusi = [0.177 0.    0.767 0.    0.055]
+Dokumen 246: Topik dominan = 5 | Distribusi = [0.258 0.012 0.132 0.198 0.401]
+Dokumen 247: Topik dominan = 5 | Distribusi = [0.    0.021 0.232 0.215 0.531]
+Dokumen 248: Topik dominan = 4 | Distribusi = [0.259 0.001 0.001 0.541 0.198]
+Dokumen 249: Topik dominan = 3 | Distribusi = [0.001 0.001 0.485 0.176 0.338]
+Dokumen 250: Topik dominan = 3 | Distribusi = [0.043 0.074 0.499 0.049 0.335]
+Dokumen 251: Topik dominan = 5 | Distribusi = [0.008 0.159 0.076 0.038 0.718]
+Dokumen 252: Topik dominan = 5 | Distribusi = [0.064 0.    0.397 0.064 0.474]
+Dokumen 253: Topik dominan = 3 | Distribusi = [0.165 0.001 0.451 0.17  0.213]
+Dokumen 254: Topik dominan = 2 | Distribusi = [0.013 0.365 0.327 0.106 0.189]
+Dokumen 255: Topik dominan = 3 | Distribusi = [0.251 0.    0.433 0.142 0.174]
+Dokumen 256: Topik dominan = 1 | Distribusi = [0.619 0.    0.111 0.221 0.048]
+Dokumen 257: Topik dominan = 5 | Distribusi = [0.038 0.    0.314 0.005 0.642]
+Dokumen 258: Topik dominan = 3 | Distribusi = [0.053 0.068 0.432 0.039 0.408]
+Dokumen 259: Topik dominan = 5 | Distribusi = [0.001 0.068 0.364 0.108 0.459]
+Dokumen 260: Topik dominan = 5 | Distribusi = [0.046 0.007 0.178 0.    0.768]
+Dokumen 261: Topik dominan = 3 | Distribusi = [0.027 0.001 0.516 0.047 0.409]
+Dokumen 262: Topik dominan = 3 | Distribusi = [0.083 0.073 0.378 0.109 0.357]
+Dokumen 263: Topik dominan = 3 | Distribusi = [0.132 0.    0.815 0.    0.052]
+Dokumen 264: Topik dominan = 3 | Distribusi = [0.098 0.043 0.578 0.28  0.001]
+Dokumen 265: Topik dominan = 5 | Distribusi = [0.001 0.064 0.267 0.045 0.623]
+Dokumen 266: Topik dominan = 1 | Distribusi = [0.339 0.051 0.289 0.001 0.32 ]
+Dokumen 267: Topik dominan = 5 | Distribusi = [0.129 0.    0.323 0.091 0.456]
+Dokumen 268: Topik dominan = 5 | Distribusi = [0.042 0.038 0.392 0.    0.527]
+Dokumen 269: Topik dominan = 3 | Distribusi = [0.078 0.001 0.454 0.066 0.401]
+Dokumen 270: Topik dominan = 5 | Distribusi = [0.001 0.001 0.265 0.136 0.598]
+Dokumen 271: Topik dominan = 3 | Distribusi = [0.059 0.08  0.539 0.106 0.217]
+Dokumen 272: Topik dominan = 1 | Distribusi = [0.57  0.001 0.055 0.209 0.165]
+Dokumen 273: Topik dominan = 3 | Distribusi = [0.036 0.016 0.632 0.074 0.242]
+Dokumen 274: Topik dominan = 5 | Distribusi = [0.113 0.001 0.226 0.013 0.646]
+Dokumen 275: Topik dominan = 5 | Distribusi = [0.407 0.006 0.145 0.001 0.441]
+Dokumen 276: Topik dominan = 5 | Distribusi = [0.222 0.001 0.333 0.001 0.444]
+Dokumen 277: Topik dominan = 1 | Distribusi = [0.477 0.    0.25  0.019 0.254]
+Dokumen 278: Topik dominan = 5 | Distribusi = [0.008 0.    0.148 0.173 0.672]
+Dokumen 279: Topik dominan = 3 | Distribusi = [0.282 0.    0.493 0.115 0.11 ]
+Dokumen 280: Topik dominan = 1 | Distribusi = [0.339 0.01  0.288 0.2   0.163]
+Dokumen 281: Topik dominan = 5 | Distribusi = [0.    0.    0.313 0.123 0.563]
+Dokumen 282: Topik dominan = 5 | Distribusi = [0.028 0.165 0.077 0.176 0.554]
+Dokumen 283: Topik dominan = 5 | Distribusi = [0.    0.    0.141 0.133 0.725]
+Dokumen 284: Topik dominan = 5 | Distribusi = [0.179 0.039 0.145 0.169 0.468]
+Dokumen 285: Topik dominan = 3 | Distribusi = [0.07  0.06  0.759 0.05  0.06 ]
+Dokumen 286: Topik dominan = 5 | Distribusi = [0.206 0.001 0.13  0.001 0.663]
+Dokumen 287: Topik dominan = 3 | Distribusi = [0.101 0.043 0.454 0.238 0.164]
+Dokumen 288: Topik dominan = 2 | Distribusi = [0.001 0.877 0.001 0.001 0.12 ]
+Dokumen 289: Topik dominan = 3 | Distribusi = [0.136 0.001 0.856 0.007 0.001]
+Dokumen 290: Topik dominan = 1 | Distribusi = [0.351 0.038 0.348 0.004 0.259]
+Dokumen 291: Topik dominan = 5 | Distribusi = [0.011 0.001 0.453 0.049 0.486]
+Dokumen 292: Topik dominan = 3 | Distribusi = [0.047 0.073 0.538 0.001 0.342]
+Dokumen 293: Topik dominan = 3 | Distribusi = [0.208 0.045 0.588 0.045 0.114]
+Dokumen 294: Topik dominan = 3 | Distribusi = [0.132 0.001 0.526 0.096 0.245]
+Dokumen 295: Topik dominan = 4 | Distribusi = [0.001 0.006 0.292 0.518 0.184]
+Dokumen 296: Topik dominan = 3 | Distribusi = [0.058 0.094 0.477 0.072 0.299]
+Dokumen 297: Topik dominan = 1 | Distribusi = [0.348 0.004 0.284 0.307 0.058]
+Dokumen 298: Topik dominan = 3 | Distribusi = [0.309 0.058 0.345 0.001 0.287]
+Dokumen 299: Topik dominan = 5 | Distribusi = [0.065 0.022 0.161 0.108 0.644]
+Dokumen 300: Topik dominan = 3 | Distribusi = [0.056 0.001 0.465 0.143 0.335]
+Dokumen 301: Topik dominan = 4 | Distribusi = [0.1   0.    0.328 0.571 0.   ]
+Dokumen 302: Topik dominan = 3 | Distribusi = [0.005 0.    0.512 0.113 0.369]
+Dokumen 303: Topik dominan = 5 | Distribusi = [0.038 0.01  0.252 0.001 0.699]
+Dokumen 304: Topik dominan = 4 | Distribusi = [0.257 0.001 0.23  0.491 0.022]
+Dokumen 305: Topik dominan = 5 | Distribusi = [0.02  0.031 0.124 0.039 0.786]
+Dokumen 306: Topik dominan = 4 | Distribusi = [0.169 0.053 0.151 0.493 0.134]
+Dokumen 307: Topik dominan = 4 | Distribusi = [0.144 0.081 0.099 0.468 0.207]
+Dokumen 308: Topik dominan = 5 | Distribusi = [0.062 0.001 0.247 0.001 0.69 ]
+Dokumen 309: Topik dominan = 5 | Distribusi = [0.164 0.    0.308 0.076 0.451]
+Dokumen 310: Topik dominan = 3 | Distribusi = [0.264 0.013 0.358 0.013 0.352]
+Dokumen 311: Topik dominan = 3 | Distribusi = [0.153 0.07  0.416 0.074 0.287]
+Dokumen 312: Topik dominan = 5 | Distribusi = [0.14  0.029 0.255 0.054 0.522]
+Dokumen 313: Topik dominan = 3 | Distribusi = [0.086 0.001 0.747 0.04  0.126]
+Dokumen 314: Topik dominan = 5 | Distribusi = [0.127 0.    0.324 0.111 0.438]
+Dokumen 315: Topik dominan = 5 | Distribusi = [0.217 0.001 0.007 0.045 0.731]
+Dokumen 316: Topik dominan = 1 | Distribusi = [0.706 0.001 0.001 0.1   0.192]
+Dokumen 317: Topik dominan = 1 | Distribusi = [0.432 0.074 0.254 0.059 0.181]
+Dokumen 318: Topik dominan = 1 | Distribusi = [0.398 0.    0.199 0.18  0.222]
+Dokumen 319: Topik dominan = 3 | Distribusi = [0.078 0.064 0.418 0.073 0.368]
+Dokumen 320: Topik dominan = 3 | Distribusi = [0.059 0.104 0.425 0.071 0.341]
+Dokumen 321: Topik dominan = 5 | Distribusi = [0.121 0.005 0.16  0.134 0.579]
+Dokumen 322: Topik dominan = 4 | Distribusi = [0.101 0.054 0.255 0.547 0.043]
+Dokumen 323: Topik dominan = 3 | Distribusi = [0.408 0.001 0.416 0.07  0.105]
+Dokumen 324: Topik dominan = 3 | Distribusi = [0.101 0.012 0.541 0.006 0.34 ]
+Dokumen 325: Topik dominan = 3 | Distribusi = [0.101 0.023 0.449 0.152 0.275]
+Dokumen 326: Topik dominan = 5 | Distribusi = [0.161 0.054 0.189 0.144 0.452]
+Dokumen 327: Topik dominan = 5 | Distribusi = [0.199 0.001 0.1   0.057 0.644]
+Dokumen 328: Topik dominan = 5 | Distribusi = [0.106 0.123 0.345 0.041 0.385]
+Dokumen 329: Topik dominan = 4 | Distribusi = [0.097 0.046 0.142 0.607 0.108]
+Dokumen 330: Topik dominan = 5 | Distribusi = [0.129 0.    0.292 0.039 0.54 ]
+Dokumen 331: Topik dominan = 5 | Distribusi = [0.107 0.214 0.296 0.    0.383]
+Dokumen 332: Topik dominan = 5 | Distribusi = [0.064 0.001 0.24  0.064 0.632]
+Dokumen 333: Topik dominan = 3 | Distribusi = [0.053 0.    0.558 0.149 0.241]
+Dokumen 334: Topik dominan = 3 | Distribusi = [0.139 0.001 0.555 0.053 0.251]
+Dokumen 335: Topik dominan = 5 | Distribusi = [0.337 0.001 0.169 0.109 0.385]
+Dokumen 336: Topik dominan = 3 | Distribusi = [0.11  0.024 0.864 0.    0.   ]
+Dokumen 337: Topik dominan = 5 | Distribusi = [0.175 0.001 0.255 0.001 0.568]
+Dokumen 338: Topik dominan = 4 | Distribusi = [0.323 0.021 0.222 0.388 0.046]
+Dokumen 339: Topik dominan = 5 | Distribusi = [0.07  0.    0.261 0.082 0.587]
+Dokumen 340: Topik dominan = 3 | Distribusi = [0.051 0.025 0.668 0.004 0.252]
+Dokumen 341: Topik dominan = 5 | Distribusi = [0.006 0.001 0.289 0.001 0.704]
+Dokumen 342: Topik dominan = 3 | Distribusi = [0.209 0.127 0.313 0.045 0.306]
+Dokumen 343: Topik dominan = 3 | Distribusi = [0.021 0.001 0.815 0.021 0.143]
+Dokumen 344: Topik dominan = 3 | Distribusi = [0.254 0.001 0.401 0.012 0.333]
+Dokumen 345: Topik dominan = 3 | Distribusi = [0.333 0.036 0.444 0.    0.186]
+Dokumen 346: Topik dominan = 3 | Distribusi = [0.001 0.087 0.493 0.035 0.385]
+Dokumen 347: Topik dominan = 2 | Distribusi = [0.001 0.917 0.001 0.001 0.08 ]
+Dokumen 348: Topik dominan = 5 | Distribusi = [0.078 0.047 0.152 0.035 0.687]
+Dokumen 349: Topik dominan = 5 | Distribusi = [0.    0.    0.088 0.249 0.663]
+Dokumen 350: Topik dominan = 3 | Distribusi = [0.001 0.021 0.703 0.007 0.268]
+Dokumen 351: Topik dominan = 5 | Distribusi = [0.    0.    0.369 0.061 0.569]
+Dokumen 352: Topik dominan = 3 | Distribusi = [0.001 0.015 0.506 0.091 0.388]
+Dokumen 353: Topik dominan = 5 | Distribusi = [0.101 0.042 0.184 0.    0.673]
+Dokumen 354: Topik dominan = 4 | Distribusi = [0.078 0.    0.323 0.473 0.126]
+Dokumen 355: Topik dominan = 3 | Distribusi = [0.001 0.045 0.429 0.096 0.429]
+Dokumen 356: Topik dominan = 3 | Distribusi = [0.001 0.032 0.509 0.09  0.369]
+Dokumen 357: Topik dominan = 3 | Distribusi = [0.101 0.034 0.635 0.    0.23 ]
+Dokumen 358: Topik dominan = 5 | Distribusi = [0.154 0.137 0.291 0.093 0.325]
+Dokumen 359: Topik dominan = 3 | Distribusi = [0.106 0.008 0.724 0.029 0.134]
+Dokumen 360: Topik dominan = 3 | Distribusi = [0.052 0.031 0.421 0.129 0.367]
+Dokumen 361: Topik dominan = 3 | Distribusi = [0.192 0.001 0.621 0.026 0.161]
+Dokumen 362: Topik dominan = 3 | Distribusi = [0.126 0.026 0.823 0.001 0.026]
+Dokumen 363: Topik dominan = 3 | Distribusi = [0.355 0.057 0.421 0.154 0.014]
+Dokumen 364: Topik dominan = 1 | Distribusi = [0.411 0.001 0.411 0.037 0.141]
+Dokumen 365: Topik dominan = 5 | Distribusi = [0.001 0.09  0.344 0.08  0.486]
+Dokumen 366: Topik dominan = 3 | Distribusi = [0.297 0.001 0.399 0.035 0.268]
+Dokumen 367: Topik dominan = 5 | Distribusi = [0.057 0.006 0.113 0.241 0.583]
+Dokumen 368: Topik dominan = 3 | Distribusi = [0.137 0.028 0.527 0.087 0.223]
+Dokumen 369: Topik dominan = 5 | Distribusi = [0.    0.052 0.264 0.198 0.485]
+Dokumen 370: Topik dominan = 1 | Distribusi = [0.309 0.    0.24  0.18  0.272]
+Dokumen 371: Topik dominan = 3 | Distribusi = [0.37  0.001 0.415 0.118 0.096]
+Dokumen 372: Topik dominan = 3 | Distribusi = [0.021 0.005 0.626 0.129 0.22 ]
+Dokumen 373: Topik dominan = 3 | Distribusi = [0.01  0.015 0.792 0.079 0.104]
+Dokumen 374: Topik dominan = 3 | Distribusi = [0.028 0.099 0.46  0.13  0.283]
+Dokumen 375: Topik dominan = 5 | Distribusi = [0.235 0.    0.172 0.147 0.445]
+Dokumen 376: Topik dominan = 3 | Distribusi = [0.006 0.001 0.537 0.001 0.456]
+Dokumen 377: Topik dominan = 5 | Distribusi = [0.025 0.01  0.    0.113 0.851]
+Dokumen 378: Topik dominan = 4 | Distribusi = [0.318 0.001 0.251 0.34  0.09 ]
+Dokumen 379: Topik dominan = 3 | Distribusi = [0.25  0.012 0.459 0.001 0.279]
+Dokumen 380: Topik dominan = 1 | Distribusi = [0.712 0.    0.011 0.197 0.079]
+Dokumen 381: Topik dominan = 5 | Distribusi = [0.017 0.    0.106 0.207 0.67 ]
+Dokumen 382: Topik dominan = 3 | Distribusi = [0.032 0.012 0.459 0.056 0.44 ]
+Dokumen 383: Topik dominan = 3 | Distribusi = [0.001 0.073 0.542 0.06  0.324]
+Dokumen 384: Topik dominan = 3 | Distribusi = [0.22  0.009 0.456 0.001 0.315]
+Dokumen 385: Topik dominan = 2 | Distribusi = [0.045 0.436 0.015 0.134 0.37 ]
+Dokumen 386: Topik dominan = 3 | Distribusi = [0.016 0.058 0.467 0.043 0.417]
+Dokumen 387: Topik dominan = 3 | Distribusi = [0.073 0.043 0.572 0.    0.311]
+Dokumen 388: Topik dominan = 3 | Distribusi = [0.125 0.15  0.493 0.    0.232]
+Dokumen 389: Topik dominan = 5 | Distribusi = [0.143 0.03  0.382 0.03  0.415]
+Dokumen 390: Topik dominan = 4 | Distribusi = [0.02  0.01  0.3   0.389 0.281]
+Dokumen 391: Topik dominan = 3 | Distribusi = [0.14  0.001 0.697 0.067 0.096]
+Dokumen 392: Topik dominan = 5 | Distribusi = [0.07  0.001 0.294 0.194 0.441]
+Dokumen 393: Topik dominan = 5 | Distribusi = [0.025 0.007 0.446 0.072 0.45 ]
+Dokumen 394: Topik dominan = 5 | Distribusi = [0.013 0.    0.332 0.078 0.577]
+Dokumen 395: Topik dominan = 5 | Distribusi = [0.016 0.025 0.254 0.342 0.363]
+Dokumen 396: Topik dominan = 5 | Distribusi = [0.09  0.013 0.384 0.086 0.427]
+Dokumen 397: Topik dominan = 3 | Distribusi = [0.348 0.    0.393 0.258 0.   ]
+Dokumen 398: Topik dominan = 5 | Distribusi = [0.101 0.    0.427 0.    0.472]
+Dokumen 399: Topik dominan = 1 | Distribusi = [0.516 0.026 0.123 0.026 0.308]
+Dokumen 400: Topik dominan = 5 | Distribusi = [0.029 0.001 0.345 0.001 0.625]
+Dokumen 401: Topik dominan = 1 | Distribusi = [0.504 0.015 0.2   0.224 0.057]
+Dokumen 402: Topik dominan = 5 | Distribusi = [0.187 0.    0.3   0.187 0.325]
+Dokumen 403: Topik dominan = 3 | Distribusi = [0.183 0.033 0.698 0.001 0.086]
+Dokumen 404: Topik dominan = 1 | Distribusi = [0.662 0.05  0.277 0.005 0.005]
+Dokumen 405: Topik dominan = 4 | Distribusi = [0.287 0.163 0.083 0.466 0.   ]
+Dokumen 406: Topik dominan = 1 | Distribusi = [0.585 0.035 0.318 0.001 0.061]
+Dokumen 407: Topik dominan = 2 | Distribusi = [0.359 0.398 0.229 0.013 0.   ]
+Dokumen 408: Topik dominan = 3 | Distribusi = [0.38  0.    0.451 0.133 0.036]
+Dokumen 409: Topik dominan = 3 | Distribusi = [0.18  0.001 0.718 0.001 0.101]
+Dokumen 410: Topik dominan = 3 | Distribusi = [0.155 0.184 0.481 0.18  0.   ]
+Dokumen 411: Topik dominan = 1 | Distribusi = [0.736 0.005 0.249 0.009 0.   ]
+Dokumen 412: Topik dominan = 3 | Distribusi = [0.199 0.059 0.607 0.117 0.018]
+Dokumen 413: Topik dominan = 1 | Distribusi = [0.558 0.001 0.308 0.133 0.001]
+Dokumen 414: Topik dominan = 3 | Distribusi = [0.02  0.18  0.678 0.122 0.   ]
+Dokumen 415: Topik dominan = 4 | Distribusi = [0.365 0.024 0.047 0.499 0.065]
+Dokumen 416: Topik dominan = 3 | Distribusi = [0.423 0.    0.498 0.035 0.044]
+Dokumen 417: Topik dominan = 3 | Distribusi = [0.    0.067 0.89  0.004 0.039]
+Dokumen 418: Topik dominan = 3 | Distribusi = [0.329 0.001 0.542 0.127 0.001]
+Dokumen 419: Topik dominan = 1 | Distribusi = [0.366 0.052 0.304 0.278 0.001]
+Dokumen 420: Topik dominan = 1 | Distribusi = [0.817 0.172 0.001 0.001 0.009]
+Dokumen 421: Topik dominan = 4 | Distribusi = [0.239 0.    0.32  0.43  0.01 ]
+Dokumen 422: Topik dominan = 3 | Distribusi = [0.308 0.066 0.49  0.136 0.   ]
+Dokumen 423: Topik dominan = 1 | Distribusi = [0.437 0.026 0.419 0.118 0.   ]
+Dokumen 424: Topik dominan = 3 | Distribusi = [0.228 0.14  0.497 0.001 0.135]
+Dokumen 425: Topik dominan = 3 | Distribusi = [0.25  0.013 0.569 0.167 0.001]
+Dokumen 426: Topik dominan = 5 | Distribusi = [0.137 0.025 0.362 0.02  0.455]
+Dokumen 427: Topik dominan = 1 | Distribusi = [0.408 0.039 0.209 0.222 0.122]
+Dokumen 428: Topik dominan = 5 | Distribusi = [0.387 0.025 0.074 0.    0.514]
+Dokumen 429: Topik dominan = 3 | Distribusi = [0.197 0.024 0.605 0.001 0.173]
+Dokumen 430: Topik dominan = 3 | Distribusi = [0.311 0.001 0.558 0.036 0.094]
+Dokumen 431: Topik dominan = 3 | Distribusi = [0.135 0.049 0.622 0.    0.193]
+Dokumen 432: Topik dominan = 1 | Distribusi = [0.466 0.198 0.261 0.074 0.   ]
+Dokumen 433: Topik dominan = 1 | Distribusi = [0.57  0.001 0.096 0.007 0.326]
+Dokumen 434: Topik dominan = 5 | Distribusi = [0.291 0.005 0.181 0.118 0.405]
+Dokumen 435: Topik dominan = 3 | Distribusi = [0.154 0.001 0.649 0.119 0.077]
+Dokumen 436: Topik dominan = 3 | Distribusi = [0.19  0.039 0.405 0.233 0.134]
+Dokumen 437: Topik dominan = 1 | Distribusi = [0.398 0.014 0.093 0.221 0.274]
+Dokumen 438: Topik dominan = 2 | Distribusi = [0.42  0.509 0.067 0.    0.004]
+Dokumen 439: Topik dominan = 3 | Distribusi = [0.125 0.315 0.4   0.16  0.   ]
+Dokumen 440: Topik dominan = 1 | Distribusi = [0.479 0.001 0.072 0.417 0.031]
+Dokumen 441: Topik dominan = 1 | Distribusi = [0.594 0.    0.078 0.224 0.103]
+Dokumen 442: Topik dominan = 3 | Distribusi = [0.22  0.013 0.59  0.001 0.176]
+Dokumen 443: Topik dominan = 5 | Distribusi = [0.38  0.021 0.087 0.001 0.512]
+Dokumen 444: Topik dominan = 3 | Distribusi = [0.149 0.004 0.739 0.012 0.097]
+Dokumen 445: Topik dominan = 1 | Distribusi = [0.575 0.016 0.074 0.335 0.001]
+Dokumen 446: Topik dominan = 1 | Distribusi = [0.414 0.015 0.4   0.109 0.063]
+Dokumen 447: Topik dominan = 3 | Distribusi = [0.236 0.001 0.52  0.228 0.015]
+Dokumen 448: Topik dominan = 1 | Distribusi = [0.493 0.165 0.269 0.073 0.   ]
+Dokumen 449: Topik dominan = 4 | Distribusi = [0.3   0.156 0.119 0.418 0.007]
+Dokumen 450: Topik dominan = 4 | Distribusi = [0.055 0.041 0.245 0.658 0.001]
+Dokumen 451: Topik dominan = 3 | Distribusi = [0.242 0.    0.573 0.034 0.152]
+Dokumen 452: Topik dominan = 3 | Distribusi = [0.148 0.142 0.493 0.193 0.023]
+Dokumen 453: Topik dominan = 3 | Distribusi = [0.247 0.047 0.422 0.062 0.222]
+Dokumen 454: Topik dominan = 1 | Distribusi = [0.467 0.192 0.308 0.033 0.   ]
+Dokumen 455: Topik dominan = 1 | Distribusi = [0.505 0.001 0.232 0.262 0.001]
+Dokumen 456: Topik dominan = 1 | Distribusi = [0.531 0.012 0.341 0.091 0.024]
+Dokumen 457: Topik dominan = 1 | Distribusi = [0.363 0.301 0.261 0.074 0.001]
+Dokumen 458: Topik dominan = 3 | Distribusi = [0.187 0.051 0.42  0.341 0.   ]
+Dokumen 459: Topik dominan = 4 | Distribusi = [0.08  0.001 0.301 0.407 0.212]
+Dokumen 460: Topik dominan = 5 | Distribusi = [0.302 0.013 0.001 0.019 0.665]
+Dokumen 461: Topik dominan = 3 | Distribusi = [0.322 0.001 0.581 0.023 0.074]
+Dokumen 462: Topik dominan = 1 | Distribusi = [0.595 0.003 0.078 0.122 0.202]
+Dokumen 463: Topik dominan = 4 | Distribusi = [0.179 0.007 0.271 0.428 0.114]
+Dokumen 464: Topik dominan = 1 | Distribusi = [0.573 0.055 0.156 0.001 0.216]
+Dokumen 465: Topik dominan = 1 | Distribusi = [0.541 0.112 0.314 0.032 0.   ]
+Dokumen 466: Topik dominan = 3 | Distribusi = [0.373 0.001 0.597 0.001 0.029]
+Dokumen 467: Topik dominan = 3 | Distribusi = [0.    0.018 0.734 0.045 0.202]
+Dokumen 468: Topik dominan = 4 | Distribusi = [0.31  0.001 0.263 0.348 0.078]
+Dokumen 469: Topik dominan = 1 | Distribusi = [0.414 0.079 0.174 0.316 0.016]
+Dokumen 470: Topik dominan = 1 | Distribusi = [0.517 0.031 0.387 0.057 0.008]
+Dokumen 471: Topik dominan = 5 | Distribusi = [0.268 0.005 0.01  0.105 0.611]
+Dokumen 472: Topik dominan = 4 | Distribusi = [0.107 0.023 0.124 0.746 0.001]
+Dokumen 473: Topik dominan = 3 | Distribusi = [0.058 0.12  0.429 0.204 0.19 ]
+Dokumen 474: Topik dominan = 5 | Distribusi = [0.125 0.018 0.244 0.125 0.488]
+Dokumen 475: Topik dominan = 1 | Distribusi = [0.374 0.026 0.    0.353 0.248]
+Dokumen 476: Topik dominan = 1 | Distribusi = [0.481 0.086 0.225 0.134 0.075]
+Dokumen 477: Topik dominan = 1 | Distribusi = [0.588 0.012 0.128 0.272 0.001]
+Dokumen 478: Topik dominan = 1 | Distribusi = [0.575 0.062 0.286 0.076 0.   ]
+Dokumen 479: Topik dominan = 3 | Distribusi = [0.197 0.059 0.531 0.18  0.034]
+Dokumen 480: Topik dominan = 4 | Distribusi = [0.13  0.012 0.213 0.624 0.021]
+Dokumen 481: Topik dominan = 3 | Distribusi = [0.326 0.035 0.563 0.075 0.   ]
+Dokumen 482: Topik dominan = 3 | Distribusi = [0.289 0.084 0.549 0.077 0.   ]
+Dokumen 483: Topik dominan = 1 | Distribusi = [0.434 0.037 0.267 0.077 0.186]
+Dokumen 484: Topik dominan = 1 | Distribusi = [0.685 0.024 0.091 0.112 0.088]
+Dokumen 485: Topik dominan = 3 | Distribusi = [0.232 0.001 0.486 0.254 0.027]
+Dokumen 486: Topik dominan = 1 | Distribusi = [0.644 0.014 0.149 0.059 0.136]
+Dokumen 487: Topik dominan = 1 | Distribusi = [0.445 0.036 0.445 0.072 0.001]
+Dokumen 488: Topik dominan = 4 | Distribusi = [0.001 0.001 0.247 0.751 0.001]
+Dokumen 489: Topik dominan = 3 | Distribusi = [0.096 0.001 0.78  0.001 0.122]
+Dokumen 490: Topik dominan = 3 | Distribusi = [0.394 0.009 0.436 0.16  0.001]
+Dokumen 491: Topik dominan = 1 | Distribusi = [0.415 0.031 0.392 0.077 0.085]
+Dokumen 492: Topik dominan = 1 | Distribusi = [0.6   0.021 0.337 0.041 0.001]
+Dokumen 493: Topik dominan = 3 | Distribusi = [0.137 0.052 0.588 0.018 0.205]
+Dokumen 494: Topik dominan = 4 | Distribusi = [0.336 0.105 0.146 0.414 0.   ]
+Dokumen 495: Topik dominan = 3 | Distribusi = [0.273 0.085 0.49  0.067 0.085]
+Dokumen 496: Topik dominan = 3 | Distribusi = [0.038 0.11  0.85  0.    0.   ]
+Dokumen 497: Topik dominan = 1 | Distribusi = [0.388 0.064 0.222 0.262 0.064]
+Dokumen 498: Topik dominan = 3 | Distribusi = [0.345 0.001 0.38  0.015 0.26 ]
+Dokumen 499: Topik dominan = 1 | Distribusi = [0.455 0.221 0.191 0.133 0.001]
+Dokumen 500: Topik dominan = 3 | Distribusi = [0.008 0.015 0.586 0.376 0.015]
+Dokumen 501: Topik dominan = 4 | Distribusi = [0.091 0.001 0.241 0.667 0.001]
+Dokumen 502: Topik dominan = 3 | Distribusi = [0.063 0.005 0.459 0.409 0.063]
+Dokumen 503: Topik dominan = 3 | Distribusi = [0.25  0.208 0.41  0.101 0.03 ]
+Dokumen 504: Topik dominan = 3 | Distribusi = [0.196 0.124 0.679 0.001 0.001]
+Dokumen 505: Topik dominan = 3 | Distribusi = [0.149 0.162 0.635 0.053 0.   ]
+Dokumen 506: Topik dominan = 3 | Distribusi = [0.252 0.067 0.402 0.186 0.093]
+Dokumen 507: Topik dominan = 1 | Distribusi = [0.499 0.048 0.364 0.089 0.001]
+Dokumen 508: Topik dominan = 1 | Distribusi = [0.67  0.005 0.169 0.115 0.04 ]
+Dokumen 509: Topik dominan = 4 | Distribusi = [0.259 0.054 0.145 0.541 0.001]
+Dokumen 510: Topik dominan = 1 | Distribusi = [0.609 0.106 0.16  0.102 0.024]
+Dokumen 511: Topik dominan = 3 | Distribusi = [0.069 0.138 0.52  0.059 0.213]
+Dokumen 512: Topik dominan = 3 | Distribusi = [0.275 0.046 0.588 0.039 0.053]
+Dokumen 513: Topik dominan = 2 | Distribusi = [0.267 0.515 0.185 0.001 0.032]
+Dokumen 514: Topik dominan = 1 | Distribusi = [0.365 0.228 0.242 0.078 0.087]
+Dokumen 515: Topik dominan = 3 | Distribusi = [0.209 0.    0.483 0.    0.307]
+Dokumen 516: Topik dominan = 3 | Distribusi = [0.077 0.14  0.701 0.01  0.072]
+Dokumen 517: Topik dominan = 5 | Distribusi = [0.087 0.001 0.307 0.047 0.558]
+Dokumen 518: Topik dominan = 1 | Distribusi = [0.418 0.042 0.126 0.    0.413]
+Dokumen 519: Topik dominan = 1 | Distribusi = [0.559 0.001 0.083 0.249 0.109]
+Dokumen 520: Topik dominan = 2 | Distribusi = [0.253 0.416 0.33  0.    0.   ]
+Dokumen 521: Topik dominan = 1 | Distribusi = [0.491 0.001 0.243 0.265 0.001]
+Dokumen 522: Topik dominan = 3 | Distribusi = [0.381 0.013 0.49  0.115 0.001]
+Dokumen 523: Topik dominan = 5 | Distribusi = [0.248 0.018 0.113 0.048 0.573]
+Dokumen 524: Topik dominan = 3 | Distribusi = [0.132 0.    0.636 0.062 0.17 ]
+Dokumen 525: Topik dominan = 1 | Distribusi = [0.339 0.    0.226 0.326 0.109]
+Dokumen 526: Topik dominan = 3 | Distribusi = [0.405 0.    0.551 0.    0.043]
+Dokumen 527: Topik dominan = 1 | Distribusi = [0.359 0.013 0.333 0.103 0.192]
+Dokumen 528: Topik dominan = 3 | Distribusi = [0.114 0.    0.727 0.    0.159]
+Dokumen 529: Topik dominan = 3 | Distribusi = [0.161 0.15  0.385 0.283 0.022]
+Dokumen 530: Topik dominan = 5 | Distribusi = [0.147 0.001 0.019 0.19  0.643]
+Dokumen 531: Topik dominan = 3 | Distribusi = [0.297 0.063 0.556 0.032 0.052]
+Dokumen 532: Topik dominan = 3 | Distribusi = [0.25  0.034 0.433 0.03  0.254]
+Dokumen 533: Topik dominan = 1 | Distribusi = [0.396 0.396 0.193 0.01  0.005]
+Dokumen 534: Topik dominan = 2 | Distribusi = [0.24  0.503 0.172 0.004 0.08 ]
+Dokumen 535: Topik dominan = 4 | Distribusi = [0.015 0.026 0.173 0.753 0.033]
+Dokumen 536: Topik dominan = 3 | Distribusi = [0.159 0.035 0.379 0.358 0.069]
+Dokumen 537: Topik dominan = 1 | Distribusi = [0.62  0.016 0.237 0.001 0.126]
+Dokumen 538: Topik dominan = 3 | Distribusi = [0.308 0.113 0.471 0.107 0.001]
+Dokumen 539: Topik dominan = 3 | Distribusi = [0.155 0.001 0.459 0.35  0.035]
+Dokumen 540: Topik dominan = 4 | Distribusi = [0.14  0.048 0.283 0.528 0.   ]
+Dokumen 541: Topik dominan = 3 | Distribusi = [0.098 0.02  0.644 0.23  0.008]
+Dokumen 542: Topik dominan = 3 | Distribusi = [0.114 0.015 0.82  0.05  0.   ]
+Dokumen 543: Topik dominan = 2 | Distribusi = [0.361 0.388 0.16  0.001 0.091]
+Dokumen 544: Topik dominan = 1 | Distribusi = [0.46  0.041 0.288 0.046 0.165]
+Dokumen 545: Topik dominan = 1 | Distribusi = [0.464 0.038 0.044 0.378 0.076]
+Dokumen 546: Topik dominan = 3 | Distribusi = [0.154 0.024 0.427 0.395 0.   ]
+Dokumen 547: Topik dominan = 1 | Distribusi = [0.414 0.029 0.336 0.216 0.005]
+Dokumen 548: Topik dominan = 1 | Distribusi = [0.581 0.02  0.088 0.165 0.146]
+Dokumen 549: Topik dominan = 3 | Distribusi = [0.218 0.014 0.632 0.04  0.096]
+Dokumen 550: Topik dominan = 3 | Distribusi = [0.398 0.041 0.407 0.145 0.009]
+Dokumen 551: Topik dominan = 3 | Distribusi = [0.211 0.014 0.746 0.001 0.028]
+Dokumen 552: Topik dominan = 2 | Distribusi = [0.096 0.365 0.235 0.303 0.   ]
+Dokumen 553: Topik dominan = 1 | Distribusi = [0.451 0.    0.167 0.134 0.247]
+Dokumen 554: Topik dominan = 1 | Distribusi = [0.525 0.009 0.263 0.125 0.078]
+Dokumen 555: Topik dominan = 3 | Distribusi = [0.085 0.386 0.404 0.125 0.   ]
+Dokumen 556: Topik dominan = 5 | Distribusi = [0.399 0.014 0.    0.04  0.547]
+Dokumen 557: Topik dominan = 1 | Distribusi = [0.417 0.077 0.234 0.1   0.172]
+Dokumen 558: Topik dominan = 3 | Distribusi = [0.175 0.124 0.561 0.139 0.001]
+Dokumen 559: Topik dominan = 1 | Distribusi = [0.42  0.01  0.034 0.18  0.356]
+Dokumen 560: Topik dominan = 3 | Distribusi = [0.114 0.053 0.401 0.297 0.136]
+Dokumen 561: Topik dominan = 5 | Distribusi = [0.313 0.001 0.001 0.025 0.661]
+Dokumen 562: Topik dominan = 4 | Distribusi = [0.133 0.021 0.329 0.516 0.   ]
+Dokumen 563: Topik dominan = 1 | Distribusi = [0.386 0.005 0.169 0.198 0.241]
+Dokumen 564: Topik dominan = 5 | Distribusi = [0.208 0.    0.361 0.051 0.378]
+Dokumen 565: Topik dominan = 3 | Distribusi = [0.303 0.016 0.523 0.115 0.042]
+Dokumen 566: Topik dominan = 1 | Distribusi = [0.693 0.197 0.109 0.001 0.001]
+Dokumen 567: Topik dominan = 1 | Distribusi = [0.686 0.083 0.096 0.001 0.134]
+Dokumen 568: Topik dominan = 3 | Distribusi = [0.259 0.    0.67  0.    0.07 ]
+Dokumen 569: Topik dominan = 3 | Distribusi = [0.075 0.001 0.642 0.091 0.192]
+Dokumen 570: Topik dominan = 1 | Distribusi = [0.436 0.08  0.3   0.183 0.   ]
+Dokumen 571: Topik dominan = 1 | Distribusi = [0.429 0.046 0.141 0.164 0.22 ]
+Dokumen 572: Topik dominan = 1 | Distribusi = [0.57  0.063 0.11  0.256 0.001]
+Dokumen 573: Topik dominan = 3 | Distribusi = [0.363 0.026 0.61  0.    0.   ]
+Dokumen 574: Topik dominan = 4 | Distribusi = [0.209 0.    0.226 0.293 0.272]
+Dokumen 575: Topik dominan = 1 | Distribusi = [0.496 0.001 0.403 0.1   0.001]
+Dokumen 576: Topik dominan = 3 | Distribusi = [0.384 0.001 0.391 0.008 0.217]
+Dokumen 577: Topik dominan = 4 | Distribusi = [0.216 0.    0.338 0.445 0.   ]
+Dokumen 578: Topik dominan = 1 | Distribusi = [0.491 0.006 0.282 0.001 0.22 ]
+Dokumen 579: Topik dominan = 4 | Distribusi = [0.154 0.    0.304 0.532 0.009]
+Dokumen 580: Topik dominan = 1 | Distribusi = [0.377 0.001 0.342 0.279 0.001]
+Dokumen 581: Topik dominan = 3 | Distribusi = [0.263 0.    0.727 0.    0.01 ]
+Dokumen 582: Topik dominan = 3 | Distribusi = [0.232 0.076 0.453 0.07  0.169]
+Dokumen 583: Topik dominan = 1 | Distribusi = [0.618 0.015 0.288 0.079 0.   ]
+Dokumen 584: Topik dominan = 1 | Distribusi = [0.509 0.008 0.001 0.063 0.42 ]
+Dokumen 585: Topik dominan = 1 | Distribusi = [0.693 0.005 0.286 0.01  0.005]
+Dokumen 586: Topik dominan = 3 | Distribusi = [0.261 0.138 0.464 0.043 0.095]
+Dokumen 587: Topik dominan = 3 | Distribusi = [0.215 0.194 0.59  0.001 0.001]
+Dokumen 588: Topik dominan = 3 | Distribusi = [0.34  0.051 0.518 0.039 0.051]
+Dokumen 589: Topik dominan = 4 | Distribusi = [0.228 0.011 0.182 0.522 0.056]
+Dokumen 590: Topik dominan = 3 | Distribusi = [0.177 0.042 0.307 0.172 0.302]
+Dokumen 591: Topik dominan = 3 | Distribusi = [0.063 0.017 0.92  0.    0.   ]
+Dokumen 592: Topik dominan = 4 | Distribusi = [0.219 0.11  0.13  0.54  0.001]
+Dokumen 593: Topik dominan = 4 | Distribusi = [0.03  0.116 0.253 0.6   0.001]
+Dokumen 594: Topik dominan = 3 | Distribusi = [0.067 0.071 0.799 0.063 0.   ]
+Dokumen 595: Topik dominan = 1 | Distribusi = [0.63  0.171 0.125 0.073 0.001]
+Dokumen 596: Topik dominan = 1 | Distribusi = [0.605 0.001 0.095 0.173 0.126]
+Dokumen 597: Topik dominan = 1 | Distribusi = [0.593 0.001 0.072 0.294 0.04 ]
+Dokumen 598: Topik dominan = 5 | Distribusi = [0.349 0.001 0.006 0.022 0.622]
+Dokumen 599: Topik dominan = 3 | Distribusi = [0.241 0.031 0.572 0.131 0.026]
+Dokumen 600: Topik dominan = 3 | Distribusi = [0.263 0.005 0.383 0.349 0.   ]
+Dokumen 601: Topik dominan = 4 | Distribusi = [0.22  0.066 0.    0.518 0.196]
+Dokumen 602: Topik dominan = 3 | Distribusi = [0.051 0.    0.43  0.278 0.24 ]
+Dokumen 603: Topik dominan = 4 | Distribusi = [0.169 0.001 0.055 0.715 0.061]
+Dokumen 604: Topik dominan = 4 | Distribusi = [0.155 0.001 0.001 0.528 0.316]
+Dokumen 605: Topik dominan = 4 | Distribusi = [0.065 0.046 0.019 0.623 0.247]
+Dokumen 606: Topik dominan = 5 | Distribusi = [0.058 0.    0.101 0.306 0.535]
+Dokumen 607: Topik dominan = 4 | Distribusi = [0.305 0.006 0.084 0.466 0.139]
+Dokumen 608: Topik dominan = 5 | Distribusi = [0.103 0.009 0.027 0.424 0.437]
+Dokumen 609: Topik dominan = 4 | Distribusi = [0.166 0.001 0.042 0.573 0.219]
+Dokumen 610: Topik dominan = 4 | Distribusi = [0.089 0.047 0.021 0.463 0.38 ]
+Dokumen 611: Topik dominan = 4 | Distribusi = [0.079 0.001 0.017 0.688 0.215]
+Dokumen 612: Topik dominan = 4 | Distribusi = [0.147 0.037 0.086 0.582 0.147]
+Dokumen 613: Topik dominan = 5 | Distribusi = [0.136 0.015 0.075 0.385 0.389]
+Dokumen 614: Topik dominan = 5 | Distribusi = [0.052 0.001 0.026 0.393 0.528]
+Dokumen 615: Topik dominan = 1 | Distribusi = [0.594 0.314 0.001 0.001 0.09 ]
+Dokumen 616: Topik dominan = 1 | Distribusi = [0.678 0.174 0.001 0.098 0.049]
+Dokumen 617: Topik dominan = 5 | Distribusi = [0.302 0.    0.    0.302 0.396]
+Dokumen 618: Topik dominan = 1 | Distribusi = [0.367 0.018 0.069 0.28  0.266]
+Dokumen 619: Topik dominan = 4 | Distribusi = [0.015 0.    0.074 0.787 0.123]
+Dokumen 620: Topik dominan = 1 | Distribusi = [0.463 0.    0.085 0.199 0.254]
+Dokumen 621: Topik dominan = 4 | Distribusi = [0.127 0.01  0.01  0.492 0.361]
+Dokumen 622: Topik dominan = 3 | Distribusi = [0.342 0.022 0.346 0.193 0.097]
+Dokumen 623: Topik dominan = 4 | Distribusi = [0.261 0.07  0.257 0.308 0.104]
+Dokumen 624: Topik dominan = 1 | Distribusi = [0.67  0.201 0.    0.039 0.09 ]
+Dokumen 625: Topik dominan = 4 | Distribusi = [0.025 0.2   0.007 0.508 0.26 ]
+Dokumen 626: Topik dominan = 4 | Distribusi = [0.311 0.    0.156 0.431 0.102]
+Dokumen 627: Topik dominan = 4 | Distribusi = [0.082 0.063 0.001 0.717 0.138]
+Dokumen 628: Topik dominan = 4 | Distribusi = [0.041 0.008 0.    0.483 0.468]
+Dokumen 629: Topik dominan = 4 | Distribusi = [0.047 0.122 0.029 0.531 0.271]
+Dokumen 630: Topik dominan = 4 | Distribusi = [0.24  0.06  0.    0.613 0.086]
+Dokumen 631: Topik dominan = 5 | Distribusi = [0.05  0.056 0.111 0.368 0.417]
+Dokumen 632: Topik dominan = 1 | Distribusi = [0.371 0.001 0.275 0.257 0.096]
+Dokumen 633: Topik dominan = 4 | Distribusi = [0.212 0.    0.062 0.725 0.   ]
+Dokumen 634: Topik dominan = 5 | Distribusi = [0.27  0.094 0.033 0.266 0.338]
+Dokumen 635: Topik dominan = 4 | Distribusi = [0.02  0.    0.145 0.519 0.315]
+Dokumen 636: Topik dominan = 5 | Distribusi = [0.055 0.004 0.041 0.381 0.52 ]
+Dokumen 637: Topik dominan = 5 | Distribusi = [0.348 0.001 0.001 0.177 0.474]
+Dokumen 638: Topik dominan = 4 | Distribusi = [0.056 0.    0.    0.592 0.351]
+Dokumen 639: Topik dominan = 1 | Distribusi = [0.386 0.009 0.021 0.281 0.302]
+Dokumen 640: Topik dominan = 3 | Distribusi = [0.362 0.    0.438 0.116 0.084]
+Dokumen 641: Topik dominan = 5 | Distribusi = [0.141 0.004 0.    0.415 0.439]
+Dokumen 642: Topik dominan = 4 | Distribusi = [0.314 0.153 0.016 0.367 0.15 ]
+Dokumen 643: Topik dominan = 4 | Distribusi = [0.077 0.    0.028 0.557 0.338]
+Dokumen 644: Topik dominan = 3 | Distribusi = [0.315 0.    0.383 0.071 0.23 ]
+Dokumen 645: Topik dominan = 4 | Distribusi = [0.186 0.02  0.005 0.744 0.044]
+Dokumen 646: Topik dominan = 4 | Distribusi = [0.194 0.008 0.001 0.619 0.178]
+Dokumen 647: Topik dominan = 4 | Distribusi = [0.065 0.008 0.001 0.727 0.2  ]
+Dokumen 648: Topik dominan = 4 | Distribusi = [0.012 0.    0.023 0.765 0.199]
+Dokumen 649: Topik dominan = 4 | Distribusi = [0.035 0.01  0.    0.662 0.292]
+Dokumen 650: Topik dominan = 5 | Distribusi = [0.118 0.001 0.073 0.329 0.48 ]
+Dokumen 651: Topik dominan = 4 | Distribusi = [0.126 0.001 0.021 0.716 0.137]
+Dokumen 652: Topik dominan = 3 | Distribusi = [0.319 0.    0.353 0.164 0.164]
+Dokumen 653: Topik dominan = 4 | Distribusi = [0.256 0.    0.141 0.512 0.09 ]
+Dokumen 654: Topik dominan = 4 | Distribusi = [0.047 0.119 0.129 0.51  0.196]
+Dokumen 655: Topik dominan = 4 | Distribusi = [0.067 0.053 0.081 0.609 0.19 ]
+Dokumen 656: Topik dominan = 4 | Distribusi = [0.129 0.015 0.    0.692 0.163]
+Dokumen 657: Topik dominan = 4 | Distribusi = [0.227 0.032 0.002 0.498 0.242]
+Dokumen 658: Topik dominan = 4 | Distribusi = [0.029 0.009 0.082 0.558 0.322]
+Dokumen 659: Topik dominan = 4 | Distribusi = [0.082 0.001 0.093 0.461 0.364]
+Dokumen 660: Topik dominan = 4 | Distribusi = [0.037 0.001 0.037 0.919 0.007]
+Dokumen 661: Topik dominan = 4 | Distribusi = [0.076 0.    0.168 0.595 0.161]
+Dokumen 662: Topik dominan = 4 | Distribusi = [0.093 0.309 0.    0.436 0.162]
+Dokumen 663: Topik dominan = 4 | Distribusi = [0.11  0.    0.    0.581 0.308]
+Dokumen 664: Topik dominan = 5 | Distribusi = [0.364 0.001 0.001 0.001 0.633]
+Dokumen 665: Topik dominan = 4 | Distribusi = [0.375 0.069 0.047 0.505 0.004]
+Dokumen 666: Topik dominan = 1 | Distribusi = [0.391 0.001 0.159 0.344 0.106]
+Dokumen 667: Topik dominan = 4 | Distribusi = [0.228 0.127 0.19  0.442 0.013]
+Dokumen 668: Topik dominan = 5 | Distribusi = [0.001 0.001 0.132 0.259 0.607]
+Dokumen 669: Topik dominan = 1 | Distribusi = [0.316 0.019 0.216 0.289 0.161]
+Dokumen 670: Topik dominan = 4 | Distribusi = [0.07  0.062 0.018 0.771 0.079]
+Dokumen 671: Topik dominan = 5 | Distribusi = [0.117 0.    0.077 0.329 0.477]
+Dokumen 672: Topik dominan = 4 | Distribusi = [0.001 0.001 0.026 0.829 0.143]
+Dokumen 673: Topik dominan = 1 | Distribusi = [0.589 0.319 0.001 0.054 0.038]
+Dokumen 674: Topik dominan = 5 | Distribusi = [0.27  0.001 0.001 0.139 0.59 ]
+Dokumen 675: Topik dominan = 5 | Distribusi = [0.094 0.001 0.022 0.431 0.452]
+Dokumen 676: Topik dominan = 1 | Distribusi = [0.575 0.309 0.    0.072 0.043]
+Dokumen 677: Topik dominan = 4 | Distribusi = [0.093 0.001 0.038 0.591 0.278]
+Dokumen 678: Topik dominan = 4 | Distribusi = [0.079 0.067 0.    0.51  0.344]
+Dokumen 679: Topik dominan = 4 | Distribusi = [0.038 0.005 0.    0.784 0.174]
+Dokumen 680: Topik dominan = 4 | Distribusi = [0.033 0.    0.    0.592 0.375]
+Dokumen 681: Topik dominan = 1 | Distribusi = [0.404 0.029 0.012 0.208 0.346]
+Dokumen 682: Topik dominan = 5 | Distribusi = [0.011 0.001 0.098 0.288 0.602]
+Dokumen 683: Topik dominan = 1 | Distribusi = [0.339 0.001 0.19  0.248 0.222]
+Dokumen 684: Topik dominan = 2 | Distribusi = [0.442 0.48  0.001 0.077 0.001]
+Dokumen 685: Topik dominan = 4 | Distribusi = [0.001 0.001 0.131 0.45  0.418]
+Dokumen 686: Topik dominan = 1 | Distribusi = [0.631 0.313 0.001 0.054 0.001]
+Dokumen 687: Topik dominan = 1 | Distribusi = [0.379 0.001 0.059 0.287 0.274]
+Dokumen 688: Topik dominan = 4 | Distribusi = [0.085 0.043 0.001 0.52  0.351]
+Dokumen 689: Topik dominan = 4 | Distribusi = [0.073 0.001 0.025 0.865 0.037]
+Dokumen 690: Topik dominan = 4 | Distribusi = [0.174 0.006 0.006 0.457 0.357]
+Dokumen 691: Topik dominan = 5 | Distribusi = [0.3   0.082 0.06  0.191 0.366]
+Dokumen 692: Topik dominan = 4 | Distribusi = [0.182 0.005 0.03  0.457 0.325]
+Dokumen 693: Topik dominan = 1 | Distribusi = [0.614 0.245 0.001 0.077 0.063]
+Dokumen 694: Topik dominan = 4 | Distribusi = [0.252 0.001 0.006 0.545 0.197]
+Dokumen 695: Topik dominan = 4 | Distribusi = [0.16  0.    0.02  0.714 0.105]
+Dokumen 696: Topik dominan = 1 | Distribusi = [0.723 0.188 0.    0.03  0.059]
+Dokumen 697: Topik dominan = 4 | Distribusi = [0.036 0.012 0.001 0.616 0.335]
+Dokumen 698: Topik dominan = 4 | Distribusi = [0.188 0.    0.109 0.401 0.301]
+Dokumen 699: Topik dominan = 4 | Distribusi = [0.281 0.001 0.141 0.514 0.063]
+Dokumen 700: Topik dominan = 4 | Distribusi = [0.    0.    0.    0.865 0.133]
+Dokumen 701: Topik dominan = 1 | Distribusi = [0.638 0.088 0.001 0.128 0.146]
+Dokumen 702: Topik dominan = 4 | Distribusi = [0.039 0.059 0.    0.877 0.025]
+Dokumen 703: Topik dominan = 4 | Distribusi = [0.205 0.001 0.006 0.567 0.222]
+Dokumen 704: Topik dominan = 4 | Distribusi = [0.091 0.061 0.001 0.813 0.036]
+Dokumen 705: Topik dominan = 1 | Distribusi = [0.431 0.001 0.171 0.238 0.159]
+Dokumen 706: Topik dominan = 4 | Distribusi = [0.363 0.001 0.049 0.587 0.001]
+Dokumen 707: Topik dominan = 4 | Distribusi = [0.109 0.044 0.021 0.64  0.186]
+Dokumen 708: Topik dominan = 4 | Distribusi = [0.011 0.016 0.031 0.659 0.283]
+Dokumen 709: Topik dominan = 1 | Distribusi = [0.613 0.183 0.    0.164 0.039]
+Dokumen 710: Topik dominan = 4 | Distribusi = [0.215 0.023 0.001 0.716 0.046]
+Dokumen 711: Topik dominan = 4 | Distribusi = [0.117 0.004 0.017 0.456 0.406]
+Dokumen 712: Topik dominan = 4 | Distribusi = [0.142 0.037 0.    0.527 0.294]
+Dokumen 713: Topik dominan = 4 | Distribusi = [0.169 0.03  0.041 0.76  0.001]
+Dokumen 714: Topik dominan = 1 | Distribusi = [0.537 0.248 0.008 0.207 0.001]
+Dokumen 715: Topik dominan = 4 | Distribusi = [0.197 0.001 0.001 0.554 0.248]
+Dokumen 716: Topik dominan = 5 | Distribusi = [0.144 0.    0.125 0.239 0.492]
+Dokumen 717: Topik dominan = 4 | Distribusi = [0.124 0.001 0.001 0.752 0.124]
+Dokumen 718: Topik dominan = 4 | Distribusi = [0.319 0.05  0.035 0.471 0.126]
+Dokumen 719: Topik dominan = 5 | Distribusi = [0.152 0.001 0.008 0.383 0.456]
+Dokumen 720: Topik dominan = 5 | Distribusi = [0.146 0.    0.075 0.379 0.4  ]
+Dokumen 721: Topik dominan = 4 | Distribusi = [0.059 0.027 0.001 0.555 0.359]
+Dokumen 722: Topik dominan = 5 | Distribusi = [0.    0.    0.112 0.437 0.45 ]
+Dokumen 723: Topik dominan = 4 | Distribusi = [0.077 0.    0.    0.656 0.267]
+Dokumen 724: Topik dominan = 4 | Distribusi = [0.001 0.014 0.096 0.738 0.151]
+Dokumen 725: Topik dominan = 4 | Distribusi = [0.036 0.023 0.    0.785 0.156]
+Dokumen 726: Topik dominan = 5 | Distribusi = [0.38  0.035 0.065 0.1   0.419]
+Dokumen 727: Topik dominan = 4 | Distribusi = [0.044 0.006 0.001 0.523 0.426]
+Dokumen 728: Topik dominan = 4 | Distribusi = [0.011 0.081 0.011 0.734 0.162]
+Dokumen 729: Topik dominan = 4 | Distribusi = [0.045 0.    0.017 0.904 0.033]
+Dokumen 730: Topik dominan = 1 | Distribusi = [0.381 0.    0.084 0.247 0.287]
+Dokumen 731: Topik dominan = 4 | Distribusi = [0.402 0.07  0.001 0.496 0.032]
+Dokumen 732: Topik dominan = 4 | Distribusi = [0.216 0.09  0.053 0.641 0.001]
+Dokumen 733: Topik dominan = 4 | Distribusi = [0.137 0.318 0.    0.421 0.123]
+Dokumen 734: Topik dominan = 4 | Distribusi = [0.029 0.033 0.057 0.631 0.25 ]
+Dokumen 735: Topik dominan = 4 | Distribusi = [0.088 0.038 0.021 0.803 0.05 ]
+Dokumen 736: Topik dominan = 5 | Distribusi = [0.039 0.009 0.091 0.297 0.564]
+Dokumen 737: Topik dominan = 3 | Distribusi = [0.001 0.024 0.368 0.368 0.24 ]
+Dokumen 738: Topik dominan = 4 | Distribusi = [0.085 0.014 0.    0.477 0.424]
+Dokumen 739: Topik dominan = 4 | Distribusi = [0.073 0.006 0.001 0.649 0.272]
+Dokumen 740: Topik dominan = 1 | Distribusi = [0.429 0.001 0.267 0.163 0.14 ]
+Dokumen 741: Topik dominan = 4 | Distribusi = [0.099 0.001 0.032 0.791 0.078]
+Dokumen 742: Topik dominan = 4 | Distribusi = [0.19  0.    0.024 0.392 0.392]
+Dokumen 743: Topik dominan = 4 | Distribusi = [0.072 0.047 0.029 0.749 0.104]
+Dokumen 744: Topik dominan = 4 | Distribusi = [0.16  0.004 0.    0.607 0.229]
+Dokumen 745: Topik dominan = 4 | Distribusi = [0.049 0.004 0.013 0.803 0.131]
+Dokumen 746: Topik dominan = 4 | Distribusi = [0.21  0.076 0.001 0.494 0.22 ]
+Dokumen 747: Topik dominan = 4 | Distribusi = [0.009 0.    0.035 0.674 0.282]
+Dokumen 748: Topik dominan = 5 | Distribusi = [0.286 0.001 0.018 0.076 0.619]
+Dokumen 749: Topik dominan = 4 | Distribusi = [0.22  0.001 0.023 0.474 0.282]
+Dokumen 750: Topik dominan = 4 | Distribusi = [0.107 0.045 0.001 0.577 0.27 ]
+Dokumen 751: Topik dominan = 4 | Distribusi = [0.116 0.001 0.015 0.802 0.066]
+Dokumen 752: Topik dominan = 4 | Distribusi = [0.079 0.004 0.    0.677 0.24 ]
+Dokumen 753: Topik dominan = 4 | Distribusi = [0.122 0.    0.092 0.687 0.099]
+Dokumen 754: Topik dominan = 4 | Distribusi = [0.144 0.    0.    0.768 0.088]
+Dokumen 755: Topik dominan = 4 | Distribusi = [0.19  0.162 0.269 0.348 0.031]
+Dokumen 756: Topik dominan = 4 | Distribusi = [0.159 0.012 0.001 0.777 0.052]
+Dokumen 757: Topik dominan = 4 | Distribusi = [0.097 0.029 0.012 0.561 0.301]
+Dokumen 758: Topik dominan = 4 | Distribusi = [0.029 0.025 0.07  0.62  0.257]
+Dokumen 759: Topik dominan = 4 | Distribusi = [0.053 0.001 0.006 0.745 0.196]
+Dokumen 760: Topik dominan = 4 | Distribusi = [0.108 0.095 0.236 0.519 0.041]
+Dokumen 761: Topik dominan = 4 | Distribusi = [0.148 0.032 0.005 0.578 0.238]
+Dokumen 762: Topik dominan = 4 | Distribusi = [0.284 0.    0.221 0.47  0.025]
+Dokumen 763: Topik dominan = 4 | Distribusi = [0.081 0.    0.085 0.558 0.275]
+Dokumen 764: Topik dominan = 4 | Distribusi = [0.11  0.05  0.033 0.693 0.115]
+Dokumen 765: Topik dominan = 4 | Distribusi = [0.005 0.    0.031 0.679 0.285]
+Dokumen 766: Topik dominan = 4 | Distribusi = [0.072 0.001 0.046 0.613 0.268]
+Dokumen 767: Topik dominan = 5 | Distribusi = [0.047 0.005 0.042 0.324 0.582]
+Dokumen 768: Topik dominan = 4 | Distribusi = [0.089 0.    0.    0.781 0.129]
+Dokumen 769: Topik dominan = 4 | Distribusi = [0.103 0.019 0.034 0.63  0.214]
+Dokumen 770: Topik dominan = 4 | Distribusi = [0.067 0.061 0.028 0.772 0.072]
+Dokumen 771: Topik dominan = 4 | Distribusi = [0.038 0.001 0.055 0.673 0.234]
+Dokumen 772: Topik dominan = 4 | Distribusi = [0.096 0.017 0.001 0.59  0.296]
+Dokumen 773: Topik dominan = 4 | Distribusi = [0.125 0.074 0.    0.667 0.134]
+Dokumen 774: Topik dominan = 4 | Distribusi = [0.21  0.043 0.176 0.328 0.243]
+Dokumen 775: Topik dominan = 5 | Distribusi = [0.264 0.011 0.006 0.094 0.626]
+Dokumen 776: Topik dominan = 1 | Distribusi = [0.711 0.231 0.001 0.057 0.001]
+Dokumen 777: Topik dominan = 4 | Distribusi = [0.048 0.044 0.056 0.788 0.064]
+Dokumen 778: Topik dominan = 5 | Distribusi = [0.218 0.023 0.001 0.166 0.593]
+Dokumen 779: Topik dominan = 4 | Distribusi = [0.025 0.    0.    0.928 0.045]
+Dokumen 780: Topik dominan = 1 | Distribusi = [0.48  0.122 0.    0.258 0.14 ]
+Dokumen 781: Topik dominan = 1 | Distribusi = [0.525 0.026 0.02  0.416 0.013]
+Dokumen 782: Topik dominan = 4 | Distribusi = [0.001 0.021 0.139 0.579 0.261]
+Dokumen 783: Topik dominan = 4 | Distribusi = [0.12  0.046 0.018 0.499 0.317]
+Dokumen 784: Topik dominan = 1 | Distribusi = [0.466 0.295 0.058 0.088 0.093]
+Dokumen 785: Topik dominan = 4 | Distribusi = [0.102 0.001 0.017 0.744 0.136]
+Dokumen 786: Topik dominan = 4 | Distribusi = [0.001 0.06  0.001 0.857 0.082]
+Dokumen 787: Topik dominan = 4 | Distribusi = [0.088 0.029 0.    0.643 0.239]
+Dokumen 788: Topik dominan = 4 | Distribusi = [0.21  0.018 0.001 0.683 0.088]
+Dokumen 789: Topik dominan = 1 | Distribusi = [0.77  0.135 0.001 0.047 0.047]
+Dokumen 790: Topik dominan = 4 | Distribusi = [0.093 0.    0.007 0.579 0.32 ]
+Dokumen 791: Topik dominan = 4 | Distribusi = [0.201 0.06  0.092 0.339 0.307]
+Dokumen 792: Topik dominan = 5 | Distribusi = [0.097 0.    0.084 0.407 0.412]
+Dokumen 793: Topik dominan = 4 | Distribusi = [0.205 0.008 0.069 0.472 0.246]
+Dokumen 794: Topik dominan = 4 | Distribusi = [0.144 0.001 0.052 0.777 0.026]
+Dokumen 795: Topik dominan = 4 | Distribusi = [0.    0.015 0.045 0.685 0.254]
+Dokumen 796: Topik dominan = 1 | Distribusi = [0.457 0.    0.072 0.449 0.021]
+Dokumen 797: Topik dominan = 1 | Distribusi = [0.339 0.045 0.128 0.311 0.178]
+Dokumen 798: Topik dominan = 4 | Distribusi = [0.103 0.004 0.118 0.744 0.03 ]
+Dokumen 799: Topik dominan = 2 | Distribusi = [0.225 0.483 0.    0.132 0.16 ]
+Dokumen 800: Topik dominan = 1 | Distribusi = [0.58  0.287 0.001 0.046 0.085]
+Dokumen 801: Topik dominan = 3 | Distribusi = [0.001 0.148 0.467 0.384 0.001]
+Dokumen 802: Topik dominan = 3 | Distribusi = [0.284 0.055 0.603 0.058 0.   ]
+Dokumen 803: Topik dominan = 3 | Distribusi = [0.275 0.039 0.66  0.026 0.   ]
+Dokumen 804: Topik dominan = 4 | Distribusi = [0.125 0.056 0.298 0.435 0.086]
+Dokumen 805: Topik dominan = 2 | Distribusi = [0.001 0.863 0.001 0.001 0.133]
+Dokumen 806: Topik dominan = 1 | Distribusi = [0.694 0.    0.027 0.179 0.099]
+Dokumen 807: Topik dominan = 3 | Distribusi = [0.074 0.109 0.816 0.    0.   ]
+Dokumen 808: Topik dominan = 1 | Distribusi = [0.485 0.05  0.427 0.021 0.017]
+Dokumen 809: Topik dominan = 1 | Distribusi = [0.674 0.039 0.085 0.008 0.194]
+Dokumen 810: Topik dominan = 4 | Distribusi = [0.    0.08  0.273 0.497 0.149]
+Dokumen 811: Topik dominan = 3 | Distribusi = [0.131 0.074 0.679 0.115 0.   ]
+Dokumen 812: Topik dominan = 2 | Distribusi = [0.043 0.848 0.015 0.01  0.085]
+Dokumen 813: Topik dominan = 3 | Distribusi = [0.089 0.168 0.737 0.    0.005]
+Dokumen 814: Topik dominan = 3 | Distribusi = [0.073 0.    0.582 0.344 0.   ]
+Dokumen 815: Topik dominan = 1 | Distribusi = [0.682 0.001 0.001 0.191 0.125]
+Dokumen 816: Topik dominan = 3 | Distribusi = [0.027 0.    0.878 0.091 0.004]
+Dokumen 817: Topik dominan = 5 | Distribusi = [0.298 0.007 0.207 0.025 0.463]
+Dokumen 818: Topik dominan = 1 | Distribusi = [0.703 0.192 0.035 0.    0.069]
+Dokumen 819: Topik dominan = 3 | Distribusi = [0.373 0.061 0.541 0.024 0.   ]
+Dokumen 820: Topik dominan = 3 | Distribusi = [0.148 0.    0.759 0.093 0.   ]
+Dokumen 821: Topik dominan = 2 | Distribusi = [0.038 0.646 0.05  0.    0.265]
+Dokumen 822: Topik dominan = 1 | Distribusi = [0.396 0.309 0.222 0.072 0.   ]
+Dokumen 823: Topik dominan = 2 | Distribusi = [0.    0.79  0.004 0.037 0.168]
+Dokumen 824: Topik dominan = 4 | Distribusi = [0.089 0.032 0.405 0.468 0.006]
+Dokumen 825: Topik dominan = 1 | Distribusi = [0.655 0.    0.045 0.189 0.111]
+Dokumen 826: Topik dominan = 3 | Distribusi = [0.046 0.092 0.474 0.279 0.109]
+Dokumen 827: Topik dominan = 4 | Distribusi = [0.085 0.014 0.111 0.79  0.001]
+Dokumen 828: Topik dominan = 4 | Distribusi = [0.155 0.014 0.2   0.513 0.118]
+Dokumen 829: Topik dominan = 3 | Distribusi = [0.106 0.088 0.764 0.042 0.   ]
+Dokumen 830: Topik dominan = 4 | Distribusi = [0.004 0.056 0.211 0.724 0.004]
+Dokumen 831: Topik dominan = 4 | Distribusi = [0.001 0.062 0.355 0.396 0.186]
+Dokumen 832: Topik dominan = 2 | Distribusi = [0.001 0.6   0.017 0.104 0.278]
+Dokumen 833: Topik dominan = 4 | Distribusi = [0.052 0.    0.38  0.507 0.06 ]
+Dokumen 834: Topik dominan = 5 | Distribusi = [0.058 0.021 0.226 0.009 0.686]
+Dokumen 835: Topik dominan = 1 | Distribusi = [0.578 0.128 0.135 0.147 0.012]
+Dokumen 836: Topik dominan = 1 | Distribusi = [0.732 0.    0.121 0.096 0.05 ]
+Dokumen 837: Topik dominan = 3 | Distribusi = [0.218 0.    0.666 0.085 0.031]
+Dokumen 838: Topik dominan = 4 | Distribusi = [0.08  0.061 0.14  0.688 0.031]
+Dokumen 839: Topik dominan = 3 | Distribusi = [0.171 0.029 0.631 0.162 0.006]
+Dokumen 840: Topik dominan = 2 | Distribusi = [0.033 0.825 0.009 0.021 0.112]
+Dokumen 841: Topik dominan = 4 | Distribusi = [0.137 0.    0.022 0.84  0.   ]
+Dokumen 842: Topik dominan = 3 | Distribusi = [0.053 0.057 0.638 0.234 0.018]
+Dokumen 843: Topik dominan = 3 | Distribusi = [0.129 0.    0.509 0.362 0.   ]
+Dokumen 844: Topik dominan = 3 | Distribusi = [0.226 0.007 0.614 0.085 0.067]
+Dokumen 845: Topik dominan = 3 | Distribusi = [0.208 0.012 0.576 0.123 0.082]
+Dokumen 846: Topik dominan = 4 | Distribusi = [0.18  0.069 0.102 0.644 0.005]
+Dokumen 847: Topik dominan = 3 | Distribusi = [0.04  0.058 0.582 0.285 0.035]
+Dokumen 848: Topik dominan = 5 | Distribusi = [0.303 0.01  0.07  0.159 0.457]
+Dokumen 849: Topik dominan = 1 | Distribusi = [0.414 0.188 0.166 0.056 0.177]
+Dokumen 850: Topik dominan = 1 | Distribusi = [0.653 0.001 0.343 0.001 0.001]
+Dokumen 851: Topik dominan = 4 | Distribusi = [0.26  0.001 0.111 0.629 0.001]
+Dokumen 852: Topik dominan = 1 | Distribusi = [0.842 0.001 0.03  0.001 0.127]
+Dokumen 853: Topik dominan = 4 | Distribusi = [0.172 0.    0.169 0.659 0.   ]
+Dokumen 854: Topik dominan = 3 | Distribusi = [0.242 0.    0.57  0.188 0.   ]
+Dokumen 855: Topik dominan = 5 | Distribusi = [0.019 0.001 0.056 0.331 0.594]
+Dokumen 856: Topik dominan = 4 | Distribusi = [0.194 0.019 0.065 0.435 0.287]
+Dokumen 857: Topik dominan = 4 | Distribusi = [0.104 0.044 0.154 0.697 0.   ]
+Dokumen 858: Topik dominan = 3 | Distribusi = [0.149 0.012 0.626 0.109 0.105]
+Dokumen 859: Topik dominan = 3 | Distribusi = [0.187 0.    0.723 0.045 0.045]
+Dokumen 860: Topik dominan = 1 | Distribusi = [0.406 0.065 0.11  0.403 0.016]
+Dokumen 861: Topik dominan = 3 | Distribusi = [0.243 0.    0.627 0.13  0.   ]
+Dokumen 862: Topik dominan = 4 | Distribusi = [0.083 0.021 0.191 0.704 0.   ]
+Dokumen 863: Topik dominan = 4 | Distribusi = [0.198 0.012 0.149 0.64  0.   ]
+Dokumen 864: Topik dominan = 1 | Distribusi = [0.61  0.348 0.001 0.001 0.04 ]
+Dokumen 865: Topik dominan = 3 | Distribusi = [0.11  0.    0.852 0.033 0.004]
+Dokumen 866: Topik dominan = 4 | Distribusi = [0.    0.08  0.146 0.773 0.   ]
+Dokumen 867: Topik dominan = 3 | Distribusi = [0.093 0.    0.823 0.083 0.   ]
+Dokumen 868: Topik dominan = 1 | Distribusi = [0.778 0.001 0.054 0.07  0.097]
+Dokumen 869: Topik dominan = 2 | Distribusi = [0.342 0.425 0.161 0.035 0.038]
+Dokumen 870: Topik dominan = 5 | Distribusi = [0.23  0.    0.245 0.    0.524]
+Dokumen 871: Topik dominan = 1 | Distribusi = [0.461 0.    0.238 0.075 0.227]
+Dokumen 872: Topik dominan = 1 | Distribusi = [0.894 0.    0.009 0.027 0.07 ]
+Dokumen 873: Topik dominan = 3 | Distribusi = [0.243 0.049 0.499 0.188 0.021]
+Dokumen 874: Topik dominan = 4 | Distribusi = [0.131 0.018 0.061 0.79  0.   ]
+Dokumen 875: Topik dominan = 3 | Distribusi = [0.112 0.15  0.573 0.16  0.004]
+Dokumen 876: Topik dominan = 4 | Distribusi = [0.089 0.    0.293 0.585 0.033]
+Dokumen 877: Topik dominan = 4 | Distribusi = [0.072 0.061 0.28  0.587 0.001]
+Dokumen 878: Topik dominan = 3 | Distribusi = [0.119 0.153 0.712 0.016 0.   ]
+Dokumen 879: Topik dominan = 3 | Distribusi = [0.071 0.127 0.779 0.008 0.015]
+Dokumen 880: Topik dominan = 2 | Distribusi = [0.26  0.308 0.178 0.212 0.042]
+Dokumen 881: Topik dominan = 3 | Distribusi = [0.176 0.034 0.711 0.001 0.078]
+Dokumen 882: Topik dominan = 2 | Distribusi = [0.329 0.608 0.022 0.    0.04 ]
+Dokumen 883: Topik dominan = 1 | Distribusi = [0.69  0.068 0.136 0.105 0.001]
+Dokumen 884: Topik dominan = 3 | Distribusi = [0.038 0.041 0.665 0.    0.256]
+Dokumen 885: Topik dominan = 3 | Distribusi = [0.337 0.001 0.549 0.065 0.048]
+Dokumen 886: Topik dominan = 4 | Distribusi = [0.2   0.    0.156 0.643 0.   ]
+Dokumen 887: Topik dominan = 3 | Distribusi = [0.013 0.    0.773 0.034 0.18 ]
+Dokumen 888: Topik dominan = 5 | Distribusi = [0.001 0.001 0.129 0.152 0.718]
+Dokumen 889: Topik dominan = 2 | Distribusi = [0.043 0.51  0.115 0.046 0.287]
+Dokumen 890: Topik dominan = 3 | Distribusi = [0.252 0.207 0.398 0.001 0.142]
+Dokumen 891: Topik dominan = 1 | Distribusi = [0.35  0.225 0.331 0.075 0.019]
+Dokumen 892: Topik dominan = 3 | Distribusi = [0.133 0.017 0.633 0.047 0.17 ]
+Dokumen 893: Topik dominan = 4 | Distribusi = [0.042 0.032 0.431 0.491 0.004]
+Dokumen 894: Topik dominan = 4 | Distribusi = [0.085 0.02  0.379 0.385 0.131]
+Dokumen 895: Topik dominan = 2 | Distribusi = [0.001 0.623 0.001 0.074 0.301]
+Dokumen 896: Topik dominan = 1 | Distribusi = [0.448 0.079 0.317 0.018 0.139]
+Dokumen 897: Topik dominan = 2 | Distribusi = [0.    0.478 0.029 0.044 0.449]
+Dokumen 898: Topik dominan = 1 | Distribusi = [0.514 0.029 0.075 0.    0.381]
+Dokumen 899: Topik dominan = 1 | Distribusi = [0.477 0.007 0.088 0.333 0.095]
+Dokumen 900: Topik dominan = 4 | Distribusi = [0.261 0.131 0.274 0.295 0.038]
+Dokumen 901: Topik dominan = 3 | Distribusi = [0.031 0.043 0.864 0.054 0.008]
+Dokumen 902: Topik dominan = 3 | Distribusi = [0.21  0.011 0.518 0.173 0.088]
+Dokumen 903: Topik dominan = 2 | Distribusi = [0.027 0.783 0.    0.    0.189]
+Dokumen 904: Topik dominan = 3 | Distribusi = [0.164 0.091 0.736 0.    0.009]
+Dokumen 905: Topik dominan = 3 | Distribusi = [0.393 0.035 0.467 0.105 0.   ]
+Dokumen 906: Topik dominan = 1 | Distribusi = [0.441 0.012 0.229 0.044 0.273]
+Dokumen 907: Topik dominan = 1 | Distribusi = [0.466 0.138 0.389 0.001 0.007]
+Dokumen 908: Topik dominan = 1 | Distribusi = [0.818 0.001 0.028 0.115 0.039]
+Dokumen 909: Topik dominan = 3 | Distribusi = [0.171 0.155 0.636 0.038 0.   ]
+Dokumen 910: Topik dominan = 3 | Distribusi = [0.35  0.    0.615 0.    0.034]
+Dokumen 911: Topik dominan = 1 | Distribusi = [0.355 0.065 0.319 0.036 0.225]
+Dokumen 912: Topik dominan = 4 | Distribusi = [0.041 0.054 0.135 0.769 0.   ]
+Dokumen 913: Topik dominan = 4 | Distribusi = [0.099 0.194 0.286 0.293 0.128]
+Dokumen 914: Topik dominan = 1 | Distribusi = [0.443 0.001 0.331 0.181 0.044]
+Dokumen 915: Topik dominan = 1 | Distribusi = [0.751 0.024 0.084 0.033 0.108]
+Dokumen 916: Topik dominan = 4 | Distribusi = [0.072 0.    0.049 0.878 0.   ]
+Dokumen 917: Topik dominan = 2 | Distribusi = [0.009 0.662 0.001 0.101 0.227]
+Dokumen 918: Topik dominan = 5 | Distribusi = [0.305 0.035 0.178 0.001 0.482]
+Dokumen 919: Topik dominan = 1 | Distribusi = [0.56  0.    0.345 0.056 0.039]
+Dokumen 920: Topik dominan = 3 | Distribusi = [0.061 0.032 0.761 0.146 0.   ]
+Dokumen 921: Topik dominan = 3 | Distribusi = [0.071 0.185 0.659 0.084 0.   ]
+Dokumen 922: Topik dominan = 1 | Distribusi = [0.404 0.001 0.38  0.001 0.214]
+Dokumen 923: Topik dominan = 3 | Distribusi = [0.308 0.021 0.55  0.035 0.087]
+Dokumen 924: Topik dominan = 3 | Distribusi = [0.124 0.106 0.658 0.071 0.04 ]
+Dokumen 925: Topik dominan = 3 | Distribusi = [0.043 0.133 0.647 0.176 0.   ]
+Dokumen 926: Topik dominan = 4 | Distribusi = [0.1   0.013 0.141 0.742 0.005]
+Dokumen 927: Topik dominan = 4 | Distribusi = [0.086 0.067 0.098 0.749 0.   ]
+Dokumen 928: Topik dominan = 3 | Distribusi = [0.23  0.175 0.501 0.093 0.   ]
+Dokumen 929: Topik dominan = 5 | Distribusi = [0.132 0.039 0.094 0.022 0.713]
+Dokumen 930: Topik dominan = 2 | Distribusi = [0.02  0.755 0.037 0.    0.187]
+Dokumen 931: Topik dominan = 3 | Distribusi = [0.242 0.032 0.515 0.211 0.001]
+Dokumen 932: Topik dominan = 1 | Distribusi = [0.544 0.279 0.027 0.059 0.092]
+Dokumen 933: Topik dominan = 2 | Distribusi = [0.026 0.654 0.048 0.022 0.251]
+Dokumen 934: Topik dominan = 3 | Distribusi = [0.019 0.019 0.894 0.067 0.   ]
+Dokumen 935: Topik dominan = 4 | Distribusi = [0.083 0.011 0.166 0.74  0.   ]
+Dokumen 936: Topik dominan = 2 | Distribusi = [0.001 0.574 0.067 0.061 0.298]
+Dokumen 937: Topik dominan = 3 | Distribusi = [0.001 0.006 0.857 0.104 0.033]
+Dokumen 938: Topik dominan = 4 | Distribusi = [0.146 0.014 0.146 0.694 0.   ]
+Dokumen 939: Topik dominan = 4 | Distribusi = [0.001 0.124 0.371 0.504 0.001]
+Dokumen 940: Topik dominan = 4 | Distribusi = [0.197 0.    0.23  0.503 0.07 ]
+Dokumen 941: Topik dominan = 3 | Distribusi = [0.14  0.018 0.716 0.018 0.108]
+Dokumen 942: Topik dominan = 2 | Distribusi = [0.075 0.822 0.019 0.    0.084]
+Dokumen 943: Topik dominan = 3 | Distribusi = [0.304 0.032 0.515 0.106 0.043]
+Dokumen 944: Topik dominan = 1 | Distribusi = [0.603 0.001 0.001 0.082 0.314]
+Dokumen 945: Topik dominan = 3 | Distribusi = [0.087 0.127 0.358 0.173 0.254]
+Dokumen 946: Topik dominan = 3 | Distribusi = [0.203 0.108 0.451 0.108 0.13 ]
+Dokumen 947: Topik dominan = 4 | Distribusi = [0.081 0.059 0.144 0.715 0.   ]
+Dokumen 948: Topik dominan = 4 | Distribusi = [0.069 0.    0.301 0.625 0.005]
+Dokumen 949: Topik dominan = 4 | Distribusi = [0.204 0.    0.162 0.561 0.073]
+Dokumen 950: Topik dominan = 4 | Distribusi = [0.024 0.074 0.14  0.762 0.   ]
+Dokumen 951: Topik dominan = 3 | Distribusi = [0.26  0.016 0.551 0.132 0.041]
+Dokumen 952: Topik dominan = 4 | Distribusi = [0.152 0.    0.215 0.632 0.   ]
+Dokumen 953: Topik dominan = 3 | Distribusi = [0.062 0.062 0.786 0.09  0.   ]
+Dokumen 954: Topik dominan = 5 | Distribusi = [0.078 0.001 0.052 0.052 0.816]
+Dokumen 955: Topik dominan = 1 | Distribusi = [0.529 0.097 0.134 0.241 0.001]
+Dokumen 956: Topik dominan = 4 | Distribusi = [0.236 0.009 0.325 0.384 0.047]
+Dokumen 957: Topik dominan = 5 | Distribusi = [0.109 0.    0.408 0.    0.481]
+Dokumen 958: Topik dominan = 5 | Distribusi = [0.11  0.058 0.115 0.302 0.416]
+Dokumen 959: Topik dominan = 3 | Distribusi = [0.111 0.004 0.45  0.435 0.   ]
+Dokumen 960: Topik dominan = 4 | Distribusi = [0.085 0.    0.074 0.837 0.004]
+Dokumen 961: Topik dominan = 3 | Distribusi = [0.173 0.004 0.763 0.016 0.045]
+Dokumen 962: Topik dominan = 5 | Distribusi = [0.    0.    0.123 0.17  0.706]
+Dokumen 963: Topik dominan = 3 | Distribusi = [0.157 0.043 0.686 0.095 0.019]
+Dokumen 964: Topik dominan = 3 | Distribusi = [0.123 0.001 0.782 0.094 0.001]
+Dokumen 965: Topik dominan = 4 | Distribusi = [0.    0.05  0.216 0.733 0.   ]
+Dokumen 966: Topik dominan = 3 | Distribusi = [0.095 0.004 0.639 0.149 0.113]
+Dokumen 967: Topik dominan = 4 | Distribusi = [0.315 0.137 0.116 0.431 0.001]
+Dokumen 968: Topik dominan = 2 | Distribusi = [0.291 0.481 0.219 0.008 0.   ]
+Dokumen 969: Topik dominan = 3 | Distribusi = [0.075 0.129 0.791 0.    0.005]
+Dokumen 970: Topik dominan = 4 | Distribusi = [0.031 0.082 0.297 0.383 0.207]
+Dokumen 971: Topik dominan = 4 | Distribusi = [0.121 0.061 0.236 0.581 0.001]
+Dokumen 972: Topik dominan = 3 | Distribusi = [0.233 0.    0.689 0.078 0.   ]
+Dokumen 973: Topik dominan = 1 | Distribusi = [0.364 0.085 0.085 0.295 0.172]
+Dokumen 974: Topik dominan = 3 | Distribusi = [0.124 0.038 0.775 0.038 0.025]
+Dokumen 975: Topik dominan = 1 | Distribusi = [0.827 0.001 0.02  0.121 0.032]
+Dokumen 976: Topik dominan = 2 | Distribusi = [0.172 0.317 0.245 0.266 0.   ]
+Dokumen 977: Topik dominan = 3 | Distribusi = [0.075 0.029 0.858 0.038 0.   ]
+Dokumen 978: Topik dominan = 4 | Distribusi = [0.049 0.005 0.217 0.729 0.   ]
+Dokumen 979: Topik dominan = 3 | Distribusi = [0.224 0.036 0.352 0.34  0.048]
+Dokumen 980: Topik dominan = 3 | Distribusi = [0.208 0.    0.687 0.07  0.035]
+Dokumen 981: Topik dominan = 4 | Distribusi = [0.118 0.072 0.197 0.613 0.   ]
+Dokumen 982: Topik dominan = 3 | Distribusi = [0.321 0.016 0.352 0.31  0.001]
+Dokumen 983: Topik dominan = 1 | Distribusi = [0.37  0.062 0.26  0.308 0.   ]
+Dokumen 984: Topik dominan = 1 | Distribusi = [0.799 0.001 0.016 0.077 0.107]
+Dokumen 985: Topik dominan = 3 | Distribusi = [0.281 0.062 0.656 0.    0.   ]
+Dokumen 986: Topik dominan = 3 | Distribusi = [0.148 0.045 0.385 0.163 0.259]
+Dokumen 987: Topik dominan = 4 | Distribusi = [0.131 0.076 0.203 0.59  0.   ]
+Dokumen 988: Topik dominan = 4 | Distribusi = [0.035 0.07  0.153 0.651 0.091]
+Dokumen 989: Topik dominan = 3 | Distribusi = [0.228 0.    0.725 0.009 0.038]
+Dokumen 990: Topik dominan = 4 | Distribusi = [0.076 0.042 0.267 0.615 0.001]
+Dokumen 991: Topik dominan = 3 | Distribusi = [0.091 0.    0.795 0.042 0.072]
+Dokumen 992: Topik dominan = 4 | Distribusi = [0.301 0.031 0.171 0.497 0.001]
+Dokumen 993: Topik dominan = 3 | Distribusi = [0.    0.    0.959 0.    0.039]
+Dokumen 994: Topik dominan = 3 | Distribusi = [0.062 0.    0.859 0.078 0.   ]
+Dokumen 995: Topik dominan = 1 | Distribusi = [0.788 0.009 0.203 0.    0.   ]
+Dokumen 996: Topik dominan = 2 | Distribusi = [0.001 0.524 0.001 0.136 0.338]
+Dokumen 997: Topik dominan = 1 | Distribusi = [0.602 0.011 0.303 0.084 0.   ]
+Dokumen 998: Topik dominan = 4 | Distribusi = [0.114 0.    0.259 0.626 0.   ]
+Dokumen 999: Topik dominan = 3 | Distribusi = [0.173 0.29  0.316 0.216 0.005]
+Dokumen 1000: Topik dominan = 1 | Distribusi = [0.592 0.042 0.068 0.156 0.143]
+Dokumen 1001: Topik dominan = 3 | Distribusi = [0.11  0.001 0.344 0.295 0.251]
+Dokumen 1002: Topik dominan = 1 | Distribusi = [0.434 0.001 0.262 0.241 0.063]
+Dokumen 1003: Topik dominan = 3 | Distribusi = [0.172 0.046 0.633 0.046 0.104]
+Dokumen 1004: Topik dominan = 2 | Distribusi = [0.199 0.613 0.133 0.055 0.001]
+Dokumen 1005: Topik dominan = 3 | Distribusi = [0.235 0.001 0.662 0.102 0.001]
+Dokumen 1006: Topik dominan = 1 | Distribusi = [0.372 0.049 0.262 0.317 0.001]
+Dokumen 1007: Topik dominan = 1 | Distribusi = [0.463 0.    0.254 0.148 0.135]
+Dokumen 1008: Topik dominan = 3 | Distribusi = [0.2   0.093 0.57  0.122 0.015]
+Dokumen 1009: Topik dominan = 3 | Distribusi = [0.092 0.021 0.632 0.204 0.051]
+Dokumen 1010: Topik dominan = 3 | Distribusi = [0.249 0.005 0.522 0.065 0.159]
+Dokumen 1011: Topik dominan = 4 | Distribusi = [0.21  0.09  0.312 0.388 0.001]
+Dokumen 1012: Topik dominan = 3 | Distribusi = [0.006 0.102 0.811 0.081 0.001]
+Dokumen 1013: Topik dominan = 4 | Distribusi = [0.295 0.058 0.11  0.537 0.001]
+Dokumen 1014: Topik dominan = 4 | Distribusi = [0.001 0.001 0.147 0.851 0.001]
+Dokumen 1015: Topik dominan = 1 | Distribusi = [0.352 0.    0.352 0.174 0.122]
+Dokumen 1016: Topik dominan = 4 | Distribusi = [0.016 0.008 0.13  0.776 0.069]
+Dokumen 1017: Topik dominan = 4 | Distribusi = [0.091 0.016 0.255 0.637 0.001]
+Dokumen 1018: Topik dominan = 2 | Distribusi = [0.235 0.372 0.235 0.103 0.054]
+Dokumen 1019: Topik dominan = 4 | Distribusi = [0.117 0.04  0.185 0.658 0.001]
+Dokumen 1020: Topik dominan = 3 | Distribusi = [0.054 0.011 0.701 0.234 0.001]
+Dokumen 1021: Topik dominan = 3 | Distribusi = [0.079 0.029 0.59  0.301 0.   ]
+Dokumen 1022: Topik dominan = 1 | Distribusi = [0.697 0.039 0.18  0.084 0.001]
+Dokumen 1023: Topik dominan = 3 | Distribusi = [0.13  0.014 0.758 0.09  0.009]
+Dokumen 1024: Topik dominan = 4 | Distribusi = [0.276 0.    0.227 0.481 0.016]
+Dokumen 1025: Topik dominan = 4 | Distribusi = [0.177 0.041 0.189 0.588 0.005]
+Dokumen 1026: Topik dominan = 4 | Distribusi = [0.183 0.045 0.138 0.52  0.114]
+Dokumen 1027: Topik dominan = 3 | Distribusi = [0.324 0.    0.621 0.054 0.   ]
+Dokumen 1028: Topik dominan = 1 | Distribusi = [0.405 0.045 0.239 0.228 0.084]
+Dokumen 1029: Topik dominan = 3 | Distribusi = [0.087 0.068 0.678 0.124 0.044]
+Dokumen 1030: Topik dominan = 1 | Distribusi = [0.825 0.136 0.001 0.001 0.038]
+Dokumen 1031: Topik dominan = 3 | Distribusi = [0.233 0.001 0.396 0.327 0.044]
+Dokumen 1032: Topik dominan = 1 | Distribusi = [0.606 0.    0.323 0.07  0.   ]
+Dokumen 1033: Topik dominan = 1 | Distribusi = [0.454 0.033 0.326 0.139 0.049]
+Dokumen 1034: Topik dominan = 4 | Distribusi = [0.008 0.076 0.112 0.803 0.   ]
+Dokumen 1035: Topik dominan = 3 | Distribusi = [0.211 0.    0.403 0.268 0.118]
+Dokumen 1036: Topik dominan = 3 | Distribusi = [0.1   0.379 0.512 0.001 0.007]
+Dokumen 1037: Topik dominan = 1 | Distribusi = [0.515 0.    0.187 0.027 0.271]
+Dokumen 1038: Topik dominan = 3 | Distribusi = [0.197 0.    0.443 0.335 0.025]
+Dokumen 1039: Topik dominan = 1 | Distribusi = [0.466 0.012 0.334 0.116 0.072]
+Dokumen 1040: Topik dominan = 3 | Distribusi = [0.061 0.07  0.472 0.121 0.278]
+Dokumen 1041: Topik dominan = 3 | Distribusi = [0.199 0.115 0.647 0.038 0.   ]
+Dokumen 1042: Topik dominan = 1 | Distribusi = [0.874 0.001 0.012 0.046 0.068]
+Dokumen 1043: Topik dominan = 3 | Distribusi = [0.156 0.    0.413 0.266 0.165]
+Dokumen 1044: Topik dominan = 3 | Distribusi = [0.271 0.    0.398 0.25  0.081]
+Dokumen 1045: Topik dominan = 1 | Distribusi = [0.852 0.001 0.057 0.089 0.001]
+Dokumen 1046: Topik dominan = 4 | Distribusi = [0.171 0.001 0.108 0.613 0.108]
+Dokumen 1047: Topik dominan = 3 | Distribusi = [0.077 0.006 0.581 0.335 0.001]
+Dokumen 1048: Topik dominan = 4 | Distribusi = [0.18  0.044 0.038 0.737 0.001]
+Dokumen 1049: Topik dominan = 3 | Distribusi = [0.257 0.056 0.63  0.056 0.001]
+Dokumen 1050: Topik dominan = 3 | Distribusi = [0.459 0.043 0.497 0.    0.   ]
+Dokumen 1051: Topik dominan = 4 | Distribusi = [0.104 0.021 0.326 0.548 0.001]
+Dokumen 1052: Topik dominan = 3 | Distribusi = [0.027 0.059 0.644 0.132 0.138]
+Dokumen 1053: Topik dominan = 3 | Distribusi = [0.338 0.098 0.41  0.154 0.001]
+Dokumen 1054: Topik dominan = 1 | Distribusi = [0.509 0.016 0.469 0.001 0.006]
+Dokumen 1055: Topik dominan = 4 | Distribusi = [0.045 0.001 0.122 0.831 0.001]
+Dokumen 1056: Topik dominan = 3 | Distribusi = [0.107 0.345 0.547 0.001 0.001]
+Dokumen 1057: Topik dominan = 3 | Distribusi = [0.172 0.035 0.764 0.029 0.001]
+Dokumen 1058: Topik dominan = 3 | Distribusi = [0.172 0.04  0.775 0.012 0.001]
+Dokumen 1059: Topik dominan = 3 | Distribusi = [0.28  0.15  0.404 0.166 0.001]
+Dokumen 1060: Topik dominan = 3 | Distribusi = [0.302 0.101 0.382 0.215 0.001]
+Dokumen 1061: Topik dominan = 1 | Distribusi = [0.359 0.204 0.293 0.144 0.001]
+Dokumen 1062: Topik dominan = 1 | Distribusi = [0.648 0.051 0.153 0.046 0.102]
+Dokumen 1063: Topik dominan = 4 | Distribusi = [0.111 0.036 0.157 0.696 0.001]
+Dokumen 1064: Topik dominan = 3 | Distribusi = [0.337 0.001 0.526 0.012 0.124]
+Dokumen 1065: Topik dominan = 3 | Distribusi = [0.156 0.183 0.403 0.258 0.001]
+Dokumen 1066: Topik dominan = 4 | Distribusi = [0.223 0.067 0.343 0.364 0.004]
+Dokumen 1067: Topik dominan = 1 | Distribusi = [0.302 0.23  0.256 0.197 0.014]
+Dokumen 1068: Topik dominan = 3 | Distribusi = [0.365 0.011 0.497 0.122 0.006]
+Dokumen 1069: Topik dominan = 3 | Distribusi = [0.248 0.019 0.526 0.207 0.   ]
+Dokumen 1070: Topik dominan = 3 | Distribusi = [0.328 0.    0.59  0.    0.081]
+Dokumen 1071: Topik dominan = 3 | Distribusi = [0.325 0.032 0.437 0.206 0.001]
+Dokumen 1072: Topik dominan = 4 | Distribusi = [0.033 0.066 0.154 0.746 0.   ]
+Dokumen 1073: Topik dominan = 1 | Distribusi = [0.459 0.261 0.104 0.152 0.024]
+Dokumen 1074: Topik dominan = 3 | Distribusi = [0.224 0.001 0.407 0.367 0.001]
+Dokumen 1075: Topik dominan = 3 | Distribusi = [0.175 0.104 0.639 0.081 0.   ]
+Dokumen 1076: Topik dominan = 4 | Distribusi = [0.354 0.039 0.208 0.38  0.02 ]
+Dokumen 1077: Topik dominan = 3 | Distribusi = [0.187 0.066 0.469 0.278 0.001]
+Dokumen 1078: Topik dominan = 3 | Distribusi = [0.012 0.041 0.683 0.264 0.001]
+Dokumen 1079: Topik dominan = 3 | Distribusi = [0.256 0.064 0.609 0.07  0.001]
+Dokumen 1080: Topik dominan = 4 | Distribusi = [0.306 0.017 0.229 0.366 0.082]
+Dokumen 1081: Topik dominan = 4 | Distribusi = [0.315 0.036 0.251 0.339 0.059]
+Dokumen 1082: Topik dominan = 3 | Distribusi = [0.053 0.346 0.398 0.203 0.001]
+Dokumen 1083: Topik dominan = 4 | Distribusi = [0.132 0.043 0.359 0.454 0.011]
+Dokumen 1084: Topik dominan = 3 | Distribusi = [0.233 0.056 0.357 0.353 0.   ]
+Dokumen 1085: Topik dominan = 1 | Distribusi = [0.396 0.    0.29  0.047 0.267]
+Dokumen 1086: Topik dominan = 1 | Distribusi = [0.675 0.013 0.134 0.065 0.114]
+Dokumen 1087: Topik dominan = 3 | Distribusi = [0.24  0.032 0.556 0.139 0.032]
+Dokumen 1088: Topik dominan = 3 | Distribusi = [0.184 0.026 0.586 0.204 0.001]
+Dokumen 1089: Topik dominan = 3 | Distribusi = [0.197 0.03  0.743 0.03  0.001]
+Dokumen 1090: Topik dominan = 3 | Distribusi = [0.31  0.005 0.559 0.065 0.061]
+Dokumen 1091: Topik dominan = 1 | Distribusi = [0.371 0.047 0.178 0.364 0.039]
+Dokumen 1092: Topik dominan = 3 | Distribusi = [0.126 0.001 0.495 0.377 0.001]
+Dokumen 1093: Topik dominan = 4 | Distribusi = [0.119 0.07  0.193 0.596 0.022]
+Dokumen 1094: Topik dominan = 3 | Distribusi = [0.188 0.164 0.463 0.184 0.   ]
+Dokumen 1095: Topik dominan = 3 | Distribusi = [0.238 0.005 0.535 0.184 0.038]
+Dokumen 1096: Topik dominan = 3 | Distribusi = [0.014 0.047 0.518 0.42  0.   ]
+Dokumen 1097: Topik dominan = 1 | Distribusi = [0.369 0.042 0.361 0.214 0.013]
+Dokumen 1098: Topik dominan = 1 | Distribusi = [0.437 0.008 0.209 0.177 0.169]
+Dokumen 1099: Topik dominan = 3 | Distribusi = [0.321 0.001 0.345 0.333 0.001]
+Dokumen 1100: Topik dominan = 1 | Distribusi = [0.366 0.001 0.366 0.05  0.217]
+Dokumen 1101: Topik dominan = 3 | Distribusi = [0.26  0.067 0.351 0.321 0.001]
+Dokumen 1102: Topik dominan = 3 | Distribusi = [0.321 0.022 0.462 0.195 0.001]
+Dokumen 1103: Topik dominan = 2 | Distribusi = [0.227 0.464 0.242 0.016 0.051]
+Dokumen 1104: Topik dominan = 1 | Distribusi = [0.553 0.135 0.177 0.07  0.065]
+Dokumen 1105: Topik dominan = 1 | Distribusi = [0.456 0.014 0.428 0.069 0.033]
+Dokumen 1106: Topik dominan = 5 | Distribusi = [0.256 0.244 0.07  0.099 0.331]
+Dokumen 1107: Topik dominan = 3 | Distribusi = [0.134 0.108 0.645 0.113 0.001]
+Dokumen 1108: Topik dominan = 1 | Distribusi = [0.352 0.199 0.199 0.194 0.056]
+Dokumen 1109: Topik dominan = 4 | Distribusi = [0.187 0.013 0.001 0.667 0.133]
+Dokumen 1110: Topik dominan = 4 | Distribusi = [0.048 0.012 0.45  0.489 0.   ]
+Dokumen 1111: Topik dominan = 3 | Distribusi = [0.211 0.114 0.371 0.304 0.001]
+Dokumen 1112: Topik dominan = 4 | Distribusi = [0.294 0.001 0.199 0.506 0.001]
+Dokumen 1113: Topik dominan = 1 | Distribusi = [0.94  0.004 0.004 0.047 0.004]
+Dokumen 1114: Topik dominan = 3 | Distribusi = [0.316 0.1   0.415 0.168 0.001]
+Dokumen 1115: Topik dominan = 4 | Distribusi = [0.163 0.022 0.185 0.629 0.001]
+Dokumen 1116: Topik dominan = 1 | Distribusi = [0.776 0.013 0.001 0.071 0.14 ]
+Dokumen 1117: Topik dominan = 1 | Distribusi = [0.538 0.    0.321 0.103 0.037]
+Dokumen 1118: Topik dominan = 5 | Distribusi = [0.379 0.001 0.138 0.087 0.396]
+Dokumen 1119: Topik dominan = 1 | Distribusi = [0.295 0.008 0.26  0.232 0.204]
+Dokumen 1120: Topik dominan = 4 | Distribusi = [0.194 0.11  0.246 0.45  0.001]
+Dokumen 1121: Topik dominan = 3 | Distribusi = [0.238 0.025 0.589 0.113 0.034]
+Dokumen 1122: Topik dominan = 2 | Distribusi = [0.127 0.41  0.3   0.162 0.001]
+Dokumen 1123: Topik dominan = 4 | Distribusi = [0.087 0.    0.041 0.871 0.   ]
+Dokumen 1124: Topik dominan = 3 | Distribusi = [0.117 0.022 0.745 0.117 0.001]
+Dokumen 1125: Topik dominan = 3 | Distribusi = [0.342 0.036 0.558 0.063 0.001]
+Dokumen 1126: Topik dominan = 3 | Distribusi = [0.23  0.    0.56  0.194 0.016]
+Dokumen 1127: Topik dominan = 3 | Distribusi = [0.193 0.006 0.743 0.052 0.006]
+Dokumen 1128: Topik dominan = 1 | Distribusi = [0.632 0.006 0.061 0.276 0.026]
+Dokumen 1129: Topik dominan = 4 | Distribusi = [0.115 0.166 0.083 0.559 0.077]
+Dokumen 1130: Topik dominan = 3 | Distribusi = [0.406 0.    0.415 0.06  0.119]
+Dokumen 1131: Topik dominan = 3 | Distribusi = [0.239 0.035 0.584 0.142 0.001]
+Dokumen 1132: Topik dominan = 1 | Distribusi = [0.522 0.05  0.244 0.164 0.019]
+Dokumen 1133: Topik dominan = 3 | Distribusi = [0.325 0.005 0.53  0.058 0.082]
+Dokumen 1134: Topik dominan = 4 | Distribusi = [0.256 0.114 0.161 0.298 0.171]
+Dokumen 1135: Topik dominan = 3 | Distribusi = [0.096 0.167 0.636 0.078 0.024]
+Dokumen 1136: Topik dominan = 4 | Distribusi = [0.146 0.01  0.132 0.711 0.   ]
+Dokumen 1137: Topik dominan = 4 | Distribusi = [0.067 0.053 0.081 0.799 0.   ]
+Dokumen 1138: Topik dominan = 3 | Distribusi = [0.265 0.    0.591 0.142 0.   ]
+Dokumen 1139: Topik dominan = 1 | Distribusi = [0.446 0.001 0.126 0.327 0.101]
+Dokumen 1140: Topik dominan = 4 | Distribusi = [0.116 0.    0.174 0.642 0.067]
+Dokumen 1141: Topik dominan = 3 | Distribusi = [0.024 0.066 0.759 0.136 0.015]
+Dokumen 1142: Topik dominan = 3 | Distribusi = [0.307 0.015 0.419 0.043 0.217]
+Dokumen 1143: Topik dominan = 1 | Distribusi = [0.795 0.006 0.047 0.076 0.076]
+Dokumen 1144: Topik dominan = 3 | Distribusi = [0.227 0.021 0.664 0.053 0.035]
+Dokumen 1145: Topik dominan = 1 | Distribusi = [0.412 0.06  0.124 0.234 0.17 ]
+Dokumen 1146: Topik dominan = 4 | Distribusi = [0.218 0.01  0.204 0.504 0.065]
+Dokumen 1147: Topik dominan = 4 | Distribusi = [0.186 0.072 0.157 0.577 0.008]
+Dokumen 1148: Topik dominan = 3 | Distribusi = [0.091 0.001 0.609 0.299 0.001]
+Dokumen 1149: Topik dominan = 3 | Distribusi = [0.289 0.011 0.583 0.106 0.011]
+Dokumen 1150: Topik dominan = 4 | Distribusi = [0.262 0.148 0.135 0.446 0.009]
+Dokumen 1151: Topik dominan = 1 | Distribusi = [0.561 0.046 0.342 0.019 0.032]
+Dokumen 1152: Topik dominan = 3 | Distribusi = [0.368 0.026 0.536 0.07  0.   ]
+Dokumen 1153: Topik dominan = 3 | Distribusi = [0.212 0.106 0.378 0.268 0.036]
+Dokumen 1154: Topik dominan = 4 | Distribusi = [0.001 0.057 0.162 0.716 0.064]
+Dokumen 1155: Topik dominan = 3 | Distribusi = [0.221 0.    0.614 0.079 0.086]
+Dokumen 1156: Topik dominan = 3 | Distribusi = [0.133 0.067 0.616 0.171 0.013]
+Dokumen 1157: Topik dominan = 5 | Distribusi = [0.223 0.12  0.202 0.202 0.252]
+Dokumen 1158: Topik dominan = 3 | Distribusi = [0.082 0.173 0.726 0.019 0.   ]
+Dokumen 1159: Topik dominan = 4 | Distribusi = [0.069 0.043 0.082 0.806 0.   ]
+Dokumen 1160: Topik dominan = 3 | Distribusi = [0.067 0.087 0.662 0.184 0.001]
+Dokumen 1161: Topik dominan = 4 | Distribusi = [0.202 0.05  0.344 0.403 0.   ]
+Dokumen 1162: Topik dominan = 3 | Distribusi = [0.346 0.035 0.511 0.015 0.093]
+Dokumen 1163: Topik dominan = 3 | Distribusi = [0.342 0.096 0.361 0.162 0.039]
+Dokumen 1164: Topik dominan = 3 | Distribusi = [0.136 0.036 0.667 0.161 0.001]
+Dokumen 1165: Topik dominan = 3 | Distribusi = [0.259 0.163 0.535 0.043 0.001]
+Dokumen 1166: Topik dominan = 3 | Distribusi = [0.036 0.012 0.85  0.042 0.06 ]
+Dokumen 1167: Topik dominan = 3 | Distribusi = [0.285 0.001 0.51  0.204 0.001]
+Dokumen 1168: Topik dominan = 1 | Distribusi = [0.677 0.012 0.098 0.132 0.081]
+Dokumen 1169: Topik dominan = 4 | Distribusi = [0.067 0.01  0.132 0.79  0.001]
+Dokumen 1170: Topik dominan = 3 | Distribusi = [0.316 0.087 0.385 0.211 0.001]
+Dokumen 1171: Topik dominan = 3 | Distribusi = [0.23  0.001 0.689 0.079 0.001]
+Dokumen 1172: Topik dominan = 4 | Distribusi = [0.144 0.294 0.137 0.418 0.007]
+Dokumen 1173: Topik dominan = 2 | Distribusi = [0.06  0.458 0.194 0.172 0.116]
+Dokumen 1174: Topik dominan = 2 | Distribusi = [0.256 0.335 0.007 0.335 0.066]
+Dokumen 1175: Topik dominan = 3 | Distribusi = [0.116 0.018 0.664 0.201 0.   ]
+Dokumen 1176: Topik dominan = 3 | Distribusi = [0.09  0.232 0.304 0.197 0.176]
+Dokumen 1177: Topik dominan = 3 | Distribusi = [0.253 0.    0.728 0.018 0.   ]
+Dokumen 1178: Topik dominan = 3 | Distribusi = [0.083 0.001 0.554 0.099 0.264]
+Dokumen 1179: Topik dominan = 1 | Distribusi = [0.471 0.043 0.183 0.218 0.085]
+Dokumen 1180: Topik dominan = 4 | Distribusi = [0.167 0.013 0.109 0.672 0.039]
+Dokumen 1181: Topik dominan = 3 | Distribusi = [0.208 0.008 0.655 0.    0.128]
+Dokumen 1182: Topik dominan = 3 | Distribusi = [0.207 0.267 0.436 0.089 0.   ]
+Dokumen 1183: Topik dominan = 4 | Distribusi = [0.298 0.029 0.27  0.402 0.   ]
+Dokumen 1184: Topik dominan = 4 | Distribusi = [0.127 0.    0.189 0.683 0.   ]
+Dokumen 1185: Topik dominan = 3 | Distribusi = [0.214 0.099 0.446 0.24  0.   ]
+Dokumen 1186: Topik dominan = 4 | Distribusi = [0.105 0.053 0.289 0.539 0.014]
+Dokumen 1187: Topik dominan = 1 | Distribusi = [0.482 0.186 0.215 0.099 0.018]
+Dokumen 1188: Topik dominan = 3 | Distribusi = [0.021 0.114 0.674 0.179 0.013]
+Dokumen 1189: Topik dominan = 3 | Distribusi = [0.179 0.022 0.586 0.212 0.001]
+Dokumen 1190: Topik dominan = 3 | Distribusi = [0.001 0.058 0.897 0.029 0.015]
+Dokumen 1191: Topik dominan = 4 | Distribusi = [0.103 0.035 0.145 0.718 0.   ]
+Dokumen 1192: Topik dominan = 4 | Distribusi = [0.063 0.001 0.001 0.935 0.001]
+Dokumen 1193: Topik dominan = 3 | Distribusi = [0.314 0.04  0.639 0.006 0.001]
+Dokumen 1194: Topik dominan = 1 | Distribusi = [0.388 0.104 0.347 0.153 0.008]
+Dokumen 1195: Topik dominan = 3 | Distribusi = [0.117 0.    0.75  0.132 0.   ]
+Dokumen 1196: Topik dominan = 4 | Distribusi = [0.327 0.006 0.17  0.496 0.001]
+Dokumen 1197: Topik dominan = 4 | Distribusi = [0.276 0.006 0.061 0.522 0.136]
+Dokumen 1198: Topik dominan = 4 | Distribusi = [0.079 0.001 0.223 0.577 0.121]
+Dokumen 1199: Topik dominan = 3 | Distribusi = [0.25  0.107 0.512 0.107 0.026]
+Dokumen 1200: Topik dominan = 3 | Distribusi = [0.061 0.088 0.593 0.258 0.   ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./task\task6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Willy Chairullah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
