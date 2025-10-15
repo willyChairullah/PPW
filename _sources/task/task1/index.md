@@ -49,7 +49,7 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 
 ## Pengantar Web Mining
 
-Web mining adalah proses mengekstrak informasi menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining).
+Web mining adalah proses mengekstrak informasi menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining). 
 
 ```{figure} ./images/Web-mining-taxonomy.png
 ---
