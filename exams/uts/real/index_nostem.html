@@ -57,11 +57,9 @@
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'exams/uts/real/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exams/uts/real/index_nostem';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="UTS: Document Clustering on Email/SMS Data" href="spam.html" />
-    <link rel="prev" title="Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,6 +121,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -189,9 +189,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../task/task5/index.html">Tugas 4 TF-IDF W2V dan Modelling</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">UTS</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM dan Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM dan Naive Bayes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spam.html">UTS: Document Clustering on Email/SMS Data</a></li>
 </ul>
 
@@ -264,7 +264,7 @@
       
       
       
-      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Fexams/uts/real/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Fexams/uts/real/index_nostem.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +294,7 @@
       
       
       
-      <li><a href="../../../_sources/exams/uts/real/index.ipynb" target="_blank"
+      <li><a href="../../../_sources/exams/uts/real/index_nostem.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -479,7 +479,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dataset</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/preprocessing_berita.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/berita_token.csv&#39;</span><span class="p">)</span>
 
 <span class="c1"># Tampilkan info dataset</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
@@ -503,10 +503,10 @@ document.write(`
 INFORMASI DATASET
 ==================================================
 Jumlah data: 1500
-Jumlah kolom: 3
+Jumlah kolom: 9
 
 Kolom-kolom:
-[&#39;berita&#39;, &#39;kategori&#39;, &#39;clean&#39;]
+[&#39;No&#39;, &#39;judul&#39;, &#39;berita&#39;, &#39;tanggal&#39;, &#39;kategori&#39;, &#39;link&#39;, &#39;cleaned_text&#39;, &#39;stopwords&#39;, &#39;tokenized&#39;]
 
 ==================================================
 5 BARIS PERTAMA DATA
@@ -531,41 +531,77 @@ Kolom-kolom:
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>No</th>
+      <th>judul</th>
       <th>berita</th>
+      <th>tanggal</th>
       <th>kategori</th>
-      <th>clean</th>
+      <th>link</th>
+      <th>cleaned_text</th>
+      <th>stopwords</th>
+      <th>tokenized</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>1</td>
+      <td>Airlangga Harap Kenaikan UMP Tingkatkan Daya B...</td>
       <td>Menteri Koordinator (Menko) Bidang Perekonomia...</td>
+      <td>Minggu, 01 Des 2024 23:40 WIB</td>
       <td>Ekonomi</td>
-      <td>menteri koordinator menko bidang ekonomi airla...</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412012...</td>
+      <td>menteri koordinator menko bidang perekonomian ...</td>
+      <td>menteri koordinator menko bidang perekonomian ...</td>
+      <td>['menteri', 'koordinator', 'menko', 'bidang', ...</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>2</td>
+      <td>PT SIER Beri Penghargaan untuk 50 Tenant Terba...</td>
       <td>Dalam rangka memeriahkan hari jadi ke-50, PT S...</td>
+      <td>Minggu, 01 Des 2024 20:45 WIB</td>
       <td>Ekonomi</td>
-      <td>rangka riah pt surabaya industrial estate rung...</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412012...</td>
+      <td>dalam rangka memeriahkan hari jadi ke 50 pt su...</td>
+      <td>rangka memeriahkan 50 pt surabaya industrial e...</td>
+      <td>['rangka', 'memeriahkan', '50', 'pt', 'surabay...</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>3</td>
+      <td>Prabowo Bakal Bentuk Kementerian Penerimaan Ne...</td>
       <td>Wacana Presiden Prabowo Subianto akan membentu...</td>
+      <td>Minggu, 01 Des 2024 19:40 WIB</td>
       <td>Ekonomi</td>
-      <td>wacana presiden prabowo subianto bentuk bentuk...</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412011...</td>
+      <td>wacana presiden prabowo subianto akan membentu...</td>
+      <td>wacana presiden prabowo subianto membentuk mem...</td>
+      <td>['wacana', 'presiden', 'prabowo', 'subianto', ...</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>4</td>
+      <td>Sinergi Kemenag &amp; BPJS Ketenagakerjaan Lindung...</td>
       <td>BPJS Ketenagakerjaan dan Kementerian Agama (Ke...</td>
+      <td>Minggu, 01 Des 2024 19:03 WIB</td>
       <td>Ekonomi</td>
-      <td>bpjs ketenagakerjaan menteri agama kemenag lin...</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412011...</td>
+      <td>bpjs ketenagakerjaan dan kementerian agama kem...</td>
+      <td>bpjs ketenagakerjaan kementerian agama kemenag...</td>
+      <td>['bpjs', 'ketenagakerjaan', 'kementerian', 'ag...</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>5</td>
+      <td>Pemerintah Segera Bentuk Satgas PHK Usai Tetap...</td>
       <td>Pemerintah akan segera membentuk Satuan Tugas ...</td>
+      <td>Minggu, 01 Des 2024 19:00 WIB</td>
       <td>Ekonomi</td>
-      <td>perintah bentuk satu tugas putus hubung kerja ...</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412011...</td>
+      <td>pemerintah akan segera membentuk satuan tugas ...</td>
+      <td>pemerintah membentuk satuan tugas pemutusan hu...</td>
+      <td>['pemerintah', 'membentuk', 'satuan', 'tugas',...</td>
     </tr>
   </tbody>
 </table>
@@ -620,7 +656,7 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ambil corpus dan label</span>
-<span class="n">corpus</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopwords&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
@@ -642,7 +678,7 @@ Jumlah dokumen: 1500
 Jumlah label: 1500
 
 Contoh dokumen pertama:
-menteri koordinator menko bidang ekonomi airlangga hartarto harap naik upah minimum provinsi ump persen tingkat daya beli masyarakat kelas tengah start tunjang daya beli masyarakat kelas tengah naik u...
+menteri koordinator menko bidang perekonomian airlangga hartarto berharap kenaikan upah minimum provinsi ump 6 5 persen 2025 meningkatkan daya beli masyarakat kelas menengah start menunjang daya beli ...
 
 Label pertama: Ekonomi
 </pre></div>
@@ -752,12 +788,12 @@ Name: count, dtype: int64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==================================================
 VOCABULARY INFORMATION
 ==================================================
-Ukuran vocabulary: 3904
-Bentuk matrix training: (1200, 3904)
-Bentuk matrix testing: (300, 3904)
+Ukuran vocabulary: 5000
+Bentuk matrix training: (1200, 5000)
+Bentuk matrix testing: (300, 5000)
 
 Contoh 10 kata pertama dalam vocabulary:
-[&#39;orang&#39;, &#39;tewas&#39;, &#39;insiden&#39;, &#39;celaka&#39;, &#39;helikopter&#39;, &#39;ambulans&#39;, &#39;turki&#39;, &#39;minggu&#39;, &#39;tabrak&#39;, &#39;bangun&#39;]
+[&#39;orang&#39;, &#39;tewas&#39;, &#39;insiden&#39;, &#39;kecelakaan&#39;, &#39;helikopter&#39;, &#39;turki&#39;, &#39;minggu&#39;, &#39;22&#39;, &#39;12&#39;, &#39;menabrak&#39;]
 </pre></div>
 </div>
 </div>
@@ -809,17 +845,17 @@ Contoh 10 kata pertama dalam vocabulary:
 MENCARI JUMLAH TOPIK OPTIMAL
 ==================================================
 Mencoba k=5 topik...
-  Perplexity: 1023.41
+  Perplexity: 1450.18
 Mencoba k=10 topik...
-  Perplexity: 954.86
+  Perplexity: 1322.97
 Mencoba k=15 topik...
-  Perplexity: 884.95
+  Perplexity: 1230.81
 Mencoba k=20 topik...
-  Perplexity: 845.14
+  Perplexity: 1167.57
 Mencoba k=25 topik...
-  Perplexity: 833.37
+  Perplexity: 1139.61
 Mencoba k=30 topik...
-  Perplexity: 811.10
+  Perplexity: 1121.68
 
 ✓ Selesai menghitung perplexity untuk berbagai jumlah topik
 </pre></div>
@@ -846,7 +882,7 @@ Mencoba k=30 topik...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/3ec265c786e581d18dfea6c0768cf7af04baaa9695326c526a92c0e7e0c5877f.png" src="../../../_images/3ec265c786e581d18dfea6c0768cf7af04baaa9695326c526a92c0e7e0c5877f.png" />
+<img alt="../../../_images/c03e9fb72938ec6daebd72fa78edcddc5969f8cb02f594b75efd227629cc94c7.png" src="../../../_images/c03e9fb72938ec6daebd72fa78edcddc5969f8cb02f594b75efd227629cc94c7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✓ Jumlah topik optimal (berdasarkan perplexity): 30
 </pre></div>
 </div>
@@ -883,1005 +919,2007 @@ Mencoba k=30 topik...
 MELATIH MODEL LDA DENGAN 30 TOPIK
 ==================================================
 iteration: 1 of max_iter: 1000
+iteration: 1 of max_iter: 1000
+iteration: 2 of max_iter: 1000
 iteration: 2 of max_iter: 1000
 iteration: 3 of max_iter: 1000
+iteration: 3 of max_iter: 1000
+iteration: 4 of max_iter: 1000
 iteration: 4 of max_iter: 1000
 iteration: 5 of max_iter: 1000
+iteration: 5 of max_iter: 1000
+iteration: 6 of max_iter: 1000
 iteration: 6 of max_iter: 1000
 iteration: 7 of max_iter: 1000
+iteration: 7 of max_iter: 1000
+iteration: 8 of max_iter: 1000
 iteration: 8 of max_iter: 1000
 iteration: 9 of max_iter: 1000
+iteration: 9 of max_iter: 1000
+iteration: 10 of max_iter: 1000
 iteration: 10 of max_iter: 1000
 iteration: 11 of max_iter: 1000
+iteration: 11 of max_iter: 1000
+iteration: 12 of max_iter: 1000
 iteration: 12 of max_iter: 1000
 iteration: 13 of max_iter: 1000
 iteration: 14 of max_iter: 1000
+iteration: 13 of max_iter: 1000
+iteration: 14 of max_iter: 1000
 iteration: 15 of max_iter: 1000
+iteration: 15 of max_iter: 1000
+iteration: 16 of max_iter: 1000
 iteration: 16 of max_iter: 1000
 iteration: 17 of max_iter: 1000
 iteration: 18 of max_iter: 1000
+iteration: 17 of max_iter: 1000
+iteration: 18 of max_iter: 1000
+iteration: 19 of max_iter: 1000
 iteration: 19 of max_iter: 1000
 iteration: 20 of max_iter: 1000
 iteration: 21 of max_iter: 1000
+iteration: 20 of max_iter: 1000
+iteration: 21 of max_iter: 1000
+iteration: 22 of max_iter: 1000
 iteration: 22 of max_iter: 1000
 iteration: 23 of max_iter: 1000
+iteration: 23 of max_iter: 1000
+iteration: 24 of max_iter: 1000
 iteration: 24 of max_iter: 1000
 iteration: 25 of max_iter: 1000
+iteration: 25 of max_iter: 1000
+iteration: 26 of max_iter: 1000
 iteration: 26 of max_iter: 1000
 iteration: 27 of max_iter: 1000
+iteration: 27 of max_iter: 1000
+iteration: 28 of max_iter: 1000
 iteration: 28 of max_iter: 1000
 iteration: 29 of max_iter: 1000
+iteration: 29 of max_iter: 1000
+iteration: 30 of max_iter: 1000
 iteration: 30 of max_iter: 1000
 iteration: 31 of max_iter: 1000
 iteration: 32 of max_iter: 1000
+iteration: 31 of max_iter: 1000
+iteration: 32 of max_iter: 1000
+iteration: 33 of max_iter: 1000
 iteration: 33 of max_iter: 1000
 iteration: 34 of max_iter: 1000
 iteration: 35 of max_iter: 1000
+iteration: 34 of max_iter: 1000
+iteration: 35 of max_iter: 1000
+iteration: 36 of max_iter: 1000
 iteration: 36 of max_iter: 1000
 iteration: 37 of max_iter: 1000
+iteration: 37 of max_iter: 1000
+iteration: 38 of max_iter: 1000
+iteration: 39 of max_iter: 1000
 iteration: 38 of max_iter: 1000
 iteration: 39 of max_iter: 1000
 iteration: 40 of max_iter: 1000
 iteration: 41 of max_iter: 1000
+iteration: 40 of max_iter: 1000
+iteration: 41 of max_iter: 1000
+iteration: 42 of max_iter: 1000
 iteration: 42 of max_iter: 1000
 iteration: 43 of max_iter: 1000
+iteration: 43 of max_iter: 1000
+iteration: 44 of max_iter: 1000
+iteration: 45 of max_iter: 1000
 iteration: 44 of max_iter: 1000
 iteration: 45 of max_iter: 1000
 iteration: 46 of max_iter: 1000
 iteration: 47 of max_iter: 1000
+iteration: 46 of max_iter: 1000
+iteration: 47 of max_iter: 1000
+iteration: 48 of max_iter: 1000
+iteration: 49 of max_iter: 1000
 iteration: 48 of max_iter: 1000
 iteration: 49 of max_iter: 1000
 iteration: 50 of max_iter: 1000
 iteration: 51 of max_iter: 1000
+iteration: 50 of max_iter: 1000
+iteration: 51 of max_iter: 1000
+iteration: 52 of max_iter: 1000
 iteration: 52 of max_iter: 1000
 iteration: 53 of max_iter: 1000
+iteration: 53 of max_iter: 1000
+iteration: 54 of max_iter: 1000
 iteration: 54 of max_iter: 1000
 iteration: 55 of max_iter: 1000
+iteration: 55 of max_iter: 1000
+iteration: 56 of max_iter: 1000
 iteration: 56 of max_iter: 1000
 iteration: 57 of max_iter: 1000
+iteration: 57 of max_iter: 1000
+iteration: 58 of max_iter: 1000
 iteration: 58 of max_iter: 1000
 iteration: 59 of max_iter: 1000
 iteration: 60 of max_iter: 1000
+iteration: 59 of max_iter: 1000
+iteration: 60 of max_iter: 1000
+iteration: 61 of max_iter: 1000
 iteration: 61 of max_iter: 1000
 iteration: 62 of max_iter: 1000
+iteration: 62 of max_iter: 1000
 iteration: 63 of max_iter: 1000
+iteration: 63 of max_iter: 1000
+iteration: 64 of max_iter: 1000
 iteration: 64 of max_iter: 1000
 iteration: 65 of max_iter: 1000
 iteration: 66 of max_iter: 1000
+iteration: 65 of max_iter: 1000
+iteration: 66 of max_iter: 1000
+iteration: 67 of max_iter: 1000
 iteration: 67 of max_iter: 1000
 iteration: 68 of max_iter: 1000
+iteration: 68 of max_iter: 1000
+iteration: 69 of max_iter: 1000
 iteration: 69 of max_iter: 1000
 iteration: 70 of max_iter: 1000
+iteration: 70 of max_iter: 1000
+iteration: 71 of max_iter: 1000
 iteration: 71 of max_iter: 1000
 iteration: 72 of max_iter: 1000
+iteration: 72 of max_iter: 1000
+iteration: 73 of max_iter: 1000
 iteration: 73 of max_iter: 1000
 iteration: 74 of max_iter: 1000
+iteration: 74 of max_iter: 1000
+iteration: 75 of max_iter: 1000
 iteration: 75 of max_iter: 1000
 iteration: 76 of max_iter: 1000
+iteration: 76 of max_iter: 1000
+iteration: 77 of max_iter: 1000
 iteration: 77 of max_iter: 1000
 iteration: 78 of max_iter: 1000
+iteration: 78 of max_iter: 1000
+iteration: 79 of max_iter: 1000
 iteration: 79 of max_iter: 1000
 iteration: 80 of max_iter: 1000
 iteration: 81 of max_iter: 1000
+iteration: 80 of max_iter: 1000
+iteration: 81 of max_iter: 1000
+iteration: 82 of max_iter: 1000
 iteration: 82 of max_iter: 1000
 iteration: 83 of max_iter: 1000
 iteration: 84 of max_iter: 1000
+iteration: 83 of max_iter: 1000
+iteration: 84 of max_iter: 1000
+iteration: 85 of max_iter: 1000
 iteration: 85 of max_iter: 1000
 iteration: 86 of max_iter: 1000
+iteration: 86 of max_iter: 1000
+iteration: 87 of max_iter: 1000
 iteration: 87 of max_iter: 1000
 iteration: 88 of max_iter: 1000
+iteration: 88 of max_iter: 1000
+iteration: 89 of max_iter: 1000
 iteration: 89 of max_iter: 1000
 iteration: 90 of max_iter: 1000
+iteration: 90 of max_iter: 1000
+iteration: 91 of max_iter: 1000
 iteration: 91 of max_iter: 1000
 iteration: 92 of max_iter: 1000
+iteration: 92 of max_iter: 1000
+iteration: 93 of max_iter: 1000
 iteration: 93 of max_iter: 1000
 iteration: 94 of max_iter: 1000
+iteration: 94 of max_iter: 1000
+iteration: 95 of max_iter: 1000
 iteration: 95 of max_iter: 1000
 iteration: 96 of max_iter: 1000
+iteration: 96 of max_iter: 1000
+iteration: 97 of max_iter: 1000
 iteration: 97 of max_iter: 1000
 iteration: 98 of max_iter: 1000
+iteration: 98 of max_iter: 1000
+iteration: 99 of max_iter: 1000
 iteration: 99 of max_iter: 1000
 iteration: 100 of max_iter: 1000
+iteration: 100 of max_iter: 1000
+iteration: 101 of max_iter: 1000
 iteration: 101 of max_iter: 1000
 iteration: 102 of max_iter: 1000
+iteration: 102 of max_iter: 1000
+iteration: 103 of max_iter: 1000
 iteration: 103 of max_iter: 1000
 iteration: 104 of max_iter: 1000
+iteration: 104 of max_iter: 1000
+iteration: 105 of max_iter: 1000
+iteration: 106 of max_iter: 1000
 iteration: 105 of max_iter: 1000
 iteration: 106 of max_iter: 1000
 iteration: 107 of max_iter: 1000
 iteration: 108 of max_iter: 1000
+iteration: 107 of max_iter: 1000
+iteration: 108 of max_iter: 1000
+iteration: 109 of max_iter: 1000
 iteration: 109 of max_iter: 1000
 iteration: 110 of max_iter: 1000
+iteration: 110 of max_iter: 1000
+iteration: 111 of max_iter: 1000
 iteration: 111 of max_iter: 1000
 iteration: 112 of max_iter: 1000
 iteration: 113 of max_iter: 1000
+iteration: 112 of max_iter: 1000
+iteration: 113 of max_iter: 1000
+iteration: 114 of max_iter: 1000
 iteration: 114 of max_iter: 1000
 iteration: 115 of max_iter: 1000
+iteration: 115 of max_iter: 1000
 iteration: 116 of max_iter: 1000
+iteration: 116 of max_iter: 1000
+iteration: 117 of max_iter: 1000
 iteration: 117 of max_iter: 1000
 iteration: 118 of max_iter: 1000
 iteration: 119 of max_iter: 1000
+iteration: 118 of max_iter: 1000
+iteration: 119 of max_iter: 1000
+iteration: 120 of max_iter: 1000
 iteration: 120 of max_iter: 1000
 iteration: 121 of max_iter: 1000
+iteration: 121 of max_iter: 1000
+iteration: 122 of max_iter: 1000
 iteration: 122 of max_iter: 1000
 iteration: 123 of max_iter: 1000
+iteration: 123 of max_iter: 1000
+iteration: 124 of max_iter: 1000
 iteration: 124 of max_iter: 1000
 iteration: 125 of max_iter: 1000
+iteration: 125 of max_iter: 1000
+iteration: 126 of max_iter: 1000
 iteration: 126 of max_iter: 1000
 iteration: 127 of max_iter: 1000
+iteration: 127 of max_iter: 1000
+iteration: 128 of max_iter: 1000
 iteration: 128 of max_iter: 1000
 iteration: 129 of max_iter: 1000
+iteration: 129 of max_iter: 1000
 iteration: 130 of max_iter: 1000
+iteration: 130 of max_iter: 1000
+iteration: 131 of max_iter: 1000
 iteration: 131 of max_iter: 1000
 iteration: 132 of max_iter: 1000
 iteration: 133 of max_iter: 1000
+iteration: 132 of max_iter: 1000
+iteration: 133 of max_iter: 1000
+iteration: 134 of max_iter: 1000
 iteration: 134 of max_iter: 1000
 iteration: 135 of max_iter: 1000
+iteration: 135 of max_iter: 1000
+iteration: 136 of max_iter: 1000
 iteration: 136 of max_iter: 1000
 iteration: 137 of max_iter: 1000
+iteration: 137 of max_iter: 1000
+iteration: 138 of max_iter: 1000
 iteration: 138 of max_iter: 1000
 iteration: 139 of max_iter: 1000
+iteration: 139 of max_iter: 1000
+iteration: 140 of max_iter: 1000
 iteration: 140 of max_iter: 1000
 iteration: 141 of max_iter: 1000
+iteration: 141 of max_iter: 1000
 iteration: 142 of max_iter: 1000
+iteration: 142 of max_iter: 1000
+iteration: 143 of max_iter: 1000
 iteration: 143 of max_iter: 1000
 iteration: 144 of max_iter: 1000
 iteration: 145 of max_iter: 1000
+iteration: 144 of max_iter: 1000
+iteration: 145 of max_iter: 1000
+iteration: 146 of max_iter: 1000
 iteration: 146 of max_iter: 1000
 iteration: 147 of max_iter: 1000
+iteration: 147 of max_iter: 1000
+iteration: 148 of max_iter: 1000
 iteration: 148 of max_iter: 1000
 iteration: 149 of max_iter: 1000
+iteration: 149 of max_iter: 1000
+iteration: 150 of max_iter: 1000
 iteration: 150 of max_iter: 1000
 iteration: 151 of max_iter: 1000
+iteration: 151 of max_iter: 1000
+iteration: 152 of max_iter: 1000
 iteration: 152 of max_iter: 1000
 iteration: 153 of max_iter: 1000
+iteration: 153 of max_iter: 1000
+iteration: 154 of max_iter: 1000
 iteration: 154 of max_iter: 1000
 iteration: 155 of max_iter: 1000
+iteration: 155 of max_iter: 1000
+iteration: 156 of max_iter: 1000
 iteration: 156 of max_iter: 1000
 iteration: 157 of max_iter: 1000
+iteration: 157 of max_iter: 1000
+iteration: 158 of max_iter: 1000
 iteration: 158 of max_iter: 1000
 iteration: 159 of max_iter: 1000
+iteration: 159 of max_iter: 1000
+iteration: 160 of max_iter: 1000
 iteration: 160 of max_iter: 1000
 iteration: 161 of max_iter: 1000
+iteration: 161 of max_iter: 1000
+iteration: 162 of max_iter: 1000
 iteration: 162 of max_iter: 1000
 iteration: 163 of max_iter: 1000
+iteration: 163 of max_iter: 1000
+iteration: 164 of max_iter: 1000
 iteration: 164 of max_iter: 1000
 iteration: 165 of max_iter: 1000
+iteration: 165 of max_iter: 1000
+iteration: 166 of max_iter: 1000
 iteration: 166 of max_iter: 1000
 iteration: 167 of max_iter: 1000
+iteration: 167 of max_iter: 1000
+iteration: 168 of max_iter: 1000
 iteration: 168 of max_iter: 1000
 iteration: 169 of max_iter: 1000
+iteration: 169 of max_iter: 1000
+iteration: 170 of max_iter: 1000
 iteration: 170 of max_iter: 1000
 iteration: 171 of max_iter: 1000
+iteration: 171 of max_iter: 1000
+iteration: 172 of max_iter: 1000
 iteration: 172 of max_iter: 1000
 iteration: 173 of max_iter: 1000
+iteration: 173 of max_iter: 1000
+iteration: 174 of max_iter: 1000
 iteration: 174 of max_iter: 1000
 iteration: 175 of max_iter: 1000
+iteration: 175 of max_iter: 1000
+iteration: 176 of max_iter: 1000
 iteration: 176 of max_iter: 1000
 iteration: 177 of max_iter: 1000
+iteration: 177 of max_iter: 1000
+iteration: 178 of max_iter: 1000
 iteration: 178 of max_iter: 1000
 iteration: 179 of max_iter: 1000
+iteration: 179 of max_iter: 1000
+iteration: 180 of max_iter: 1000
 iteration: 180 of max_iter: 1000
 iteration: 181 of max_iter: 1000
+iteration: 181 of max_iter: 1000
+iteration: 182 of max_iter: 1000
 iteration: 182 of max_iter: 1000
 iteration: 183 of max_iter: 1000
+iteration: 183 of max_iter: 1000
+iteration: 184 of max_iter: 1000
 iteration: 184 of max_iter: 1000
 iteration: 185 of max_iter: 1000
+iteration: 185 of max_iter: 1000
+iteration: 186 of max_iter: 1000
 iteration: 186 of max_iter: 1000
 iteration: 187 of max_iter: 1000
+iteration: 187 of max_iter: 1000
+iteration: 188 of max_iter: 1000
 iteration: 188 of max_iter: 1000
 iteration: 189 of max_iter: 1000
+iteration: 189 of max_iter: 1000
+iteration: 190 of max_iter: 1000
 iteration: 190 of max_iter: 1000
 iteration: 191 of max_iter: 1000
 iteration: 192 of max_iter: 1000
+iteration: 191 of max_iter: 1000
+iteration: 192 of max_iter: 1000
+iteration: 193 of max_iter: 1000
 iteration: 193 of max_iter: 1000
 iteration: 194 of max_iter: 1000
+iteration: 194 of max_iter: 1000
+iteration: 195 of max_iter: 1000
 iteration: 195 of max_iter: 1000
 iteration: 196 of max_iter: 1000
+iteration: 196 of max_iter: 1000
+iteration: 197 of max_iter: 1000
 iteration: 197 of max_iter: 1000
 iteration: 198 of max_iter: 1000
+iteration: 198 of max_iter: 1000
+iteration: 199 of max_iter: 1000
 iteration: 199 of max_iter: 1000
 iteration: 200 of max_iter: 1000
+iteration: 200 of max_iter: 1000
+iteration: 201 of max_iter: 1000
 iteration: 201 of max_iter: 1000
 iteration: 202 of max_iter: 1000
+iteration: 202 of max_iter: 1000
+iteration: 203 of max_iter: 1000
 iteration: 203 of max_iter: 1000
 iteration: 204 of max_iter: 1000
+iteration: 204 of max_iter: 1000
+iteration: 205 of max_iter: 1000
 iteration: 205 of max_iter: 1000
 iteration: 206 of max_iter: 1000
+iteration: 206 of max_iter: 1000
+iteration: 207 of max_iter: 1000
 iteration: 207 of max_iter: 1000
 iteration: 208 of max_iter: 1000
+iteration: 208 of max_iter: 1000
+iteration: 209 of max_iter: 1000
 iteration: 209 of max_iter: 1000
 iteration: 210 of max_iter: 1000
+iteration: 210 of max_iter: 1000
+iteration: 211 of max_iter: 1000
 iteration: 211 of max_iter: 1000
 iteration: 212 of max_iter: 1000
+iteration: 212 of max_iter: 1000
+iteration: 213 of max_iter: 1000
 iteration: 213 of max_iter: 1000
 iteration: 214 of max_iter: 1000
+iteration: 214 of max_iter: 1000
+iteration: 215 of max_iter: 1000
 iteration: 215 of max_iter: 1000
 iteration: 216 of max_iter: 1000
+iteration: 216 of max_iter: 1000
+iteration: 217 of max_iter: 1000
 iteration: 217 of max_iter: 1000
 iteration: 218 of max_iter: 1000
+iteration: 218 of max_iter: 1000
+iteration: 219 of max_iter: 1000
 iteration: 219 of max_iter: 1000
 iteration: 220 of max_iter: 1000
+iteration: 220 of max_iter: 1000
+iteration: 221 of max_iter: 1000
 iteration: 221 of max_iter: 1000
 iteration: 222 of max_iter: 1000
+iteration: 222 of max_iter: 1000
+iteration: 223 of max_iter: 1000
 iteration: 223 of max_iter: 1000
 iteration: 224 of max_iter: 1000
+iteration: 224 of max_iter: 1000
+iteration: 225 of max_iter: 1000
 iteration: 225 of max_iter: 1000
 iteration: 226 of max_iter: 1000
+iteration: 226 of max_iter: 1000
+iteration: 227 of max_iter: 1000
 iteration: 227 of max_iter: 1000
 iteration: 228 of max_iter: 1000
+iteration: 228 of max_iter: 1000
+iteration: 229 of max_iter: 1000
 iteration: 229 of max_iter: 1000
 iteration: 230 of max_iter: 1000
+iteration: 230 of max_iter: 1000
+iteration: 231 of max_iter: 1000
 iteration: 231 of max_iter: 1000
 iteration: 232 of max_iter: 1000
+iteration: 232 of max_iter: 1000
+iteration: 233 of max_iter: 1000
 iteration: 233 of max_iter: 1000
 iteration: 234 of max_iter: 1000
+iteration: 234 of max_iter: 1000
+iteration: 235 of max_iter: 1000
 iteration: 235 of max_iter: 1000
 iteration: 236 of max_iter: 1000
+iteration: 236 of max_iter: 1000
+iteration: 237 of max_iter: 1000
 iteration: 237 of max_iter: 1000
 iteration: 238 of max_iter: 1000
+iteration: 238 of max_iter: 1000
+iteration: 239 of max_iter: 1000
 iteration: 239 of max_iter: 1000
 iteration: 240 of max_iter: 1000
+iteration: 240 of max_iter: 1000
+iteration: 241 of max_iter: 1000
 iteration: 241 of max_iter: 1000
 iteration: 242 of max_iter: 1000
+iteration: 242 of max_iter: 1000
+iteration: 243 of max_iter: 1000
 iteration: 243 of max_iter: 1000
 iteration: 244 of max_iter: 1000
+iteration: 244 of max_iter: 1000
+iteration: 245 of max_iter: 1000
 iteration: 245 of max_iter: 1000
 iteration: 246 of max_iter: 1000
+iteration: 246 of max_iter: 1000
+iteration: 247 of max_iter: 1000
 iteration: 247 of max_iter: 1000
 iteration: 248 of max_iter: 1000
+iteration: 248 of max_iter: 1000
+iteration: 249 of max_iter: 1000
 iteration: 249 of max_iter: 1000
 iteration: 250 of max_iter: 1000
+iteration: 250 of max_iter: 1000
+iteration: 251 of max_iter: 1000
 iteration: 251 of max_iter: 1000
 iteration: 252 of max_iter: 1000
+iteration: 252 of max_iter: 1000
+iteration: 253 of max_iter: 1000
 iteration: 253 of max_iter: 1000
 iteration: 254 of max_iter: 1000
+iteration: 254 of max_iter: 1000
+iteration: 255 of max_iter: 1000
 iteration: 255 of max_iter: 1000
 iteration: 256 of max_iter: 1000
+iteration: 256 of max_iter: 1000
+iteration: 257 of max_iter: 1000
 iteration: 257 of max_iter: 1000
 iteration: 258 of max_iter: 1000
+iteration: 258 of max_iter: 1000
+iteration: 259 of max_iter: 1000
 iteration: 259 of max_iter: 1000
 iteration: 260 of max_iter: 1000
+iteration: 260 of max_iter: 1000
+iteration: 261 of max_iter: 1000
 iteration: 261 of max_iter: 1000
 iteration: 262 of max_iter: 1000
+iteration: 262 of max_iter: 1000
+iteration: 263 of max_iter: 1000
 iteration: 263 of max_iter: 1000
 iteration: 264 of max_iter: 1000
+iteration: 264 of max_iter: 1000
+iteration: 265 of max_iter: 1000
 iteration: 265 of max_iter: 1000
 iteration: 266 of max_iter: 1000
+iteration: 266 of max_iter: 1000
+iteration: 267 of max_iter: 1000
 iteration: 267 of max_iter: 1000
 iteration: 268 of max_iter: 1000
+iteration: 268 of max_iter: 1000
+iteration: 269 of max_iter: 1000
 iteration: 269 of max_iter: 1000
 iteration: 270 of max_iter: 1000
+iteration: 270 of max_iter: 1000
+iteration: 271 of max_iter: 1000
 iteration: 271 of max_iter: 1000
 iteration: 272 of max_iter: 1000
+iteration: 272 of max_iter: 1000
+iteration: 273 of max_iter: 1000
 iteration: 273 of max_iter: 1000
 iteration: 274 of max_iter: 1000
+iteration: 274 of max_iter: 1000
+iteration: 275 of max_iter: 1000
 iteration: 275 of max_iter: 1000
 iteration: 276 of max_iter: 1000
+iteration: 276 of max_iter: 1000
+iteration: 277 of max_iter: 1000
 iteration: 277 of max_iter: 1000
 iteration: 278 of max_iter: 1000
+iteration: 278 of max_iter: 1000
+iteration: 279 of max_iter: 1000
 iteration: 279 of max_iter: 1000
 iteration: 280 of max_iter: 1000
+iteration: 280 of max_iter: 1000
+iteration: 281 of max_iter: 1000
 iteration: 281 of max_iter: 1000
 iteration: 282 of max_iter: 1000
+iteration: 282 of max_iter: 1000
+iteration: 283 of max_iter: 1000
 iteration: 283 of max_iter: 1000
 iteration: 284 of max_iter: 1000
+iteration: 284 of max_iter: 1000
+iteration: 285 of max_iter: 1000
 iteration: 285 of max_iter: 1000
 iteration: 286 of max_iter: 1000
+iteration: 286 of max_iter: 1000
+iteration: 287 of max_iter: 1000
 iteration: 287 of max_iter: 1000
 iteration: 288 of max_iter: 1000
+iteration: 288 of max_iter: 1000
+iteration: 289 of max_iter: 1000
 iteration: 289 of max_iter: 1000
 iteration: 290 of max_iter: 1000
+iteration: 290 of max_iter: 1000
+iteration: 291 of max_iter: 1000
 iteration: 291 of max_iter: 1000
 iteration: 292 of max_iter: 1000
+iteration: 292 of max_iter: 1000
+iteration: 293 of max_iter: 1000
 iteration: 293 of max_iter: 1000
 iteration: 294 of max_iter: 1000
+iteration: 294 of max_iter: 1000
+iteration: 295 of max_iter: 1000
 iteration: 295 of max_iter: 1000
 iteration: 296 of max_iter: 1000
+iteration: 296 of max_iter: 1000
+iteration: 297 of max_iter: 1000
 iteration: 297 of max_iter: 1000
 iteration: 298 of max_iter: 1000
+iteration: 298 of max_iter: 1000
+iteration: 299 of max_iter: 1000
 iteration: 299 of max_iter: 1000
 iteration: 300 of max_iter: 1000
+iteration: 300 of max_iter: 1000
+iteration: 301 of max_iter: 1000
 iteration: 301 of max_iter: 1000
 iteration: 302 of max_iter: 1000
+iteration: 302 of max_iter: 1000
+iteration: 303 of max_iter: 1000
 iteration: 303 of max_iter: 1000
 iteration: 304 of max_iter: 1000
+iteration: 304 of max_iter: 1000
+iteration: 305 of max_iter: 1000
 iteration: 305 of max_iter: 1000
 iteration: 306 of max_iter: 1000
+iteration: 306 of max_iter: 1000
+iteration: 307 of max_iter: 1000
 iteration: 307 of max_iter: 1000
 iteration: 308 of max_iter: 1000
+iteration: 308 of max_iter: 1000
+iteration: 309 of max_iter: 1000
 iteration: 309 of max_iter: 1000
 iteration: 310 of max_iter: 1000
+iteration: 310 of max_iter: 1000
+iteration: 311 of max_iter: 1000
 iteration: 311 of max_iter: 1000
 iteration: 312 of max_iter: 1000
+iteration: 312 of max_iter: 1000
+iteration: 313 of max_iter: 1000
 iteration: 313 of max_iter: 1000
 iteration: 314 of max_iter: 1000
+iteration: 314 of max_iter: 1000
+iteration: 315 of max_iter: 1000
 iteration: 315 of max_iter: 1000
 iteration: 316 of max_iter: 1000
+iteration: 316 of max_iter: 1000
+iteration: 317 of max_iter: 1000
 iteration: 317 of max_iter: 1000
 iteration: 318 of max_iter: 1000
+iteration: 318 of max_iter: 1000
+iteration: 319 of max_iter: 1000
 iteration: 319 of max_iter: 1000
 iteration: 320 of max_iter: 1000
+iteration: 320 of max_iter: 1000
+iteration: 321 of max_iter: 1000
 iteration: 321 of max_iter: 1000
 iteration: 322 of max_iter: 1000
+iteration: 322 of max_iter: 1000
+iteration: 323 of max_iter: 1000
 iteration: 323 of max_iter: 1000
 iteration: 324 of max_iter: 1000
+iteration: 324 of max_iter: 1000
+iteration: 325 of max_iter: 1000
 iteration: 325 of max_iter: 1000
 iteration: 326 of max_iter: 1000
+iteration: 326 of max_iter: 1000
+iteration: 327 of max_iter: 1000
 iteration: 327 of max_iter: 1000
 iteration: 328 of max_iter: 1000
+iteration: 328 of max_iter: 1000
+iteration: 329 of max_iter: 1000
 iteration: 329 of max_iter: 1000
 iteration: 330 of max_iter: 1000
+iteration: 330 of max_iter: 1000
+iteration: 331 of max_iter: 1000
 iteration: 331 of max_iter: 1000
 iteration: 332 of max_iter: 1000
+iteration: 332 of max_iter: 1000
+iteration: 333 of max_iter: 1000
 iteration: 333 of max_iter: 1000
 iteration: 334 of max_iter: 1000
+iteration: 334 of max_iter: 1000
+iteration: 335 of max_iter: 1000
 iteration: 335 of max_iter: 1000
 iteration: 336 of max_iter: 1000
+iteration: 336 of max_iter: 1000
+iteration: 337 of max_iter: 1000
 iteration: 337 of max_iter: 1000
 iteration: 338 of max_iter: 1000
+iteration: 338 of max_iter: 1000
 iteration: 339 of max_iter: 1000
+iteration: 339 of max_iter: 1000
+iteration: 340 of max_iter: 1000
 iteration: 340 of max_iter: 1000
 iteration: 341 of max_iter: 1000
 iteration: 342 of max_iter: 1000
+iteration: 341 of max_iter: 1000
+iteration: 342 of max_iter: 1000
+iteration: 343 of max_iter: 1000
 iteration: 343 of max_iter: 1000
 iteration: 344 of max_iter: 1000
+iteration: 344 of max_iter: 1000
+iteration: 345 of max_iter: 1000
 iteration: 345 of max_iter: 1000
 iteration: 346 of max_iter: 1000
+iteration: 346 of max_iter: 1000
+iteration: 347 of max_iter: 1000
 iteration: 347 of max_iter: 1000
 iteration: 348 of max_iter: 1000
+iteration: 348 of max_iter: 1000
+iteration: 349 of max_iter: 1000
 iteration: 349 of max_iter: 1000
 iteration: 350 of max_iter: 1000
+iteration: 350 of max_iter: 1000
+iteration: 351 of max_iter: 1000
 iteration: 351 of max_iter: 1000
 iteration: 352 of max_iter: 1000
+iteration: 352 of max_iter: 1000
+iteration: 353 of max_iter: 1000
 iteration: 353 of max_iter: 1000
 iteration: 354 of max_iter: 1000
+iteration: 354 of max_iter: 1000
+iteration: 355 of max_iter: 1000
 iteration: 355 of max_iter: 1000
 iteration: 356 of max_iter: 1000
+iteration: 356 of max_iter: 1000
+iteration: 357 of max_iter: 1000
 iteration: 357 of max_iter: 1000
 iteration: 358 of max_iter: 1000
+iteration: 358 of max_iter: 1000
+iteration: 359 of max_iter: 1000
 iteration: 359 of max_iter: 1000
 iteration: 360 of max_iter: 1000
+iteration: 360 of max_iter: 1000
+iteration: 361 of max_iter: 1000
 iteration: 361 of max_iter: 1000
 iteration: 362 of max_iter: 1000
+iteration: 362 of max_iter: 1000
+iteration: 363 of max_iter: 1000
 iteration: 363 of max_iter: 1000
 iteration: 364 of max_iter: 1000
+iteration: 364 of max_iter: 1000
+iteration: 365 of max_iter: 1000
 iteration: 365 of max_iter: 1000
 iteration: 366 of max_iter: 1000
+iteration: 366 of max_iter: 1000
+iteration: 367 of max_iter: 1000
 iteration: 367 of max_iter: 1000
 iteration: 368 of max_iter: 1000
+iteration: 368 of max_iter: 1000
+iteration: 369 of max_iter: 1000
 iteration: 369 of max_iter: 1000
 iteration: 370 of max_iter: 1000
+iteration: 370 of max_iter: 1000
 iteration: 371 of max_iter: 1000
+iteration: 371 of max_iter: 1000
+iteration: 372 of max_iter: 1000
 iteration: 372 of max_iter: 1000
 iteration: 373 of max_iter: 1000
 iteration: 374 of max_iter: 1000
+iteration: 373 of max_iter: 1000
+iteration: 374 of max_iter: 1000
+iteration: 375 of max_iter: 1000
 iteration: 375 of max_iter: 1000
 iteration: 376 of max_iter: 1000
+iteration: 376 of max_iter: 1000
 iteration: 377 of max_iter: 1000
+iteration: 377 of max_iter: 1000
+iteration: 378 of max_iter: 1000
 iteration: 378 of max_iter: 1000
 iteration: 379 of max_iter: 1000
 iteration: 380 of max_iter: 1000
+iteration: 379 of max_iter: 1000
+iteration: 380 of max_iter: 1000
+iteration: 381 of max_iter: 1000
 iteration: 381 of max_iter: 1000
 iteration: 382 of max_iter: 1000
+iteration: 382 of max_iter: 1000
+iteration: 383 of max_iter: 1000
 iteration: 383 of max_iter: 1000
 iteration: 384 of max_iter: 1000
+iteration: 384 of max_iter: 1000
+iteration: 385 of max_iter: 1000
 iteration: 385 of max_iter: 1000
 iteration: 386 of max_iter: 1000
+iteration: 386 of max_iter: 1000
+iteration: 387 of max_iter: 1000
 iteration: 387 of max_iter: 1000
 iteration: 388 of max_iter: 1000
+iteration: 388 of max_iter: 1000
+iteration: 389 of max_iter: 1000
 iteration: 389 of max_iter: 1000
 iteration: 390 of max_iter: 1000
 iteration: 391 of max_iter: 1000
+iteration: 390 of max_iter: 1000
+iteration: 391 of max_iter: 1000
+iteration: 392 of max_iter: 1000
 iteration: 392 of max_iter: 1000
 iteration: 393 of max_iter: 1000
+iteration: 393 of max_iter: 1000
+iteration: 394 of max_iter: 1000
 iteration: 394 of max_iter: 1000
 iteration: 395 of max_iter: 1000
 iteration: 396 of max_iter: 1000
+iteration: 395 of max_iter: 1000
+iteration: 396 of max_iter: 1000
+iteration: 397 of max_iter: 1000
 iteration: 397 of max_iter: 1000
 iteration: 398 of max_iter: 1000
 iteration: 399 of max_iter: 1000
+iteration: 398 of max_iter: 1000
+iteration: 399 of max_iter: 1000
+iteration: 400 of max_iter: 1000
 iteration: 400 of max_iter: 1000
 iteration: 401 of max_iter: 1000
 iteration: 402 of max_iter: 1000
+iteration: 401 of max_iter: 1000
+iteration: 402 of max_iter: 1000
+iteration: 403 of max_iter: 1000
 iteration: 403 of max_iter: 1000
 iteration: 404 of max_iter: 1000
+iteration: 404 of max_iter: 1000
+iteration: 405 of max_iter: 1000
+iteration: 406 of max_iter: 1000
 iteration: 405 of max_iter: 1000
 iteration: 406 of max_iter: 1000
 iteration: 407 of max_iter: 1000
 iteration: 408 of max_iter: 1000
+iteration: 407 of max_iter: 1000
+iteration: 408 of max_iter: 1000
+iteration: 409 of max_iter: 1000
 iteration: 409 of max_iter: 1000
 iteration: 410 of max_iter: 1000
+iteration: 410 of max_iter: 1000
 iteration: 411 of max_iter: 1000
+iteration: 411 of max_iter: 1000
+iteration: 412 of max_iter: 1000
 iteration: 412 of max_iter: 1000
 iteration: 413 of max_iter: 1000
 iteration: 414 of max_iter: 1000
+iteration: 413 of max_iter: 1000
+iteration: 414 of max_iter: 1000
+iteration: 415 of max_iter: 1000
 iteration: 415 of max_iter: 1000
 iteration: 416 of max_iter: 1000
+iteration: 416 of max_iter: 1000
+iteration: 417 of max_iter: 1000
 iteration: 417 of max_iter: 1000
 iteration: 418 of max_iter: 1000
+iteration: 418 of max_iter: 1000
+iteration: 419 of max_iter: 1000
 iteration: 419 of max_iter: 1000
 iteration: 420 of max_iter: 1000
+iteration: 420 of max_iter: 1000
 iteration: 421 of max_iter: 1000
+iteration: 421 of max_iter: 1000
+iteration: 422 of max_iter: 1000
+iteration: 423 of max_iter: 1000
 iteration: 422 of max_iter: 1000
 iteration: 423 of max_iter: 1000
 iteration: 424 of max_iter: 1000
 iteration: 425 of max_iter: 1000
+iteration: 424 of max_iter: 1000
+iteration: 425 of max_iter: 1000
+iteration: 426 of max_iter: 1000
 iteration: 426 of max_iter: 1000
 iteration: 427 of max_iter: 1000
+iteration: 427 of max_iter: 1000
 iteration: 428 of max_iter: 1000
+iteration: 428 of max_iter: 1000
+iteration: 429 of max_iter: 1000
+iteration: 430 of max_iter: 1000
 iteration: 429 of max_iter: 1000
 iteration: 430 of max_iter: 1000
 iteration: 431 of max_iter: 1000
 iteration: 432 of max_iter: 1000
+iteration: 431 of max_iter: 1000
+iteration: 432 of max_iter: 1000
+iteration: 433 of max_iter: 1000
+iteration: 434 of max_iter: 1000
 iteration: 433 of max_iter: 1000
 iteration: 434 of max_iter: 1000
 iteration: 435 of max_iter: 1000
 iteration: 436 of max_iter: 1000
+iteration: 435 of max_iter: 1000
+iteration: 436 of max_iter: 1000
+iteration: 437 of max_iter: 1000
+iteration: 438 of max_iter: 1000
 iteration: 437 of max_iter: 1000
 iteration: 438 of max_iter: 1000
 iteration: 439 of max_iter: 1000
+iteration: 439 of max_iter: 1000
+iteration: 440 of max_iter: 1000
+iteration: 441 of max_iter: 1000
 iteration: 440 of max_iter: 1000
 iteration: 441 of max_iter: 1000
 iteration: 442 of max_iter: 1000
+iteration: 442 of max_iter: 1000
+iteration: 443 of max_iter: 1000
+iteration: 444 of max_iter: 1000
 iteration: 443 of max_iter: 1000
 iteration: 444 of max_iter: 1000
 iteration: 445 of max_iter: 1000
 iteration: 446 of max_iter: 1000
+iteration: 445 of max_iter: 1000
+iteration: 446 of max_iter: 1000
+iteration: 447 of max_iter: 1000
 iteration: 447 of max_iter: 1000
 iteration: 448 of max_iter: 1000
 iteration: 449 of max_iter: 1000
+iteration: 448 of max_iter: 1000
+iteration: 449 of max_iter: 1000
+iteration: 450 of max_iter: 1000
 iteration: 450 of max_iter: 1000
 iteration: 451 of max_iter: 1000
+iteration: 451 of max_iter: 1000
+iteration: 452 of max_iter: 1000
 iteration: 452 of max_iter: 1000
 iteration: 453 of max_iter: 1000
 iteration: 454 of max_iter: 1000
+iteration: 453 of max_iter: 1000
+iteration: 454 of max_iter: 1000
+iteration: 455 of max_iter: 1000
 iteration: 455 of max_iter: 1000
 iteration: 456 of max_iter: 1000
+iteration: 456 of max_iter: 1000
+iteration: 457 of max_iter: 1000
 iteration: 457 of max_iter: 1000
 iteration: 458 of max_iter: 1000
+iteration: 458 of max_iter: 1000
+iteration: 459 of max_iter: 1000
 iteration: 459 of max_iter: 1000
 iteration: 460 of max_iter: 1000
+iteration: 460 of max_iter: 1000
+iteration: 461 of max_iter: 1000
+iteration: 462 of max_iter: 1000
 iteration: 461 of max_iter: 1000
 iteration: 462 of max_iter: 1000
 iteration: 463 of max_iter: 1000
 iteration: 464 of max_iter: 1000
+iteration: 463 of max_iter: 1000
+iteration: 464 of max_iter: 1000
+iteration: 465 of max_iter: 1000
+iteration: 466 of max_iter: 1000
 iteration: 465 of max_iter: 1000
 iteration: 466 of max_iter: 1000
 iteration: 467 of max_iter: 1000
+iteration: 467 of max_iter: 1000
+iteration: 468 of max_iter: 1000
+iteration: 469 of max_iter: 1000
 iteration: 468 of max_iter: 1000
 iteration: 469 of max_iter: 1000
 iteration: 470 of max_iter: 1000
 iteration: 471 of max_iter: 1000
+iteration: 470 of max_iter: 1000
+iteration: 471 of max_iter: 1000
+iteration: 472 of max_iter: 1000
+iteration: 473 of max_iter: 1000
 iteration: 472 of max_iter: 1000
 iteration: 473 of max_iter: 1000
 iteration: 474 of max_iter: 1000
 iteration: 475 of max_iter: 1000
+iteration: 474 of max_iter: 1000
+iteration: 475 of max_iter: 1000
 iteration: 476 of max_iter: 1000
+iteration: 476 of max_iter: 1000
+iteration: 477 of max_iter: 1000
+iteration: 478 of max_iter: 1000
 iteration: 477 of max_iter: 1000
 iteration: 478 of max_iter: 1000
 iteration: 479 of max_iter: 1000
 iteration: 480 of max_iter: 1000
+iteration: 479 of max_iter: 1000
+iteration: 480 of max_iter: 1000
+iteration: 481 of max_iter: 1000
 iteration: 481 of max_iter: 1000
 iteration: 482 of max_iter: 1000
+iteration: 482 of max_iter: 1000
+iteration: 483 of max_iter: 1000
+iteration: 484 of max_iter: 1000
 iteration: 483 of max_iter: 1000
 iteration: 484 of max_iter: 1000
 iteration: 485 of max_iter: 1000
 iteration: 486 of max_iter: 1000
+iteration: 485 of max_iter: 1000
+iteration: 486 of max_iter: 1000
+iteration: 487 of max_iter: 1000
+iteration: 488 of max_iter: 1000
 iteration: 487 of max_iter: 1000
 iteration: 488 of max_iter: 1000
 iteration: 489 of max_iter: 1000
 iteration: 490 of max_iter: 1000
+iteration: 489 of max_iter: 1000
+iteration: 490 of max_iter: 1000
+iteration: 491 of max_iter: 1000
+iteration: 492 of max_iter: 1000
 iteration: 491 of max_iter: 1000
 iteration: 492 of max_iter: 1000
 iteration: 493 of max_iter: 1000
 iteration: 494 of max_iter: 1000
+iteration: 493 of max_iter: 1000
+iteration: 494 of max_iter: 1000
+iteration: 495 of max_iter: 1000
 iteration: 495 of max_iter: 1000
 iteration: 496 of max_iter: 1000
+iteration: 496 of max_iter: 1000
+iteration: 497 of max_iter: 1000
 iteration: 497 of max_iter: 1000
 iteration: 498 of max_iter: 1000
 iteration: 499 of max_iter: 1000
+iteration: 498 of max_iter: 1000
+iteration: 499 of max_iter: 1000
 iteration: 500 of max_iter: 1000
+iteration: 500 of max_iter: 1000
+iteration: 501 of max_iter: 1000
 iteration: 501 of max_iter: 1000
 iteration: 502 of max_iter: 1000
 iteration: 503 of max_iter: 1000
+iteration: 502 of max_iter: 1000
+iteration: 503 of max_iter: 1000
 iteration: 504 of max_iter: 1000
+iteration: 504 of max_iter: 1000
+iteration: 505 of max_iter: 1000
+iteration: 506 of max_iter: 1000
 iteration: 505 of max_iter: 1000
 iteration: 506 of max_iter: 1000
 iteration: 507 of max_iter: 1000
 iteration: 508 of max_iter: 1000
+iteration: 507 of max_iter: 1000
+iteration: 508 of max_iter: 1000
+iteration: 509 of max_iter: 1000
+iteration: 510 of max_iter: 1000
 iteration: 509 of max_iter: 1000
 iteration: 510 of max_iter: 1000
 iteration: 511 of max_iter: 1000
+iteration: 511 of max_iter: 1000
+iteration: 512 of max_iter: 1000
 iteration: 512 of max_iter: 1000
 iteration: 513 of max_iter: 1000
+iteration: 513 of max_iter: 1000
+iteration: 514 of max_iter: 1000
+iteration: 515 of max_iter: 1000
 iteration: 514 of max_iter: 1000
 iteration: 515 of max_iter: 1000
 iteration: 516 of max_iter: 1000
 iteration: 517 of max_iter: 1000
+iteration: 516 of max_iter: 1000
+iteration: 517 of max_iter: 1000
+iteration: 518 of max_iter: 1000
+iteration: 519 of max_iter: 1000
 iteration: 518 of max_iter: 1000
 iteration: 519 of max_iter: 1000
 iteration: 520 of max_iter: 1000
 iteration: 521 of max_iter: 1000
+iteration: 520 of max_iter: 1000
+iteration: 521 of max_iter: 1000
+iteration: 522 of max_iter: 1000
+iteration: 523 of max_iter: 1000
 iteration: 522 of max_iter: 1000
 iteration: 523 of max_iter: 1000
 iteration: 524 of max_iter: 1000
+iteration: 524 of max_iter: 1000
+iteration: 525 of max_iter: 1000
 iteration: 525 of max_iter: 1000
 iteration: 526 of max_iter: 1000
 iteration: 527 of max_iter: 1000
+iteration: 526 of max_iter: 1000
+iteration: 527 of max_iter: 1000
+iteration: 528 of max_iter: 1000
 iteration: 528 of max_iter: 1000
 iteration: 529 of max_iter: 1000
 iteration: 530 of max_iter: 1000
+iteration: 529 of max_iter: 1000
+iteration: 530 of max_iter: 1000
+iteration: 531 of max_iter: 1000
 iteration: 531 of max_iter: 1000
 iteration: 532 of max_iter: 1000
+iteration: 532 of max_iter: 1000
+iteration: 533 of max_iter: 1000
+iteration: 534 of max_iter: 1000
 iteration: 533 of max_iter: 1000
 iteration: 534 of max_iter: 1000
 iteration: 535 of max_iter: 1000
 iteration: 536 of max_iter: 1000
+iteration: 535 of max_iter: 1000
+iteration: 536 of max_iter: 1000
+iteration: 537 of max_iter: 1000
+iteration: 538 of max_iter: 1000
 iteration: 537 of max_iter: 1000
 iteration: 538 of max_iter: 1000
 iteration: 539 of max_iter: 1000
 iteration: 540 of max_iter: 1000
+iteration: 539 of max_iter: 1000
+iteration: 540 of max_iter: 1000
 iteration: 541 of max_iter: 1000
+iteration: 541 of max_iter: 1000
+iteration: 542 of max_iter: 1000
 iteration: 542 of max_iter: 1000
 iteration: 543 of max_iter: 1000
 iteration: 544 of max_iter: 1000
+iteration: 543 of max_iter: 1000
+iteration: 544 of max_iter: 1000
+iteration: 545 of max_iter: 1000
 iteration: 545 of max_iter: 1000
 iteration: 546 of max_iter: 1000
 iteration: 547 of max_iter: 1000
+iteration: 546 of max_iter: 1000
+iteration: 547 of max_iter: 1000
 iteration: 548 of max_iter: 1000
+iteration: 548 of max_iter: 1000
+iteration: 549 of max_iter: 1000
+iteration: 550 of max_iter: 1000
 iteration: 549 of max_iter: 1000
 iteration: 550 of max_iter: 1000
 iteration: 551 of max_iter: 1000
 iteration: 552 of max_iter: 1000
+iteration: 551 of max_iter: 1000
+iteration: 552 of max_iter: 1000
+iteration: 553 of max_iter: 1000
+iteration: 554 of max_iter: 1000
 iteration: 553 of max_iter: 1000
 iteration: 554 of max_iter: 1000
 iteration: 555 of max_iter: 1000
 iteration: 556 of max_iter: 1000
+iteration: 555 of max_iter: 1000
+iteration: 556 of max_iter: 1000
+iteration: 557 of max_iter: 1000
+iteration: 558 of max_iter: 1000
 iteration: 557 of max_iter: 1000
 iteration: 558 of max_iter: 1000
 iteration: 559 of max_iter: 1000
 iteration: 560 of max_iter: 1000
+iteration: 559 of max_iter: 1000
+iteration: 560 of max_iter: 1000
+iteration: 561 of max_iter: 1000
+iteration: 562 of max_iter: 1000
 iteration: 561 of max_iter: 1000
 iteration: 562 of max_iter: 1000
 iteration: 563 of max_iter: 1000
 iteration: 564 of max_iter: 1000
+iteration: 563 of max_iter: 1000
+iteration: 564 of max_iter: 1000
 iteration: 565 of max_iter: 1000
+iteration: 565 of max_iter: 1000
+iteration: 566 of max_iter: 1000
 iteration: 566 of max_iter: 1000
 iteration: 567 of max_iter: 1000
 iteration: 568 of max_iter: 1000
+iteration: 567 of max_iter: 1000
+iteration: 568 of max_iter: 1000
+iteration: 569 of max_iter: 1000
 iteration: 569 of max_iter: 1000
 iteration: 570 of max_iter: 1000
+iteration: 570 of max_iter: 1000
+iteration: 571 of max_iter: 1000
 iteration: 571 of max_iter: 1000
 iteration: 572 of max_iter: 1000
 iteration: 573 of max_iter: 1000
+iteration: 572 of max_iter: 1000
+iteration: 573 of max_iter: 1000
+iteration: 574 of max_iter: 1000
 iteration: 574 of max_iter: 1000
 iteration: 575 of max_iter: 1000
 iteration: 576 of max_iter: 1000
+iteration: 575 of max_iter: 1000
+iteration: 576 of max_iter: 1000
 iteration: 577 of max_iter: 1000
+iteration: 577 of max_iter: 1000
+iteration: 578 of max_iter: 1000
 iteration: 578 of max_iter: 1000
 iteration: 579 of max_iter: 1000
 iteration: 580 of max_iter: 1000
+iteration: 579 of max_iter: 1000
+iteration: 580 of max_iter: 1000
+iteration: 581 of max_iter: 1000
 iteration: 581 of max_iter: 1000
 iteration: 582 of max_iter: 1000
 iteration: 583 of max_iter: 1000
+iteration: 582 of max_iter: 1000
+iteration: 583 of max_iter: 1000
+iteration: 584 of max_iter: 1000
 iteration: 584 of max_iter: 1000
 iteration: 585 of max_iter: 1000
+iteration: 585 of max_iter: 1000
+iteration: 586 of max_iter: 1000
 iteration: 586 of max_iter: 1000
 iteration: 587 of max_iter: 1000
+iteration: 587 of max_iter: 1000
+iteration: 588 of max_iter: 1000
 iteration: 588 of max_iter: 1000
 iteration: 589 of max_iter: 1000
+iteration: 589 of max_iter: 1000
+iteration: 590 of max_iter: 1000
 iteration: 590 of max_iter: 1000
 iteration: 591 of max_iter: 1000
+iteration: 591 of max_iter: 1000
+iteration: 592 of max_iter: 1000
 iteration: 592 of max_iter: 1000
 iteration: 593 of max_iter: 1000
+iteration: 593 of max_iter: 1000
+iteration: 594 of max_iter: 1000
 iteration: 594 of max_iter: 1000
 iteration: 595 of max_iter: 1000
+iteration: 595 of max_iter: 1000
+iteration: 596 of max_iter: 1000
 iteration: 596 of max_iter: 1000
 iteration: 597 of max_iter: 1000
+iteration: 597 of max_iter: 1000
+iteration: 598 of max_iter: 1000
 iteration: 598 of max_iter: 1000
 iteration: 599 of max_iter: 1000
+iteration: 599 of max_iter: 1000
+iteration: 600 of max_iter: 1000
 iteration: 600 of max_iter: 1000
 iteration: 601 of max_iter: 1000
+iteration: 601 of max_iter: 1000
+iteration: 602 of max_iter: 1000
 iteration: 602 of max_iter: 1000
 iteration: 603 of max_iter: 1000
+iteration: 603 of max_iter: 1000
+iteration: 604 of max_iter: 1000
 iteration: 604 of max_iter: 1000
 iteration: 605 of max_iter: 1000
+iteration: 605 of max_iter: 1000
+iteration: 606 of max_iter: 1000
 iteration: 606 of max_iter: 1000
 iteration: 607 of max_iter: 1000
+iteration: 607 of max_iter: 1000
+iteration: 608 of max_iter: 1000
 iteration: 608 of max_iter: 1000
 iteration: 609 of max_iter: 1000
+iteration: 609 of max_iter: 1000
+iteration: 610 of max_iter: 1000
 iteration: 610 of max_iter: 1000
 iteration: 611 of max_iter: 1000
+iteration: 611 of max_iter: 1000
+iteration: 612 of max_iter: 1000
 iteration: 612 of max_iter: 1000
 iteration: 613 of max_iter: 1000
+iteration: 613 of max_iter: 1000
+iteration: 614 of max_iter: 1000
 iteration: 614 of max_iter: 1000
 iteration: 615 of max_iter: 1000
+iteration: 615 of max_iter: 1000
+iteration: 616 of max_iter: 1000
 iteration: 616 of max_iter: 1000
 iteration: 617 of max_iter: 1000
 iteration: 618 of max_iter: 1000
+iteration: 617 of max_iter: 1000
+iteration: 618 of max_iter: 1000
+iteration: 619 of max_iter: 1000
 iteration: 619 of max_iter: 1000
 iteration: 620 of max_iter: 1000
+iteration: 620 of max_iter: 1000
+iteration: 621 of max_iter: 1000
 iteration: 621 of max_iter: 1000
 iteration: 622 of max_iter: 1000
+iteration: 622 of max_iter: 1000
 iteration: 623 of max_iter: 1000
+iteration: 623 of max_iter: 1000
+iteration: 624 of max_iter: 1000
 iteration: 624 of max_iter: 1000
 iteration: 625 of max_iter: 1000
 iteration: 626 of max_iter: 1000
+iteration: 625 of max_iter: 1000
+iteration: 626 of max_iter: 1000
+iteration: 627 of max_iter: 1000
 iteration: 627 of max_iter: 1000
 iteration: 628 of max_iter: 1000
+iteration: 628 of max_iter: 1000
+iteration: 629 of max_iter: 1000
 iteration: 629 of max_iter: 1000
 iteration: 630 of max_iter: 1000
 iteration: 631 of max_iter: 1000
+iteration: 630 of max_iter: 1000
+iteration: 631 of max_iter: 1000
+iteration: 632 of max_iter: 1000
 iteration: 632 of max_iter: 1000
 iteration: 633 of max_iter: 1000
+iteration: 633 of max_iter: 1000
+iteration: 634 of max_iter: 1000
 iteration: 634 of max_iter: 1000
 iteration: 635 of max_iter: 1000
+iteration: 635 of max_iter: 1000
+iteration: 636 of max_iter: 1000
 iteration: 636 of max_iter: 1000
 iteration: 637 of max_iter: 1000
+iteration: 637 of max_iter: 1000
+iteration: 638 of max_iter: 1000
 iteration: 638 of max_iter: 1000
 iteration: 639 of max_iter: 1000
+iteration: 639 of max_iter: 1000
+iteration: 640 of max_iter: 1000
 iteration: 640 of max_iter: 1000
 iteration: 641 of max_iter: 1000
+iteration: 641 of max_iter: 1000
+iteration: 642 of max_iter: 1000
 iteration: 642 of max_iter: 1000
 iteration: 643 of max_iter: 1000
+iteration: 643 of max_iter: 1000
+iteration: 644 of max_iter: 1000
 iteration: 644 of max_iter: 1000
 iteration: 645 of max_iter: 1000
+iteration: 645 of max_iter: 1000
+iteration: 646 of max_iter: 1000
 iteration: 646 of max_iter: 1000
 iteration: 647 of max_iter: 1000
+iteration: 647 of max_iter: 1000
+iteration: 648 of max_iter: 1000
 iteration: 648 of max_iter: 1000
 iteration: 649 of max_iter: 1000
+iteration: 649 of max_iter: 1000
+iteration: 650 of max_iter: 1000
 iteration: 650 of max_iter: 1000
 iteration: 651 of max_iter: 1000
+iteration: 651 of max_iter: 1000
+iteration: 652 of max_iter: 1000
 iteration: 652 of max_iter: 1000
 iteration: 653 of max_iter: 1000
+iteration: 653 of max_iter: 1000
+iteration: 654 of max_iter: 1000
 iteration: 654 of max_iter: 1000
 iteration: 655 of max_iter: 1000
+iteration: 655 of max_iter: 1000
+iteration: 656 of max_iter: 1000
 iteration: 656 of max_iter: 1000
 iteration: 657 of max_iter: 1000
+iteration: 657 of max_iter: 1000
+iteration: 658 of max_iter: 1000
 iteration: 658 of max_iter: 1000
 iteration: 659 of max_iter: 1000
+iteration: 659 of max_iter: 1000
+iteration: 660 of max_iter: 1000
 iteration: 660 of max_iter: 1000
 iteration: 661 of max_iter: 1000
+iteration: 661 of max_iter: 1000
+iteration: 662 of max_iter: 1000
 iteration: 662 of max_iter: 1000
 iteration: 663 of max_iter: 1000
+iteration: 663 of max_iter: 1000
+iteration: 664 of max_iter: 1000
 iteration: 664 of max_iter: 1000
 iteration: 665 of max_iter: 1000
+iteration: 665 of max_iter: 1000
+iteration: 666 of max_iter: 1000
 iteration: 666 of max_iter: 1000
 iteration: 667 of max_iter: 1000
+iteration: 667 of max_iter: 1000
+iteration: 668 of max_iter: 1000
 iteration: 668 of max_iter: 1000
 iteration: 669 of max_iter: 1000
+iteration: 669 of max_iter: 1000
 iteration: 670 of max_iter: 1000
+iteration: 670 of max_iter: 1000
+iteration: 671 of max_iter: 1000
 iteration: 671 of max_iter: 1000
 iteration: 672 of max_iter: 1000
 iteration: 673 of max_iter: 1000
+iteration: 672 of max_iter: 1000
+iteration: 673 of max_iter: 1000
+iteration: 674 of max_iter: 1000
 iteration: 674 of max_iter: 1000
 iteration: 675 of max_iter: 1000
+iteration: 675 of max_iter: 1000
 iteration: 676 of max_iter: 1000
+iteration: 676 of max_iter: 1000
+iteration: 677 of max_iter: 1000
 iteration: 677 of max_iter: 1000
 iteration: 678 of max_iter: 1000
 iteration: 679 of max_iter: 1000
+iteration: 678 of max_iter: 1000
+iteration: 679 of max_iter: 1000
+iteration: 680 of max_iter: 1000
 iteration: 680 of max_iter: 1000
 iteration: 681 of max_iter: 1000
+iteration: 681 of max_iter: 1000
+iteration: 682 of max_iter: 1000
 iteration: 682 of max_iter: 1000
 iteration: 683 of max_iter: 1000
+iteration: 683 of max_iter: 1000
+iteration: 684 of max_iter: 1000
 iteration: 684 of max_iter: 1000
 iteration: 685 of max_iter: 1000
+iteration: 685 of max_iter: 1000
+iteration: 686 of max_iter: 1000
 iteration: 686 of max_iter: 1000
 iteration: 687 of max_iter: 1000
+iteration: 687 of max_iter: 1000
+iteration: 688 of max_iter: 1000
 iteration: 688 of max_iter: 1000
 iteration: 689 of max_iter: 1000
+iteration: 689 of max_iter: 1000
+iteration: 690 of max_iter: 1000
 iteration: 690 of max_iter: 1000
 iteration: 691 of max_iter: 1000
+iteration: 691 of max_iter: 1000
+iteration: 692 of max_iter: 1000
 iteration: 692 of max_iter: 1000
 iteration: 693 of max_iter: 1000
+iteration: 693 of max_iter: 1000
+iteration: 694 of max_iter: 1000
 iteration: 694 of max_iter: 1000
 iteration: 695 of max_iter: 1000
+iteration: 695 of max_iter: 1000
+iteration: 696 of max_iter: 1000
 iteration: 696 of max_iter: 1000
 iteration: 697 of max_iter: 1000
+iteration: 697 of max_iter: 1000
+iteration: 698 of max_iter: 1000
 iteration: 698 of max_iter: 1000
 iteration: 699 of max_iter: 1000
+iteration: 699 of max_iter: 1000
+iteration: 700 of max_iter: 1000
 iteration: 700 of max_iter: 1000
 iteration: 701 of max_iter: 1000
+iteration: 701 of max_iter: 1000
+iteration: 702 of max_iter: 1000
 iteration: 702 of max_iter: 1000
 iteration: 703 of max_iter: 1000
+iteration: 703 of max_iter: 1000
+iteration: 704 of max_iter: 1000
 iteration: 704 of max_iter: 1000
 iteration: 705 of max_iter: 1000
+iteration: 705 of max_iter: 1000
+iteration: 706 of max_iter: 1000
 iteration: 706 of max_iter: 1000
 iteration: 707 of max_iter: 1000
+iteration: 707 of max_iter: 1000
+iteration: 708 of max_iter: 1000
 iteration: 708 of max_iter: 1000
 iteration: 709 of max_iter: 1000
+iteration: 709 of max_iter: 1000
+iteration: 710 of max_iter: 1000
 iteration: 710 of max_iter: 1000
 iteration: 711 of max_iter: 1000
+iteration: 711 of max_iter: 1000
 iteration: 712 of max_iter: 1000
+iteration: 712 of max_iter: 1000
+iteration: 713 of max_iter: 1000
 iteration: 713 of max_iter: 1000
 iteration: 714 of max_iter: 1000
 iteration: 715 of max_iter: 1000
+iteration: 714 of max_iter: 1000
+iteration: 715 of max_iter: 1000
+iteration: 716 of max_iter: 1000
 iteration: 716 of max_iter: 1000
 iteration: 717 of max_iter: 1000
+iteration: 717 of max_iter: 1000
 iteration: 718 of max_iter: 1000
+iteration: 718 of max_iter: 1000
+iteration: 719 of max_iter: 1000
 iteration: 719 of max_iter: 1000
 iteration: 720 of max_iter: 1000
 iteration: 721 of max_iter: 1000
+iteration: 720 of max_iter: 1000
+iteration: 721 of max_iter: 1000
+iteration: 722 of max_iter: 1000
 iteration: 722 of max_iter: 1000
 iteration: 723 of max_iter: 1000
+iteration: 723 of max_iter: 1000
+iteration: 724 of max_iter: 1000
 iteration: 724 of max_iter: 1000
 iteration: 725 of max_iter: 1000
+iteration: 725 of max_iter: 1000
+iteration: 726 of max_iter: 1000
 iteration: 726 of max_iter: 1000
 iteration: 727 of max_iter: 1000
+iteration: 727 of max_iter: 1000
+iteration: 728 of max_iter: 1000
 iteration: 728 of max_iter: 1000
 iteration: 729 of max_iter: 1000
+iteration: 729 of max_iter: 1000
+iteration: 730 of max_iter: 1000
 iteration: 730 of max_iter: 1000
 iteration: 731 of max_iter: 1000
+iteration: 731 of max_iter: 1000
+iteration: 732 of max_iter: 1000
 iteration: 732 of max_iter: 1000
 iteration: 733 of max_iter: 1000
+iteration: 733 of max_iter: 1000
+iteration: 734 of max_iter: 1000
 iteration: 734 of max_iter: 1000
 iteration: 735 of max_iter: 1000
+iteration: 735 of max_iter: 1000
+iteration: 736 of max_iter: 1000
 iteration: 736 of max_iter: 1000
 iteration: 737 of max_iter: 1000
+iteration: 737 of max_iter: 1000
+iteration: 738 of max_iter: 1000
 iteration: 738 of max_iter: 1000
 iteration: 739 of max_iter: 1000
+iteration: 739 of max_iter: 1000
+iteration: 740 of max_iter: 1000
 iteration: 740 of max_iter: 1000
 iteration: 741 of max_iter: 1000
+iteration: 741 of max_iter: 1000
+iteration: 742 of max_iter: 1000
 iteration: 742 of max_iter: 1000
 iteration: 743 of max_iter: 1000
+iteration: 743 of max_iter: 1000
+iteration: 744 of max_iter: 1000
 iteration: 744 of max_iter: 1000
 iteration: 745 of max_iter: 1000
+iteration: 745 of max_iter: 1000
+iteration: 746 of max_iter: 1000
 iteration: 746 of max_iter: 1000
 iteration: 747 of max_iter: 1000
+iteration: 747 of max_iter: 1000
+iteration: 748 of max_iter: 1000
 iteration: 748 of max_iter: 1000
 iteration: 749 of max_iter: 1000
+iteration: 749 of max_iter: 1000
+iteration: 750 of max_iter: 1000
 iteration: 750 of max_iter: 1000
 iteration: 751 of max_iter: 1000
+iteration: 751 of max_iter: 1000
+iteration: 752 of max_iter: 1000
 iteration: 752 of max_iter: 1000
 iteration: 753 of max_iter: 1000
+iteration: 753 of max_iter: 1000
+iteration: 754 of max_iter: 1000
 iteration: 754 of max_iter: 1000
 iteration: 755 of max_iter: 1000
+iteration: 755 of max_iter: 1000
+iteration: 756 of max_iter: 1000
 iteration: 756 of max_iter: 1000
 iteration: 757 of max_iter: 1000
+iteration: 757 of max_iter: 1000
+iteration: 758 of max_iter: 1000
 iteration: 758 of max_iter: 1000
 iteration: 759 of max_iter: 1000
+iteration: 759 of max_iter: 1000
+iteration: 760 of max_iter: 1000
 iteration: 760 of max_iter: 1000
 iteration: 761 of max_iter: 1000
+iteration: 761 of max_iter: 1000
+iteration: 762 of max_iter: 1000
 iteration: 762 of max_iter: 1000
 iteration: 763 of max_iter: 1000
+iteration: 763 of max_iter: 1000
+iteration: 764 of max_iter: 1000
 iteration: 764 of max_iter: 1000
 iteration: 765 of max_iter: 1000
+iteration: 765 of max_iter: 1000
+iteration: 766 of max_iter: 1000
 iteration: 766 of max_iter: 1000
 iteration: 767 of max_iter: 1000
+iteration: 767 of max_iter: 1000
+iteration: 768 of max_iter: 1000
 iteration: 768 of max_iter: 1000
 iteration: 769 of max_iter: 1000
+iteration: 769 of max_iter: 1000
+iteration: 770 of max_iter: 1000
 iteration: 770 of max_iter: 1000
 iteration: 771 of max_iter: 1000
+iteration: 771 of max_iter: 1000
+iteration: 772 of max_iter: 1000
 iteration: 772 of max_iter: 1000
 iteration: 773 of max_iter: 1000
+iteration: 773 of max_iter: 1000
+iteration: 774 of max_iter: 1000
 iteration: 774 of max_iter: 1000
 iteration: 775 of max_iter: 1000
+iteration: 775 of max_iter: 1000
+iteration: 776 of max_iter: 1000
 iteration: 776 of max_iter: 1000
 iteration: 777 of max_iter: 1000
+iteration: 777 of max_iter: 1000
+iteration: 778 of max_iter: 1000
 iteration: 778 of max_iter: 1000
 iteration: 779 of max_iter: 1000
+iteration: 779 of max_iter: 1000
+iteration: 780 of max_iter: 1000
 iteration: 780 of max_iter: 1000
 iteration: 781 of max_iter: 1000
+iteration: 781 of max_iter: 1000
+iteration: 782 of max_iter: 1000
 iteration: 782 of max_iter: 1000
 iteration: 783 of max_iter: 1000
+iteration: 783 of max_iter: 1000
+iteration: 784 of max_iter: 1000
 iteration: 784 of max_iter: 1000
 iteration: 785 of max_iter: 1000
+iteration: 785 of max_iter: 1000
+iteration: 786 of max_iter: 1000
 iteration: 786 of max_iter: 1000
 iteration: 787 of max_iter: 1000
+iteration: 787 of max_iter: 1000
+iteration: 788 of max_iter: 1000
 iteration: 788 of max_iter: 1000
 iteration: 789 of max_iter: 1000
 iteration: 790 of max_iter: 1000
+iteration: 789 of max_iter: 1000
+iteration: 790 of max_iter: 1000
+iteration: 791 of max_iter: 1000
 iteration: 791 of max_iter: 1000
 iteration: 792 of max_iter: 1000
+iteration: 792 of max_iter: 1000
+iteration: 793 of max_iter: 1000
 iteration: 793 of max_iter: 1000
 iteration: 794 of max_iter: 1000
+iteration: 794 of max_iter: 1000
+iteration: 795 of max_iter: 1000
 iteration: 795 of max_iter: 1000
 iteration: 796 of max_iter: 1000
+iteration: 796 of max_iter: 1000
+iteration: 797 of max_iter: 1000
 iteration: 797 of max_iter: 1000
 iteration: 798 of max_iter: 1000
+iteration: 798 of max_iter: 1000
+iteration: 799 of max_iter: 1000
 iteration: 799 of max_iter: 1000
 iteration: 800 of max_iter: 1000
+iteration: 800 of max_iter: 1000
+iteration: 801 of max_iter: 1000
 iteration: 801 of max_iter: 1000
 iteration: 802 of max_iter: 1000
+iteration: 802 of max_iter: 1000
+iteration: 803 of max_iter: 1000
 iteration: 803 of max_iter: 1000
 iteration: 804 of max_iter: 1000
+iteration: 804 of max_iter: 1000
+iteration: 805 of max_iter: 1000
 iteration: 805 of max_iter: 1000
 iteration: 806 of max_iter: 1000
+iteration: 806 of max_iter: 1000
+iteration: 807 of max_iter: 1000
 iteration: 807 of max_iter: 1000
 iteration: 808 of max_iter: 1000
+iteration: 808 of max_iter: 1000
 iteration: 809 of max_iter: 1000
+iteration: 809 of max_iter: 1000
+iteration: 810 of max_iter: 1000
 iteration: 810 of max_iter: 1000
 iteration: 811 of max_iter: 1000
 iteration: 812 of max_iter: 1000
+iteration: 811 of max_iter: 1000
+iteration: 812 of max_iter: 1000
+iteration: 813 of max_iter: 1000
 iteration: 813 of max_iter: 1000
 iteration: 814 of max_iter: 1000
+iteration: 814 of max_iter: 1000
+iteration: 815 of max_iter: 1000
 iteration: 815 of max_iter: 1000
 iteration: 816 of max_iter: 1000
+iteration: 816 of max_iter: 1000
+iteration: 817 of max_iter: 1000
 iteration: 817 of max_iter: 1000
 iteration: 818 of max_iter: 1000
 iteration: 819 of max_iter: 1000
+iteration: 818 of max_iter: 1000
+iteration: 819 of max_iter: 1000
+iteration: 820 of max_iter: 1000
 iteration: 820 of max_iter: 1000
 iteration: 821 of max_iter: 1000
 iteration: 822 of max_iter: 1000
+iteration: 821 of max_iter: 1000
+iteration: 822 of max_iter: 1000
+iteration: 823 of max_iter: 1000
 iteration: 823 of max_iter: 1000
 iteration: 824 of max_iter: 1000
+iteration: 824 of max_iter: 1000
+iteration: 825 of max_iter: 1000
 iteration: 825 of max_iter: 1000
 iteration: 826 of max_iter: 1000
 iteration: 827 of max_iter: 1000
+iteration: 826 of max_iter: 1000
+iteration: 827 of max_iter: 1000
 iteration: 828 of max_iter: 1000
+iteration: 828 of max_iter: 1000
+iteration: 829 of max_iter: 1000
 iteration: 829 of max_iter: 1000
 iteration: 830 of max_iter: 1000
 iteration: 831 of max_iter: 1000
+iteration: 830 of max_iter: 1000
+iteration: 831 of max_iter: 1000
+iteration: 832 of max_iter: 1000
 iteration: 832 of max_iter: 1000
 iteration: 833 of max_iter: 1000
+iteration: 833 of max_iter: 1000
+iteration: 834 of max_iter: 1000
 iteration: 834 of max_iter: 1000
 iteration: 835 of max_iter: 1000
+iteration: 835 of max_iter: 1000
+iteration: 836 of max_iter: 1000
 iteration: 836 of max_iter: 1000
 iteration: 837 of max_iter: 1000
+iteration: 837 of max_iter: 1000
+iteration: 838 of max_iter: 1000
 iteration: 838 of max_iter: 1000
 iteration: 839 of max_iter: 1000
+iteration: 839 of max_iter: 1000
+iteration: 840 of max_iter: 1000
+iteration: 841 of max_iter: 1000
 iteration: 840 of max_iter: 1000
 iteration: 841 of max_iter: 1000
 iteration: 842 of max_iter: 1000
 iteration: 843 of max_iter: 1000
+iteration: 842 of max_iter: 1000
+iteration: 843 of max_iter: 1000
+iteration: 844 of max_iter: 1000
+iteration: 845 of max_iter: 1000
 iteration: 844 of max_iter: 1000
 iteration: 845 of max_iter: 1000
 iteration: 846 of max_iter: 1000
+iteration: 846 of max_iter: 1000
+iteration: 847 of max_iter: 1000
 iteration: 847 of max_iter: 1000
 iteration: 848 of max_iter: 1000
+iteration: 848 of max_iter: 1000
+iteration: 849 of max_iter: 1000
 iteration: 849 of max_iter: 1000
 iteration: 850 of max_iter: 1000
+iteration: 850 of max_iter: 1000
+iteration: 851 of max_iter: 1000
 iteration: 851 of max_iter: 1000
 iteration: 852 of max_iter: 1000
+iteration: 852 of max_iter: 1000
 iteration: 853 of max_iter: 1000
+iteration: 853 of max_iter: 1000
+iteration: 854 of max_iter: 1000
+iteration: 855 of max_iter: 1000
 iteration: 854 of max_iter: 1000
 iteration: 855 of max_iter: 1000
 iteration: 856 of max_iter: 1000
 iteration: 857 of max_iter: 1000
+iteration: 856 of max_iter: 1000
+iteration: 857 of max_iter: 1000
+iteration: 858 of max_iter: 1000
+iteration: 859 of max_iter: 1000
 iteration: 858 of max_iter: 1000
 iteration: 859 of max_iter: 1000
 iteration: 860 of max_iter: 1000
 iteration: 861 of max_iter: 1000
+iteration: 860 of max_iter: 1000
+iteration: 861 of max_iter: 1000
+iteration: 862 of max_iter: 1000
+iteration: 863 of max_iter: 1000
 iteration: 862 of max_iter: 1000
 iteration: 863 of max_iter: 1000
 iteration: 864 of max_iter: 1000
 iteration: 865 of max_iter: 1000
+iteration: 864 of max_iter: 1000
+iteration: 865 of max_iter: 1000
+iteration: 866 of max_iter: 1000
+iteration: 867 of max_iter: 1000
 iteration: 866 of max_iter: 1000
 iteration: 867 of max_iter: 1000
 iteration: 868 of max_iter: 1000
 iteration: 869 of max_iter: 1000
+iteration: 868 of max_iter: 1000
+iteration: 869 of max_iter: 1000
+iteration: 870 of max_iter: 1000
+iteration: 871 of max_iter: 1000
 iteration: 870 of max_iter: 1000
 iteration: 871 of max_iter: 1000
 iteration: 872 of max_iter: 1000
 iteration: 873 of max_iter: 1000
+iteration: 872 of max_iter: 1000
+iteration: 873 of max_iter: 1000
+iteration: 874 of max_iter: 1000
+iteration: 875 of max_iter: 1000
 iteration: 874 of max_iter: 1000
 iteration: 875 of max_iter: 1000
 iteration: 876 of max_iter: 1000
 iteration: 877 of max_iter: 1000
+iteration: 876 of max_iter: 1000
+iteration: 877 of max_iter: 1000
+iteration: 878 of max_iter: 1000
+iteration: 879 of max_iter: 1000
 iteration: 878 of max_iter: 1000
 iteration: 879 of max_iter: 1000
 iteration: 880 of max_iter: 1000
 iteration: 881 of max_iter: 1000
+iteration: 880 of max_iter: 1000
+iteration: 881 of max_iter: 1000
+iteration: 882 of max_iter: 1000
+iteration: 883 of max_iter: 1000
 iteration: 882 of max_iter: 1000
 iteration: 883 of max_iter: 1000
 iteration: 884 of max_iter: 1000
 iteration: 885 of max_iter: 1000
+iteration: 884 of max_iter: 1000
+iteration: 885 of max_iter: 1000
+iteration: 886 of max_iter: 1000
 iteration: 886 of max_iter: 1000
 iteration: 887 of max_iter: 1000
+iteration: 887 of max_iter: 1000
+iteration: 888 of max_iter: 1000
 iteration: 888 of max_iter: 1000
 iteration: 889 of max_iter: 1000
+iteration: 889 of max_iter: 1000
 iteration: 890 of max_iter: 1000
+iteration: 890 of max_iter: 1000
+iteration: 891 of max_iter: 1000
 iteration: 891 of max_iter: 1000
 iteration: 892 of max_iter: 1000
 iteration: 893 of max_iter: 1000
+iteration: 892 of max_iter: 1000
+iteration: 893 of max_iter: 1000
+iteration: 894 of max_iter: 1000
 iteration: 894 of max_iter: 1000
 iteration: 895 of max_iter: 1000
+iteration: 895 of max_iter: 1000
+iteration: 896 of max_iter: 1000
+iteration: 897 of max_iter: 1000
 iteration: 896 of max_iter: 1000
 iteration: 897 of max_iter: 1000
 iteration: 898 of max_iter: 1000
 iteration: 899 of max_iter: 1000
+iteration: 898 of max_iter: 1000
+iteration: 899 of max_iter: 1000
+iteration: 900 of max_iter: 1000
 iteration: 900 of max_iter: 1000
 iteration: 901 of max_iter: 1000
+iteration: 901 of max_iter: 1000
+iteration: 902 of max_iter: 1000
 iteration: 902 of max_iter: 1000
 iteration: 903 of max_iter: 1000
+iteration: 903 of max_iter: 1000
+iteration: 904 of max_iter: 1000
+iteration: 905 of max_iter: 1000
 iteration: 904 of max_iter: 1000
 iteration: 905 of max_iter: 1000
 iteration: 906 of max_iter: 1000
 iteration: 907 of max_iter: 1000
+iteration: 906 of max_iter: 1000
+iteration: 907 of max_iter: 1000
+iteration: 908 of max_iter: 1000
+iteration: 909 of max_iter: 1000
 iteration: 908 of max_iter: 1000
 iteration: 909 of max_iter: 1000
 iteration: 910 of max_iter: 1000
 iteration: 911 of max_iter: 1000
+iteration: 910 of max_iter: 1000
+iteration: 911 of max_iter: 1000
+iteration: 912 of max_iter: 1000
+iteration: 913 of max_iter: 1000
 iteration: 912 of max_iter: 1000
 iteration: 913 of max_iter: 1000
 iteration: 914 of max_iter: 1000
 iteration: 915 of max_iter: 1000
+iteration: 914 of max_iter: 1000
+iteration: 915 of max_iter: 1000
+iteration: 916 of max_iter: 1000
 iteration: 916 of max_iter: 1000
 iteration: 917 of max_iter: 1000
 iteration: 918 of max_iter: 1000
+iteration: 917 of max_iter: 1000
+iteration: 918 of max_iter: 1000
+iteration: 919 of max_iter: 1000
 iteration: 919 of max_iter: 1000
 iteration: 920 of max_iter: 1000
+iteration: 920 of max_iter: 1000
+iteration: 921 of max_iter: 1000
 iteration: 921 of max_iter: 1000
 iteration: 922 of max_iter: 1000
+iteration: 922 of max_iter: 1000
+iteration: 923 of max_iter: 1000
 iteration: 923 of max_iter: 1000
 iteration: 924 of max_iter: 1000
+iteration: 924 of max_iter: 1000
+iteration: 925 of max_iter: 1000
 iteration: 925 of max_iter: 1000
 iteration: 926 of max_iter: 1000
+iteration: 926 of max_iter: 1000
+iteration: 927 of max_iter: 1000
 iteration: 927 of max_iter: 1000
 iteration: 928 of max_iter: 1000
+iteration: 928 of max_iter: 1000
+iteration: 929 of max_iter: 1000
 iteration: 929 of max_iter: 1000
 iteration: 930 of max_iter: 1000
+iteration: 930 of max_iter: 1000
+iteration: 931 of max_iter: 1000
+iteration: 932 of max_iter: 1000
 iteration: 931 of max_iter: 1000
 iteration: 932 of max_iter: 1000
 iteration: 933 of max_iter: 1000
 iteration: 934 of max_iter: 1000
+iteration: 933 of max_iter: 1000
+iteration: 934 of max_iter: 1000
+iteration: 935 of max_iter: 1000
+iteration: 936 of max_iter: 1000
 iteration: 935 of max_iter: 1000
 iteration: 936 of max_iter: 1000
 iteration: 937 of max_iter: 1000
 iteration: 938 of max_iter: 1000
+iteration: 937 of max_iter: 1000
+iteration: 938 of max_iter: 1000
+iteration: 939 of max_iter: 1000
 iteration: 939 of max_iter: 1000
 iteration: 940 of max_iter: 1000
+iteration: 940 of max_iter: 1000
+iteration: 941 of max_iter: 1000
+iteration: 942 of max_iter: 1000
 iteration: 941 of max_iter: 1000
 iteration: 942 of max_iter: 1000
 iteration: 943 of max_iter: 1000
 iteration: 944 of max_iter: 1000
+iteration: 943 of max_iter: 1000
+iteration: 944 of max_iter: 1000
+iteration: 945 of max_iter: 1000
+iteration: 946 of max_iter: 1000
 iteration: 945 of max_iter: 1000
 iteration: 946 of max_iter: 1000
 iteration: 947 of max_iter: 1000
 iteration: 948 of max_iter: 1000
+iteration: 947 of max_iter: 1000
+iteration: 948 of max_iter: 1000
 iteration: 949 of max_iter: 1000
+iteration: 949 of max_iter: 1000
+iteration: 950 of max_iter: 1000
+iteration: 951 of max_iter: 1000
 iteration: 950 of max_iter: 1000
 iteration: 951 of max_iter: 1000
 iteration: 952 of max_iter: 1000
 iteration: 953 of max_iter: 1000
+iteration: 952 of max_iter: 1000
+iteration: 953 of max_iter: 1000
+iteration: 954 of max_iter: 1000
+iteration: 955 of max_iter: 1000
 iteration: 954 of max_iter: 1000
 iteration: 955 of max_iter: 1000
 iteration: 956 of max_iter: 1000
+iteration: 956 of max_iter: 1000
+iteration: 957 of max_iter: 1000
+iteration: 958 of max_iter: 1000
 iteration: 957 of max_iter: 1000
 iteration: 958 of max_iter: 1000
 iteration: 959 of max_iter: 1000
 iteration: 960 of max_iter: 1000
+iteration: 959 of max_iter: 1000
+iteration: 960 of max_iter: 1000
+iteration: 961 of max_iter: 1000
 iteration: 961 of max_iter: 1000
 iteration: 962 of max_iter: 1000
+iteration: 962 of max_iter: 1000
+iteration: 963 of max_iter: 1000
 iteration: 963 of max_iter: 1000
 iteration: 964 of max_iter: 1000
+iteration: 964 of max_iter: 1000
+iteration: 965 of max_iter: 1000
 iteration: 965 of max_iter: 1000
 iteration: 966 of max_iter: 1000
 iteration: 967 of max_iter: 1000
+iteration: 966 of max_iter: 1000
+iteration: 967 of max_iter: 1000
 iteration: 968 of max_iter: 1000
+iteration: 968 of max_iter: 1000
+iteration: 969 of max_iter: 1000
+iteration: 970 of max_iter: 1000
 iteration: 969 of max_iter: 1000
 iteration: 970 of max_iter: 1000
 iteration: 971 of max_iter: 1000
 iteration: 972 of max_iter: 1000
+iteration: 971 of max_iter: 1000
+iteration: 972 of max_iter: 1000
+iteration: 973 of max_iter: 1000
+iteration: 974 of max_iter: 1000
 iteration: 973 of max_iter: 1000
 iteration: 974 of max_iter: 1000
 iteration: 975 of max_iter: 1000
 iteration: 976 of max_iter: 1000
+iteration: 975 of max_iter: 1000
+iteration: 976 of max_iter: 1000
+iteration: 977 of max_iter: 1000
 iteration: 977 of max_iter: 1000
 iteration: 978 of max_iter: 1000
+iteration: 978 of max_iter: 1000
+iteration: 979 of max_iter: 1000
 iteration: 979 of max_iter: 1000
 iteration: 980 of max_iter: 1000
+iteration: 980 of max_iter: 1000
 iteration: 981 of max_iter: 1000
+iteration: 981 of max_iter: 1000
+iteration: 982 of max_iter: 1000
 iteration: 982 of max_iter: 1000
 iteration: 983 of max_iter: 1000
 iteration: 984 of max_iter: 1000
+iteration: 983 of max_iter: 1000
+iteration: 984 of max_iter: 1000
+iteration: 985 of max_iter: 1000
 iteration: 985 of max_iter: 1000
 iteration: 986 of max_iter: 1000
+iteration: 986 of max_iter: 1000
+iteration: 987 of max_iter: 1000
 iteration: 987 of max_iter: 1000
 iteration: 988 of max_iter: 1000
+iteration: 988 of max_iter: 1000
+iteration: 989 of max_iter: 1000
 iteration: 989 of max_iter: 1000
 iteration: 990 of max_iter: 1000
+iteration: 990 of max_iter: 1000
+iteration: 991 of max_iter: 1000
 iteration: 991 of max_iter: 1000
 iteration: 992 of max_iter: 1000
+iteration: 992 of max_iter: 1000
 iteration: 993 of max_iter: 1000
+iteration: 993 of max_iter: 1000
+iteration: 994 of max_iter: 1000
 iteration: 994 of max_iter: 1000
 iteration: 995 of max_iter: 1000
 iteration: 996 of max_iter: 1000
+iteration: 995 of max_iter: 1000
+iteration: 996 of max_iter: 1000
+iteration: 997 of max_iter: 1000
 iteration: 997 of max_iter: 1000
 iteration: 998 of max_iter: 1000
+iteration: 998 of max_iter: 1000
+iteration: 999 of max_iter: 1000
 iteration: 999 of max_iter: 1000
 iteration: 1000 of max_iter: 1000
+iteration: 1000 of max_iter: 1000
+
+✓ Model LDA berhasil dilatih dengan 30 topik
 
 ✓ Model LDA berhasil dilatih dengan 30 topik
 </pre></div>
@@ -1920,94 +2958,94 @@ TOP 10 KATA PER TOPIK
 ==================================================
 
 Topik 0:
-menteri, kerja, indonesia, usaha, pangan, bangun, dukung, perintah, tingkat, tani
+program, makan, prabowo, gratis, bergizi, mbg, 2025, anggaran, gizi, triliun
 
 Topik 1:
-jalan, kendara, kereta, wib, arus, lintas, tol, nataru, motor, raya
+undang, dpr, bri, komisi, hukum, pasal, dokumen, terkait, uu, iii
 
 Topik 2:
-partai, jokowi, komisi, dpr, ketua, hadir, pdip, bumn, rapat, gelar
+hasto, kpk, pdip, tersangka, harun, gunung, erupsi, pemeriksaan, penyidik, saksi
 
 Topik 3:
-gol, main, menit, indonesia, piala, aff, vietnam, laga, babak, tanding
+kpk, korupsi, dugaan, pt, pidana, negara, terkait, tersangka, paulus, ketua
 
 Topik 4:
-persen, rp, anggar, juta, triliun, prabowo, perintah, biaya, haji, belanja
+jalan, prabowo, tol, bangkok, sritex, menteri, thailand, jakarta, proyek, arhan
 
 Topik 5:
-makan, gizi, program, gratis, mbg, jabat, dad, bgn, menu, angkat
+kebakaran, los, angeles, api, orang, california, wilayah, palisades, angin, amerika
 
 Topik 6:
-trump, as, presiden, amerika, serikat, greenland, negara, rusia, warga, jabat
+minyak, as, us, harga, persen, ikn, juta, mentah, miliar, barel
 
 Topik 7:
-kerja, pensiun, semarang, kevin, gim, rekan, istora, belgia, suami, advokat
+harga, 2025, pangan, pertamina, beras, kg, jakarta, ribu, 2024, bbm
 
 Topik 8:
-orang, tembak, rumah, korban, warga, luka, mobil, tewas, sakit, malaysia
+indonesia, pelatih, timnas, kluivert, pssi, erick, shin, tae, yong, sty
 
 Topik 9:
-indonesia, timnas, latih, main, piala, kluivert, pssi, dunia, erick, tim
+yoon, militer, korea, darurat, presiden, korsel, selatan, china, pemakzulan, parlemen
 
 Topik 10:
-gunung, erupsi, umkm, sekolah, puncak, sungai, amat, meru, timur, pusat
+malaysia, wni, warga, indonesia, kementerian, kemlu, negeri, kbri, korban, sistem
 
 Topik 11:
-israel, gaza, senjata, gencat, hamas, palestina, sandera, bebas, sepakat, tahan
+laut, pagar, tangerang, nelayan, kkp, misterius, sertifikat, hgb, perikanan, 30
 
 Topik 12:
-laut, pagar, nelayan, ikan, kkp, bangun, misterius, desa, pesisir, segel
+israel, gaza, senjata, gencatan, hamas, palestina, serangan, trump, sandera, warga
 
 Topik 13:
-yoon, presiden, korea, darurat, militer, makzul, korsel, partai, selatan, parlemen
+persen, ppn, 12, pajak, barang, jasa, tarif, kenaikan, pemerintah, keuangan
 
 Topik 14:
-suriah, al, serang, pasu, israel, wilayah, assad, negara, rusia, perintah
+korban, tersangka, pembunuhan, koper, pelaku, jatim, polda, mutilasi, ditemukan, merah
 
 Topik 15:
-ppn, persen, pajak, barang, naik, jasa, prabowo, perintah, kena, tarif
+gol, menit, gawang, vietnam, thailand, babak, pemain, bola, aff, mencetak
 
 Topik 16:
-pesawat, as, minyak, china, terbang, air, kapal, mentah, darat, celaka
+suriah, presiden, partai, al, assad, jokowi, prabowo, ketua, pemberontak, politik
 
 Topik 17:
-anak, orang, miftah, bantu, perempuan, judul, terima, thailand, keluarga, masyarakat
+banjir, warga, kecamatan, jakarta, desa, air, kabupaten, kota, jalan, lampung
 
 Topik 18:
-indonesia, negara, brics, anggota, shin, presiden, yong, tae, gabung, prabowo
+indonesia, piala, pemain, timnas, aff, 2024, tim, laga, pertandingan, dunia
 
 Topik 19:
-ahsan, hendra, indonesia, masters, atlet, fajar, malaysia, rian, latih, putra
+ahsan, hendra, pensiun, indonesia, masters, rian, fajar, 21, 2025, putra
 
 Topik 20:
-jakarta, dunia, izin, blok, digital, milik, tahan, miliar, atlet, us
+pesawat, penumpang, bandara, 2024, penerbangan, nataru, juta, kecelakaan, air, tiket
 
 Topik 21:
-korban, polisi, duga, laku, polda, temu, sangka, tangkap, hasil, polri
+menteri, hukum, hukuman, pemerintah, surat, perintah, negara, orang, pengadilan, polisi
 
 Topik 22:
-banjir, camat, suara, kota, air, gubernur, kabupaten, jakarta, warga, dampak
+indonesia, masyarakat, program, umkm, ekonomi, mendukung, usaha, bumn, kerja, daya
 
 Topik 23:
-kpk, hukum, korupsi, duga, sangka, undang, periksa, negara, uang, putus
+mobil, pelaku, korban, penembakan, polisi, diduga, miftah, rental, tni, bos
 
 Topik 24:
-laut, pagar, tangerang, menteri, milik, sertifikat, hgb, nusron, bongkar, bidang
+negara, indonesia, brics, anggota, presiden, rusia, ri, china, trump, as
 
 Topik 25:
-pertamina, energi, bbm, listrik, subsidi, pasok, gas, daerah, stok, ton
+korban, orang, rumah, keluarga, meninggal, luka, sakit, dunia, anak, mengalami
 
 Topik 26:
-perintah, jakarta, menteri, indonesia, wni, presiden, ikn, negara, kota, prabowo
+2024, suara, metro, polda, nomor, kpu, gubernur, mk, jakarta, pemerasan
 
 Topik 27:
-rp, harga, juta, beras, ribu, triliun, usaha, tumpang, persen, januari
+20, india, pelaku, suriah, yordania, indra, polisi, challenge, uang, langsung
 
 Topik 28:
-red, poin, sparks, menang, megawati, liga, korea, voli, main, kalah
+red, sparks, liga, poin, megawati, kemenangan, voli, korea, laga, vs
 
 Topik 29:
-bakar, los, angeles, hasto, api, pdip, orang, california, madam, palisades
+rumah, tersangka, kerugian, agung, aset, kejagung, nainggolan, total, miliar, penggeledahan
 </pre></div>
 </div>
 </div>
@@ -2055,35 +3093,35 @@ Setiap dokumen kini direpresentasikan sebagai vektor dengan 30 dimensi
 CONTOH DISTRIBUSI TOPIK DOKUMEN PERTAMA
 ==================================================
 Topik 0: 0.0003
-Topik 1: 0.0336
+Topik 1: 0.0003
 Topik 2: 0.0003
 Topik 3: 0.0003
 Topik 4: 0.0003
-Topik 5: 0.0003
+Topik 5: 0.1609
 Topik 6: 0.0003
 Topik 7: 0.0003
-Topik 8: 0.4199
-Topik 9: 0.0003
+Topik 8: 0.0003
+Topik 9: 0.1071
 Topik 10: 0.0003
-Topik 11: 0.0003
+Topik 11: 0.0132
 Topik 12: 0.0003
 Topik 13: 0.0003
-Topik 14: 0.1656
+Topik 14: 0.0003
 Topik 15: 0.0003
-Topik 16: 0.2915
+Topik 16: 0.0003
 Topik 17: 0.0003
 Topik 18: 0.0003
 Topik 19: 0.0003
-Topik 20: 0.0003
+Topik 20: 0.0836
 Topik 21: 0.0003
 Topik 22: 0.0003
-Topik 23: 0.0003
-Topik 24: 0.0152
-Topik 25: 0.0003
+Topik 23: 0.0287
+Topik 24: 0.0003
+Topik 25: 0.4931
 Topik 26: 0.0003
 Topik 27: 0.0003
 Topik 28: 0.0003
-Topik 29: 0.0668
+Topik 29: 0.1061
 
 Total probabilitas: 1.0000 (harus = 1.0)
 </pre></div>
@@ -2173,14 +3211,25 @@ CLASSIFICATION REPORT (LDA + SVM)
 ==================================================
                precision    recall  f1-score   support
 
-      Ekonomi       0.82      0.96      0.88        75
-Internasional       0.97      0.96      0.97        75
-     Nasional       0.94      0.77      0.85        75
-     Olahraga       0.99      1.00      0.99        75
+      Ekonomi       0.85      0.96      0.90        75
+Internasional       0.99      0.95      0.97        75
+     Nasional       0.93      0.84      0.88        75
+     Olahraga       0.99      0.99      0.99        75
 
-     accuracy                           0.92       300
-    macro avg       0.93      0.92      0.92       300
- weighted avg       0.93      0.92      0.92       300
+     accuracy                           0.93       300
+    macro avg       0.94      0.93      0.93       300
+ weighted avg       0.94      0.93      0.93       300
+
+               precision    recall  f1-score   support
+
+      Ekonomi       0.85      0.96      0.90        75
+Internasional       0.99      0.95      0.97        75
+     Nasional       0.93      0.84      0.88        75
+     Olahraga       0.99      0.99      0.99        75
+
+     accuracy                           0.93       300
+    macro avg       0.94      0.93      0.93       300
+ weighted avg       0.94      0.93      0.93       300
 </pre></div>
 </div>
 </div>
@@ -2203,7 +3252,7 @@ Internasional       0.97      0.96      0.97        75
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/612f03e8c5f35b4f6e13a5922fa9fc10bba282c941145773f8c1644f11a7a431.png" src="../../../_images/612f03e8c5f35b4f6e13a5922fa9fc10bba282c941145773f8c1644f11a7a431.png" />
+<img alt="../../../_images/e3e076d46493e378ffee132d46ffe430c390010f68dc48799d66b42117186e31.png" src="../../../_images/e3e076d46493e378ffee132d46ffe430c390010f68dc48799d66b42117186e31.png" />
 </div>
 </div>
 </section>
@@ -2293,9 +3342,9 @@ CLASSIFICATION REPORT (LDA + NAIVE BAYES)
 ==================================================
                precision    recall  f1-score   support
 
-      Ekonomi       0.84      0.97      0.90        75
-Internasional       1.00      0.92      0.96        75
-     Nasional       0.90      0.83      0.86        75
+      Ekonomi       0.81      0.99      0.89        75
+Internasional       0.99      0.95      0.97        75
+     Nasional       0.94      0.77      0.85        75
      Olahraga       1.00      1.00      1.00        75
 
      accuracy                           0.93       300
@@ -2323,7 +3372,7 @@ Internasional       1.00      0.92      0.96        75
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/e7f313f20a76f10d8acfc581d94288f8162c52db009e663c374c63666e13dbd2.png" src="../../../_images/e7f313f20a76f10d8acfc581d94288f8162c52db009e663c374c63666e13dbd2.png" />
+<img alt="../../../_images/10e9c98140f6b8299c3088082762bebbd099d3c94988794a4cd7f67b807b5135.png" src="../../../_images/10e9c98140f6b8299c3088082762bebbd099d3c94988794a4cd7f67b807b5135.png" />
 </div>
 </div>
 </section>
@@ -2365,10 +3414,10 @@ Internasional       1.00      0.92      0.96        75
 PERBANDINGAN METRIK EVALUASI
 ======================================================================
    Metrik  LDA + SVM  LDA + Naive Bayes
- Accuracy   0.923333           0.930000
-Precision   0.928370           0.934408
-   Recall   0.923333           0.930000
- F1-Score   0.922493           0.930170
+ Accuracy   0.933333           0.926667
+Precision   0.936577           0.933695
+   Recall   0.933333           0.926667
+ F1-Score   0.933443           0.926067
 ======================================================================
 </pre></div>
 </div>
@@ -2411,7 +3460,7 @@ Precision   0.928370           0.934408
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/3038451ff6c6678dab00c770981ebeeafa5f4e1ca28f55e52376ed10ecad5e0c.png" src="../../../_images/3038451ff6c6678dab00c770981ebeeafa5f4e1ca28f55e52376ed10ecad5e0c.png" />
+<img alt="../../../_images/839c5f6ab65ad31cb615226461cd9a09db1e0020598c43e7adfc720b896733f4.png" src="../../../_images/839c5f6ab65ad31cb615226461cd9a09db1e0020598c43e7adfc720b896733f4.png" />
 </div>
 </div>
 </section>
@@ -2447,24 +3496,6 @@ Precision   0.928370           0.934408
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../index.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="spam.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">UTS: Document Clustering on Email/SMS Data</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
