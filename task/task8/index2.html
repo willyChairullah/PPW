@@ -1,0 +1,1828 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Web usage mining &#8212; Documentation of PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'task/task8/index2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/myPhoto.jpg" class="logo__image only-light" alt="Documentation of PPW - Home"/>
+    <script>document.write(`<img src="../../_static/myPhoto.jpg" class="logo__image only-dark" alt="Documentation of PPW - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Selamat Datang di Website Catatan & Tugas PPW
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tugas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../task1/index.html">Profil</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../task2/index.html">Tugas 1 Crawling Sprnger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task3/index.html">Tugas 2 : Crawling dan Struktur Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task4/index.html">Tugas 3 Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task5/index.html">Tugas 4 TF-IDF W2V dan Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task7/index-pta.html">Tugas 5: Page rank Web Informatika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Web usage mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task9/index.html">DETEKSI KOMUNITAS FACEBOOK GRAPH (Algoritma Louvain)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">UTS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/index.html">Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/real/index.html">UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM dan Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/real/spam.html">UTS: Document Clustering on Email/SMS Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Ftask/task8/index2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/task/task8/index2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Web usage mining</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-status-200-dan-url-html">filter status = 200 dan url = .html</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-item-matrix-session-url-matrix">User-Item Matrix (Session-URL Matrix)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">🎯 Tujuan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-matrix">📊 Struktur Matrix:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-interpretasi">📝 Contoh Interpretasi:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kegunaan-matrix-ini">🔍 Kegunaan Matrix Ini:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-pembuatan">⚙️ Cara Pembuatan:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="web-usage-mining">
+<h1>Web usage mining<a class="headerlink" href="#web-usage-mining" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>host</th>
+      <th>time</th>
+      <th>method</th>
+      <th>url</th>
+      <th>response</th>
+      <th>bytes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>***.novo.dk</td>
+      <td>805465029</td>
+      <td>GET</td>
+      <td>/ksc.html</td>
+      <td>200</td>
+      <td>7067</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>***.novo.dk</td>
+      <td>805465031</td>
+      <td>GET</td>
+      <td>/images/ksclogo-medium.gif</td>
+      <td>200</td>
+      <td>5866</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>***.novo.dk</td>
+      <td>805465051</td>
+      <td>GET</td>
+      <td>/images/MOSAIC-logosmall.gif</td>
+      <td>200</td>
+      <td>363</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>***.novo.dk</td>
+      <td>805465053</td>
+      <td>GET</td>
+      <td>/images/USA-logosmall.gif</td>
+      <td>200</td>
+      <td>234</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>***.novo.dk</td>
+      <td>805465054</td>
+      <td>GET</td>
+      <td>/images/NASA-logosmall.gif</td>
+      <td>200</td>
+      <td>786</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2965556</th>
+      <td>2965556</td>
+      <td>zzzzzzzz.mindspring.com</td>
+      <td>809560373</td>
+      <td>GET</td>
+      <td>/shuttle/missions/sts-69/mission-sts-69.html</td>
+      <td>200</td>
+      <td>13380</td>
+    </tr>
+    <tr>
+      <th>2965557</th>
+      <td>2965557</td>
+      <td>zzzzzzzz.mindspring.com</td>
+      <td>809560375</td>
+      <td>GET</td>
+      <td>/shuttle/missions/sts-69/sts-69-patch-small.gif</td>
+      <td>200</td>
+      <td>8083</td>
+    </tr>
+    <tr>
+      <th>2965558</th>
+      <td>2965558</td>
+      <td>zzzzzzzz.mindspring.com</td>
+      <td>809560391</td>
+      <td>GET</td>
+      <td>/images/KSC-logosmall.gif</td>
+      <td>200</td>
+      <td>1204</td>
+    </tr>
+    <tr>
+      <th>2965559</th>
+      <td>2965559</td>
+      <td>zzzzzzzz.mindspring.com</td>
+      <td>809560391</td>
+      <td>GET</td>
+      <td>/images/launch-logo.gif</td>
+      <td>200</td>
+      <td>1713</td>
+    </tr>
+    <tr>
+      <th>2965560</th>
+      <td>2965560</td>
+      <td>zzzzzzzz.mindspring.com</td>
+      <td>809560392</td>
+      <td>GET</td>
+      <td>/history/apollo/images/apollo-logo1.gif</td>
+      <td>200</td>
+      <td>1173</td>
+    </tr>
+  </tbody>
+</table>
+<p>2965561 rows × 7 columns</p>
+</div></div></div>
+</div>
+<section id="filter-status-200-dan-url-html">
+<h2>filter status = 200 dan url = .html<a class="headerlink" href="#filter-status-200-dan-url-html" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter data dengan status 200 dan Request URI mengandung .html</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;.html&#39;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">))]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total data sebelum filter: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total data setelah filter: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data yang telah difilter:&quot;</span><span class="p">)</span>
+<span class="n">df_filtered</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total data sebelum filter: 2965561
+Total data setelah filter: 610984
+
+Data yang telah difilter:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>host</th>
+      <th>time</th>
+      <th>method</th>
+      <th>url</th>
+      <th>response</th>
+      <th>bytes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>***.novo.dk</td>
+      <td>805465029</td>
+      <td>GET</td>
+      <td>/ksc.html</td>
+      <td>200</td>
+      <td>7067</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>***.novo.dk</td>
+      <td>805465068</td>
+      <td>GET</td>
+      <td>/shuttle/missions/missions.html</td>
+      <td>200</td>
+      <td>8678</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>***.novo.dk</td>
+      <td>805465381</td>
+      <td>GET</td>
+      <td>/shuttle/resources/orbiters/columbia.html</td>
+      <td>200</td>
+      <td>6922</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>***.novo.dk</td>
+      <td>807951768</td>
+      <td>GET</td>
+      <td>/shuttle/missions/sts-69/mission-sts-69.html</td>
+      <td>200</td>
+      <td>11264</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>23</td>
+      <td>***.novo.dk</td>
+      <td>807951938</td>
+      <td>GET</td>
+      <td>/shuttle/countdown/liftoff.html</td>
+      <td>200</td>
+      <td>4665</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2965543</th>
+      <td>2965543</td>
+      <td>zzz.pe.u-tokyo.ac.jp</td>
+      <td>805633446</td>
+      <td>GET</td>
+      <td>/shuttle/technology/sts-newsref/sts-lcc.html</td>
+      <td>200</td>
+      <td>32252</td>
+    </tr>
+    <tr>
+      <th>2965546</th>
+      <td>2965546</td>
+      <td>zzz.pe.u-tokyo.ac.jp</td>
+      <td>805633480</td>
+      <td>GET</td>
+      <td>/shuttle/missions/sts-70/movies/movies.html</td>
+      <td>200</td>
+      <td>1395</td>
+    </tr>
+    <tr>
+      <th>2965551</th>
+      <td>2965551</td>
+      <td>zzz.pe.u-tokyo.ac.jp</td>
+      <td>805634091</td>
+      <td>GET</td>
+      <td>/shuttle/missions/sts-70/images/images.html</td>
+      <td>200</td>
+      <td>4048</td>
+    </tr>
+    <tr>
+      <th>2965553</th>
+      <td>2965553</td>
+      <td>zzz.pe.u-tokyo.ac.jp</td>
+      <td>805634266</td>
+      <td>GET</td>
+      <td>/shuttle/resources/orbiters/discovery.html</td>
+      <td>200</td>
+      <td>6861</td>
+    </tr>
+    <tr>
+      <th>2965556</th>
+      <td>2965556</td>
+      <td>zzzzzzzz.mindspring.com</td>
+      <td>809560373</td>
+      <td>GET</td>
+      <td>/shuttle/missions/sts-69/mission-sts-69.html</td>
+      <td>200</td>
+      <td>13380</td>
+    </tr>
+  </tbody>
+</table>
+<p>610984 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat copy dari dataframe yang difilter untuk menghindari warning</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Buat ID user berdasarkan kombinasi Remote host dan Request Protocol</span>
+<span class="c1"># Kombinasi yang sama akan mendapatkan ID yang sama</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;host&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">ngroup</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total unique user ID: </span><span class="si">{</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contoh data dengan user_id:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[[</span><span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Verifikasi: User yang sama memiliki ID yang sama ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;65.55.147.227&#39;</span><span class="p">][[</span><span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total unique user ID: 113577
+
+Contoh data dengan user_id:
+                       host  user_id  \
+0               ***.novo.dk        1   
+6               ***.novo.dk        1   
+12              ***.novo.dk        1   
+13              ***.novo.dk        1   
+23              ***.novo.dk        1   
+26              ***.novo.dk        1   
+29  001.msy4.communique.net        2   
+41           007.thegap.com        3   
+44           007.thegap.com        3   
+46           007.thegap.com        3   
+
+                                             url       time  
+0                                      /ksc.html  805465029  
+6                /shuttle/missions/missions.html  805465068  
+12     /shuttle/resources/orbiters/columbia.html  805465381  
+13  /shuttle/missions/sts-69/mission-sts-69.html  807951768  
+23               /shuttle/countdown/liftoff.html  807951938  
+26                /shuttle/countdown/lps/fr.html  807952060  
+29                    /software/winvn/winvn.html  809765747  
+41  /shuttle/missions/sts-71/mission-sts-71.html  805065868  
+44  /shuttle/missions/sts-71/mission-sts-71.html  805066115  
+46   /shuttle/missions/sts-71/images/images.html  805066664  
+
+--- Verifikasi: User yang sama memiliki ID yang sama ---
+Empty DataFrame
+Columns: [host, user_id]
+Index: []
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung jumlah Request URI yang unik</span>
+<span class="n">unique_uri_count</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah Request URI unik: </span><span class="si">{</span><span class="n">unique_uri_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan beberapa Request URI unik</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contoh Request URI unik:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">20</span><span class="p">])</span>
+
+<span class="c1"># Tampilkan top 10 Request URI yang paling sering diakses</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 Request URI yang paling sering diakses:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah Request URI unik: 112
+
+Contoh Request URI unik:
+[&#39;/ksc.html&#39; &#39;/shuttle/missions/missions.html&#39;
+ &#39;/shuttle/resources/orbiters/columbia.html&#39;
+ &#39;/shuttle/missions/sts-69/mission-sts-69.html&#39;
+ &#39;/shuttle/countdown/liftoff.html&#39; &#39;/shuttle/countdown/lps/fr.html&#39;
+ &#39;/software/winvn/winvn.html&#39;
+ &#39;/shuttle/missions/sts-71/mission-sts-71.html&#39;
+ &#39;/shuttle/missions/sts-71/images/images.html&#39;
+ &#39;/shuttle/countdown/tour.html&#39;
+ &#39;/shuttle/missions/sts-71/movies/movies.html&#39; &#39;/history/history.html&#39;
+ &#39;/shuttle/countdown/countdown.html&#39; &#39;/shuttle/countdown/count.html&#39;
+ &#39;/facilities/lcc.html&#39; &#39;/facilities/tour.html&#39; &#39;/facts/faq04.html&#39;
+ &#39;/shuttle/missions/sts-65/mission-sts-65.html&#39;
+ &#39;/shuttle/missions/sts-68/ksc-srl-image.html&#39;
+ &#39;/shuttle/missions/sts-64/mission-sts-64.html&#39;]
+
+Top 10 Request URI yang paling sering diakses:
+url
+/ksc.html                                       80002
+/shuttle/missions/missions.html                 43974
+/shuttle/missions/sts-69/mission-sts-69.html    29949
+/shuttle/countdown/liftoff.html                 25088
+/history/apollo/apollo.html                     21750
+/history/history.html                           20651
+/shuttle/missions/sts-70/mission-sts-70.html    19482
+/history/apollo/apollo-13/apollo-13.html        19311
+/shuttle/missions/sts-71/mission-sts-71.html    19205
+/shuttle/missions/sts-71/images/images.html     17834
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort data berdasarkan user_id dan waktu</span>
+<span class="n">df_sorted</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Konversi kolom time dari Unix timestamp ke datetime (tanpa timezone)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+<span class="c1"># Hitung durasi waktu di setiap halaman (selisih waktu antar request)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+<span class="c1"># Jika duration adalah NaN (request pertama) atau negatif, set ke 0</span>
+<span class="c1"># Jika terlalu besar (&gt; 1 jam = 3600 detik), set ke 0 (kemungkinan session baru)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3600</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data dengan durasi:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_sorted</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data dengan durasi:
+    user_id                                           url  \
+0         1                                     /ksc.html   
+1         1               /shuttle/missions/missions.html   
+2         1     /shuttle/resources/orbiters/columbia.html   
+3         1  /shuttle/missions/sts-69/mission-sts-69.html   
+4         1               /shuttle/countdown/liftoff.html   
+5         1                /shuttle/countdown/lps/fr.html   
+6         2                    /software/winvn/winvn.html   
+7         3  /shuttle/missions/sts-71/mission-sts-71.html   
+8         3  /shuttle/missions/sts-71/mission-sts-71.html   
+9         3   /shuttle/missions/sts-71/images/images.html   
+10        3                  /shuttle/countdown/tour.html   
+11        4   /shuttle/missions/sts-71/movies/movies.html   
+12        4                         /history/history.html   
+13        4               /shuttle/missions/missions.html   
+14        4  /shuttle/missions/sts-71/mission-sts-71.html   
+15        4                                     /ksc.html   
+16        4             /shuttle/countdown/countdown.html   
+17        4                 /shuttle/countdown/count.html   
+18        4               /shuttle/countdown/liftoff.html   
+19        4                /shuttle/countdown/lps/fr.html   
+
+                     timewib  duration  
+0  1995-07-11 19:17:09+07:00       0.0  
+1  1995-07-11 19:17:48+07:00      39.0  
+2  1995-07-11 19:23:01+07:00     313.0  
+3  1995-08-09 14:02:48+07:00       0.0  
+4  1995-08-09 14:05:38+07:00     170.0  
+5  1995-08-09 14:07:40+07:00     122.0  
+6  1995-08-30 13:55:47+07:00       0.0  
+7  1995-07-07 04:24:28+07:00       0.0  
+8  1995-07-07 04:28:35+07:00     247.0  
+9  1995-07-07 04:37:44+07:00     549.0  
+10 1995-07-07 06:23:26+07:00       0.0  
+11 1995-07-05 18:36:59+07:00       0.0  
+12 1995-07-10 19:18:27+07:00       0.0  
+13 1995-07-10 19:18:57+07:00      30.0  
+14 1995-07-12 16:33:34+07:00       0.0  
+15 1995-07-28 04:02:24+07:00       0.0  
+16 1995-08-28 07:08:50+07:00       0.0  
+17 1995-08-28 07:12:59+07:00     249.0  
+18 1995-08-28 07:18:34+07:00     335.0  
+19 1995-08-28 07:36:38+07:00    1084.0  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export hanya kolom yang diperlukan ke file CSV</span>
+<span class="n">columns_to_export</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+<span class="n">df_export</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="p">[</span><span class="n">columns_to_export</span><span class="p">]</span>
+
+<span class="n">df_export</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data/tets.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Data berhasil diekspor ke file: &#39;./data/tets.csv&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total records: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_export</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kolom yang disimpan: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df_export</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Preview data yang diekspor:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_export</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Data berhasil diekspor ke file: &#39;./data/tets.csv&#39;
+Total records: 610984
+Kolom yang disimpan: [&#39;timewib&#39;, &#39;user_id&#39;, &#39;url&#39;, &#39;duration&#39;]
+
+Preview data yang diekspor:
+                    timewib  user_id  \
+0 1995-07-11 19:17:09+07:00        1   
+1 1995-07-11 19:17:48+07:00        1   
+2 1995-07-11 19:23:01+07:00        1   
+3 1995-08-09 14:02:48+07:00        1   
+4 1995-08-09 14:05:38+07:00        1   
+
+                                            url  duration  
+0                                     /ksc.html       0.0  
+1               /shuttle/missions/missions.html      39.0  
+2     /shuttle/resources/orbiters/columbia.html     313.0  
+3  /shuttle/missions/sts-69/mission-sts-69.html       0.0  
+4               /shuttle/countdown/liftoff.html     170.0  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implementasi Session Separation berdasarkan kolom duration</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_session_id</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Membuat session_id berdasarkan user_id dan duration (dalam detik)</span>
+<span class="sd">    Session baru jika duration &gt; 30 menit (1800 detik)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df_session</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_session</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    
+    <span class="c1"># Threshold 30 menit dalam detik</span>
+    <span class="n">session_timeout</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>  <span class="c1"># 1800 detik</span>
+    
+    <span class="k">for</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">df_session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">user_data_idx</span> <span class="o">=</span> <span class="n">df_session</span><span class="p">[</span><span class="n">df_session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+        
+        <span class="n">session_number</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">current_session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">session_number</span><span class="si">}</span><span class="s2">&quot;</span>
+        
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">user_data_idx</span><span class="p">:</span>
+            <span class="c1"># Ambil nilai duration dari baris saat ini</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">df_session</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+            
+            <span class="c1"># Jika duration &gt; 30 menit atau duration = 0 (request pertama atau gap besar)</span>
+            <span class="c1"># maka mulai session baru</span>
+            <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="n">user_data_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="c1"># Request pertama user selalu session pertama</span>
+                <span class="n">df_session</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_session</span>
+            <span class="k">elif</span> <span class="n">duration</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">duration</span> <span class="o">&gt;</span> <span class="n">session_timeout</span><span class="p">:</span>
+                <span class="c1"># Duration 0 atau &gt; 30 menit → Session baru</span>
+                <span class="n">session_number</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">current_session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">session_number</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">df_session</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_session</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Duration dalam batas normal → Session yang sama</span>
+                <span class="n">df_session</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_session</span>
+    
+    <span class="k">return</span> <span class="n">df_session</span>
+
+<span class="c1"># Terapkan fungsi session separation</span>
+<span class="n">df_with_sessions</span> <span class="o">=</span> <span class="n">create_session_id</span><span class="p">(</span><span class="n">df_sorted</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data dengan Session ID:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_with_sessions</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+
+<span class="c1"># Statistik session</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Statistik Session ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total unique sessions: </span><span class="si">{</span><span class="n">df_with_sessions</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total unique users: </span><span class="si">{</span><span class="n">df_with_sessions</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rata-rata session per user: </span><span class="si">{</span><span class="n">df_with_sessions</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">df_with_sessions</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Contoh user dengan multiple sessions</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Contoh User dengan Multiple Sessions ---&quot;</span><span class="p">)</span>
+<span class="n">session_counts</span> <span class="o">=</span> <span class="n">df_with_sessions</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)[</span><span class="s1">&#39;session_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">top_users</span> <span class="o">=</span> <span class="n">session_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 5 users dengan session terbanyak:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">top_users</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_users</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">example_user</span> <span class="o">=</span> <span class="n">top_users</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Detail aktivitas User </span><span class="si">{</span><span class="n">example_user</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="n">user_detail</span> <span class="o">=</span> <span class="n">df_with_sessions</span><span class="p">[</span><span class="n">df_with_sessions</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">example_user</span><span class="p">][[</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">user_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data dengan Session ID:
+    user_id session_id                      time  \
+0         1        1_1 1995-07-11 12:17:09+00:00   
+1         1        1_1 1995-07-11 12:17:48+00:00   
+2         1        1_1 1995-07-11 12:23:01+00:00   
+3         1        1_2 1995-08-09 07:02:48+00:00   
+4         1        1_2 1995-08-09 07:05:38+00:00   
+5         1        1_2 1995-08-09 07:07:40+00:00   
+6         2        2_1 1995-08-30 06:55:47+00:00   
+7         3        3_1 1995-07-06 21:24:28+00:00   
+8         3        3_1 1995-07-06 21:28:35+00:00   
+9         3        3_1 1995-07-06 21:37:44+00:00   
+10        3        3_2 1995-07-06 23:23:26+00:00   
+11        4        4_1 1995-07-05 11:36:59+00:00   
+12        4        4_2 1995-07-10 12:18:27+00:00   
+13        4        4_2 1995-07-10 12:18:57+00:00   
+14        4        4_3 1995-07-12 09:33:34+00:00   
+15        4        4_4 1995-07-27 21:02:24+00:00   
+16        4        4_5 1995-08-28 00:08:50+00:00   
+17        4        4_5 1995-08-28 00:12:59+00:00   
+18        4        4_5 1995-08-28 00:18:34+00:00   
+19        4        4_5 1995-08-28 00:36:38+00:00   
+
+                                             url  
+0                                      /ksc.html  
+1                /shuttle/missions/missions.html  
+2      /shuttle/resources/orbiters/columbia.html  
+3   /shuttle/missions/sts-69/mission-sts-69.html  
+4                /shuttle/countdown/liftoff.html  
+5                 /shuttle/countdown/lps/fr.html  
+6                     /software/winvn/winvn.html  
+7   /shuttle/missions/sts-71/mission-sts-71.html  
+8   /shuttle/missions/sts-71/mission-sts-71.html  
+9    /shuttle/missions/sts-71/images/images.html  
+10                  /shuttle/countdown/tour.html  
+11   /shuttle/missions/sts-71/movies/movies.html  
+12                         /history/history.html  
+13               /shuttle/missions/missions.html  
+14  /shuttle/missions/sts-71/mission-sts-71.html  
+15                                     /ksc.html  
+16             /shuttle/countdown/countdown.html  
+17                 /shuttle/countdown/count.html  
+18               /shuttle/countdown/liftoff.html  
+19                /shuttle/countdown/lps/fr.html  
+
+--- Statistik Session ---
+Total unique sessions: 237296
+Total unique users: 113577
+Total unique sessions: 237296
+Total unique users: 113577
+Rata-rata session per user: 2.09
+
+--- Contoh User dengan Multiple Sessions ---
+Rata-rata session per user: 2.09
+
+--- Contoh User dengan Multiple Sessions ---
+Top 5 users dengan session terbanyak:
+user_id
+86957     534
+86958     485
+86955     462
+112333    462
+112314    459
+Name: session_id, dtype: int64
+
+Detail aktivitas User 86957:
+       session_id                      time  \
+450880    86957_1 1995-07-01 04:24:51+00:00   
+450881    86957_1 1995-07-01 04:47:37+00:00   
+450882    86957_1 1995-07-01 05:15:42+00:00   
+450883    86957_1 1995-07-01 05:41:28+00:00   
+450884    86957_2 1995-07-01 06:49:15+00:00   
+...           ...                       ...   
+454583  86957_533 1995-09-01 02:25:54+00:00   
+454584  86957_533 1995-09-01 02:36:04+00:00   
+454585  86957_533 1995-09-01 02:37:49+00:00   
+454586  86957_534 1995-09-01 03:41:06+00:00   
+454587  86957_534 1995-09-01 03:43:20+00:00   
+
+                                                 url  
+450880   /shuttle/missions/sts-71/images/images.html  
+450881   /shuttle/missions/sts-71/movies/movies.html  
+450882   /shuttle/missions/sts-71/images/images.html  
+450883  /shuttle/missions/sts-67/mission-sts-67.html  
+450884   /shuttle/missions/sts-71/images/images.html  
+...                                              ...  
+454583   /shuttle/missions/sts-70/movies/movies.html  
+454584  /shuttle/missions/sts-69/mission-sts-69.html  
+454585    /shuttle/resources/orbiters/endeavour.html  
+454586               /shuttle/missions/missions.html  
+454587  /shuttle/missions/sts-69/mission-sts-69.html  
+
+[3708 rows x 3 columns]
+Top 5 users dengan session terbanyak:
+user_id
+86957     534
+86958     485
+86955     462
+112333    462
+112314    459
+Name: session_id, dtype: int64
+
+Detail aktivitas User 86957:
+       session_id                      time  \
+450880    86957_1 1995-07-01 04:24:51+00:00   
+450881    86957_1 1995-07-01 04:47:37+00:00   
+450882    86957_1 1995-07-01 05:15:42+00:00   
+450883    86957_1 1995-07-01 05:41:28+00:00   
+450884    86957_2 1995-07-01 06:49:15+00:00   
+...           ...                       ...   
+454583  86957_533 1995-09-01 02:25:54+00:00   
+454584  86957_533 1995-09-01 02:36:04+00:00   
+454585  86957_533 1995-09-01 02:37:49+00:00   
+454586  86957_534 1995-09-01 03:41:06+00:00   
+454587  86957_534 1995-09-01 03:43:20+00:00   
+
+                                                 url  
+450880   /shuttle/missions/sts-71/images/images.html  
+450881   /shuttle/missions/sts-71/movies/movies.html  
+450882   /shuttle/missions/sts-71/images/images.html  
+450883  /shuttle/missions/sts-67/mission-sts-67.html  
+450884   /shuttle/missions/sts-71/images/images.html  
+...                                              ...  
+454583   /shuttle/missions/sts-70/movies/movies.html  
+454584  /shuttle/missions/sts-69/mission-sts-69.html  
+454585    /shuttle/resources/orbiters/endeavour.html  
+454586               /shuttle/missions/missions.html  
+454587  /shuttle/missions/sts-69/mission-sts-69.html  
+
+[3708 rows x 3 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export hanya kolom yang diperlukan ke file CSV</span>
+<span class="n">columns_to_export</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+<span class="n">df_export</span> <span class="o">=</span> <span class="n">df_with_sessions</span><span class="p">[</span><span class="n">columns_to_export</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Hilangkan zona waktu jika ada</span>
+<span class="k">if</span> <span class="n">df_export</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">df_export</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_export</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">df_export</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data/web_usage_with_sessions.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Data berhasil diekspor ke file: &#39;./data/web_usage_with_sessions.csv&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total records: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_export</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kolom yang disimpan: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df_export</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Preview data yang diekspor:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_export</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Data berhasil diekspor ke file: &#39;./data/web_usage_with_sessions.csv&#39;
+Total records: 610984
+Kolom yang disimpan: [&#39;user_id&#39;, &#39;session_id&#39;, &#39;time&#39;, &#39;url&#39;, &#39;duration&#39;]
+
+Preview data yang diekspor:
+   user_id session_id                time  \
+0        1        1_1 1995-07-11 12:17:09   
+1        1        1_1 1995-07-11 12:17:48   
+2        1        1_1 1995-07-11 12:23:01   
+3        1        1_2 1995-08-09 07:02:48   
+4        1        1_2 1995-08-09 07:05:38   
+
+                                            url  duration  
+0                                     /ksc.html       0.0  
+1               /shuttle/missions/missions.html      39.0  
+2     /shuttle/resources/orbiters/columbia.html     313.0  
+3  /shuttle/missions/sts-69/mission-sts-69.html       0.0  
+4               /shuttle/countdown/liftoff.html     170.0  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="user-item-matrix-session-url-matrix">
+<h2>User-Item Matrix (Session-URL Matrix)<a class="headerlink" href="#user-item-matrix-session-url-matrix" title="Link to this heading">#</a></h2>
+<p><strong>Konsep yang ingin diimplementasikan:</strong></p>
+<section id="tujuan">
+<h3>🎯 Tujuan:<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
+<p>Membuat matrix yang menunjukkan pola kunjungan web untuk setiap session user</p>
+</section>
+<section id="struktur-matrix">
+<h3>📊 Struktur Matrix:<a class="headerlink" href="#struktur-matrix" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Baris</strong>: Setiap session user (contoh: <code class="docutils literal notranslate"><span class="pre">1_1</span></code>, <code class="docutils literal notranslate"><span class="pre">1_2</span></code>, <code class="docutils literal notranslate"><span class="pre">2_1</span></code>, <code class="docutils literal notranslate"><span class="pre">3_1</span></code>, dll)</p></li>
+<li><p><strong>Kolom</strong>: Semua URL unik yang ada di dataset (A, B, C, D, E = URL yang berbeda)</p></li>
+<li><p><strong>Nilai</strong>: Binary (0 atau 1)</p>
+<ul>
+<li><p><strong>1</strong> = Session tersebut mengunjungi URL ini</p></li>
+<li><p><strong>0</strong> = Session tersebut TIDAK mengunjungi URL ini</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="contoh-interpretasi">
+<h3>📝 Contoh Interpretasi:<a class="headerlink" href="#contoh-interpretasi" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>  <span class="o">/</span><span class="n">faq</span><span class="o">.</span><span class="n">html</span>  <span class="o">/</span><span class="n">home</span><span class="o">.</span><span class="n">html</span>  <span class="o">/</span><span class="n">about</span><span class="o">.</span><span class="n">html</span>
+<span class="n">session_1_1</span>      <span class="mi">1</span>           <span class="mi">0</span>           <span class="mi">1</span>           <span class="mi">0</span>
+<span class="n">session_1_2</span>      <span class="mi">0</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>
+<span class="n">session_2_1</span>      <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">0</span>           <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>Artinya:</strong></p>
+<ul class="simple">
+<li><p><strong>session_1_1</strong>: Mengunjungi <code class="docutils literal notranslate"><span class="pre">/index.html</span></code> dan <code class="docutils literal notranslate"><span class="pre">/home.html</span></code></p></li>
+<li><p><strong>session_1_2</strong>: Mengunjungi <code class="docutils literal notranslate"><span class="pre">/faq.html</span></code> dan <code class="docutils literal notranslate"><span class="pre">/home.html</span></code></p></li>
+<li><p><strong>session_2_1</strong>: Mengunjungi <code class="docutils literal notranslate"><span class="pre">/index.html</span></code>, <code class="docutils literal notranslate"><span class="pre">/faq.html</span></code>, dan <code class="docutils literal notranslate"><span class="pre">/about.html</span></code></p></li>
+</ul>
+</section>
+<section id="kegunaan-matrix-ini">
+<h3>🔍 Kegunaan Matrix Ini:<a class="headerlink" href="#kegunaan-matrix-ini" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pattern Mining</strong>: Menemukan pola navigasi yang sering terjadi</p></li>
+<li><p><strong>Recommendation System</strong>: Merekomendasikan halaman berdasarkan kebiasaan user</p></li>
+<li><p><strong>Clustering</strong>: Mengelompokkan user dengan behavior serupa</p></li>
+<li><p><strong>Association Rules</strong>: Menemukan halaman yang sering dikunjungi bersamaan</p></li>
+</ol>
+</section>
+<section id="cara-pembuatan">
+<h3>⚙️ Cara Pembuatan:<a class="headerlink" href="#cara-pembuatan" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ambil data <code class="docutils literal notranslate"><span class="pre">df_with_sessions</span></code> yang sudah memiliki <code class="docutils literal notranslate"><span class="pre">session_id</span></code> dan <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Group berdasarkan <code class="docutils literal notranslate"><span class="pre">session_id</span></code> dan <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Buat pivot table dengan:</p>
+<ul class="simple">
+<li><p>Index = <code class="docutils literal notranslate"><span class="pre">session_id</span></code></p></li>
+<li><p>Columns = <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Values = 1 (menandakan kunjungan)</p></li>
+</ul>
+</li>
+<li><p>Fill NaN dengan 0 (tidak ada kunjungan)</p></li>
+<li><p>Convert ke integer (0 atau 1)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat User-Item Matrix (Session-URL Matrix)</span>
+
+<span class="c1"># Step 1: Buat dataframe dengan user_id, session_id dan url yang dikunjungi</span>
+<span class="n">session_url</span> <span class="o">=</span> <span class="n">df_with_sessions</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Step 2: Tandai setiap kunjungan dengan nilai 1</span>
+<span class="n">session_url</span><span class="p">[</span><span class="s1">&#39;visited&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Step 3: Hapus duplikat (jika dalam 1 session mengunjungi URL yang sama berkali-kali)</span>
+<span class="n">session_url</span> <span class="o">=</span> <span class="n">session_url</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">])</span>
+
+<span class="c1"># Step 4: Buat pivot table</span>
+<span class="c1"># Index = session_id, Columns = url, Values = visited (1)</span>
+<span class="n">session_url_matrix</span> <span class="o">=</span> <span class="n">session_url</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;visited&#39;</span><span class="p">)</span>
+
+<span class="c1"># Step 5: Fill NaN dengan 0 (tidak dikunjungi)</span>
+<span class="n">session_url_matrix</span> <span class="o">=</span> <span class="n">session_url_matrix</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Step 6: Convert ke integer</span>
+<span class="n">session_url_matrix</span> <span class="o">=</span> <span class="n">session_url_matrix</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Step 7: Tambahkan kolom user_id di awal</span>
+<span class="c1"># Ekstrak user_id dari session_id (format: user_id_session_number)</span>
+<span class="n">session_url_matrix</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">session_url_matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Pindahkan kolom user_id ke posisi pertama</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">session_url_matrix</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
+<span class="n">session_url_matrix</span> <span class="o">=</span> <span class="n">session_url_matrix</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SESSION-URL MATRIX&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape: </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Sessions: </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Unique URLs: </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># -1 karena ada kolom user_id</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Kolom yang ada di matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Preview Matrix (10 session pertama):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Statistik tambahan</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STATISTIK MATRIX&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total kunjungan (sum of all 1s): </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah kunjungan per URL:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah URL yang dikunjungi per session (rata-rata): </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================================================================
+SESSION-URL MATRIX
+================================================================================
+Shape: (237296, 113)
+Total Sessions: 237296
+Total Unique URLs: 112
+
+Kolom yang ada di matrix:
+[&#39;user_id&#39;, &#39;/facilities/crawler.html&#39;, &#39;/facilities/lc39a.html&#39;, &#39;/facilities/lcc.html&#39;, &#39;/facilities/mlp.html&#39;, &#39;/facilities/opf.html&#39;, &#39;/facilities/spaceport.html&#39;, &#39;/facilities/tour.html&#39;, &#39;/facilities/vab.html&#39;, &#39;/facts/about_ksc.html&#39;, &#39;/facts/facts.html&#39;, &#39;/facts/faq04.html&#39;, &#39;/facts/faq12.html&#39;, &#39;/history/apollo/apollo-1/apollo-1-info.html&#39;, &#39;/history/apollo/apollo-1/apollo-1.html&#39;, &#39;/history/apollo/apollo-10/apollo-10.html&#39;, &#39;/history/apollo/apollo-11/apollo-11-info.html&#39;, &#39;/history/apollo/apollo-11/apollo-11.html&#39;, &#39;/history/apollo/apollo-12/apollo-12.html&#39;, &#39;/history/apollo/apollo-13/apollo-13-info.html&#39;, &#39;/history/apollo/apollo-13/apollo-13.html&#39;, &#39;/history/apollo/apollo-14/apollo-14.html&#39;, &#39;/history/apollo/apollo-15/apollo-15.html&#39;, &#39;/history/apollo/apollo-17/apollo-17.html&#39;, &#39;/history/apollo/apollo-4/apollo-4.html&#39;, &#39;/history/apollo/apollo-5/apollo-5.html&#39;, &#39;/history/apollo/apollo-7/apollo-7.html&#39;, &#39;/history/apollo/apollo-8/apollo-8.html&#39;, &#39;/history/apollo/apollo-9/apollo-9.html&#39;, &#39;/history/apollo/apollo-sa.html&#39;, &#39;/history/apollo/apollo.html&#39;, &#39;/history/astp/astp.html&#39;, &#39;/history/gemini/gemini.html&#39;, &#39;/history/history.html&#39;, &#39;/history/mercury/mercury.html&#39;, &#39;/history/mercury/mr-3/mr-3.html&#39;, &#39;/history/skylab/skylab.html&#39;, &#39;/ksc.html&#39;, &#39;/mdss/MDSS.html&#39;, &#39;/persons/nasa-cm/jmd.html&#39;, &#39;/procurement/procurement.html&#39;, &#39;/shuttle/countdown/count.html&#39;, &#39;/shuttle/countdown/countdown.html&#39;, &#39;/shuttle/countdown/liftoff.html&#39;, &#39;/shuttle/countdown/lps/fr.html&#39;, &#39;/shuttle/countdown/tour.html&#39;, &#39;/shuttle/missions/100th.html&#39;, &#39;/shuttle/missions/51-l/51-l-info.html&#39;, &#39;/shuttle/missions/51-l/mission-51-l.html&#39;, &#39;/shuttle/missions/61-b/mission-61-b.html&#39;, &#39;/shuttle/missions/61-c/mission-61-c.html&#39;, &#39;/shuttle/missions/missions.html&#39;, &#39;/shuttle/missions/rollbacks.html&#39;, &#39;/shuttle/missions/sts-1/mission-sts-1.html&#39;, &#39;/shuttle/missions/sts-26/mission-sts-26.html&#39;, &#39;/shuttle/missions/sts-49/mission-sts-49.html&#39;, &#39;/shuttle/missions/sts-59/mission-sts-59.html&#39;, &#39;/shuttle/missions/sts-62/mission-sts-62.html&#39;, &#39;/shuttle/missions/sts-63/mission-sts-63.html&#39;, &#39;/shuttle/missions/sts-64/mission-sts-64.html&#39;, &#39;/shuttle/missions/sts-65/mission-sts-65.html&#39;, &#39;/shuttle/missions/sts-66/mission-sts-66.html&#39;, &#39;/shuttle/missions/sts-67/images/images.html&#39;, &#39;/shuttle/missions/sts-67/mission-sts-67.html&#39;, &#39;/shuttle/missions/sts-68/ksc-srl-image.html&#39;, &#39;/shuttle/missions/sts-68/mission-sts-68.html&#39;, &#39;/shuttle/missions/sts-69/images/images.html&#39;, &#39;/shuttle/missions/sts-69/liftoff.html&#39;, &#39;/shuttle/missions/sts-69/mission-sts-69.html&#39;, &#39;/shuttle/missions/sts-69/movies/movies.html&#39;, &#39;/shuttle/missions/sts-69/sts-69-info.html&#39;, &#39;/shuttle/missions/sts-70/images/images.html&#39;, &#39;/shuttle/missions/sts-70/mission-sts-70.html&#39;, &#39;/shuttle/missions/sts-70/movies/movies.html&#39;, &#39;/shuttle/missions/sts-70/woodpecker.html&#39;, &#39;/shuttle/missions/sts-71/images/images.html&#39;, &#39;/shuttle/missions/sts-71/mission-sts-71.html&#39;, &#39;/shuttle/missions/sts-71/movies/movies.html&#39;, &#39;/shuttle/missions/sts-71/sts-71-info.html&#39;, &#39;/shuttle/missions/sts-72/mission-sts-72.html&#39;, &#39;/shuttle/missions/sts-73/mission-sts-73.html&#39;, &#39;/shuttle/missions/sts-74/mission-sts-74.html&#39;, &#39;/shuttle/missions/sts-75/mission-sts-75.html&#39;, &#39;/shuttle/missions/sts-76/mission-sts-76.html&#39;, &#39;/shuttle/missions/sts-77/mission-sts-77.html&#39;, &#39;/shuttle/missions/sts-78/mission-sts-78.html&#39;, &#39;/shuttle/resources/orbiters/atlantis.html&#39;, &#39;/shuttle/resources/orbiters/challenger.html&#39;, &#39;/shuttle/resources/orbiters/columbia.html&#39;, &#39;/shuttle/resources/orbiters/discovery.html&#39;, &#39;/shuttle/resources/orbiters/endeavour.html&#39;, &#39;/shuttle/resources/orbiters/enterprise.html&#39;, &#39;/shuttle/resources/orbiters/orbiters.html&#39;, &#39;/shuttle/technology/sts-newsref/et.html&#39;, &#39;/shuttle/technology/sts-newsref/mission_profile.html&#39;, &#39;/shuttle/technology/sts-newsref/spacelab.html&#39;, &#39;/shuttle/technology/sts-newsref/srb.html&#39;, &#39;/shuttle/technology/sts-newsref/sts-av.html&#39;, &#39;/shuttle/technology/sts-newsref/sts-cron.html&#39;, &#39;/shuttle/technology/sts-newsref/sts-jsc-comm.html&#39;, &#39;/shuttle/technology/sts-newsref/sts-lcc.html&#39;, &#39;/shuttle/technology/sts-newsref/sts-mps.html&#39;, &#39;/shuttle/technology/sts-newsref/sts_asm.html&#39;, &#39;/shuttle/technology/sts-newsref/sts_coord.html&#39;, &#39;/shuttle/technology/sts-newsref/sts_egress.html&#39;, &#39;/shuttle/technology/sts-newsref/sts_mes.html&#39;, &#39;/shuttle/technology/sts-newsref/sts_overview.html&#39;, &#39;/shuttle/technology/sts-newsref/stsover-launch.html&#39;, &#39;/shuttle/technology/sts-newsref/stsref-toc.html&#39;, &#39;/software/winvn/faq/WINVNFAQ-Contents.html&#39;, &#39;/software/winvn/userguide/wvnguide.html&#39;, &#39;/software/winvn/winvn.html&#39;, &#39;/whats-new.html&#39;]
+
+================================================================================
+Preview Matrix (10 session pertama):
+================================================================================
+url         user_id  /facilities/crawler.html  /facilities/lc39a.html  \
+session_id                                                              
+100000_1     100000                         0                       0   
+100001_1     100001                         0                       0   
+100002_1     100002                         0                       0   
+100003_1     100003                         0                       0   
+100004_1     100004                         0                       1   
+100005_1     100005                         0                       0   
+100006_1     100006                         0                       0   
+100007_1     100007                         0                       0   
+100007_2     100007                         0                       0   
+100008_1     100008                         0                       0   
+
+url         /facilities/lcc.html  /facilities/mlp.html  /facilities/opf.html  \
+session_id                                                                     
+100000_1                       0                     0                     0   
+100001_1                       0                     0                     0   
+100002_1                       0                     0                     0   
+100003_1                       0                     0                     0   
+100004_1                       0                     0                     0   
+100005_1                       0                     0                     0   
+100006_1                       0                     0                     0   
+100007_1                       0                     0                     0   
+100007_2                       0                     0                     0   
+100008_1                       0                     0                     0   
+
+url         /facilities/spaceport.html  /facilities/tour.html  \
+session_id                                                      
+100000_1                             0                      0   
+100001_1                             0                      0   
+100002_1                             0                      0   
+100003_1                             0                      0   
+100004_1                             0                      0   
+100005_1                             0                      0   
+100006_1                             0                      0   
+100007_1                             0                      0   
+100007_2                             0                      0   
+100008_1                             0                      0   
+
+url         /facilities/vab.html  /facts/about_ksc.html  ...  \
+session_id                                               ...   
+100000_1                       0                      0  ...   
+100001_1                       0                      0  ...   
+100002_1                       0                      0  ...   
+100003_1                       0                      0  ...   
+100004_1                       0                      0  ...   
+100005_1                       0                      0  ...   
+100006_1                       0                      0  ...   
+100007_1                       0                      0  ...   
+100007_2                       0                      0  ...   
+100008_1                       0                      0  ...   
+
+url         /shuttle/technology/sts-newsref/sts_coord.html  \
+session_id                                                   
+100000_1                                                 0   
+100001_1                                                 0   
+100002_1                                                 0   
+100003_1                                                 0   
+100004_1                                                 0   
+100005_1                                                 0   
+100006_1                                                 0   
+100007_1                                                 0   
+100007_2                                                 0   
+100008_1                                                 0   
+
+url         /shuttle/technology/sts-newsref/sts_egress.html  \
+session_id                                                    
+100000_1                                                  0   
+100001_1                                                  0   
+100002_1                                                  0   
+100003_1                                                  0   
+100004_1                                                  0   
+100005_1                                                  0   
+100006_1                                                  0   
+100007_1                                                  0   
+100007_2                                                  0   
+100008_1                                                  0   
+
+url         /shuttle/technology/sts-newsref/sts_mes.html  \
+session_id                                                 
+100000_1                                               0   
+100001_1                                               0   
+100002_1                                               0   
+100003_1                                               0   
+100004_1                                               0   
+100005_1                                               0   
+100006_1                                               0   
+100007_1                                               0   
+100007_2                                               0   
+100008_1                                               0   
+
+url         /shuttle/technology/sts-newsref/sts_overview.html  \
+session_id                                                      
+100000_1                                                    0   
+100001_1                                                    0   
+100002_1                                                    0   
+100003_1                                                    0   
+100004_1                                                    0   
+100005_1                                                    0   
+100006_1                                                    0   
+100007_1                                                    0   
+100007_2                                                    0   
+100008_1                                                    0   
+
+url         /shuttle/technology/sts-newsref/stsover-launch.html  \
+session_id                                                        
+100000_1                                                    0     
+100001_1                                                    0     
+100002_1                                                    0     
+100003_1                                                    0     
+100004_1                                                    0     
+100005_1                                                    0     
+100006_1                                                    0     
+100007_1                                                    0     
+100007_2                                                    0     
+100008_1                                                    0     
+
+url         /shuttle/technology/sts-newsref/stsref-toc.html  \
+session_id                                                    
+100000_1                                                  0   
+100001_1                                                  0   
+100002_1                                                  0   
+100003_1                                                  0   
+100004_1                                                  0   
+100005_1                                                  0   
+100006_1                                                  0   
+100007_1                                                  0   
+100007_2                                                  0   
+100008_1                                                  0   
+
+url         /software/winvn/faq/WINVNFAQ-Contents.html  \
+session_id                                               
+100000_1                                             0   
+100001_1                                             0   
+100002_1                                             0   
+100003_1                                             0   
+100004_1                                             0   
+100005_1                                             0   
+100006_1                                             0   
+100007_1                                             0   
+100007_2                                             0   
+100008_1                                             0   
+
+url         /software/winvn/userguide/wvnguide.html  \
+session_id                                            
+100000_1                                          0   
+100001_1                                          0   
+100002_1                                          0   
+100003_1                                          0   
+100004_1                                          0   
+100005_1                                          0   
+100006_1                                          0   
+100007_1                                          0   
+100007_2                                          0   
+100008_1                                          0   
+
+url         /software/winvn/winvn.html  /whats-new.html  
+session_id                                               
+100000_1                             0                0  
+100001_1                             0                0  
+100002_1                             0                0  
+100003_1                             0                0  
+100004_1                             0                0  
+100005_1                             0                0  
+100006_1                             1                0  
+100007_1                             0                0  
+100007_2                             0                0  
+100008_1                             1                0  
+
+[10 rows x 113 columns]
+
+================================================================================
+STATISTIK MATRIX
+================================================================================
+Total kunjungan (sum of all 1s): 14119916181
+
+Jumlah kunjungan per URL:
+url
+user_id                                                14119363749
+/ksc.html                                                    63381
+/shuttle/missions/missions.html                              39755
+/shuttle/missions/sts-69/mission-sts-69.html                 27501
+/shuttle/countdown/liftoff.html                              21828
+                                                          ...     
+/shuttle/technology/sts-newsref/sts_egress.html                965
+/facts/faq12.html                                              963
+/shuttle/technology/sts-newsref/sts-av.html                    954
+/shuttle/technology/sts-newsref/stsover-launch.html            891
+/facilities/spaceport.html                                     838
+Length: 113, dtype: int64
+
+Jumlah URL yang dikunjungi per session (rata-rata): 59503.39
+
+Jumlah URL yang dikunjungi per session (rata-rata): 59503.39
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export Session-URL Matrix ke CSV</span>
+<span class="n">session_url_matrix</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data/session_url_matrix.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Session-URL Matrix berhasil diekspor ke file: &#39;./data/session_url_matrix.csv&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matrix dengan </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> sessions x </span><span class="si">{</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> URLs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Preview matrix yang diekspor:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">session_url_matrix</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Session-URL Matrix berhasil diekspor ke file: &#39;./data/session_url_matrix.csv&#39;
+Matrix dengan 237296 sessions x 113 URLs
+
+Preview matrix yang diekspor:
+url         user_id  /facilities/crawler.html  /facilities/lc39a.html  \
+session_id                                                              
+100000_1     100000                         0                       0   
+100001_1     100001                         0                       0   
+100002_1     100002                         0                       0   
+100003_1     100003                         0                       0   
+100004_1     100004                         0                       1   
+100005_1     100005                         0                       0   
+100006_1     100006                         0                       0   
+100007_1     100007                         0                       0   
+100007_2     100007                         0                       0   
+100008_1     100008                         0                       0   
+
+url         /facilities/lcc.html  /facilities/mlp.html  /facilities/opf.html  \
+session_id                                                                     
+100000_1                       0                     0                     0   
+100001_1                       0                     0                     0   
+100002_1                       0                     0                     0   
+100003_1                       0                     0                     0   
+100004_1                       0                     0                     0   
+100005_1                       0                     0                     0   
+100006_1                       0                     0                     0   
+100007_1                       0                     0                     0   
+100007_2                       0                     0                     0   
+100008_1                       0                     0                     0   
+
+url         /facilities/spaceport.html  /facilities/tour.html  \
+session_id                                                      
+100000_1                             0                      0   
+100001_1                             0                      0   
+100002_1                             0                      0   
+100003_1                             0                      0   
+100004_1                             0                      0   
+100005_1                             0                      0   
+100006_1                             0                      0   
+100007_1                             0                      0   
+100007_2                             0                      0   
+100008_1                             0                      0   
+
+url         /facilities/vab.html  /facts/about_ksc.html  ...  \
+session_id                                               ...   
+100000_1                       0                      0  ...   
+100001_1                       0                      0  ...   
+100002_1                       0                      0  ...   
+100003_1                       0                      0  ...   
+100004_1                       0                      0  ...   
+100005_1                       0                      0  ...   
+100006_1                       0                      0  ...   
+100007_1                       0                      0  ...   
+100007_2                       0                      0  ...   
+100008_1                       0                      0  ...   
+
+url         /shuttle/technology/sts-newsref/sts_coord.html  \
+session_id                                                   
+100000_1                                                 0   
+100001_1                                                 0   
+100002_1                                                 0   
+100003_1                                                 0   
+100004_1                                                 0   
+100005_1                                                 0   
+100006_1                                                 0   
+100007_1                                                 0   
+100007_2                                                 0   
+100008_1                                                 0   
+
+url         /shuttle/technology/sts-newsref/sts_egress.html  \
+session_id                                                    
+100000_1                                                  0   
+100001_1                                                  0   
+100002_1                                                  0   
+100003_1                                                  0   
+100004_1                                                  0   
+100005_1                                                  0   
+100006_1                                                  0   
+100007_1                                                  0   
+100007_2                                                  0   
+100008_1                                                  0   
+
+url         /shuttle/technology/sts-newsref/sts_mes.html  \
+session_id                                                 
+100000_1                                               0   
+100001_1                                               0   
+100002_1                                               0   
+100003_1                                               0   
+100004_1                                               0   
+100005_1                                               0   
+100006_1                                               0   
+100007_1                                               0   
+100007_2                                               0   
+100008_1                                               0   
+
+url         /shuttle/technology/sts-newsref/sts_overview.html  \
+session_id                                                      
+100000_1                                                    0   
+100001_1                                                    0   
+100002_1                                                    0   
+100003_1                                                    0   
+100004_1                                                    0   
+100005_1                                                    0   
+100006_1                                                    0   
+100007_1                                                    0   
+100007_2                                                    0   
+100008_1                                                    0   
+
+url         /shuttle/technology/sts-newsref/stsover-launch.html  \
+session_id                                                        
+100000_1                                                    0     
+100001_1                                                    0     
+100002_1                                                    0     
+100003_1                                                    0     
+100004_1                                                    0     
+100005_1                                                    0     
+100006_1                                                    0     
+100007_1                                                    0     
+100007_2                                                    0     
+100008_1                                                    0     
+
+url         /shuttle/technology/sts-newsref/stsref-toc.html  \
+session_id                                                    
+100000_1                                                  0   
+100001_1                                                  0   
+100002_1                                                  0   
+100003_1                                                  0   
+100004_1                                                  0   
+100005_1                                                  0   
+100006_1                                                  0   
+100007_1                                                  0   
+100007_2                                                  0   
+100008_1                                                  0   
+
+url         /software/winvn/faq/WINVNFAQ-Contents.html  \
+session_id                                               
+100000_1                                             0   
+100001_1                                             0   
+100002_1                                             0   
+100003_1                                             0   
+100004_1                                             0   
+100005_1                                             0   
+100006_1                                             0   
+100007_1                                             0   
+100007_2                                             0   
+100008_1                                             0   
+
+url         /software/winvn/userguide/wvnguide.html  \
+session_id                                            
+100000_1                                          0   
+100001_1                                          0   
+100002_1                                          0   
+100003_1                                          0   
+100004_1                                          0   
+100005_1                                          0   
+100006_1                                          0   
+100007_1                                          0   
+100007_2                                          0   
+100008_1                                          0   
+
+url         /software/winvn/winvn.html  /whats-new.html  
+session_id                                               
+100000_1                             0                0  
+100001_1                             0                0  
+100002_1                             0                0  
+100003_1                             0                0  
+100004_1                             0                0  
+100005_1                             0                0  
+100006_1                             1                0  
+100007_1                             0                0  
+100007_2                             0                0  
+100008_1                             1                0  
+
+[10 rows x 113 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./task\task8"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-status-200-dan-url-html">filter status = 200 dan url = .html</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-item-matrix-session-url-matrix">User-Item Matrix (Session-URL Matrix)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">🎯 Tujuan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-matrix">📊 Struktur Matrix:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-interpretasi">📝 Contoh Interpretasi:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kegunaan-matrix-ini">🔍 Kegunaan Matrix Ini:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-pembuatan">⚙️ Cara Pembuatan:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Willy Chairullah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

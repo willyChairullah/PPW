@@ -1,0 +1,2034 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tugas 6: Web Usage Mining &#8212; Documentation of PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'task/task8/index';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tugas 7: DETEKSI KOMUNITAS FACEBOOK GRAPH (Algoritma Louvain)" href="../task9/index.html" />
+    <link rel="prev" title="Tugas 5: Page rank Web Informatika" href="../task7/index-pta.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/myPhoto.jpg" class="logo__image only-light" alt="Documentation of PPW - Home"/>
+    <script>document.write(`<img src="../../_static/myPhoto.jpg" class="logo__image only-dark" alt="Documentation of PPW - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Selamat Datang di Website Catatan & Tugas PPW
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tugas</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../task1/index.html">Profil</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../task2/index.html">Tugas 1 Crawling Sprnger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task3/index.html">Tugas 2 : Crawling dan Struktur Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task4/index.html">Tugas 3 Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task5/index.html">Tugas 4 TF-IDF W2V dan Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task7/index-pta.html">Tugas 5: Page rank Web Informatika</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 6: Web Usage Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task9/index.html">Tugas 7: DETEKSI KOMUNITAS FACEBOOK GRAPH (Algoritma Louvain)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task10/index.html">Tugas 8: Word Graph</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">UTS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/index.html">Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/real/index.html">UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM dan Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/real/spam.html">UTS: Document Clustering on Email/SMS Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Ftask/task8/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/task/task8/index.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 6: Web Usage Mining</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-6-web-usage-mining">
+<h1>Tugas 6: Web Usage Mining<a class="headerlink" href="#tugas-6-web-usage-mining" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/webuage.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Remote host</th>
+      <th>Remote logname</th>
+      <th>Remote user</th>
+      <th>Request time</th>
+      <th>Request method</th>
+      <th>Request URI</th>
+      <th>Request Protocol</th>
+      <th>Status</th>
+      <th>Size of response (incl. headers)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65.55.147.227</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15T02:00:24Z</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21878</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>65.55.86.34</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15T02:00:58Z</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1416</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>148.188.55.88</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15T02:01:41Z</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>10946</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>72.30.57.238</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15T02:01:59Z</td>
+      <td>GET</td>
+      <td>/contribute.txt</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>39943</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>66.249.139.233</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15T02:02:09Z</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>17247</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>132253</th>
+      <td>66.249.196.230</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22T01:58:21Z</td>
+      <td>GET</td>
+      <td>/contribute.txt</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>16569</td>
+    </tr>
+    <tr>
+      <th>132254</th>
+      <td>66.249.41.85</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22T01:58:22Z</td>
+      <td>GET</td>
+      <td>/contribute.txt</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>380</td>
+    </tr>
+    <tr>
+      <th>132255</th>
+      <td>65.55.236.245</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22T01:59:33Z</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>6695</td>
+    </tr>
+    <tr>
+      <th>132256</th>
+      <td>65.55.198.69</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22T01:59:34Z</td>
+      <td>GET</td>
+      <td>/contribute.txt</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>47672</td>
+    </tr>
+    <tr>
+      <th>132257</th>
+      <td>65.55.75.208</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22T01:59:36Z</td>
+      <td>GET</td>
+      <td>/contribute.txt</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>6265</td>
+    </tr>
+  </tbody>
+</table>
+<p>132258 rows × 9 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Konversi kolom Request time ke datetime dengan format ISO8601</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Request time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Request time&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ISO8601&#39;</span><span class="p">)</span>
+
+<span class="c1"># Konversi ke timezone WIB (UTC+7) - langsung convert karena sudah ada timezone</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Request time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Request time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Asia/Jakarta&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data setelah konversi ke WIB:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timezone: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Request time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Beberapa baris pertama:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data setelah konversi ke WIB:
+Timezone: Asia/Jakarta
+
+Beberapa baris pertama:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Remote host</th>
+      <th>Remote logname</th>
+      <th>Remote user</th>
+      <th>Request time</th>
+      <th>Request method</th>
+      <th>Request URI</th>
+      <th>Request Protocol</th>
+      <th>Status</th>
+      <th>Size of response (incl. headers)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65.55.147.227</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:00:24+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21878</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>65.55.86.34</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:00:58+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1416</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>148.188.55.88</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:01:41+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>10946</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>72.30.57.238</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:01:59+07:00</td>
+      <td>GET</td>
+      <td>/contribute.txt</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>39943</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>66.249.139.233</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:02:09+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>17247</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter data dengan status 200 dan Request URI mengandung .html</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Request URI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;.html&#39;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">))]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total data sebelum filter: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total data setelah filter: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data yang telah difilter:&quot;</span><span class="p">)</span>
+<span class="n">df_filtered</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total data sebelum filter: 132258
+Total data setelah filter: 75718
+
+Data yang telah difilter:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Remote host</th>
+      <th>Remote logname</th>
+      <th>Remote user</th>
+      <th>Request time</th>
+      <th>Request method</th>
+      <th>Request URI</th>
+      <th>Request Protocol</th>
+      <th>Status</th>
+      <th>Size of response (incl. headers)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65.55.147.227</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:00:24+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21878</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>65.55.86.34</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:00:58+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1416</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>148.188.55.88</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:01:41+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>10946</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>66.249.139.233</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:02:09+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>17247</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>72.30.50.248</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 09:02:13+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>7883</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>132249</th>
+      <td>65.55.251.17</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22 08:57:24+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>12300</td>
+    </tr>
+    <tr>
+      <th>132250</th>
+      <td>67.195.151.244</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22 08:57:57+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>19828</td>
+    </tr>
+    <tr>
+      <th>132251</th>
+      <td>65.55.178.30</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22 08:58:02+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>95655</td>
+    </tr>
+    <tr>
+      <th>132252</th>
+      <td>67.195.176.248</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22 08:58:07+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>35002</td>
+    </tr>
+    <tr>
+      <th>132255</th>
+      <td>65.55.236.245</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-22 08:59:33+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>6695</td>
+    </tr>
+  </tbody>
+</table>
+<p>75718 rows × 9 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat copy dari dataframe yang difilter untuk menghindari warning</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Buat ID user berdasarkan kombinasi Remote host dan Request Protocol</span>
+<span class="c1"># Kombinasi yang sama akan mendapatkan ID yang sama</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Remote host&#39;</span><span class="p">,</span> <span class="s1">&#39;Request Protocol&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">ngroup</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total unique user ID: </span><span class="si">{</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contoh data dengan user_id:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[[</span><span class="s1">&#39;Remote host&#39;</span><span class="p">,</span> <span class="s1">&#39;Request Protocol&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Request URI&#39;</span><span class="p">,</span> <span class="s1">&#39;Request time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Verifikasi: User yang sama memiliki ID yang sama ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;Remote host&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;65.55.147.227&#39;</span><span class="p">][[</span><span class="s1">&#39;Remote host&#39;</span><span class="p">,</span> <span class="s1">&#39;Request Protocol&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total unique user ID: 74905
+
+Contoh data dengan user_id:
+       Remote host Request Protocol  user_id  Request URI  \
+0    65.55.147.227         HTTP/1.1    39204  /index.html   
+1      65.55.86.34         HTTP/1.1    43124  /index.html   
+2    148.188.55.88         HTTP/1.1    13434    /faq.html   
+4   66.249.139.233         HTTP/1.1    44916    /faq.html   
+5     72.30.50.248         HTTP/1.0    52199  /index.html   
+8      65.55.80.97         HTTP/1.1    43011  /index.html   
+9     65.55.161.41         HTTP/1.1    39548  /index.html   
+10   65.55.119.204         HTTP/1.1    38556    /faq.html   
+11    65.55.58.168         HTTP/1.1    42464  /index.html   
+12     65.55.35.29         HTTP/1.1    41967    /faq.html   
+
+                Request time  
+0  2009-10-15 09:00:24+07:00  
+1  2009-10-15 09:00:58+07:00  
+2  2009-10-15 09:01:41+07:00  
+4  2009-10-15 09:02:09+07:00  
+5  2009-10-15 09:02:13+07:00  
+8  2009-10-15 09:02:51+07:00  
+9  2009-10-15 09:02:54+07:00  
+10 2009-10-15 09:02:55+07:00  
+11 2009-10-15 09:02:56+07:00  
+12 2009-10-15 09:02:55+07:00  
+
+--- Verifikasi: User yang sama memiliki ID yang sama ---
+     Remote host Request Protocol  user_id
+0  65.55.147.227         HTTP/1.1    39204
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung jumlah Request URI yang unik</span>
+<span class="n">unique_uri_count</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;Request URI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah Request URI unik: </span><span class="si">{</span><span class="n">unique_uri_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan beberapa Request URI unik</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contoh Request URI unik:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;Request URI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">20</span><span class="p">])</span>
+
+<span class="c1"># Tampilkan top 10 Request URI yang paling sering diakses</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 Request URI yang paling sering diakses:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;Request URI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah Request URI unik: 2
+
+Contoh Request URI unik:
+[&#39;/index.html&#39; &#39;/faq.html&#39;]
+
+Top 10 Request URI yang paling sering diakses:
+Request URI
+/index.html    50438
+/faq.html      25280
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort data berdasarkan user_id dan waktu</span>
+<span class="n">df_sorted</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Request time&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Hitung durasi waktu di setiap halaman (selisih waktu antar request)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)[</span><span class="s1">&#39;Request time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+<span class="c1"># Jika duration adalah NaN (request pertama) atau negatif, set ke 0</span>
+<span class="c1"># Jika terlalu besar (&gt; 1 jam = 3600 detik), set ke 0 (kemungkinan session baru)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3600</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data dengan durasi:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_sorted</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Request URI&#39;</span><span class="p">,</span> <span class="s1">&#39;Request time&#39;</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data dengan durasi:
+    user_id  Request URI              Request time  duration
+0         1  /index.html 2009-10-19 01:27:27+07:00       0.0
+1         2  /index.html 2009-10-19 01:27:27+07:00       0.0
+2         3    /faq.html 2009-10-19 01:26:27+07:00       0.0
+3         4  /index.html 2009-10-19 03:59:37+07:00       0.0
+4         5  /index.html 2009-10-19 01:26:27+07:00       0.0
+5         6    /faq.html 2009-10-19 01:26:27+07:00       0.0
+6         7  /index.html 2009-10-19 03:58:33+07:00       0.0
+7         8    /faq.html 2009-10-19 03:58:33+07:00       0.0
+8         9    /faq.html 2009-10-19 01:26:27+07:00       0.0
+9        10    /faq.html 2009-10-19 03:58:44+07:00       0.0
+10       11  /index.html 2009-10-19 01:26:27+07:00       0.0
+11       12  /index.html 2009-10-19 03:58:33+07:00       0.0
+12       13    /faq.html 2009-10-19 03:58:45+07:00       0.0
+13       14  /index.html 2009-10-19 01:26:27+07:00       0.0
+14       15    /faq.html 2009-10-19 03:58:45+07:00       0.0
+15       16  /index.html 2009-10-19 03:58:33+07:00       0.0
+16       17    /faq.html 2009-10-19 03:58:32+07:00       0.0
+17       18  /index.html 2009-10-19 03:58:34+07:00       0.0
+18       19  /index.html 2009-10-19 01:26:27+07:00       0.0
+19       20  /index.html 2009-10-19 03:58:45+07:00       0.0
+    user_id  Request URI              Request time  duration
+0         1  /index.html 2009-10-19 01:27:27+07:00       0.0
+1         2  /index.html 2009-10-19 01:27:27+07:00       0.0
+2         3    /faq.html 2009-10-19 01:26:27+07:00       0.0
+3         4  /index.html 2009-10-19 03:59:37+07:00       0.0
+4         5  /index.html 2009-10-19 01:26:27+07:00       0.0
+5         6    /faq.html 2009-10-19 01:26:27+07:00       0.0
+6         7  /index.html 2009-10-19 03:58:33+07:00       0.0
+7         8    /faq.html 2009-10-19 03:58:33+07:00       0.0
+8         9    /faq.html 2009-10-19 01:26:27+07:00       0.0
+9        10    /faq.html 2009-10-19 03:58:44+07:00       0.0
+10       11  /index.html 2009-10-19 01:26:27+07:00       0.0
+11       12  /index.html 2009-10-19 03:58:33+07:00       0.0
+12       13    /faq.html 2009-10-19 03:58:45+07:00       0.0
+13       14  /index.html 2009-10-19 01:26:27+07:00       0.0
+14       15    /faq.html 2009-10-19 03:58:45+07:00       0.0
+15       16  /index.html 2009-10-19 03:58:33+07:00       0.0
+16       17    /faq.html 2009-10-19 03:58:32+07:00       0.0
+17       18  /index.html 2009-10-19 03:58:34+07:00       0.0
+18       19  /index.html 2009-10-19 01:26:27+07:00       0.0
+19       20  /index.html 2009-10-19 03:58:45+07:00       0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter data dengan duration yang tidak 0</span>
+<span class="n">df_filtered2</span> <span class="o">=</span> <span class="n">df_sorted</span><span class="p">[</span><span class="n">df_sorted</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total data sebelum filter: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sorted</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total data setelah filter (duration != 0): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_filtered2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data yang telah difilter:&quot;</span><span class="p">)</span>
+<span class="n">df_filtered2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total data sebelum filter: 75718
+Total data setelah filter (duration != 0): 60
+
+Data yang telah difilter:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Remote host</th>
+      <th>Remote logname</th>
+      <th>Remote user</th>
+      <th>Request time</th>
+      <th>Request method</th>
+      <th>Request URI</th>
+      <th>Request Protocol</th>
+      <th>Status</th>
+      <th>Size of response (incl. headers)</th>
+      <th>user_id</th>
+      <th>duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6577</th>
+      <td>134.226.99.103</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 17:18:48+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>9819</td>
+      <td>6572</td>
+      <td>506.0</td>
+    </tr>
+    <tr>
+      <th>6742</th>
+      <td>134.34.108.221</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-20 23:29:23+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>12774</td>
+      <td>6734</td>
+      <td>852.0</td>
+    </tr>
+    <tr>
+      <th>7095</th>
+      <td>134.34.128.85</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 18:56:09+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21499</td>
+      <td>7073</td>
+      <td>3012.0</td>
+    </tr>
+    <tr>
+      <th>7535</th>
+      <td>134.34.154.44</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 21:24:24+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>13635</td>
+      <td>7500</td>
+      <td>2519.0</td>
+    </tr>
+    <tr>
+      <th>8553</th>
+      <td>134.34.208.24</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-20 22:22:25+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>10937</td>
+      <td>8494</td>
+      <td>3548.0</td>
+    </tr>
+    <tr>
+      <th>9427</th>
+      <td>134.34.26.187</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 21:08:32+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>251</td>
+      <td>9343</td>
+      <td>2159.0</td>
+    </tr>
+    <tr>
+      <th>9554</th>
+      <td>134.34.33.129</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 20:27:34+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>23043</td>
+      <td>9466</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>9664</th>
+      <td>134.34.39.243</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-20 22:32:34+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>13678</td>
+      <td>9571</td>
+      <td>2949.0</td>
+    </tr>
+    <tr>
+      <th>9956</th>
+      <td>134.34.55.24</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 17:17:57+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>12774</td>
+      <td>9852</td>
+      <td>2997.0</td>
+    </tr>
+    <tr>
+      <th>11384</th>
+      <td>141.24.161.4</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 19:22:56+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>9260</td>
+      <td>11255</td>
+      <td>114.0</td>
+    </tr>
+    <tr>
+      <th>11441</th>
+      <td>141.24.204.85</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 19:21:13+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>9699</td>
+      <td>11311</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>12774</th>
+      <td>143.167.243.161</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 21:51:07+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>16941</td>
+      <td>12641</td>
+      <td>127.0</td>
+    </tr>
+    <tr>
+      <th>12804</th>
+      <td>143.167.31.248</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 21:51:33+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>981453</td>
+      <td>12670</td>
+      <td>143.0</td>
+    </tr>
+    <tr>
+      <th>16159</th>
+      <td>173.66.107.2</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 22:46:49+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>66</td>
+      <td>16023</td>
+      <td>151.0</td>
+    </tr>
+    <tr>
+      <th>16447</th>
+      <td>174.7.145.114</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 17:35:17+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>251</td>
+      <td>16310</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>18577</th>
+      <td>193.0.199.55</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 20:49:28+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>20926</td>
+      <td>18438</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>20471</th>
+      <td>194.94.13.177</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:23:20+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>205</td>
+      <td>20331</td>
+      <td>387.0</td>
+    </tr>
+    <tr>
+      <th>20630</th>
+      <td>194.94.67.250</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:16:53+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1057</td>
+      <td>20489</td>
+      <td>176.0</td>
+    </tr>
+    <tr>
+      <th>22901</th>
+      <td>201.1.57.165</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 01:11:50+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>18097</td>
+      <td>22758</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>27019</th>
+      <td>210.142.214.227</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 19:29:33+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>8337</td>
+      <td>26860</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>27730</th>
+      <td>212.121.157.162</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 16:55:36+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>7048</td>
+      <td>27569</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>28101</th>
+      <td>212.126.134.57</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 21:52:24+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21499</td>
+      <td>27936</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>28314</th>
+      <td>212.126.165.39</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 20:45:05+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>10168</td>
+      <td>28147</td>
+      <td>28.0</td>
+    </tr>
+    <tr>
+      <th>29170</th>
+      <td>212.126.69.251</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 21:30:38+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>13678</td>
+      <td>28995</td>
+      <td>305.0</td>
+    </tr>
+    <tr>
+      <th>31031</th>
+      <td>212.90.252.3</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 16:54:14+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>168423</td>
+      <td>30852</td>
+      <td>201.0</td>
+    </tr>
+    <tr>
+      <th>33365</th>
+      <td>220.181.218.9</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 19:21:34+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21520</td>
+      <td>33185</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>35042</th>
+      <td>41.204.110.87</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 18:57:42+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>285</td>
+      <td>34859</td>
+      <td>482.0</td>
+    </tr>
+    <tr>
+      <th>42680</th>
+      <td>65.55.51.161</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-15 17:26:31+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1416</td>
+      <td>42331</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>43119</th>
+      <td>65.55.7.65</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 10:02:37+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>9629</td>
+      <td>42751</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>45787</th>
+      <td>66.249.152.89</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 18:04:31+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1416</td>
+      <td>45306</td>
+      <td>952.0</td>
+    </tr>
+    <tr>
+      <th>47048</th>
+      <td>66.249.199.173</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-17 03:17:26+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>13515</td>
+      <td>46515</td>
+      <td>351.0</td>
+    </tr>
+    <tr>
+      <th>47123</th>
+      <td>66.249.200.7</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 23:34:49+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>17013</td>
+      <td>46586</td>
+      <td>3009.0</td>
+    </tr>
+    <tr>
+      <th>48242</th>
+      <td>66.249.239.81</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 22:48:56+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>15256</td>
+      <td>47658</td>
+      <td>565.0</td>
+    </tr>
+    <tr>
+      <th>48850</th>
+      <td>66.249.31.58</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-20 17:09:38+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>8213</td>
+      <td>48244</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>49428</th>
+      <td>66.249.52.234</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-17 06:27:16+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>16688</td>
+      <td>48792</td>
+      <td>3582.0</td>
+    </tr>
+    <tr>
+      <th>49965</th>
+      <td>66.249.71.114</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 09:04:04+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>105410</td>
+      <td>49297</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>50428</th>
+      <td>66.249.87.65</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 21:34:38+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>25826</td>
+      <td>49738</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>54724</th>
+      <td>77.49.134.133</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:56:34+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>8521</td>
+      <td>54004</td>
+      <td>120.0</td>
+    </tr>
+    <tr>
+      <th>54968</th>
+      <td>77.49.184.215</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:30:00+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>7570</td>
+      <td>54245</td>
+      <td>681.0</td>
+    </tr>
+    <tr>
+      <th>54986</th>
+      <td>77.49.188.119</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 00:26:37+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>8541</td>
+      <td>54262</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>55521</th>
+      <td>77.49.60.5</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:48:23+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>365690</td>
+      <td>54792</td>
+      <td>1148.0</td>
+    </tr>
+    <tr>
+      <th>55659</th>
+      <td>77.49.91.139</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:33:29+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>8631</td>
+      <td>54928</td>
+      <td>894.0</td>
+    </tr>
+    <tr>
+      <th>55681</th>
+      <td>77.49.95.17</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-18 04:33:38+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>9699</td>
+      <td>54948</td>
+      <td>906.0</td>
+    </tr>
+    <tr>
+      <th>56114</th>
+      <td>78.33.119.106</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 01:10:34+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>17723</td>
+      <td>55379</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>57223</th>
+      <td>80.124.201.198</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 23:36:25+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1480628</td>
+      <td>56487</td>
+      <td>443.0</td>
+    </tr>
+    <tr>
+      <th>57279</th>
+      <td>80.124.238.182</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 23:36:25+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>1480628</td>
+      <td>56542</td>
+      <td>448.0</td>
+    </tr>
+    <tr>
+      <th>60495</th>
+      <td>82.130.203.99</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 23:27:09+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>8556</td>
+      <td>59747</td>
+      <td>697.0</td>
+    </tr>
+    <tr>
+      <th>60670</th>
+      <td>82.130.232.20</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 23:11:34+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>10313</td>
+      <td>59920</td>
+      <td>71.0</td>
+    </tr>
+    <tr>
+      <th>60977</th>
+      <td>82.130.53.29</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 23:15:51+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>13919</td>
+      <td>60224</td>
+      <td>329.0</td>
+    </tr>
+    <tr>
+      <th>61174</th>
+      <td>82.130.82.17</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 23:15:46+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>124058</td>
+      <td>60418</td>
+      <td>1181.0</td>
+    </tr>
+    <tr>
+      <th>61872</th>
+      <td>83.10.91.214</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-17 03:17:08+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>17726</td>
+      <td>61115</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>62320</th>
+      <td>83.77.189.123</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 01:37:29+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>13477</td>
+      <td>61562</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>69541</th>
+      <td>91.121.178.80</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 15:30:54+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>2087</td>
+      <td>68772</td>
+      <td>2051.0</td>
+    </tr>
+    <tr>
+      <th>70626</th>
+      <td>91.121.92.152</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 19:09:20+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.0</td>
+      <td>200</td>
+      <td>13515</td>
+      <td>69839</td>
+      <td>1782.0</td>
+    </tr>
+    <tr>
+      <th>70750</th>
+      <td>91.137.181.33</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-16 17:39:02+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>20336</td>
+      <td>69962</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>72292</th>
+      <td>91.23.20.94</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 21:48:29+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>12774</td>
+      <td>71490</td>
+      <td>928.0</td>
+    </tr>
+    <tr>
+      <th>72499</th>
+      <td>91.23.234.86</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-19 23:00:47+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>12608</td>
+      <td>71694</td>
+      <td>1857.0</td>
+    </tr>
+    <tr>
+      <th>72692</th>
+      <td>91.23.34.126</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-17 16:36:24+07:00</td>
+      <td>GET</td>
+      <td>/faq.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>21499</td>
+      <td>71883</td>
+      <td>317.0</td>
+    </tr>
+    <tr>
+      <th>72867</th>
+      <td>91.23.63.12</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-17 23:22:45+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>7008</td>
+      <td>72056</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>73839</th>
+      <td>92.226.42.225</td>
+      <td>-</td>
+      <td>-</td>
+      <td>2009-10-21 00:30:14+07:00</td>
+      <td>GET</td>
+      <td>/index.html</td>
+      <td>HTTP/1.1</td>
+      <td>200</td>
+      <td>48402</td>
+      <td>73027</td>
+      <td>72.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./task\task8"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../task7/index-pta.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tugas 5: Page rank Web Informatika</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../task9/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 7: DETEKSI KOMUNITAS FACEBOOK GRAPH (Algoritma Louvain)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Willy Chairullah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Documentation of PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exams/uas/crawling x/try';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/myPhoto.jpg" class="logo__image only-light" alt="Documentation of PPW - Home"/>
+    <script>document.write(`<img src="../../../_static/myPhoto.jpg" class="logo__image only-dark" alt="Documentation of PPW - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Selamat Datang di Website Catatan & Tugas PPW
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tugas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task1/index.html">Profil</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task2/index.html">Tugas 1 Crawling Sprnger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task3/index.html">Tugas 2 : Crawling dan Struktur Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task4/index.html">Tugas 3 Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task5/index.html">Tugas 4 TF-IDF W2V dan Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task7/index-pta.html">Tugas 5: Page rank Web Informatika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task8/index.html">Web usage mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../task/task9/index.html">DETEKSI KOMUNITAS FACEBOOK GRAPH (Algoritma Louvain)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">UTS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../uts/index.html">Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uts/real/index.html">UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM dan Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uts/real/spam.html">UTS: Document Clustering on Email/SMS Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Fexams/uas/crawling x/try.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/exams/uas/crawling x/try.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install twikit asyncio
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: twikit in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (2.3.3)
+Collecting asyncio
+  Downloading asyncio-4.0.0-py3-none-any.whl.metadata (994 bytes)
+Requirement already satisfied: httpx[socks] in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (0.28.1)
+Requirement already satisfied: filetype in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (1.2.0)
+Requirement already satisfied: beautifulsoup4 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (4.10.0)
+Requirement already satisfied: pyotp in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (2.9.0)
+Requirement already satisfied: lxml in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (4.9.1)
+Requirement already satisfied: webvtt-py in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (0.5.1)
+Requirement already satisfied: m3u8 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (6.0.0)
+Requirement already satisfied: Js2Py-3.13 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from twikit) (0.74.1)
+Requirement already satisfied: soupsieve&gt;1.2 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from beautifulsoup4-&gt;twikit) (2.3.2.post1)
+Requirement already satisfied: anyio in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from httpx[socks]-&gt;twikit) (4.6.2.post1)
+Requirement already satisfied: certifi in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from httpx[socks]-&gt;twikit) (2025.8.3)
+Requirement already satisfied: httpcore==1.* in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from httpx[socks]-&gt;twikit) (1.0.9)
+Requirement already satisfied: idna in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from httpx[socks]-&gt;twikit) (3.7)
+Requirement already satisfied: socksio==1.* in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from httpx[socks]-&gt;twikit) (1.0.0)
+Requirement already satisfied: h11&gt;=0.16 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from httpcore==1.*-&gt;httpx[socks]-&gt;twikit) (0.16.0)
+Requirement already satisfied: sniffio&gt;=1.1 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from anyio-&gt;httpx[socks]-&gt;twikit) (1.3.1)
+Requirement already satisfied: exceptiongroup&gt;=1.0.2 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from anyio-&gt;httpx[socks]-&gt;twikit) (1.2.2)
+Requirement already satisfied: typing-extensions&gt;=4.1 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from anyio-&gt;httpx[socks]-&gt;twikit) (4.14.1)
+Requirement already satisfied: tzlocal&gt;=1.2 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from Js2Py-3.13-&gt;twikit) (5.3.1)
+Requirement already satisfied: six&gt;=1.10 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from Js2Py-3.13-&gt;twikit) (1.17.0)
+Requirement already satisfied: pyjsparser&gt;=2.5.1 in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from Js2Py-3.13-&gt;twikit) (2.7.1)
+Requirement already satisfied: tzdata in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from tzlocal&gt;=1.2-&gt;Js2Py-3.13-&gt;twikit) (2024.1)
+Requirement already satisfied: backports-datetime-fromisoformat in c:\users\willy\appdata\local\programs\python\python310\lib\site-packages (from m3u8-&gt;twikit) (2.0.3)
+Downloading asyncio-4.0.0-py3-none-any.whl (5.6 kB)
+Installing collected packages: asyncio
+Successfully installed asyncio-4.0.0
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.2 -&gt; 25.3
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">twikit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">USERNAME</span> <span class="o">=</span> <span class="s1">&#39;ArdiansahN526&#39;</span>
+<span class="n">EMAIL</span> <span class="o">=</span> <span class="s1">&#39;0cyplh8std@lnovic.com&#39;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;halo1234&#39;</span>
+
+<span class="c1"># Initialize client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="p">)</span>
+
+<span class="c1"># Di Jupyter Notebook, gunakan await langsung (tidak perlu asyncio.run)</span>
+<span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">auth_info_1</span><span class="o">=</span><span class="n">USERNAME</span><span class="p">,</span>
+    <span class="n">auth_info_2</span><span class="o">=</span><span class="n">EMAIL</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">PASSWORD</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Login berhasil!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Forbidden</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">12</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;en-US&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Di Jupyter Notebook, gunakan await langsung (tidak perlu asyncio.run)</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">auth_info_1</span><span class="o">=</span><span class="n">USERNAME</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">auth_info_2</span><span class="o">=</span><span class="n">EMAIL</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">password</span><span class="o">=</span><span class="n">PASSWORD</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Login berhasil!&quot;</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\willy\AppData\Local\Programs\Python\Python310\lib\site-packages\twikit\client\client.py:343,</span> in <span class="ni">Client.login</span><span class="nt">(self, auth_info_1, auth_info_2, password, totp_secret, cookies_file, enable_ui_metrics)</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span> <span class="n">guest_token</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_guest_token</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="n">flow</span> <span class="o">=</span> <span class="n">Flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guest_token</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">343</span> <span class="k">await</span> <span class="n">flow</span><span class="o">.</span><span class="n">execute_task</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;flow_name&#39;</span><span class="p">:</span> <span class="s1">&#39;login&#39;</span><span class="p">},</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>     <span class="s1">&#39;input_flow_data&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span>         <span class="s1">&#39;flow_context&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="s1">&#39;debug_overrides&#39;</span><span class="p">:</span> <span class="p">{},</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>             <span class="s1">&#39;start_location&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span>                 <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="s1">&#39;splash_screen&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">349</span>             <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span>         <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span>     <span class="s1">&#39;subtask_versions&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span>         <span class="s1">&#39;action_list&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span>         <span class="s1">&#39;alert_dialog&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>         <span class="s1">&#39;app_download_cta&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span>         <span class="s1">&#39;check_logged_in_account&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">357</span>         <span class="s1">&#39;choice_selection&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span>         <span class="s1">&#39;contacts_live_sync_permission_prompt&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>         <span class="s1">&#39;cta&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>         <span class="s1">&#39;email_verification&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>         <span class="s1">&#39;end_flow&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="s1">&#39;enter_date&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span>         <span class="s1">&#39;enter_email&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span>         <span class="s1">&#39;enter_password&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>         <span class="s1">&#39;enter_phone&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span>         <span class="s1">&#39;enter_recaptcha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span>         <span class="s1">&#39;enter_text&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span>         <span class="s1">&#39;enter_username&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>         <span class="s1">&#39;generic_urt&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>         <span class="s1">&#39;in_app_notification&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>         <span class="s1">&#39;interest_picker&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>         <span class="s1">&#39;js_instrumentation&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span>         <span class="s1">&#39;menu_dialog&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span>         <span class="s1">&#39;notifications_permission_prompt&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>         <span class="s1">&#39;open_account&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="s1">&#39;open_home_timeline&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>         <span class="s1">&#39;open_link&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>         <span class="s1">&#39;phone_verification&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span>         <span class="s1">&#39;privacy_options&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="s1">&#39;security_key&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>         <span class="s1">&#39;select_avatar&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span>         <span class="s1">&#39;select_banner&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span>         <span class="s1">&#39;settings_list&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span>         <span class="s1">&#39;show_code&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span>         <span class="s1">&#39;sign_up&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="s1">&#39;sign_up_review&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span>         <span class="s1">&#39;tweet_selection_urt&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span>         <span class="s1">&#39;update_users&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="s1">&#39;upload_media&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>         <span class="s1">&#39;user_recommendations_list&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="s1">&#39;user_recommendations_urt&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span>         <span class="s1">&#39;wait_spinner&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span>         <span class="s1">&#39;web_modal&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">394</span>     <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span> <span class="p">})</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span> <span class="k">await</span> <span class="n">flow</span><span class="o">.</span><span class="n">sso_init</span><span class="p">(</span><span class="s1">&#39;apple&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="k">if</span> <span class="n">enable_ui_metrics</span><span class="p">:</span>
+
+<span class="nn">File c:\Users\willy\AppData\Local\Programs\Python\Python310\lib\site-packages\twikit\utils.py:88,</span> in <span class="ni">Flow.execute_task</span><span class="nt">(self, *subtask_inputs, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">subtask_inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">88</span>     <span class="n">response</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">v11</span><span class="o">.</span><span class="n">onboarding_task</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="bp">self</span><span class="o">.</span><span class="n">guest_token</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">subtask_inputs</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">response</span>
+
+<span class="nn">File c:\Users\willy\AppData\Local\Programs\Python\Python310\lib\site-packages\twikit\client\v11.py:90,</span> in <span class="ni">V11Client.onboarding_task</span><span class="nt">(self, guest_token, token, subtask_inputs, data, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;x-csrf-token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">_get_csrf_token</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;x-twitter-auth-type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;OAuth2Session&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">90</span> <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="n">Endpoint</span><span class="o">.</span><span class="n">ONBOARDING_TASK</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span> <span class="p">)</span>
+
+<span class="nn">File c:\Users\willy\AppData\Local\Programs\Python\Python310\lib\site-packages\twikit\client\client.py:215,</span> in <span class="ni">Client.post</span><span class="nt">(self, url, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span> <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Response</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="s1">&#39;:meta private:&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">215</span>     <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\willy\AppData\Local\Programs\Python\Python310\lib\site-packages\twikit\client\client.py:190,</span> in <span class="ni">Client.request</span><span class="nt">(self, method, url, auto_unlock, raise_exception, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="k">raise</span> <span class="n">Unauthorized</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">190</span>     <span class="k">raise</span> <span class="n">Forbidden</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="ne">Forbidden</span>: status: 403, message: &quot;&lt;!DOCTYPE html&gt;
+<span class="o">&lt;!</span>--<span class="o">[</span><span class="k">if</span><span class="w"> </span>lt<span class="w"> </span>IE<span class="w"> </span><span class="m">7</span><span class="o">]</span>&gt;<span class="w"> </span>&lt;html<span class="w"> </span><span class="nv">class</span><span class="o">=</span><span class="s2">&quot;no-js ie6 oldie&quot;</span><span class="w"> </span><span class="nv">lang</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span>&gt;<span class="w"> </span>&lt;!<span class="o">[</span>endif<span class="o">]</span>--&gt;
+<span class="o">&lt;!</span>--<span class="o">[</span><span class="k">if</span><span class="w"> </span>IE<span class="w"> </span><span class="m">7</span><span class="o">]</span>&gt;<span class="w">    </span>&lt;html<span class="w"> </span><span class="nv">class</span><span class="o">=</span><span class="s2">&quot;no-js ie7 oldie&quot;</span><span class="w"> </span><span class="nv">lang</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span>&gt;<span class="w"> </span>&lt;!<span class="o">[</span>endif<span class="o">]</span>--&gt;
+<span class="o">&lt;!</span>--<span class="o">[</span><span class="k">if</span><span class="w"> </span>IE<span class="w"> </span><span class="m">8</span><span class="o">]</span>&gt;<span class="w">    </span>&lt;html<span class="w"> </span><span class="nv">class</span><span class="o">=</span><span class="s2">&quot;no-js ie8 oldie&quot;</span><span class="w"> </span><span class="nv">lang</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span>&gt;<span class="w"> </span>&lt;!<span class="o">[</span>endif<span class="o">]</span>--&gt;
+<span class="o">&lt;!</span>--<span class="o">[</span><span class="k">if</span><span class="w"> </span>gt<span class="w"> </span>IE<span class="w"> </span><span class="m">8</span><span class="o">]</span>&gt;&lt;!--&gt;<span class="w"> </span>&lt;html<span class="w"> </span><span class="nv">class</span><span class="o">=</span><span class="s2">&quot;no-js&quot;</span><span class="w"> </span><span class="nv">lang</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span>&gt;<span class="w"> </span>&lt;!--&lt;!<span class="o">[</span>endif<span class="o">]</span>--&gt;
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Attention</span> <span class="n">Required</span><span class="o">!</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Cloudflare&lt;/title&gt;
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">http</span><span class="o">-</span><span class="n">equiv</span><span class="o">=</span><span class="s2">&quot;Content-Type&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;text/html; charset=UTF-8&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">http</span><span class="o">-</span><span class="n">equiv</span><span class="o">=</span><span class="s2">&quot;X-UA-Compatible&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;IE=Edge&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;robots&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;noindex, nofollow&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;viewport&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;width=device-width,initial-scale=1&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">link</span> <span class="n">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cf_styles-css&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/cdn-cgi/styles/cf.errors.css&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;!</span>--<span class="o">[</span><span class="k">if</span><span class="w"> </span>lt<span class="w"> </span>IE<span class="w"> </span><span class="m">9</span><span class="o">]</span>&gt;&lt;link<span class="w"> </span><span class="nv">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span><span class="w"> </span><span class="nv">id</span><span class="o">=</span><span class="s1">&#39;cf_styles-ie-css&#39;</span><span class="w"> </span><span class="nv">href</span><span class="o">=</span><span class="s2">&quot;/cdn-cgi/styles/cf.errors.ie.css&quot;</span><span class="w"> </span>/&gt;&lt;!<span class="o">[</span>endif<span class="o">]</span>--&gt;
+<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span><span class="n">body</span><span class="p">{</span><span class="n">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="n">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+
+
+<span class="o">&lt;!</span>--<span class="o">[</span><span class="k">if</span><span class="w"> </span>gte<span class="w"> </span>IE<span class="w"> </span><span class="m">10</span><span class="o">]</span>&gt;&lt;!--&gt;
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span>navigator.cookieEnabled<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="n">var</span> <span class="n">cookieEl</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;cookie-alert&#39;</span><span class="p">);</span>
+      <span class="n">cookieEl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="s1">&#39;block&#39;</span><span class="p">;</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;!</span>--&lt;!<span class="o">[</span>endif<span class="o">]</span>--&gt;
+
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cf-wrapper&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-alert cf-alert-error cf-cookie-error&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cookie-alert&quot;</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;enable_cookies&quot;</span><span class="o">&gt;</span><span class="n">Please</span> <span class="n">enable</span> <span class="n">cookies</span><span class="o">.&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cf-error-details&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-error-details-wrapper&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-wrapper cf-header cf-error-overview&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;block_headline&quot;</span><span class="o">&gt;</span><span class="n">Sorry</span><span class="p">,</span> <span class="n">you</span> <span class="n">have</span> <span class="n">been</span> <span class="n">blocked</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h2</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-subheadline&quot;</span><span class="o">&gt;&lt;</span><span class="n">span</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;unable_to_access&quot;</span><span class="o">&gt;</span><span class="n">You</span> <span class="n">are</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">access</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">com</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;!</span>--<span class="w"> </span>/.header<span class="w"> </span>--&gt;
+
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-section cf-highlight&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-wrapper&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-screenshot-container cf-screenshot-full&quot;</span><span class="o">&gt;</span>
+            
+              <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-no-screenshot error&quot;</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+            
+          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;!</span>--<span class="w"> </span>/.captcha-container<span class="w"> </span>--&gt;
+
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-section cf-wrapper&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-columns two&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-column&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">h2</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;blocked_why_headline&quot;</span><span class="o">&gt;</span><span class="n">Why</span> <span class="n">have</span> <span class="n">I</span> <span class="n">been</span> <span class="n">blocked</span><span class="err">?</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+            <span class="o">&lt;</span><span class="n">p</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;blocked_why_detail&quot;</span><span class="o">&gt;</span><span class="n">This</span> <span class="n">website</span> <span class="ow">is</span> <span class="n">using</span> <span class="n">a</span> <span class="n">security</span> <span class="n">service</span> <span class="n">to</span> <span class="n">protect</span> <span class="n">itself</span> <span class="kn">from</span><span class="w"> </span><span class="nn">online</span> <span class="n">attacks</span><span class="o">.</span> <span class="n">The</span> <span class="n">action</span> <span class="n">you</span> <span class="n">just</span> <span class="n">performed</span> <span class="n">triggered</span> <span class="n">the</span> <span class="n">security</span> <span class="n">solution</span><span class="o">.</span> <span class="n">There</span> <span class="n">are</span> <span class="n">several</span> <span class="n">actions</span> <span class="n">that</span> <span class="n">could</span> <span class="n">trigger</span> <span class="n">this</span> <span class="n">block</span> <span class="n">including</span> <span class="n">submitting</span> <span class="n">a</span> <span class="n">certain</span> <span class="n">word</span> <span class="ow">or</span> <span class="n">phrase</span><span class="p">,</span> <span class="n">a</span> <span class="n">SQL</span> <span class="n">command</span> <span class="ow">or</span> <span class="n">malformed</span> <span class="n">data</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-column&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">h2</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;blocked_resolve_headline&quot;</span><span class="o">&gt;</span><span class="n">What</span> <span class="n">can</span> <span class="n">I</span> <span class="n">do</span> <span class="n">to</span> <span class="n">resolve</span> <span class="n">this</span><span class="err">?</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+            <span class="o">&lt;</span><span class="n">p</span> <span class="n">data</span><span class="o">-</span><span class="n">translate</span><span class="o">=</span><span class="s2">&quot;blocked_resolve_detail&quot;</span><span class="o">&gt;</span><span class="n">You</span> <span class="n">can</span> <span class="n">email</span> <span class="n">the</span> <span class="n">site</span> <span class="n">owner</span> <span class="n">to</span> <span class="n">let</span> <span class="n">them</span> <span class="n">know</span> <span class="n">you</span> <span class="n">were</span> <span class="n">blocked</span><span class="o">.</span> <span class="n">Please</span> <span class="n">include</span> <span class="n">what</span> <span class="n">you</span> <span class="n">were</span> <span class="n">doing</span> <span class="n">when</span> <span class="n">this</span> <span class="n">page</span> <span class="n">came</span> <span class="n">up</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">Cloudflare</span> <span class="n">Ray</span> <span class="n">ID</span> <span class="n">found</span> <span class="n">at</span> <span class="n">the</span> <span class="n">bottom</span> <span class="n">of</span> <span class="n">this</span> <span class="n">page</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;!</span>--<span class="w"> </span>/.section<span class="w"> </span>--&gt;
+
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">p</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;text-13&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-footer-item sm:block sm:mb-1&quot;</span><span class="o">&gt;</span><span class="n">Cloudflare</span> <span class="n">Ray</span> <span class="n">ID</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">strong</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;font-semibold&quot;</span><span class="o">&gt;</span><span class="mi">9</span><span class="n">a80c9f74842c5bc</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-footer-separator sm:hidden&quot;</span><span class="o">&gt;&amp;</span><span class="n">bull</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cf-footer-item-ip&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-footer-item hidden sm:block sm:mb-1&quot;</span><span class="o">&gt;</span>
+        <span class="n">Your</span> <span class="n">IP</span><span class="p">:</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;button&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cf-footer-ip-reveal&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-footer-ip-reveal-btn&quot;</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">to</span> <span class="n">reveal</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cf-footer-ip&quot;</span><span class="o">&gt;</span><span class="mf">180.247.136.206</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-footer-separator sm:hidden&quot;</span><span class="o">&gt;&amp;</span><span class="n">bull</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cf-footer-item sm:block sm:mb-1&quot;</span><span class="o">&gt;&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="n">Performance</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">security</span> <span class="n">by</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">rel</span><span class="o">=</span><span class="s2">&quot;noopener noreferrer&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://www.cloudflare.com/5xx-error-landing&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;brand_link&quot;</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;_blank&quot;</span><span class="o">&gt;</span><span class="n">Cloudflare</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      
+    <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="p">(</span><span class="n">function</span><span class="p">(){</span><span class="n">function</span> <span class="n">d</span><span class="p">(){</span><span class="n">var</span> <span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;cf-footer-item-ip&quot;</span><span class="p">),</span><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;cf-footer-ip-reveal&quot;</span><span class="p">);</span><span class="n">b</span><span class="o">&amp;&amp;</span><span class="s2">&quot;classList&quot;</span><span class="ow">in</span> <span class="n">b</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">classList</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;hidden&quot;</span><span class="p">),</span><span class="n">c</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="n">function</span><span class="p">(){</span><span class="n">c</span><span class="o">.</span><span class="n">classList</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;hidden&quot;</span><span class="p">);</span><span class="n">a</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;cf-footer-ip&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">classList</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;hidden&quot;</span><span class="p">)}))}</span><span class="n">var</span> <span class="n">a</span><span class="o">=</span><span class="n">document</span><span class="p">;</span><span class="n">document</span><span class="o">.</span><span class="n">addEventListener</span><span class="o">&amp;&amp;</span><span class="n">a</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="n">d</span><span class="p">)})();</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;!</span>--<span class="w"> </span>/.error-footer<span class="w"> </span>--&gt;
+
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;!</span>--<span class="w"> </span>/#cf-error-details<span class="w"> </span>--&gt;
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;!</span>--<span class="w"> </span>/#cf-wrapper<span class="w"> </span>--&gt;
+
+  <span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">_cf_translation</span> <span class="o">=</span> <span class="p">{};</span>
+    
+    
+  <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exams\uas\crawling x"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Willy Chairullah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

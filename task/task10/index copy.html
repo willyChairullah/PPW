@@ -1,0 +1,1108 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Documentation of PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'task/task10/index copy';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/myPhoto.jpg" class="logo__image only-light" alt="Documentation of PPW - Home"/>
+    <script>document.write(`<img src="../../_static/myPhoto.jpg" class="logo__image only-dark" alt="Documentation of PPW - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Selamat Datang di Website Catatan & Tugas PPW
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tugas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../task1/index.html">Profil</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../task2/index.html">Tugas 1 Crawling Sprnger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task3/index.html">Tugas 2 : Crawling dan Struktur Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task4/index.html">Tugas 3 Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task5/index.html">Tugas 4 TF-IDF W2V dan Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task7/index-pta.html">Tugas 5: Page rank Web Informatika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task8/index.html">Web usage mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../task9/index.html">DETEKSI KOMUNITAS FACEBOOK GRAPH (Algoritma Louvain)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">UTS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/index.html">Pra UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/real/index.html">UTS: Klasifikasi Teks Berita dengan LDA Feature Extraction dan SVM dan Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exams/uts/real/spam.html">UTS: Document Clustering on Email/SMS Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/willyChairullah/PPW/issues/new?title=Issue%20on%20page%20%2Ftask/task10/index copy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/task/task10/index copy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%capture</span>
+<span class="c1"># !pip install --upgrade pymupdf</span>
+<span class="c1"># !pip install nltk</span>
+<span class="c1"># !pip install networkx</span>
+<span class="c1"># !pip install matplotlib</span>
+<span class="c1"># !pip install Sastrawi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import semua library</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Sastrawi.StopWordRemover.StopWordRemoverFactory</span><span class="w"> </span><span class="kn">import</span> <span class="n">StopWordRemoverFactory</span>
+
+<span class="c1"># Download NLTK resources</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt_tab&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to
+[nltk_data]     C:\Users\willy\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package punkt_tab to
+[nltk_data]     C:\Users\willy\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/jurnal.pdf&quot;</span><span class="p">)</span> <span class="c1"># open a document</span>
+<span class="n">out</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="c1"># create a text output</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span> <span class="c1"># iterate the document pages</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="c1"># get plain text (is in UTF-8)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="c1"># write text of page</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">((</span><span class="mi">12</span><span class="p">,)))</span> <span class="c1"># write page delimiter (form feed 0x0C)</span>
+<span class="n">out</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">teks</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">teks</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>  <span class="c1"># tampilkan 200 karakter pertama</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jurnal Farmasi IKIFA 
+Vol. 3 No. 3 Oktober 2024 
+ 
+ 
+Ida, dkk | 121  
+ 
+HUBUNGAN KARAKTERISTIK DEMOGRAFI DENGAN PENGETAHUAN 
+MASYARAKAT TENTANG HIV/AIDS  DI RW 02  KELURAHAN PINANG RANTI 
+JAKARTA-TIMU
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">teks</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Jurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 121  \n \nHUBUNGAN KARAKTERISTIK DEMOGRAFI DENGAN PENGETAHUAN \nMASYARAKAT TENTANG HIV/AIDS  DI RW 02  KELURAHAN PINANG RANTI \nJAKARTA-TIMUR \n \nIda Diana Sari1, Nina Rustiana2, Aulia Eka Damayanti3 \n1,2,3Program Studi Farmasi, Sekolah Tinggi Ilmu Kesehatan IKIFA \nEmail : idadiana@ikifa.ac.id \nEmail: ninarustiana@ikifa.ac.id \nEmail: auliaeka.9b@gmail.com \n \nABSTRAK \nHuman Immunodeficiency Virus (HIV) yaitu virus yang menyerang dan melemahkan sistem \npertahanan tubuh manusia, sehingga tubuh mudah tertular berbagai penyakit.&#39;, &#39;Pada akhir tahun \n2022 sebanyak 85,6 juta orang telah terinfeksi virus HIV dan sekitar 40,4 juta orang meninggal \nkarena HIV.&#39;, &#39;Prevalensi orang hidup dengan HIV secara global sebanyak 39,0 juta.&#39;, &#39;Menurut \nLaporan Eksekutif Perkembangan HIV/AIDS dan Penyakit Menular Seksual (PIMS) Triwulan I \ntahun 2023, tercatat 5 Provinsi yang melaporkan kasus HIV tertinggi di Indonesia DKI Jakarta \n82.033 kasus, Jawa Timur 79.026 kasus, Jawa Barat 62.315 kasus, Jawa Tengah 50.689 kasus, \ndan Papua 44.086 kasus.&#39;, &#39;Tujuan dari penelitian ini adalah Untuk mengetahui Hubungan \nKarakteristik Demografi Jenis Kelamin dengan  pengetahuan kesehatan masyarakat tentang \nHIV/AIDS di RW 02 Kelurahan Pinang Ranti periode Maret-April 2024.&#39;, &#39;Metode dalam penelitian \nini menggunakan metode deskriptif kuantitatif.&#39;, &#39;Terdapat 342 sampel dalam penelitian ini, yang \ndiperoleh dengan teknik Propotional Random Sampling.&#39;, &#39;Hasil pengetahuan masyarakat di RW 02 \nKelurahan Pinang Ranti Jakarta Timur yang terdapat pada kategori baik sebanyak 114 responden \n(33,33%), yang memiliki pengetahuan cukup sebanyak 165 responden (48,25%), dan yang \nmemiliki pengetahuan kurang sebanyak 63 responden (18,42%).&#39;, &#39;Dapat disimpulkan bahwa \npengetahuan masyarakat di RW 02 Kelurahan Pinang Ranti Jakarta Timur terdapat pada kategori \ncukup (48,25%).&#39;, &#39;Berdasarkan perhitungan statistik dengan uji Spearman rho menunjukkan  Tidak \nterdapat Hubungan Karakteristik Demografi Jenis Kelamin dengan  pengetahuan kesehatan \nmasyarakat tentang HIV/AIDS di RW 02 Kelurahan Pinang Ranti periode Maret-April 2024.&#39;, &quot;Kata Kunci: Karakteristik Usia, Pengetahuan HIV, uji Spearman rho  \nABSTRACT \nHuman Immunodeficiency Virus (HIV) is a virus that attacks and weakens the human body&#39;s \ndefense system, making the body susceptible to various diseases.&quot;, &#39;By the end of 2022, 85.6 million \npeople will be infected with the HIV virus and around 40.4 million people will die from HIV.&#39;, &#39;The \nglobal prevalence of people living with HIV is 39.0 million.&#39;, &#39;According to the Executive Report on \nthe Development of HIV/AIDS and Sexually Transmitted Diseases (PIMS) for the first quarter of \n2023, there were 5 provinces that reported the highest HIV cases in Indonesia DKI Jakarta 82,033 \ncases, East Java 79,026 cases, West Java 62,315 cases, Central Java 50,689 cases, and Papua \n44,086 cases.&#39;, &#39;The purpose of this study was to determine the level of community knowledge about \nHIV / AIDS in RW 02 Pinang Ranti Village in the March-April 2024 period.&#39;, &#39;The method in this \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 122  \n \nstudy uses quantitative descriptive method.&#39;, &#39;There were 342 samples in this study, which were \nobtained using the Propotional Random Sampling technique.&#39;, &#39;The results of community knowledge \nin RW 02 Pinang Ranti Village, East Jakarta, which are in the good category are 114 respondents \n(33,33%), who have sufficient knowledge are 165 respondents (48.25%), and who have poor \nknowledge are 63 respondents (18,42%).&#39;, &#39;It can be concluded that the knowledge of the community \nin RW 02 Kelurahan Pinang Ranti East Jakarta is in the moderate category (48,25%).&#39;, &#39;Keywords: HIV, Knowledge, Overview, Community, uji Spearman rho  \n \nPENDAHULUAN  \nHuman Immunodeficiency Virus (HIV) yaitu virus yang menyerang dan melemahkan \nsistem pertahanan tubuh manusia, sehingga tubuh mudah tertular berbagai penyakit.&#39;, &#39;Acquired \nImmunodeficiency Syndrome (AIDS) merupakan sekumpulan gejala penyakit yang dapat \nmenyebabkan menurunnya kekebalan tubuh yang disebabkan oleh HIV.&#39;, &#39;Penderita yang terinfeksi \nHIV, tidak langsung menderita penyakit AIDS karena ada jangka waktu sekitar lima sampai \nsepuluh tahun sebelum penderita terkena AIDS.&#39;, &#39;(1) Infeksi HIV/AIDS di Indonesia menjadi \npermasalahan yang sangat sensitif bagi sebagian masyarakat dan menjadi tantangan di tingkat \nnasional maupun global.&#39;, &#39;Tidak dipungkiri bahwa masih tinggi stigma negatif dan diskriminasi \nterkait penyakit HIV di masyarakat.&#39;, &#39;(2) \nMenurut WHO (World Health Organization) epidemi HIV telah melanda seluruh dunia \ndengan cepat tanpa mengenal batas negara dan pada semua lapisan penduduk.&#39;, &#39;Pada akhir tahun \n2022 sebanyak 85,6 juta orang telah terinfeksi virus HIV dan sekitar 40,4 juta orang meninggal \nkarena HIV.&#39;, &#39;Prevalensi orang hidup dengan HIV secara global sebanyak 39,0 juta.&#39;, &#39;(3) \nBerdasarkan data dari Laporan Eksekutif Perkembangan HIV/AIDS dan Penyakit \nMenular Seksual (PIMS) Triwulan I tahun 2023 jumlah orang dengan HIV (ODHIV) sebanyak \n377.650 orang.&#39;, &#39;Prevalensi HIV di Indonesia sangat bervariasi, presentase infeksi HIV tertinggi \ndilaporkan pada kelompok umur 25-49 tahun (70,2%), diikuti kelompok umur 20-24 tahun (16%) \ndan kelompok umur &gt;50 tahun (7,4%).&#39;, &#39;Berdasarkan jenis kelamin, presentase ODHIV yang \nditemukan pada laki-laki sebesar 62% dan perempuan sebesar 38%.&#39;, &#39;(4) Menurut Laporan \nEksekutif Perkembangan HIV/AIDS dan Penyakit Menular Seksual (PIMS) Triwulan I tahun \n2023, tercatat 5 Provinsi yang melaporkan kasus HIV tertinggi di Indonesia DKI Jakarta 82.033 \nkasus, Jawa Timur 79.026 kasus, Jawa Barat 62.315 kasus, Jawa Tengah 50.689 kasus, dan Papua \n44.086 kasus.&#39;, &#39;(4) Menurut Laporan Eksekutif Perkembangan HIV/AIDS dan Penyakit Menular \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 123  \n \nSeksual (PIMS) Triwulan IV tahun 2019 Jakarta Pusat memiliki jumlah kasus HIV/AIDS paling \nbanyak yaitu (1.771 kasus), kemudian diikuti Jakarta Timur (1.403 kasus), Jakarta Selatan (1.374 \nkasus), Jakarta Barat (1.209 kasus), Jakarta Utara (939 kasus) dan yang terakhir yaitu di \nKepulauan Seribu sebanyak (5 kasus).&#39;, &#39;Dari jumlah tersebut Jakarta Timur menjadi peringkat \nkedua jumlah kasus HIV di Provinsi DKI Jakarta.&#39;, &#39;(5) \nBerdasarkan penelitian terdahulu yang telah dilakukan pada tahun 2020 di Dusun Bayanan \nDesa Jambeyan Kecamatan Sambirejo Kabupaten Sragen diambil sebanyak 30 responden.&#39;, &#39;Lima \norang memiliki tingkat pengetahuan yang baik sebesar 16,7% , sembilan orang memiliki tingkat \npengetahuan yang cukup sebesar 30%, dan 16 orang memiliki tingkat pengetahuan yang kurang \nsebesar 53,3%.&#39;, &#39;(6) Berdasarkan penelitian terdahulu yang telah dilakukan di Akademi IKIFA \nJakarta Timur sampel yang diambil sebanyak 83 orang.&#39;, &#39;Tingkat pengetahuan mahasiswa Akademi \nIKIFA tentang penyakit HIV/AIDS dengan kategori baik yaitu sebanyak 49 responden (59,04%), \nsedangkan untuk kategori cukup sebanyak 21 responden (25,30%), dan untuk kategori kurang \nsebanyak 13 responden (15,66%).&#39;, &#39;(7) \nSangat penting bagi masyarakat untuk mengetahui cara pencegahan dan penularan \nHIV/AIDS.&#39;, &#39;Penularan HIV/AIDS dapat terjadi jika ada pertukaran cairan tubuh anatara orang \nyang terinfeksi HIV dengan yang belum teinfeksi, dan cara penularan yang bervariasi.&#39;, &#39;Berbagai \nfaktor risiko penyebab HIV/AIDS, seperti dapat ditularkan dari orang ke orang melalui kontak \nseksual, penggunaan jarum yang terkontaminasi, transfusi darah.&#39;, &#39;(8) Penelitian ini bertujuan untuk \nmengetahui Hubungan karakteristik demografi dengan Tingkat pengetahuan kesehatan \nmasyarakat tentang HIV/AIDS di RW 02 Kelurahan Pinang Ranti.&#39;, &#39;METODE PENELITIAN  \nMetode dalam penelitian ini menggunakan metode deskriptif kuantitatif.&#39;, &#39;Terdapat 342 \nsampel dalam penelitian ini, yang diperoleh dengan teknik Propotional Random Sampling .&#39;, &#39;Penelitian dilakukan di RW 02 Kelurahan Pinang Ranti pada bulan MaretApril sebanyak 14 RT \nyaitu berjumlah 342 responden.&#39;, &#39;Setelah dilakukan pengambilan data dengan metode proportional \nrandom sampling yang diberikan kepada 120 responden sebagai sampel.&#39;, &#39;Hasil penelitian ini \ndiperoleh dari jawaban kuesioner yang memuat pernyataan tentang pengetahuan terhadap \nHIV/AIDS.&#39;, &#39;Kuesioner telah melewati uji validitas dan reliabilitas menggunakan SPSS versi 26 \ndan Microsoft excel dengan jumlah awal soal sebanyak 25 soal dan setelah diuji dan yang \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 124  \n \ndinyatakan valid sebanyak 23 soal.&#39;, &#39;Kuesioner dibagikan dan diisi langsung oleh responden yang \nberjumlah 342 responden.. \n \nINSTRUMEN PENELITIAN \nInstrumen dalam penelitian ini adalah kuesioner yang berisikan data primer.&#39;, &#39;Bentuk kuesioner \nyang digunakan berupa kuesioner tertutup, dimana responden memilih jawaban yang sudah \ndisediakan berupa benar atau tidak benar, Jika benar diberikan poin 1 jika tidak benar diberikan \nnilai 0.&#39;, &#39;RANCANGAN ANALISA DATA \nAnalisis data dilakukan secara univariate.&#39;, &#39;Analisa univariate adalah suatu teknik analisis data \nterhadap satu variabel secara mandiri, tiap variabel dianalisis tanpa dikaitkan dengan variabel \nlainnya.&#39;, &#39;A. KARAKTERISTIK RESPONDEN \nBerdasarkan data yang terkumpul didapatkan karakteristik responden sebagai berikut: \n1.&#39;, &#39;Usia \nTabel .1 Data Responden Berdasarkan Usia \n \nBerdasarkan tabel 1 diketahui bahwa responden dengan rentan         usia 17-21 \ntahun sebanyak 43 responden (12,57%), usia 22-26 tahun sebanyak 85 responden \n(24,85%), usia 27-31 tahun sebanyak 60 responden (17,54%),  usia 32-36 tahun \nsebanyak 44 responden (12,86%), usia 37-41 tahun sebanyak 34 responden (9,94%), usia \n42-46 sebanyak 37 responden (10,81%),  usia 47-51 sebanyak 17 responden (4,97%), \ndan usia 52-55 sebanyak 22 responden (6,43%).&#39;, &#39;2.&#39;, &#39;Jenis Kelamin \nNo \nUsia \nFrekuensi \nPersentase % \n1.&#39;, &#39;17-21 \n43 \n12,57% \n2.&#39;, &#39;22-26 \n85 \n24,85% \n3.&#39;, &#39;27-31 \n60 \n17,54% \n4.&#39;, &#39;32-36 \n44 \n12,86% \n5.&#39;, &#39;37-41 \n34 \n9,94% \n6.&#39;, &#39;42-46 \n37 \n10,81% \n    7.&#39;, &#39;47-51  \n17 \n4,97% \n    8.&#39;, &#39;52-55 \n22 \n6,43 \n \nTotal \n342 \n100% \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 125  \n \nTabel .2 Data Responden Berdasarkan Jenis Kelamin \nNo \nJenis Kelamin \nFrekuensi \nPersentase % \n1.&#39;, &#39;Laki-Laki \n135 \n39,47% \n2.&#39;, &#39;Perempuan \n207 \n60,53% \nTotal \n342 \n100% \nBerdasarkan tabel IV.2 diketahui bahwa responden yang berjenis kelamin \nperempuan lebih mendominasi dalam penelitian ini yaitu 207 responden (60,53%), \nsedangkan berjenis kelamin laki-laki sebanyak 135 responden (39,47%).&#39;, &#39;3.&#39;, &#39;Pendidikan \nTabel .3 Data Responden Berdasarkan Pendidikan \nNo \nPendidikan \nFrekuensi \nPersentase % \n1.&#39;, &#39;SD \n29 \n8,48% \n2.&#39;, &#39;SMP \n24 \n7,02% \n3.&#39;, &#39;SMA/SMK \n219 \n64,04% \n4.&#39;, &#39;D3/S1/S2/S3 \n70 \n20,47% \nTotal \n342 \n100% \nBerdasarkan tabel 3 diketahui bahwa sebanyak 29 responden (8,48%) \nberpendidikan sekolah dasar,24 responden (7,02%) berpendidikan sekolah menengah \npertama, 219 responden (64,04%) berpendidikan menengah atas dan kejuruan lebih \nbanyak dibandingkan yang lain, dan kemudian 70 responden (20,47%) berpendidikan \nperguruan tinggi.&#39;, &#39;4.&#39;, &#39;Pekerjaan \nTabel .4 Data Responden Berdasarkan Pekerjaan \nNo \nPekerjaan \nFrekuensi \nPersentase % \n1.&#39;, &#39;Bekerja \n221 \n64,62% \n2.&#39;, &#39;Tidak Bekerja \n121 \n35,38% \nTotal \n342 \n100% \nBerdasarkan tabel 4 diketahui bahwa responden yang bekerja sebanyak 221 \nresponden (64,62%) dan responden yang tidak bekerja sebanyak 121 responden (35,38%).&#39;, &#39;B. PENGETAHUAN MASYARAKAT TENTANG HIV/AIDS \nTabel  5 Data Pengetahuan Responden tentang HIV/AIDS \nNO \nPengetahuan \nJumlah \nPresentase \n1 \nBaik \n114 \n33,33% \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 126  \n \n2 \nCukup \n165 \n48,25% \n3 \nKurang  \n63 \n18,42% \n \nTotal  \n342 \n100% \nBerdasarkan tabel.5 hasil yang diperoleh tentang pengetahuan HIV/AIDS secara \nkeseluruhan yang berpengetahuan baik sebanyak 114 responden (33,33%), yang memiliki \npengetahuan cukup sebanyak 165 responden (48,25%), dan yang memiliki pengetahuan \nkurang sebanyak 63 responden (18,42%).&#39;, &#39;Berdasarkan data tersebut, didapatkan hasil \npengetahuan tentang HIV/AIDS di RW 02 Kelurahan Pinang ranti adalah berpengetahuan \ncukup sebanyak 165 dari 342 responden (48,25%).&#39;, &#39;Hal  ini dapat disebabkan karena beberapa \nfaktor seperti faktor internal (pendidikan, pekerjaan, dan umur) dan faktor eksternal (faktor \nlingkungan dan faktor sosial budaya).&#39;, &#39;(10) \nHasil penelitian ini sejalan dengan penelitian yang dilakukan di Kelurahan Sudiang \nRaya tahun 2022, menunjukkan bahwa responden memliki tingkat pengetahuan yang cukup \nsebanyak 17 responden dengan persentase ( 56.7%)  Penelitian yang dilakukan di RW 02 \nKelurahan Pinang Ranti menunjukan bahwa pengetahuan masyarakat tentang HIV/AIDS \ndengan hasil pengetahuan cukup sebanyak 165 responden (48,25%).&#39;, &#39;Hal tersebut merupakan \nhal yang baik dalam upaya menggambarkan pengetahuannya tentang HIV/AIDS.&#39;, &#39;Tabel .6 Pernyataan Pada lembar Kuesioner \nNO \nPERNYATAAN \nJAWABAN \nBenar \nSalah \n1 \nHIV merupakan virus yang menginfeksi, melumpuhkan dan \nmenghancurkan sistem imun \n286 \n56 \n2 \nAIDS merupakan  Kumpulan gejala penyakit akibat \nmenurunnya  sistem kekebalan tubuh oleh  HIV \n282 \n60 \n3 \nOrang yang terjangkit HIV dapat terkena penyakit lain \ndengan mudah \n266 \n76 \n4 \nHIV dapat tertular melalui penggunaan jarum suntik secara \nbersamaan \n278 \n64 \n5 \n HIV dapat menular melalui ibu hamil ke janin yang \ndikandungnya \n247 \n95 \n6 \n HIV dapat menular melalui jabatan tangan \n202 \n140 \n7 \n HIV dapat tertular melalui hubungan seksual dengan orang \nyang sudah terinfeksi  HIV \n272 \n70 \n8 \n HIV dapat menular melalui transfusi darah dari orang yang \nterinfeksi  HIV \n267 \n75 \n9 \nHIV tidak menular melalui sentuhan \n189 \n153 \n10 \nSelalu merasa Lelah merupakan gejala HIV \n207 \n135 \n11 \nSelalu berkeringat di malam hari merupakan gejala khas \nHIV \n214 \n128 \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 127  \n \nBerdasarkan tabel 6 menunjukan bahwa dari 23 kuesioner yang telah dijawab oleh \nresponden, pernyataan yang paling banyak dijawab benar oleh responden yaitu nomor 1, 2, dan \nnomor 4.&#39;, &#39;Pernyataan nomor 1 yaitu HIV merupakan virus yang menginfeksi, melumpuhkan dan \nmenghancurkan sistem imun, hal ini disebabkan karena HIV merupakan virus yang menyerang \ndan melemahkan sistem pertahanan tubuh manusia, sehingga tubuh mudah tertular berbagai \npenyakit.&#39;, &#39;(1) Pada pernyataan nomor 2 yaitu AIDS merupakan  kumpulan gejala penyakit akibat \nmenurunnya  sistem kekebalan tubuh oleh  HIV, hal ini karena AIDS merupakan sekumpulan \ngejala penyakit yang dapat menyebabkan menurunnya kekebalan tubuh yang disebabkan oleh \nHIV.&#39;, &#39;(1)  Penderita yang terinfeksi HIV, tidak langsung menderita penyakit AIDS karena ada \njangka waktu sekitar lima sampai sepuluh tahun sebelum penderita terjangkit AIDS.&#39;, &#39;(1) \nSedangkan untuk pernyataan nomor 4 yaitu HIV dapat tertular melalui penggunaan jarum suntik \nsecara bersamaan.&#39;, &#39;Hal ini disebabkan karena penularan HIV hanya terjadi melalui hubungan \nseksual dengan orang yang telah terinfeksi HIV, jarum suntik/tindik/tato yang tidak distrilkan dan \ndipakai secara bergantian, dapat juga melalui tranfusi darah yang mengandung virus HIV, dan ibu \npenderita HIV positif saat melahirkan.&#39;, &#39;(17)  \nBerdasarkan tabel  6 menunjukan bahwa responden menjawab pernyataan dengan salah \npada nomor 9, 18, dan 21.&#39;, &#39;Pada pernyataan nomor 9 responden beranggapan bahwa HIV dapat \nmenular melalui sentuhan, faktanya HIV/AIDS tidak ditularkan melalui jabatan tangan maupun \nsentuhan.&#39;, &#39;(1) Pada pernyataan nomor 18, responden beranggapan bahwa memakai peralatan \n12 \nHIV merupakan penyakit menular \n263 \n79 \n13 \nMenggunakan kondom pada saat berhubungan merupakan \nsalah satu pencegahan HIV \n266 \n76 \n14 \nARV (Anti retroviral) merupakan obat untuk menghambat \ninfeksi HIV \n245 \n97 \n15 \n HIV tidak dapat disembuhkan \n213 \n129 \n16 \nPenularan HIV dapat melalui gigitan nyamuk \n207 \n135 \n17 \nObat HIV harus diminum sesuai jadwal \n252 \n90 \n18 \nMemakai peralatan makan secara bersamaan, dapat \nmenulari HIV \n166 \n176 \n19 \nBerenang bersama penderita HIV dapat tertular HIV \n202 \n140 \n20 \nBerganti-ganti pasangan seks tidak menyebabkan terkena \nHIV \n200 \n142 \n21 \nMenggunakan handuk secara bersamaan penderita HIV \ndapat tertular  HIV \n199 \n143 \n22 \n HIV bisa dicegah dengan minum jamu secara rutin \n223 \n119 \n23 \nPenularan HIV dapat  disebabkan Tinggal satu rumah \ndengan penderita HIV   \n234 \n108 \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 128  \n \nmakan secara bersamaan dapat menularkan HIV, faktanya penyebab penularan HIV /AIDS tidak \nmenular melalui penggunaan alat makan secara bersamaan selama didalam rongga mulut \nseseorang tidak terjadi pendarahan tidak menjadi masalah besar.&#39;, &#39;(18) Selanjutnya pada pernyataan \nnomor 21 responden beranggapan bahwa menggunakan handuk secara bersamaan dengan pasien \nHIV/AIDS bisa tertular dengan menggunakan handuk secara bersamaan, faktanya penularan \nHIV/AIDS hanya terjadi melalui darah yang terinfeksi HIV ke tubuh orang lain.&#39;, &#39;Jadi \nmenggunakan handuk secara bersamaan dengan penderita HIV tidak dapat menularkan HIV.&#39;, &#39;(18) \nAdapun beberapa responden dengan pengetahuan kurang sebanyak 63 responden (18,42%%).&#39;, &#39;Hal  \nini dapat  disebabkan karena   responden belum   pernah   mendapatkan   informasi   kesehatan   \nmengenai   HIV/AIDS   seperti penyuluhan tentang HIV/AIDS, dan sebagian besar responden \nmemperoleh informasi mengenai HIV/AIDS dari \norang  lain.&#39;, &#39;4.1.&#39;, &#39;Hasil Uji Hubungan Karakteristik Demografi Jenis Kelamin dengan  pengetahuan \nkesehatan masyarakat tentang HIV/AIDS di RW 02 Kelurahan Pinang Ranti periode \nMaret-April 2024  \nAnalisa hubungan korelasi antara mengetahui Hubungan Karakteristik Demografi Jenis \nKelamin dengan  pengetahuan kesehatan masyarakat tentang HIV/AIDS di RW 02 Kelurahan \nPinang Ranti periode Maret-April 2024 menggunakan bantuan software statistik SPSS 26.&#39;, &#39;Langkah awal hasil uji normalitas dapat dilihat di bawah ini .&#39;, &#39;One-Sample Kolmogorov-Smirnov Test \nUnstandardized \nResidual \nN \n342 \nNormal Parametersa,b \nMean \n.0000000 \nStd.&#39;, &#39;Deviation \n9.2353821875 \nMost Extreme Differences \nAbsolute \n.105 \nPositive \n.036 \nNegative \n-.116 \nTest Statistic \n.117 \nAsymp.&#39;, &#39;Sig.&#39;, &#39;(2-tailed)c \n.045 \nMonte Carlo Sig.&#39;, &#39;(2-tailed)d Sig.&#39;, &#39;.045 \n99% Confidence Interval Lower Bound \n.036 \nUpper Bound \n.046 \na.&#39;, &#39;Test distribution is Normal.&#39;, &#39;b.&#39;, &#39;Calculated from data.&#39;, &#39;c. Lilliefors Significance Correction.&#39;, &#39;Jurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &quot;3 Oktober 2024 \n \n \nIda, dkk | 129  \n \nd. Lilliefors&#39; method based on 10000 Monte Carlo samples with starting seed 2000000.&quot;, &#39;Gambar.7.&#39;, &#39;Hasil Uji Normalitas \n \n Jumlah sampel dalam penelitian ini di atas 30, yaitu sebanyak 342, maka uji normalitas yang \ndigunakan adalah Kolmogorov-Smirnov.&#39;, &#39;Berdasarkan nilai sig (0,045) &lt; 0.05 maka data \nberdistribusi tidak normal, maka untuk uji korelasi menggunakan uji Spearman’s Rho.&#39;, &#39;Hasil uji \nAnalisa korelasi dapat dilihat pada table berikut .&#39;, &#39;Correlations \n \nUsia \nKategori \nPengetahuan \nJenis Kelamin  \nPearson Correlation \n1 \n-.241* \nSig.&#39;, &#39;(2-tailed) \n \n.409 \nN \n342 \n342 \nKategori Pengetahuan \ntentang HIV/AIDS \nPearson Correlation \n-.241* \n1 \nSig.&#39;, &#39;(2-tailed) \n.418 \n \nN \n342 \n342 \n*.&#39;, &#39;Correlation is significant at the 0.05 level (2-tailed).&#39;, &#39;Gambar .8 Hasil uji korelasi Spearman’s Rho \n \nNilai sig (0,418) &gt; 0,05, hal ini menunjukkan tidak ada Hubungan anara Karakteristik Demografi \nJenis Kelamin dengan  pengetahuan kesehatan masyarakat tentang HIV/AIDS di RW 02 \nKelurahan Pinang Ranti periode Maret-April 2024 Nilai pearson correlation menunjukkan nilai \n-0,241 yang mengindikasikan kekuatan hubungan (korelasi) antara Jenis Kelamin dan kategori \npengetahuan responden berada pada kategori Sangat Rendah.&#39;, &#39;SIMPULAN \nBerdasarkan hasil penelitian yang dilakukan di RW 02 Kelurahan Pinang Ranti Jakarta Timur \nmengenai gambaran pengetahuan tentang HIV/AIDS terhadap 342 responden.&#39;, &#39;Dari data yang \ndiperoleh sebagian besar masyarakat memiliki tingkat pengetahuan yang cukup yaitu sebanyak \n165 responden (48,25%).&#39;, &#39;tidak ada Hubungan anara Karakteristik Demografi Jenis Kelamin \ndengan  pengetahuan kesehatan masyarakat tentang HIV/AIDS di RW 02 Kelurahan Pinang Ranti \nperiode Maret-April 2024 Perlu dilakukan promosi kesehatan atau penyuluhan di setiap RT oleh \nfasilitas pelayanan kesehatan setempat agar pengetahuan masyarakat tentang HIV/AIDS semakin \nmeningkat.&#39;, &#39;Jurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 130  \n \n \nUCAPAN TERIMA KASIH  \nTerima  kasih  kami  sampaikan  kepada  STIKES  IKIFA  yang  telah  memberikan  dukungan \nfasilitas sehingga penelitian ini dan semua pihak yang telah memberikan  support untuk \nmenyelesaikan penelitian ini.&#39;, &#39;DAFTAR PUSTAKA \n \n1.&#39;, &#39;Kementerian Kesehatan RI.&#39;, &#39;Buku Saku HIV Dan IMS.&#39;, &#39;Jakarta; 2016.&#39;, &#39;4–5 hal.&#39;, &#39;2.&#39;, &#39;Kementerian Kesehatan RI.&#39;, &#39;Pedoman Penyelenggaraan Jenazah Orang dengan HIV/AIDS \n(ODHA).&#39;, &#39;Kementerian Kesehatan RI.&#39;, &#39;2017.&#39;, &#39;1–66 hal.&#39;, &#39;3.&#39;, &#39;World Health Organization.&#39;, &#39;Summary Of The Global HIV Epidemic [Internet].2022 [cited \n2024 Jan 8].&#39;, &#39;Available from: https://www.who.int/data/gho/data/themes/hiv-aids \n4.&#39;, &#39;Kementerian Kesehatan RI.&#39;, &#39;Laporan Eksekutif Perkembangan HIV/AIDS Dan Penyakit \nInfeksi Menular Seksual (PIMS) Triwulan I 2023.&#39;, &#39;Jakarta: Kementerian Kesehatan RI; \n2023.&#39;, &#39;13 hal.&#39;, &#39;5.&#39;, &#39;Kementerian Kesehatan RI.&#39;, &#39;Laporan Eksekutif Perkembangan HIV/AIDS Dan Penyakit \nInfeksi Menular Seksual (PIMS) Triwulan IV 2019.&#39;, &#39;Jakarta: Kementerian Kesehatan RI; \n2023.&#39;, &#39;157 hal.&#39;, &#39;6.&#39;, &#39;Lestyani, Lestyani.&#39;, &#39;Gambaran Tingkat Pengetahuan Masyarakat Tentang HIV-AIDS di \nDusun Bayanan Desa Jambeyan Kecamatan Sambirejo Kabupaten Sragen.&#39;, &#39;Jurnal \nKeperawatan CARE 10.1 (2020) \n7.&#39;, &#39;Saputra, Arizal Bayu.&#39;, &#39;Gambaran Pengetahuan Mahasiswa Akademi Farmasi IKIFA Tentang \nPenyakit HIV/AIDS.&#39;, &#39;2017.&#39;, &#39;8.&#39;, &#39;Susanti, S. Karakteristik Penderita HIV/AIDS Di Klinik VCT Rumah Sakit Umum daerah \nCilacap Tahun 2013-2016.&#39;, &#39;9.&#39;, &#39;Notoadmodjo S. Metodologi Penelitian Kesehatan.&#39;, &#39;Jakarta: Rineka Cipta; 2014.&#39;, &#39;27-28 hal.&#39;, &#39;10.&#39;, &#39;A.Wawan.&#39;, &#39;Dewi.&#39;, &#39;M. Teori dan Pengukuran Pengetahuan, Sikap dan Perilaku Manusia.&#39;, &#39;Yogyakarta: Nuha Medika; 2019.&#39;, &#39;16–18 hal.&#39;, &#39;11.&#39;, &#39;PMK No.25 ttg Rencana Aksi Nasional Kesehatan Lanjut Usia Tahun 2016-2019.&#39;, &#39;2019;1(1):2019.&#39;, &#39;12.&#39;, &#39;Koentjaraningrat.&#39;, &#39;Pengantar Ilmu Antropologi.&#39;, &#39;Jakarta: Rineka Cipta; 2009.&#39;, &#39;13.&#39;, &#39;Dr. R. Haryo Bimo Setiarto, S.Si., M.Si., Dr. Marni Br Karo, S.Tr.Keb., S.K.M., M.Kes.&#39;, &#39;, \nDr. dr. Titus Tambaip MK.&#39;, &#39;Penanganan Virus HIV/AIDS.&#39;, &#39;Deepublish; 2021.&#39;, &#39;13-24  hal.&#39;, &#39;14.&#39;, &#39;Suzana Murni.&#39;, &#39;Hidup dengan HIV/AIDS.&#39;, &#39;Jakarta: Yayasan Spiritia; 2009.&#39;, &#39;29 hal.&#39;, &#39;15.&#39;, &#39;Yulrina Ardhiyanti, Novita Lusiana, Kiki Megasari.&#39;, &#39;Bahan Ajar AIDS pada Asuhan \nKebidanan.&#39;, &#39;Yogyakarta: Deepublish; januari 2015.&#39;, &#39;5 hal.&#39;, &#39;16.&#39;, &#39;Spiritia.&#39;, &#39;5 Macam obat antiretroviral (ARV) dalam pengobatan HIV/AIDS [Internet].&#39;, &#39;2021 \n[cited \n2024 \nFeb \n12].&#39;, &#39;Available \nfrom: \nhttps://spiritia.or.id/portal/index.php/informasi/detail/357 \n17.&#39;, &#39;HANDITYA, B.; SACIPTO, R. Penanggulangan dan pencegahan hiv dan aids Secara \n\x0cJurnal Farmasi IKIFA \nVol.&#39;, &#39;3 No.&#39;, &#39;3 Oktober 2024 \n \n \nIda, dkk | 131  \n \nterintegrasi, tepat, kolaboratif dan berkesinambungan (tetep kober) Di kabupaten semarang.&#39;, &#39;ADIL Indonesia Journal, 2019, 1.1.&#39;, &#39;18.&#39;, &#39;Menghilangkan Stigma Pasien HIV/AIDS - FK-KMK UGM [Internet].&#39;, &#39;[cited 2024 Juli 6].&#39;, &#39;Available from:  https://fkkmk.ugm.ac.id/menghilangkan-stigma-pasien-hiv-aids/&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;kalimat&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                               kalimat
+0                          Jurnal Farmasi IKIFA \nVol.
+1                                                3 No.
+2    3 Oktober 2024 \n \n \nIda, dkk | 121  \n \nHU...
+3    Pada akhir tahun \n2022 sebanyak 85,6 juta ora...
+4    Prevalensi orang hidup dengan HIV secara globa...
+..                                                 ...
+214                 ADIL Indonesia Journal, 2019, 1.1.
+215                                                18.
+216  Menghilangkan Stigma Pasien HIV/AIDS - FK-KMK ...
+217                               [cited 2024 Juli 6].
+218  Available from:  https://fkkmk.ugm.ac.id/mengh...
+
+[219 rows x 1 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;kalimat.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Untuk membuat word graph</p>
+<p>Lanjutkan dengan menggunakan <a class="reference external" href="https://www.geeksforgeeks.org/nlp/co-occurence-matrix-in-nlp/">https://www.geeksforgeeks.org/nlp/co-occurence-matrix-in-nlp/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baca teks dari paper PDF (output.txt yang sudah diextract sebelumnya)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Preprocess the text - menggunakan stopwords Sastrawi (Bahasa Indonesia)</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">StopWordRemoverFactory</span><span class="p">()</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">factory</span><span class="o">.</span><span class="n">get_stop_words</span><span class="p">())</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="ow">and</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total kata setelah preprocessing: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kata unik: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the window size for co-occurrence</span>
+<span class="n">window_size</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Create a list of co-occurring word pairs</span>
+<span class="n">co_occurrences</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Counter</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">co_occurrences</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Create a list of unique words</span>
+<span class="n">unique_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+
+<span class="c1"># Initialize the co-occurrence matrix</span>
+<span class="n">co_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Populate the co-occurrence matrix</span>
+<span class="n">word_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)}</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">neighbors</span> <span class="ow">in</span> <span class="n">co_occurrences</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">co_matrix</span><span class="p">[</span><span class="n">word_index</span><span class="p">[</span><span class="n">word</span><span class="p">]][</span><span class="n">word_index</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]]</span> <span class="o">=</span> <span class="n">count</span>
+
+<span class="c1"># Create a DataFrame for better readability</span>
+<span class="n">co_matrix_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">co_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">unique_words</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">unique_words</span><span class="p">)</span>
+
+<span class="c1"># Display the co-occurrence matrix (sebagian)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Co-occurrence Matrix (10x10 pertama):&quot;</span><span class="p">)</span>
+<span class="n">co_matrix_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total kata setelah preprocessing: 2098
+Kata unik: 689
+
+Co-occurrence Matrix (10x10 pertama):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>smp</th>
+      <th>bound</th>
+      <th>bawah</th>
+      <th>pencegahan</th>
+      <th>yayasan</th>
+      <th>starting</th>
+      <th>monte</th>
+      <th>purpose</th>
+      <th>bersamaan</th>
+      <th>making</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>smp</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>bound</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>bawah</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>pencegahan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>yayasan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>starting</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>monte</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>purpose</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>bersamaan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>making</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sebetulnya&#39;, &#39;sedangkan&#39;, &#39;guna&#39;, &#39;dalam&#39;, &#39;kemana&#39;, &#39;seolah&#39;, &#39;sesuatu&#39;, &#39;lain&#39;, &#39;tentang&#39;, &#39;demikian&#39;, &#39;serta&#39;, &#39;tolong&#39;, &#39;sehingga&#39;, &#39;menurut&#39;, &#39;dengan&#39;, &#39;karena&#39;, &#39;setelah&#39;, &#39;harus&#39;, &#39;yakni&#39;, &#39;dapat&#39;, &#39;sebelum&#39;, &#39;dsb&#39;, &#39;untuk&#39;, &#39;dua&#39;, &#39;jika&#39;, &#39;di&#39;, &#39;daripada&#39;, &#39;atau&#39;, &#39;masih&#39;, &#39;telah&#39;, &#39;agar&#39;, &#39;seperti&#39;, &#39;kecuali&#39;, &#39;itulah&#39;, &#39;sampai&#39;, &#39;antara&#39;, &#39;selain&#39;, &#39;bahwa&#39;, &#39;oh&#39;, &#39;mari&#39;, &#39;sebab&#39;, &#39;namun&#39;, &#39;kami&#39;, &#39;ingin&#39;, &#39;selagi&#39;, &#39;kembali&#39;, &#39;supaya&#39;, &#39;kita&#39;, &#39;dahulu&#39;, &#39;belum&#39;, &#39;ya&#39;, &#39;amat&#39;, &#39;agak&#39;, &#39;hanya&#39;, &#39;akan&#39;, &#39;nggak&#39;, &#39;saja&#39;, &#39;dimana&#39;, &#39;ia&#39;, &#39;yaitu&#39;, &#39;begitu&#39;, &#39;ada&#39;, &#39;yang&#39;, &#39;seraya&#39;, &#39;oleh&#39;, &#39;dulunya&#39;, &#39;pun&#39;, &#39;sambil&#39;, &#39;dan&#39;, &#39;nanti&#39;, &#39;ke&#39;, &#39;juga&#39;, &#39;ketika&#39;, &#39;saya&#39;, &#39;dia&#39;, &#39;bagaimanapun&#39;, &#39;apakah&#39;, &#39;tapi&#39;, &#39;itu&#39;, &#39;setidaknya&#39;, &#39;terhadap&#39;, &#39;anda&#39;, &#39;mengapa&#39;, &#39;secara&#39;, &#39;toh&#39;, &#39;seterusnya&#39;, &#39;kenapa&#39;, &#39;sebagai&#39;, &#39;maka&#39;, &#39;sementara&#39;, &#39;hal&#39;, &#39;tanpa&#39;, &#39;kepada&#39;, &#39;sudah&#39;, &#39;sesudah&#39;, &#39;dst&#39;, &#39;boleh&#39;, &#39;seharusnya&#39;, &#39;bagi&#39;, &#39;tidak&#39;, &#39;saat&#39;, &#39;ok&#39;, &#39;melainkan&#39;, &#39;pula&#39;, &#39;setiap&#39;, &#39;tetapi&#39;, &#39;adalah&#39;, &#39;ini&#39;, &#39;lagi&#39;, &#39;pada&#39;, &#39;kah&#39;, &#39;apalagi&#39;, &#39;dll&#39;, &#39;para&#39;, &#39;demi&#39;, &#39;walau&#39;, &#39;tentu&#39;, &#39;pasti&#39;, &#39;sekitar&#39;, &#39;mereka&#39;, &#39;anu&#39;, &#39;dari&#39;, &#39;bisa&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat graph dari co-occurrence matrix</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">co_matrix_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_numpy_array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+<span class="c1"># Mapping node index ke kata</span>
+<span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">word</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)}</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nodes (kata unik): </span><span class="si">{</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah edges (koneksi co-occurrence): </span><span class="si">{</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nodes (kata unik): 689
+Jumlah edges (koneksi co-occurrence): 2714
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung PageRank</span>
+<span class="n">pagerank_scores</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+
+<span class="c1"># Urutkan berdasarkan skor PageRank (tertinggi ke terendah)</span>
+<span class="n">sorted_pagerank</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank_scores</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan top 20 kata dengan PageRank tertinggi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TOP 20 KATA DENGAN PAGERANK TERTINGGI&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">word</span><span class="si">:</span><span class="s2">20</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simpan hasil PageRank ke DataFrame</span>
+<span class="n">pagerank_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sorted_pagerank</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Kata&#39;</span><span class="p">,</span> <span class="s1">&#39;PageRank_Score&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total kata dalam graph: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pagerank_df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">pagerank_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==================================================
+TOP 20 KATA DENGAN PAGERANK TERTINGGI
+==================================================
+ 1. hiv                  : 0.030459
+ 2. responden            : 0.019633
+ 3. sebanyak             : 0.012343
+ 4. pengetahuan          : 0.012315
+ 5. the                  : 0.010541
+ 6. jakarta              : 0.008575
+ 7. penelitian           : 0.008420
+ 8. orang                : 0.008050
+ 9. kesehatan            : 0.007678
+10. tahun                : 0.007634
+11. kasus                : 0.007432
+12. penyakit             : 0.007358
+13. berdasarkan          : 0.006810
+14. 2024                 : 0.006805
+15. 342                  : 0.006633
+16. melalui              : 0.006186
+17. data                 : 0.006122
+18. masyarakat           : 0.006052
+19. virus                : 0.005957
+20. merupakan            : 0.005716
+
+Total kata dalam graph: 689
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Kata</th>
+      <th>PageRank_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>hiv</td>
+      <td>0.030459</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>responden</td>
+      <td>0.019633</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sebanyak</td>
+      <td>0.012343</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>pengetahuan</td>
+      <td>0.012315</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>the</td>
+      <td>0.010541</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>jakarta</td>
+      <td>0.008575</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>penelitian</td>
+      <td>0.008420</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>orang</td>
+      <td>0.008050</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>kesehatan</td>
+      <td>0.007678</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>tahun</td>
+      <td>0.007634</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>kasus</td>
+      <td>0.007432</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>penyakit</td>
+      <td>0.007358</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>berdasarkan</td>
+      <td>0.006810</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2024</td>
+      <td>0.006805</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>342</td>
+      <td>0.006633</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>melalui</td>
+      <td>0.006186</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>data</td>
+      <td>0.006122</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>masyarakat</td>
+      <td>0.006052</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>virus</td>
+      <td>0.005957</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>merupakan</td>
+      <td>0.005716</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualisasi graph dengan top 30 kata (untuk keterbacaan)</span>
+<span class="n">top_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">30</span><span class="p">]]</span>
+<span class="n">subgraph</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">top_words</span><span class="p">)</span>
+
+<span class="c1"># Warna node berdasarkan PageRank score</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">pagerank_scores</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">subgraph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+<span class="n">node_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">pagerank_scores</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10000</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">subgraph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">subgraph</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">subgraph</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> 
+        <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> 
+        <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Reds</span><span class="p">,</span>
+        <span class="n">node_size</span><span class="o">=</span><span class="n">node_sizes</span><span class="p">,</span> 
+        <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Word Graph - Top 30 Kata dengan PageRank Tertinggi&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="c1"># Fix colorbar dengan norm dan ax yang benar</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Reds</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">node_colors</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">node_colors</span><span class="p">)))</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">set_array</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;PageRank Score&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\willy\AppData\Local\Temp\ipykernel_19812\612094784.py:26: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+</pre></div>
+</div>
+<img alt="../../_images/933bee868c35c71959716b1ecf2060745646fdadef8dfbbd63ec365ab729790a.png" src="../../_images/933bee868c35c71959716b1ecf2060745646fdadef8dfbbd63ec365ab729790a.png" />
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./task\task10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Willy Chairullah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
