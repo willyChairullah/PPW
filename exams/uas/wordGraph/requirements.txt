@@ -6,3 +6,4 @@ pandas
 Sastrawi
 nltk
 spacy
+scipy
