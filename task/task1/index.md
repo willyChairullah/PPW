@@ -38,7 +38,7 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 {bdg-success}`Next Js`
 :::
 
-:::{grid-item-card} Analisis data
+:::{grid-item-card} Analisis data 
 {bdg-secondary}`NLP`
 :::
 ::::
@@ -49,7 +49,7 @@ Saya **Willy Chairullah Fauzi Putra**, mahasiswa aktif di **Teknik Informatika, 
 
 ## Pengantar Web Mining
 
-Web mining adalah proses mengekstrak informasi menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining).
+Web mining adalah proses mengekstrak informasi menggunakan teknik data mining untuk mengekstraksi pola berharga dari sumber yang berhabitat di internet. Disiplin ini terbagi ke dalam tiga lapangan utama: penggalian konten (web content mining), penggalian struktur (web structure mining), dan penggalian penggunaan (web usage mining). 
 
 ```{figure} ./images/Web-mining-taxonomy.png
 ---
@@ -61,7 +61,7 @@ Web mining taxonomy
 
 ### Web Crawling:
 
-Langkah awal adalah Web Crawling, yaitu proses pengambilan data dari sebuah halaman web secara otomatis. ini biasanya menggunakan alat yang dibuat dengan bahasa pemrograman seperti Python. Web crawler perlu mengikuti tautan dari satu halaman ke halaman lain supaya informasi yang diperoleh lebih banyak dan saling terhubung, membentuk data yang lebih terstruktur.
+Langkah awal adalah Web Crawling, yaitu proses pengambilan data dari sebuah halaman web secara otomatis. ini biasanya menggunakan alat yang dibuat dengan bahasa pemrograman seperti Python. Web crawler perlu mengikuti tautan dari satu halaman ke halaman lain supaya informasi yang diperoleh lebih banyak dan saling terhubung, membentuk data yang lebih terstruktur. 
 
 ### Web Data Preprocessing:
 

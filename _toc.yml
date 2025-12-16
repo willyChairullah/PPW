@@ -9,3 +9,19 @@ parts:
       - file: task/task1/index
       - file: task/task2/index
       - file: task/task3/index
+      - file: task/task4/index
+      - file: task/task5/index
+      - file: task/task7/index-pta
+      - file: task/task8/index
+      - file: task/task9/index
+      - file: task/task10/index
+  - caption: "UTS"
+    chapters:
+      - file: exams/uts/index
+      - file: exams/uts/real/index
+      - file: exams/uts/real/spam
+  # - caption: "UAS"
+  #   chapters:
+  #     - file: exams/uas/index
+  #     - file: exams/uas/real/index
+  #     - file: exams/uas/real/spam

@@ -1,0 +1,51 @@
+📋 Struktur Notebook:
+1. Import Libraries ✓
+Libraries untuk data manipulation, visualisasi, text processing, LDA, SVM, dan evaluasi
+
+2. Load dan Eksplorasi Data ✓
+Load dataset dari df_preprocessing.csv
+Eksplorasi distribusi kategori berita
+Visualisasi distribusi
+
+3. Persiapan Data ✓
+Split data training/testing (80:20)
+Stratified split untuk menjaga proporsi kategori
+
+4. Ekstraksi Fitur dengan LDA ✓
+CountVectorizer dengan filtering frekuensi (min_df, max_df)
+Pencarian jumlah topik optimal menggunakan Perplexity Score
+Training model LDA dengan jumlah topik optimal
+Transformasi dokumen ke distribusi topik (θ)
+Visualisasi top words per topik
+
+5. Pelatihan Model SVM ✓
+Training SVM dengan fitur LDA
+Prediksi pada data testing
+
+6. Evaluasi Model (LDA + SVM) ✓
+Accuracy, Precision, Recall, F1-Score
+Classification Report
+Confusion Matrix
+
+7. Baseline: TF-IDF + SVM ✓
+Ekstraksi fitur dengan TF-IDF
+Training SVM dengan TF-IDF
+Evaluasi model TF-IDF
+
+8. Perbandingan ✓
+Tabel perbandingan performa
+Visualisasi bar chart perbandingan
+Analisis selisih performa
+
+9. Kesimpulan ✓
+Analisis kelebihan/kekurangan masing-masing metode
+Rekomendasi penggunaan
+
+🎯 Fitur Utama:
+✅ Lengkap sesuai 5 langkah tugas
+✅ Perbandingan LDA vs TF-IDF
+✅ Visualisasi yang informatif
+✅ Penjelasan detail di setiap tahap
+✅ Code siap dijalankan
+
+Notebook ini sekarang siap untuk dijalankan! Anda tinggal menjalankan cell demi cell untuk melihat hasilnya. 🚀
