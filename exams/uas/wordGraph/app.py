@@ -276,10 +276,7 @@ def extract_keywords_fast(G, top_n=20, use_centrality=False):
     if use_centrality:
         scores = nx.degree_centrality(G)
     else:
-        try:
-            scores = nx.pagerank_numpy(G, alpha=0.85, weight="weight")
-        except Exception:
-            scores = nx.pagerank(G, alpha=0.85, weight="weight")
+        scores = nx.pagerank(G, alpha=0.85, weight="weight")
 
     sorted_keywords = sorted(scores.items(), key=lambda x: x[1], reverse=True)
     return sorted_keywords[:top_n], scores
