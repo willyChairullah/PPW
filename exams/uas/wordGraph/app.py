@@ -10,7 +10,7 @@ import streamlit as st
 from functools import lru_cache
 import pandas as pd
 import matplotlib.patches as mpatches
-import spacy
+# import spacy
 import nltk
 from nltk.corpus import stopwords
 
@@ -208,7 +208,7 @@ def cached_stem(word):
     return stemmer.stem(word)
 
 # Muat model spaCy global (biar tidak re-load tiap kali)
-nlp = spacy.load("xx_ent_wiki_sm")
+# nlp = spacy.load("xx_ent_wiki_sm")
 
 # Download stopwords NLTK (hanya sekali)
 try:
