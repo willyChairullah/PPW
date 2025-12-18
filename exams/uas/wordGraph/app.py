@@ -35,19 +35,14 @@ def filter_paragraphs(text):
     lines = text.split('\n')
     filtered_lines = []
     
-    # Flag untuk menandai apakah sudah menemukan abstract atau pendahuluan
+    # Flag untuk menandai apakah sudah menemukan pendahuluan
     content_started = False
     
-    # Deteksi pola abstract atau pendahuluan (mulai konten)
-    start_patterns = [
-        r'abstract\s*:?',
-        r'abstrak\s*:?',
-        r'ringkasan\s*:?',
+    # Deteksi pola mulai konten (setelah pendahuluan)
+    content_start_patterns = [
         r'pendahuluan',
         r'introduction',
         r'latar\s+belakang',
-        r'hasil\s+dan\s+pembahasan',
-        r'metod(e|ologi)',
     ]
     
     i = 0
@@ -55,12 +50,13 @@ def filter_paragraphs(text):
         line = lines[i]
         line_stripped = line.strip()
         
-        # Cek apakah konten sudah dimulai
+        # Cek apakah konten sudah dimulai (mencari kata pendahuluan/introduction)
         if not content_started:
-            for pattern in start_patterns:
+            for pattern in content_start_patterns:
                 if re.search(pattern, line_stripped.lower()):
                     content_started = True
-                    break
+                    i += 1  # Skip baris "PENDAHULUAN" itu sendiri
+                    continue
             
             # Skip semua baris sebelum konten dimulai
             if not content_started:
@@ -186,53 +182,36 @@ def filter_paragraphs(text):
 def clean_text(text):
     """Bersihkan teks: lowercase, hapus simbol non-alphabet, hapus spasi ganda"""
     text = text.lower()
-    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
+    text = re.sub(r'[^a-z0-9\s\-]', ' ', text)
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
 
 
 @st.cache_resource
-def get_nlp_tools():
-    """Inisialisasi stopword dan stemmer hanya sekali"""
-    stop_factory = StopWordRemoverFactory()
-    stop_words = set(stop_factory.get_stop_words())
-    stemmer_factory = StemmerFactory()
-    stemmer = stemmer_factory.create_stemmer()
-    return stop_words, stemmer
-
-
-@lru_cache(maxsize=None)
-def cached_stem(word):
-    """Stemming cepat dengan cache"""
-    stop_words, stemmer = get_nlp_tools()
-    return stemmer.stem(word)
-
-# Muat model spaCy global (biar tidak re-load tiap kali)
-# nlp = spacy.load("xx_ent_wiki_sm")
-
-# Download stopwords NLTK (hanya sekali)
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords', quiet=True)
-
-# Dapatkan stopwords bahasa Inggris dari NLTK
-ENGLISH_STOPWORDS = set(stopwords.words('english'))
+def init_nlp():
+    """Inisialisasi NLP resources: stopwords dan stemmer (di-cache agar efisien)"""
+    # Download stopwords NLTK jika belum ada
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords', quiet=True)
+    
+    stop_id = set(StopWordRemoverFactory().get_stop_words())
+    stop_en = set(stopwords.words("english"))
+    stemmer = StemmerFactory().create_stemmer()
+    return stop_id, stop_en, stemmer
 
 @st.cache_data(show_spinner=False)
 def preprocess_text(text, use_stemming=False, user_stopwords=None):
-    stop_factory = StopWordRemoverFactory()
-    stop_words = set(stop_factory.get_stop_words())
-    stemmer_factory = StemmerFactory()
-    stemmer = stemmer_factory.create_stemmer()
-
+    """Preprocessing teks: tokenisasi, stopwords removal, dan stemming opsional"""
+    # Ambil stopwords dan stemmer dari fungsi yang sudah di-cache
+    stop_id, stop_en, stemmer = init_nlp()
+    
     # Tokenisasi sederhana (AMAN untuk Bahasa Indonesia)
-    words = re.findall(r"[a-zA-Z]{3,}", text.lower())
+    words = re.findall(r"[a-z][a-z0-9\-]{2,}", text)
 
-    # Gabungkan semua stopwords
-    all_stopwords = stop_words.union(ENGLISH_STOPWORDS)
-    if user_stopwords:
-        all_stopwords = all_stopwords.union(user_stopwords)
+    # Gabungkan semua stopwords (Indonesian + English + User Custom)
+    all_stopwords = stop_id | stop_en | (user_stopwords or set())
 
     # Stopword filter (Indonesian + English + User Custom)
     words = [
@@ -332,7 +311,7 @@ def plot_word_graph(G, scores, top_n):
         ax.text(
             x, y, node,
             fontsize=9,
-            color='#FFF000', 
+            color='#222', 
             ha='center', va='center',
             fontweight='bold'
         )
@@ -368,7 +347,7 @@ st.title("⚡ Ekstraktor Kata Kunci PDF")
 uploaded_file = st.file_uploader("📄 Upload file PDF", type=["pdf"])
 
 # ====== Opsi di bagian atas (bersebelahan) ======
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 with col1:
     use_stemming = st.checkbox(
         "Gunakan stemming", 
@@ -379,12 +358,9 @@ with col2:
         "Gunakan Degree Centrality", 
         value=False
     )
-with col3:
-    filter_only_paragraphs = st.checkbox(
-        "Filter hanya paragraf",
-        value=True,
-        help="Hapus header, footer, tabel, dan metadata. Hanya ambil paragraf teks."
-    )
+
+# Filter paragraf selalu aktif (default)
+filter_only_paragraphs = True
 # ===============================================
 
 # ====== Input Stopwords Manual ======
@@ -416,21 +392,13 @@ if uploaded_file:
         
         clean = clean_text(filtered_text)
 
-    # ====== 🆕 Tampilkan isi teks dari PDF ======
-    st.subheader("📘 Cuplikan Teks dari PDF")
-    
-    # Tampilkan preview dengan teks yang sudah difilter
-    sentences = split_into_sentences(filtered_text)
-    preview_text = "\n\n".join(sentences[:5])
-    st.text_area("Preview teks (5 kalimat pertama):", preview_text, height=200)
+    # ====== Tampilkan teks hasil filter ======
+    st.subheader("🧾 Teks hasil filter (cek relevansi)")
+    st.text_area("Filtered text", filtered_text, height=300)
 
-    with st.expander("📄 Lihat seluruh teks hasil ekstraksi"):
-        st.text_area("Teks lengkap:", filtered_text, height=400, key="full_text")
-    
-    # Tampilkan perbandingan jika filter aktif
-    if filter_only_paragraphs:
-        with st.expander("🔍 Lihat teks asli (sebelum filter)"):
-            st.text_area("Teks asli dari PDF:", raw_text, height=400, key="raw_text")
+    sentences = split_into_sentences(filtered_text)
+    with st.expander("✅ Kalimat yang dipakai (setelah filter)"):
+        st.write(sentences)
     # ============================================
 
     # ✅ Proses teks
